@@ -1,3 +1,5 @@
+#![doc = include_str!("../README.md")]
+
 pub mod builders;
 mod formatter;
 mod std_impls;

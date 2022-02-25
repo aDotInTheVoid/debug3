@@ -3,6 +3,8 @@ debug3 (debug2-ng)
 
 A space effiecent replacement for `std::fmt::Debug`
 
+THIS IS PRE RELEASE SOFTWARE: DO NOT USE
+
 ## Overview
 
 TODO
