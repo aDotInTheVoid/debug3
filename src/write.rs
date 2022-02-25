@@ -1,4 +1,4 @@
-use crate::{Formatter, Result, Write};
+use crate::{Result, Write};
 
 // impl Write for String {
 //     fn write_str(&mut self, s: &str) -> Result {

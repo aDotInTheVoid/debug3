@@ -7,9 +7,13 @@ edition = "2021"
 
 [dependencies]
 debug3-derive = { version = "0.1", path = "derive" }
+rustversion = "1.0.6"
 
 [workspace]
 members = [
     ".",
     "./derive"
 ]
+
+[dev-dependencies]
+trybuild = "1.0.56"

@@ -1,0 +1,8 @@
+error[E0277]: the trait bound `NoDebug: debug3::Debug` is not satisfied
+ --> tests/ui/debug_not_field.rs:3:10
+  |
+3 | #[derive(debug3::Debug)]
+  |          ^^^^^^^^^^^^^ the trait `debug3::Debug` is not implemented for `NoDebug`
+  |
+  = note: required for the cast to the object type `dyn debug3::Debug`
+  = note: this error originates in the derive macro `debug3::Debug` (in Nightly builds, run with -Z macro-backtrace for more info)
