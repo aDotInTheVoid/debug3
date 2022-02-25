@@ -42,7 +42,7 @@ pub trait Write {
     /// # Examples
     ///
     /// ```
-    /// use std::fmt::{Error, Write};
+    /// use debug3::{Error, Write};
     ///
     /// fn writer<W: Write>(f: &mut W, s: &str) -> Result<(), Error> {
     ///     f.write_str(s)
@@ -68,7 +68,7 @@ pub trait Write {
     /// # Examples
     ///
     /// ```
-    /// use std::fmt::{Error, Write};
+    /// use debug3::{Error, Write};
     ///
     /// fn writer<W: Write>(f: &mut W, c: char) -> Result<(), Error> {
     ///     f.write_char(c)
