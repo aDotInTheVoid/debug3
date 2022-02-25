@@ -112,7 +112,7 @@ impl<T: ?Sized + Debug> Debug for Rc<T> {
 
 impl<T: ?Sized> Debug for *const T {
     fn fmt(&self, f: &mut Formatter<'_>) -> Result {
-        f.write_str(&format!("{:?}", self))
+        f.write_debug(self)
     }
 }
 
