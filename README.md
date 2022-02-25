@@ -3,7 +3,89 @@ debug3 (debug2-ng)
 
 A space effiecent replacement for `std::fmt::Debug`
 
-THIS IS PRE RELEASE SOFTWARE: DO NOT USE
+THIS IS UNIMPLEMENTED AND DOESNT WORK
+
+## The Pitch
+
+Imagine you have a structure like
+
+```rust
+let complex_structure = vec![
+    vec![Some(1), Some(2), Some(3), None],
+    vec![Some(2), None],
+    vec![Some(4), Some(7)],
+    vec![Some(1), Some(2), Some(3), None],
+];
+```
+
+And you want to format it as a string. You could use `format!("{:?}", complex_structure)` and get something like
+
+```rust,ignore
+[[Some(1), Some(2), Some(3), None], [Some(2), None], [Some(4), Some(7)], [Some(1), Some(2), Some(3), None]]
+```
+
+Fortunaly theirs an alternative `format!("{:#?}", complex_structure)`, which gives 
+
+```rust,ignore
+[
+    [
+        Some(
+            1,
+        ),
+        Some(
+            2,
+        ),
+        Some(
+            3,
+        ),
+        None,
+    ],
+    [
+        Some(
+            2,
+        ),
+        None,
+    ],
+    [
+        Some(
+            4,
+        ),
+        Some(
+            7,
+        ),
+    ],
+    [
+        Some(
+            1,
+        ),
+        Some(
+            2,
+        ),
+        Some(
+            3,
+        ),
+        None,
+    ],
+]
+```
+
+`debug3` provides a third option that attmepts to be denser than `:#?` but more readable than `:?`. If you use `debug3::pprint(complex_structure)`, you get
+
+```rust,ignore
+[
+    [Some(1), Some(2), Some(3), None],
+    [Some(2), None],
+    [Some(4), Some(7)],
+    [Some(1), Some(2), Some(3), None],
+    [Some(2), None],
+    [Some(4), Some(7)],
+    [Some(1), Some(2), Some(3), None],
+    [Some(2), None],
+    [Some(4), Some(7)],
+]
+```
+
+<!-- TODO: Actually implement this lmao -->
 
 ## Overview
 
