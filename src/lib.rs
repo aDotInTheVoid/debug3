@@ -3,6 +3,8 @@ mod formatter;
 mod std_impls;
 mod write;
 
+pub use debug3_derive::Debug;
+
 pub struct Formatter<'a> {
     buf: &'a mut dyn Write,
 }
@@ -13,7 +15,7 @@ pub trait Debug {
 
 pub type Result = std::result::Result<(), Error>;
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, std::fmt::Debug)]
 pub struct Error {}
 
 impl std::error::Error for Error {}
