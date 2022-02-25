@@ -1,9 +1,9 @@
 #![allow(unused_imports)]
 
-use crate::{self as fmt, Debug, Formatter, Write};
+use crate::{Debug, Formatter, Result, Write};
 
 struct PadAdapter<'buf, 'state> {
-    buf: &'buf mut (dyn fmt::Write + 'buf),
+    buf: &'buf mut (dyn Write + 'buf),
     state: &'state mut PadAdapterState,
 }
 
@@ -19,16 +19,16 @@ impl Default for PadAdapterState {
 
 impl<'buf, 'state> PadAdapter<'buf, 'state> {
     fn wrap<'slot, 'fmt: 'buf + 'slot>(
-        fmt: &'fmt mut fmt::Formatter<'_>,
+        fmt: &'fmt mut Formatter<'_>,
         slot: &'slot mut Option<Self>,
         state: &'state mut PadAdapterState,
-    ) -> fmt::Formatter<'slot> {
+    ) -> Formatter<'slot> {
         fmt.wrap_buf(move |buf| slot.insert(PadAdapter { buf, state }))
     }
 }
 
-impl fmt::Write for PadAdapter<'_, '_> {
-    fn write_str(&mut self, mut s: &str) -> fmt::Result {
+impl Write for PadAdapter<'_, '_> {
+    fn write_str(&mut self, mut s: &str) -> Result {
         while !s.is_empty() {
             if self.state.on_newline {
                 self.buf.write_str("    ")?;
@@ -52,7 +52,7 @@ impl fmt::Write for PadAdapter<'_, '_> {
     }
 }
 
-/// A struct to help with [`fmt::Debug`](Debug) implementations.
+/// A struct to help with [`Debug`](Debug) implementations.
 ///
 /// This is useful when you wish to output a formatted struct as a part of your
 /// [`Debug::fmt`] implementation.
@@ -62,15 +62,15 @@ impl fmt::Write for PadAdapter<'_, '_> {
 /// # Examples
 ///
 /// ```
-/// use debug3 as fmt;
+/// use debug3::{Debug, Formatter, Result};
 ///
 /// struct Foo {
 ///     bar: i32,
 ///     baz: String,
 /// }
 ///
-/// impl fmt::Debug for Foo {
-///     fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
+/// impl Debug for Foo {
+///     fn fmt(&self, fmt: &mut Formatter) -> Result {
 ///         fmt.debug_struct("Foo")
 ///            .field("bar", &self.bar)
 ///            .field("baz", &self.baz)
@@ -86,13 +86,13 @@ impl fmt::Write for PadAdapter<'_, '_> {
 #[must_use = "must eventually call `finish()` on Debug builders"]
 #[allow(missing_debug_implementations)]
 pub struct DebugStruct<'a, 'b: 'a> {
-    fmt: &'a mut fmt::Formatter<'b>,
-    result: fmt::Result,
+    fmt: &'a mut Formatter<'b>,
+    result: Result,
     has_fields: bool,
 }
 
 pub(super) fn debug_struct_new<'a, 'b>(
-    fmt: &'a mut fmt::Formatter<'b>,
+    fmt: &'a mut Formatter<'b>,
     name: &str,
 ) -> DebugStruct<'a, 'b> {
     let result = fmt.write_str(name);
@@ -109,15 +109,15 @@ impl<'a, 'b: 'a> DebugStruct<'a, 'b> {
     /// # Examples
     ///
     /// ```
-    /// use debug3 as fmt;
+    /// use debug3::{Debug, Formatter, Result};
     ///
     /// struct Bar {
     ///     bar: i32,
     ///     another: String,
     /// }
     ///
-    /// impl fmt::Debug for Bar {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
+    /// impl Debug for Bar {
+    ///     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
     ///         fmt.debug_struct("Bar")
     ///            .field("bar", &self.bar) // We add `bar` field.
     ///            .field("another", &self.another) // We add `another` field.
@@ -132,7 +132,7 @@ impl<'a, 'b: 'a> DebugStruct<'a, 'b> {
     ///     "Bar { bar: 10, another: \"Hello World\", not_existing_field: 1 }",
     /// );
     /// ```
-    pub fn field(&mut self, name: &str, value: &dyn fmt::Debug) -> &mut Self {
+    pub fn field(&mut self, name: &str, value: &dyn Debug) -> &mut Self {
         self.result = self.result.and_then(|_| {
             if self.is_pretty() {
                 if !self.has_fields {
@@ -164,15 +164,15 @@ impl<'a, 'b: 'a> DebugStruct<'a, 'b> {
     /// # Examples
     ///
     /// ```
-    /// use debug3 as fmt;
+    /// use debug3::{Debug, Formatter, Result};
     ///
     /// struct Bar {
     ///     bar: i32,
     ///     hidden: f32,
     /// }
     ///
-    /// impl fmt::Debug for Bar {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
+    /// impl Debug for Bar {
+    ///     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
     ///         fmt.debug_struct("Bar")
     ///            .field("bar", &self.bar)
     ///            .finish_non_exhaustive() // Show that some other field(s) exist.
@@ -184,7 +184,7 @@ impl<'a, 'b: 'a> DebugStruct<'a, 'b> {
     ///     "Bar { bar: 10, .. }",
     /// );
     /// ```
-    pub fn finish_non_exhaustive(&mut self) -> fmt::Result {
+    pub fn finish_non_exhaustive(&mut self) -> Result {
         self.result = self.result.and_then(|_| {
             if self.has_fields {
                 if self.is_pretty() {
@@ -208,15 +208,15 @@ impl<'a, 'b: 'a> DebugStruct<'a, 'b> {
     /// # Examples
     ///
     /// ```
-    /// use debug3 as fmt;
+    /// use debug3::{Debug, Formatter, Result};
     ///
     /// struct Bar {
     ///     bar: i32,
     ///     baz: String,
     /// }
     ///
-    /// impl fmt::Debug for Bar {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
+    /// impl Debug for Bar {
+    ///     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
     ///         fmt.debug_struct("Bar")
     ///            .field("bar", &self.bar)
     ///            .field("baz", &self.baz)
@@ -230,7 +230,7 @@ impl<'a, 'b: 'a> DebugStruct<'a, 'b> {
     ///     "Bar { bar: 10, baz: \"Hello World\" }",
     /// );
     /// ```
-    pub fn finish(&mut self) -> fmt::Result {
+    pub fn finish(&mut self) -> Result {
         if self.has_fields {
             self.result = self.result.and_then(|_| {
                 if self.is_pretty() {
@@ -248,7 +248,7 @@ impl<'a, 'b: 'a> DebugStruct<'a, 'b> {
     }
 }
 
-/// A struct to help with [`fmt::Debug`](Debug) implementations.
+/// A struct to help with [`Debug`](Debug) implementations.
 ///
 /// This is useful when you wish to output a formatted tuple as a part of your
 /// [`Debug::fmt`] implementation.
@@ -258,12 +258,12 @@ impl<'a, 'b: 'a> DebugStruct<'a, 'b> {
 /// # Examples
 ///
 /// ```
-/// use debug3 as fmt;
+/// use debug3::{Debug, Formatter, Result};
 ///
 /// struct Foo(i32, String);
 ///
-/// impl fmt::Debug for Foo {
-///     fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
+/// impl Debug for Foo {
+///     fn fmt(&self, fmt: &mut Formatter) -> Result {
 ///         fmt.debug_tuple("Foo")
 ///            .field(&self.0)
 ///            .field(&self.1)
@@ -279,14 +279,14 @@ impl<'a, 'b: 'a> DebugStruct<'a, 'b> {
 #[must_use = "must eventually call `finish()` on Debug builders"]
 #[allow(missing_debug_implementations)]
 pub struct DebugTuple<'a, 'b: 'a> {
-    fmt: &'a mut fmt::Formatter<'b>,
-    result: fmt::Result,
+    fmt: &'a mut Formatter<'b>,
+    result: Result,
     fields: usize,
     empty_name: bool,
 }
 
 pub(super) fn debug_tuple_new<'a, 'b>(
-    fmt: &'a mut fmt::Formatter<'b>,
+    fmt: &'a mut Formatter<'b>,
     name: &str,
 ) -> DebugTuple<'a, 'b> {
     let result = fmt.write_str(name);
@@ -304,12 +304,12 @@ impl<'a, 'b: 'a> DebugTuple<'a, 'b> {
     /// # Examples
     ///
     /// ```
-    /// use debug3 as fmt;
+    /// use debug3::{Debug, Formatter, Result};
     ///
     /// struct Foo(i32, String);
     ///
-    /// impl fmt::Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
+    /// impl Debug for Foo {
+    ///     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
     ///         fmt.debug_tuple("Foo")
     ///            .field(&self.0) // We add the first field.
     ///            .field(&self.1) // We add the second field.
@@ -322,7 +322,7 @@ impl<'a, 'b: 'a> DebugTuple<'a, 'b> {
     ///     "Foo(10, \"Hello World\")",
     /// );
     /// ```
-    pub fn field(&mut self, value: &dyn fmt::Debug) -> &mut Self {
+    pub fn field(&mut self, value: &dyn Debug) -> &mut Self {
         self.result = self.result.and_then(|_| {
             if self.is_pretty() {
                 if self.fields == 0 {
@@ -349,12 +349,12 @@ impl<'a, 'b: 'a> DebugTuple<'a, 'b> {
     /// # Examples
     ///
     /// ```
-    /// use debug3 as fmt;
+    /// use debug3::{Debug, Formatter, Result};
     ///
     /// struct Foo(i32, String);
     ///
-    /// impl fmt::Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
+    /// impl Debug for Foo {
+    ///     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
     ///         fmt.debug_tuple("Foo")
     ///            .field(&self.0)
     ///            .field(&self.1)
@@ -368,7 +368,7 @@ impl<'a, 'b: 'a> DebugTuple<'a, 'b> {
     ///     "Foo(10, \"Hello World\")",
     /// );
     /// ```
-    pub fn finish(&mut self) -> fmt::Result {
+    pub fn finish(&mut self) -> Result {
         if self.fields > 0 {
             self.result = self.result.and_then(|_| {
                 if self.fields == 1 && self.empty_name && !self.is_pretty() {
@@ -386,13 +386,13 @@ impl<'a, 'b: 'a> DebugTuple<'a, 'b> {
 }
 
 struct DebugInner<'a, 'b: 'a> {
-    fmt: &'a mut fmt::Formatter<'b>,
-    result: fmt::Result,
+    fmt: &'a mut Formatter<'b>,
+    result: Result,
     has_fields: bool,
 }
 
 impl<'a, 'b: 'a> DebugInner<'a, 'b> {
-    fn entry(&mut self, entry: &dyn fmt::Debug) {
+    fn entry(&mut self, entry: &dyn Debug) {
         self.result = self.result.and_then(|_| {
             if self.is_pretty() {
                 if !self.has_fields {
@@ -419,7 +419,7 @@ impl<'a, 'b: 'a> DebugInner<'a, 'b> {
     }
 }
 
-/// A struct to help with [`fmt::Debug`](Debug) implementations.
+/// A struct to help with [`Debug`](Debug) implementations.
 ///
 /// This is useful when you wish to output a formatted set of items as a part
 /// of your [`Debug::fmt`] implementation.
@@ -429,12 +429,12 @@ impl<'a, 'b: 'a> DebugInner<'a, 'b> {
 /// # Examples
 ///
 /// ```
-/// use debug3 as fmt;
+/// use debug3::{Debug, Formatter, Result};
 ///
 /// struct Foo(Vec<i32>);
 ///
-/// impl fmt::Debug for Foo {
-///     fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
+/// impl Debug for Foo {
+///     fn fmt(&self, fmt: &mut Formatter) -> Result {
 ///         fmt.debug_set().entries(self.0.iter()).finish()
 ///     }
 /// }
@@ -450,7 +450,7 @@ pub struct DebugSet<'a, 'b: 'a> {
     inner: DebugInner<'a, 'b>,
 }
 
-pub(super) fn debug_set_new<'a, 'b>(fmt: &'a mut fmt::Formatter<'b>) -> DebugSet<'a, 'b> {
+pub(super) fn debug_set_new<'a, 'b>(fmt: &'a mut Formatter<'b>) -> DebugSet<'a, 'b> {
     let result = fmt.write_str("{");
     DebugSet {
         inner: DebugInner {
@@ -467,12 +467,12 @@ impl<'a, 'b: 'a> DebugSet<'a, 'b> {
     /// # Examples
     ///
     /// ```
-    /// use debug3 as fmt;
+    /// use debug3::{Debug, Formatter, Result};
     ///
     /// struct Foo(Vec<i32>, Vec<u32>);
     ///
-    /// impl fmt::Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
+    /// impl Debug for Foo {
+    ///     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
     ///         fmt.debug_set()
     ///            .entry(&self.0) // Adds the first "entry".
     ///            .entry(&self.1) // Adds the second "entry".
@@ -485,7 +485,7 @@ impl<'a, 'b: 'a> DebugSet<'a, 'b> {
     ///     "{[10, 11], [12, 13]}",
     /// );
     /// ```
-    pub fn entry(&mut self, entry: &dyn fmt::Debug) -> &mut Self {
+    pub fn entry(&mut self, entry: &dyn Debug) -> &mut Self {
         self.inner.entry(entry);
         self
     }
@@ -495,12 +495,12 @@ impl<'a, 'b: 'a> DebugSet<'a, 'b> {
     /// # Examples
     ///
     /// ```
-    /// use debug3 as fmt;
+    /// use debug3::{Debug, Formatter, Result};
     ///
     /// struct Foo(Vec<i32>, Vec<u32>);
     ///
-    /// impl fmt::Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
+    /// impl Debug for Foo {
+    ///     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
     ///         fmt.debug_set()
     ///            .entries(self.0.iter()) // Adds the first "entry".
     ///            .entries(self.1.iter()) // Adds the second "entry".
@@ -515,7 +515,7 @@ impl<'a, 'b: 'a> DebugSet<'a, 'b> {
     /// ```
     pub fn entries<D, I>(&mut self, entries: I) -> &mut Self
     where
-        D: fmt::Debug,
+        D: Debug,
         I: IntoIterator<Item = D>,
     {
         for entry in entries {
@@ -529,12 +529,12 @@ impl<'a, 'b: 'a> DebugSet<'a, 'b> {
     /// # Examples
     ///
     /// ```
-    /// use debug3 as fmt;
+    /// use debug3::{Debug, Formatter, Result};
     ///
     /// struct Foo(Vec<i32>);
     ///
-    /// impl fmt::Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
+    /// impl Debug for Foo {
+    ///     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
     ///         fmt.debug_set()
     ///            .entries(self.0.iter())
     ///            .finish() // Ends the struct formatting.
@@ -546,14 +546,14 @@ impl<'a, 'b: 'a> DebugSet<'a, 'b> {
     ///     "{10, 11}",
     /// );
     /// ```
-    pub fn finish(&mut self) -> fmt::Result {
+    pub fn finish(&mut self) -> Result {
         self.inner
             .result
             .and_then(|_| self.inner.fmt.write_str("}"))
     }
 }
 
-/// A struct to help with [`fmt::Debug`](Debug) implementations.
+/// A struct to help with [`Debug`](Debug) implementations.
 ///
 /// This is useful when you wish to output a formatted list of items as a part
 /// of your [`Debug::fmt`] implementation.
@@ -563,12 +563,12 @@ impl<'a, 'b: 'a> DebugSet<'a, 'b> {
 /// # Examples
 ///
 /// ```
-/// use debug3 as fmt;
+/// use debug3::{Debug, Formatter, Result};
 ///
 /// struct Foo(Vec<i32>);
 ///
-/// impl fmt::Debug for Foo {
-///     fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
+/// impl Debug for Foo {
+///     fn fmt(&self, fmt: &mut Formatter) -> Result {
 ///         fmt.debug_list().entries(self.0.iter()).finish()
 ///     }
 /// }
@@ -584,7 +584,7 @@ pub struct DebugList<'a, 'b: 'a> {
     inner: DebugInner<'a, 'b>,
 }
 
-pub(super) fn debug_list_new<'a, 'b>(fmt: &'a mut fmt::Formatter<'b>) -> DebugList<'a, 'b> {
+pub(super) fn debug_list_new<'a, 'b>(fmt: &'a mut Formatter<'b>) -> DebugList<'a, 'b> {
     let result = fmt.write_str("[");
     DebugList {
         inner: DebugInner {
@@ -601,12 +601,12 @@ impl<'a, 'b: 'a> DebugList<'a, 'b> {
     /// # Examples
     ///
     /// ```
-    /// use debug3 as fmt;
+    /// use debug3::{Debug, Formatter, Result};
     ///
     /// struct Foo(Vec<i32>, Vec<u32>);
     ///
-    /// impl fmt::Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
+    /// impl Debug for Foo {
+    ///     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
     ///         fmt.debug_list()
     ///            .entry(&self.0) // We add the first "entry".
     ///            .entry(&self.1) // We add the second "entry".
@@ -619,7 +619,7 @@ impl<'a, 'b: 'a> DebugList<'a, 'b> {
     ///     "[[10, 11], [12, 13]]",
     /// );
     /// ```
-    pub fn entry(&mut self, entry: &dyn fmt::Debug) -> &mut Self {
+    pub fn entry(&mut self, entry: &dyn Debug) -> &mut Self {
         self.inner.entry(entry);
         self
     }
@@ -629,12 +629,12 @@ impl<'a, 'b: 'a> DebugList<'a, 'b> {
     /// # Examples
     ///
     /// ```
-    /// use debug3 as fmt;
+    /// use debug3::{Debug, Formatter, Result};
     ///
     /// struct Foo(Vec<i32>, Vec<u32>);
     ///
-    /// impl fmt::Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
+    /// impl Debug for Foo {
+    ///     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
     ///         fmt.debug_list()
     ///            .entries(self.0.iter())
     ///            .entries(self.1.iter())
@@ -649,7 +649,7 @@ impl<'a, 'b: 'a> DebugList<'a, 'b> {
     /// ```
     pub fn entries<D, I>(&mut self, entries: I) -> &mut Self
     where
-        D: fmt::Debug,
+        D: Debug,
         I: IntoIterator<Item = D>,
     {
         for entry in entries {
@@ -663,12 +663,12 @@ impl<'a, 'b: 'a> DebugList<'a, 'b> {
     /// # Examples
     ///
     /// ```
-    /// use debug3 as fmt;
+    /// use debug3::{Debug, Formatter, Result};
     ///
     /// struct Foo(Vec<i32>);
     ///
-    /// impl fmt::Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
+    /// impl Debug for Foo {
+    ///     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
     ///         fmt.debug_list()
     ///            .entries(self.0.iter())
     ///            .finish() // Ends the struct formatting.
@@ -680,14 +680,14 @@ impl<'a, 'b: 'a> DebugList<'a, 'b> {
     ///     "[10, 11]",
     /// );
     /// ```
-    pub fn finish(&mut self) -> fmt::Result {
+    pub fn finish(&mut self) -> Result {
         self.inner
             .result
             .and_then(|_| self.inner.fmt.write_str("]"))
     }
 }
 
-/// A struct to help with [`fmt::Debug`](Debug) implementations.
+/// A struct to help with [`Debug`](Debug) implementations.
 ///
 /// This is useful when you wish to output a formatted map as a part of your
 /// [`Debug::fmt`] implementation.
@@ -697,12 +697,12 @@ impl<'a, 'b: 'a> DebugList<'a, 'b> {
 /// # Examples
 ///
 /// ```
-/// use debug3 as fmt;
+/// use debug3::{Debug, Formatter, Result};
 ///
 /// struct Foo(Vec<(String, i32)>);
 ///
-/// impl fmt::Debug for Foo {
-///     fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
+/// impl Debug for Foo {
+///     fn fmt(&self, fmt: &mut Formatter) -> Result {
 ///         fmt.debug_map().entries(self.0.iter().map(|&(ref k, ref v)| (k, v))).finish()
 ///     }
 /// }
@@ -715,15 +715,15 @@ impl<'a, 'b: 'a> DebugList<'a, 'b> {
 #[must_use = "must eventually call `finish()` on Debug builders"]
 #[allow(missing_debug_implementations)]
 pub struct DebugMap<'a, 'b: 'a> {
-    fmt: &'a mut fmt::Formatter<'b>,
-    result: fmt::Result,
+    fmt: &'a mut Formatter<'b>,
+    result: Result,
     has_fields: bool,
     has_key: bool,
     // The state of newlines is tracked between keys and values
     state: PadAdapterState,
 }
 
-pub(super) fn debug_map_new<'a, 'b>(fmt: &'a mut fmt::Formatter<'b>) -> DebugMap<'a, 'b> {
+pub(super) fn debug_map_new<'a, 'b>(fmt: &'a mut Formatter<'b>) -> DebugMap<'a, 'b> {
     let result = fmt.write_str("{");
     DebugMap {
         fmt,
@@ -740,12 +740,12 @@ impl<'a, 'b: 'a> DebugMap<'a, 'b> {
     /// # Examples
     ///
     /// ```
-    /// use debug3 as fmt;
+    /// use debug3::{Debug, Formatter, Result};
     ///
     /// struct Foo(Vec<(String, i32)>);
     ///
-    /// impl fmt::Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
+    /// impl Debug for Foo {
+    ///     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
     ///         fmt.debug_map()
     ///            .entry(&"whole", &self.0) // We add the "whole" entry.
     ///            .finish()
@@ -757,7 +757,7 @@ impl<'a, 'b: 'a> DebugMap<'a, 'b> {
     ///     "{\"whole\": [(\"A\", 10), (\"B\", 11)]}",
     /// );
     /// ```
-    pub fn entry(&mut self, key: &dyn fmt::Debug, value: &dyn fmt::Debug) -> &mut Self {
+    pub fn entry(&mut self, key: &dyn Debug, value: &dyn Debug) -> &mut Self {
         self.key(key).value(value)
     }
 
@@ -775,12 +775,12 @@ impl<'a, 'b: 'a> DebugMap<'a, 'b> {
     /// # Examples
     ///
     /// ```
-    /// use debug3 as fmt;
+    /// use debug3::{Debug, Formatter, Result};
     ///
     /// struct Foo(Vec<(String, i32)>);
     ///
-    /// impl fmt::Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
+    /// impl Debug for Foo {
+    ///     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
     ///         fmt.debug_map()
     ///            .key(&"whole").value(&self.0) // We add the "whole" entry.
     ///            .finish()
@@ -792,7 +792,7 @@ impl<'a, 'b: 'a> DebugMap<'a, 'b> {
     ///     "{\"whole\": [(\"A\", 10), (\"B\", 11)]}",
     /// );
     /// ```
-    pub fn key(&mut self, key: &dyn fmt::Debug) -> &mut Self {
+    pub fn key(&mut self, key: &dyn Debug) -> &mut Self {
         self.result = self.result.and_then(|_| {
             assert!(
                 !self.has_key,
@@ -838,12 +838,12 @@ impl<'a, 'b: 'a> DebugMap<'a, 'b> {
     /// # Examples
     ///
     /// ```
-    /// use debug3 as fmt;
+    /// use debug3::{Debug, Formatter, Result};
     ///
     /// struct Foo(Vec<(String, i32)>);
     ///
-    /// impl fmt::Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
+    /// impl Debug for Foo {
+    ///     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
     ///         fmt.debug_map()
     ///            .key(&"whole").value(&self.0) // We add the "whole" entry.
     ///            .finish()
@@ -855,7 +855,7 @@ impl<'a, 'b: 'a> DebugMap<'a, 'b> {
     ///     "{\"whole\": [(\"A\", 10), (\"B\", 11)]}",
     /// );
     /// ```
-    pub fn value(&mut self, value: &dyn fmt::Debug) -> &mut Self {
+    pub fn value(&mut self, value: &dyn Debug) -> &mut Self {
         self.result = self.result.and_then(|_| {
             assert!(
                 self.has_key,
@@ -884,12 +884,12 @@ impl<'a, 'b: 'a> DebugMap<'a, 'b> {
     /// # Examples
     ///
     /// ```
-    /// use debug3 as fmt;
+    /// use debug3::{Debug, Formatter, Result};
     ///
     /// struct Foo(Vec<(String, i32)>);
     ///
-    /// impl fmt::Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
+    /// impl Debug for Foo {
+    ///     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
     ///         fmt.debug_map()
     ///            // We map our vec so each entries' first field will become
     ///            // the "key".
@@ -905,8 +905,8 @@ impl<'a, 'b: 'a> DebugMap<'a, 'b> {
     /// ```
     pub fn entries<K, V, I>(&mut self, entries: I) -> &mut Self
     where
-        K: fmt::Debug,
-        V: fmt::Debug,
+        K: Debug,
+        V: Debug,
         I: IntoIterator<Item = (K, V)>,
     {
         for (k, v) in entries {
@@ -925,12 +925,12 @@ impl<'a, 'b: 'a> DebugMap<'a, 'b> {
     /// # Examples
     ///
     /// ```
-    /// use debug3 as fmt;
+    /// use debug3::{Debug, Formatter, Result};
     ///
     /// struct Foo(Vec<(String, i32)>);
     ///
-    /// impl fmt::Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
+    /// impl Debug for Foo {
+    ///     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
     ///         fmt.debug_map()
     ///            .entries(self.0.iter().map(|&(ref k, ref v)| (k, v)))
     ///            .finish() // Ends the struct formatting.
@@ -942,7 +942,7 @@ impl<'a, 'b: 'a> DebugMap<'a, 'b> {
     ///     "{\"A\": 10, \"B\": 11}",
     /// );
     /// ```
-    pub fn finish(&mut self) -> fmt::Result {
+    pub fn finish(&mut self) -> Result {
         self.result.and_then(|_| {
             assert!(
                 !self.has_key,
