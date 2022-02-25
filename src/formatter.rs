@@ -4,6 +4,10 @@ use crate::{
 };
 
 impl<'a> Formatter<'a> {
+    pub fn new(buf: &'a mut dyn Write) -> Self {
+        Self { buf }
+    }
+
     pub(crate) fn write_debug<T: std::fmt::Debug + ?Sized>(&mut self, val: &T) -> Result {
         use std::fmt::Write as _;
         write!(self, "{:?}", val).map_err(|_| Error {})

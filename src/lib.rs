@@ -11,10 +11,17 @@ pub trait Debug {
     fn fmt(&self, f: &mut Formatter<'_>) -> Result;
 }
 
-type Result = std::result::Result<(), Error>;
+pub type Result = std::result::Result<(), Error>;
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Debug)]
 pub struct Error {}
+
+impl std::error::Error for Error {}
+impl std::fmt::Display for Error {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        std::fmt::Debug::fmt(self, f)
+    }
+}
 
 pub trait Write {
     /// Writes a string slice into this writer, returning whether the write
@@ -71,4 +78,11 @@ pub trait Write {
     fn write_char(&mut self, c: char) -> Result {
         self.write_str(c.encode_utf8(&mut [0; 4]))
     }
+}
+
+pub fn pprint<T: Debug>(x: T) -> String {
+    let mut buf = String::new();
+    let mut f = Formatter::new(&mut buf);
+    x.fmt(&mut f).unwrap();
+    buf
 }

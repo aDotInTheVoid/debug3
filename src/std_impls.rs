@@ -229,3 +229,9 @@ impl<T: ?Sized> Debug for std::cell::UnsafeCell<T> {
         f.debug_struct("UnsafeCell").finish_non_exhaustive()
     }
 }
+
+impl Debug for std::fmt::Arguments<'_> {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+        f.write_debug(self)
+    }
+}
