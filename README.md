@@ -98,7 +98,7 @@ formattted by rustfmt, that is not the case. Trailing commas are one example;
 the punctuation is only known *after* the broken vs non-broken status of the
 surrounding group is known:
 
-```rust
+```rust,ignore
 let _ = Struct { x: 0, y: true };
 
 let _ = Struct {
@@ -112,7 +112,7 @@ same line as the pattern, and big arms wrapped in a brace. The presence of the
 brace punctuation, comma, and semicolon are all dependent on whether the arm
 fits on the line:
 
-```rust
+```rust,ignore
 match total_nanos.checked_add(entry.nanos as u64) {
     Some(n) => tmp = n,   //<- small arm, inline with comma
     None => {
