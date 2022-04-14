@@ -33,16 +33,6 @@ pub trait Debug {
     fn fmt(&self, f: &mut Formatter<'_>);
 }
 
-#[derive(Clone, Copy, std::fmt::Debug)]
-pub struct Error {}
-
-impl std::error::Error for Error {}
-impl std::fmt::Display for Error {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        std::fmt::Debug::fmt(self, f)
-    }
-}
-
 pub trait Write {
     /// Writes a string slice into this writer, returning whether the write
     /// succeeded.
@@ -58,7 +48,7 @@ pub trait Write {
     /// # Examples
     ///
     /// ```
-    /// use debug3::{Error, Write};
+    /// use debug3::Write;
     ///
     /// fn writer<W: Write>(f: &mut W, s: &str) {
     ///     f.write_str(s);
@@ -80,7 +70,7 @@ pub trait Write {
     /// # Examples
     ///
     /// ```
-    /// use debug3::{Error, Write};
+    /// use debug3::Write;
     ///
     /// fn writer<W: Write>(f: &mut W, c: char) {
     ///     f.write_char(c)

@@ -14,7 +14,6 @@ impl<'a> Formatter<'a> {
     }
 
     pub(crate) fn write_debug<T: std::fmt::Debug + ?Sized>(&mut self, val: &T) {
-        // write!(self, "{:?}", val).map_err(|_| Error {})
         self.buf.write_str(&format!("{:?}", val))
     }
 
