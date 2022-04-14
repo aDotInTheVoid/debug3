@@ -25,6 +25,10 @@ impl Printer {
         self.scan_string(s);
     }
 
+    pub fn word_s(&mut self, wrd: &str) {
+        self.word(wrd.to_owned());
+    }
+
     fn spaces(&mut self, n: usize) {
         self.scan_break(BreakToken {
             blank_space: n,

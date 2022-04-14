@@ -1,20 +1,21 @@
 use crate::{
-    // algorithm::Printer,
+    algorithm::Printer,
     builders::{self, DebugList, DebugMap, DebugSet, DebugStruct, DebugTuple},
-    Formatter,
-    Write,
+    Formatter, Write,
 };
 
 impl<'a> Formatter<'a> {
     pub fn new(buf: &'a mut dyn Write) -> Self {
         Self {
             buf,
-            // p: Printer::new(),
+            p: Printer::new(),
         }
     }
 
     pub(crate) fn write_debug<T: std::fmt::Debug + ?Sized>(&mut self, val: &T) {
-        self.buf.write_str(&format!("{:?}", val))
+        let s = format!("{:?}", val);
+        // self.buf.write_str(&s);
+        self.p.word(s);
     }
 
     pub(crate) fn wrap_buf<'b, 'c, F>(&'b mut self, wrap: F) -> Formatter<'c>
@@ -33,7 +34,7 @@ impl<'a> Formatter<'a> {
             // precision: self.precision,
 
             // This is wrong, but we should remove this API and replace it with the printer one.
-            // p: Printer::new(),
+            p: Printer::new(),
         }
     }
 

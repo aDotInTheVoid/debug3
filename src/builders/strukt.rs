@@ -1,4 +1,4 @@
-use crate::{Debug, Formatter, Write};
+use crate::{Debug, Formatter, Write, INDENT};
 
 use super::pad::PadAdapter;
 
@@ -41,7 +41,14 @@ pub struct DebugStruct<'a, 'b: 'a> {
 }
 
 pub(crate) fn new<'a, 'b>(fmt: &'a mut Formatter<'b>, name: &str) -> DebugStruct<'a, 'b> {
-    fmt.write_str(name);
+    // fmt.write_str(name);
+
+    fmt.p.cbox(INDENT);
+    fmt.p.ibox(-INDENT);
+    fmt.p.word_s(name);
+    fmt.p.end();
+    fmt.p.word(" {");
+    fmt.p.space_if_nonempty();
 
     DebugStruct {
         fmt,
@@ -79,24 +86,34 @@ impl<'a, 'b: 'a> DebugStruct<'a, 'b> {
     /// );
     /// ```
     pub fn field(&mut self, name: &str, value: &dyn Debug) -> &mut Self {
-        if self.is_pretty() {
-            if !self.has_fields {
-                self.fmt.write_str(" {\n");
-            }
-            let mut slot = None;
-            let mut state = Default::default();
-            let mut writer = PadAdapter::wrap(self.fmt, &mut slot, &mut state);
-            writer.write_str(name);
-            writer.write_str(": ");
-            value.fmt(&mut writer);
-            writer.write_str(",\n")
-        } else {
-            let prefix = if self.has_fields { ", " } else { " { " };
-            self.fmt.write_str(prefix);
-            self.fmt.write_str(name);
-            self.fmt.write_str(": ");
-            value.fmt(self.fmt)
+        // if self.is_pretty() {
+        //     if !self.has_fields {
+        //         self.fmt.write_str(" {\n");
+        //     }
+        //     let mut slot = None;
+        //     let mut state = Default::default();
+        //     let mut writer = PadAdapter::wrap(self.fmt, &mut slot, &mut state);
+        //     writer.write_str(name);
+        //     writer.write_str(": ");
+        //     value.fmt(&mut writer);
+        //     writer.write_str(",\n")
+        // } else {
+        //     let prefix = if self.has_fields { ", " } else { " { " };
+        //     self.fmt.write_str(prefix);
+        //     self.fmt.write_str(name);
+        //     self.fmt.write_str(": ");
+        //     value.fmt(self.fmt)
+        // }
+
+        if self.has_fields {
+            self.fmt.p.trailing_comma_or_space(false);
         }
+
+        self.fmt.p.word_s(name);
+        self.fmt.p.word(": ");
+        self.fmt.p.ibox(0);
+        value.fmt(self.fmt);
+        self.fmt.p.end();
 
         self.has_fields = true;
         self
@@ -129,19 +146,28 @@ impl<'a, 'b: 'a> DebugStruct<'a, 'b> {
     /// );
     /// ```
     pub fn finish_non_exhaustive(&mut self) {
+        // if self.has_fields {
+        //     if self.is_pretty() {
+        //         let mut slot = None;
+        //         let mut state = Default::default();
+        //         let mut writer = PadAdapter::wrap(self.fmt, &mut slot, &mut state);
+        //         writer.write_str("..\n");
+        //         self.fmt.write_str("}")
+        //     } else {
+        //         self.fmt.write_str(", .. }")
+        //     }
+        // } else {
+        //     self.fmt.write_str(" { .. }")
+        // }
+
         if self.has_fields {
-            if self.is_pretty() {
-                let mut slot = None;
-                let mut state = Default::default();
-                let mut writer = PadAdapter::wrap(self.fmt, &mut slot, &mut state);
-                writer.write_str("..\n");
-                self.fmt.write_str("}")
-            } else {
-                self.fmt.write_str(", .. }")
-            }
-        } else {
-            self.fmt.write_str(" { .. }")
+            self.fmt.p.trailing_comma_or_space(false);
         }
+        self.fmt.p.word("..");
+        self.fmt.p.space();
+        self.fmt.p.offset(-INDENT);
+        self.fmt.p.end_with_max_width(34); // TODO: Why 34
+        self.fmt.p.word("}");
     }
 
     /// Finishes output and returns any error encountered.
@@ -172,16 +198,21 @@ impl<'a, 'b: 'a> DebugStruct<'a, 'b> {
     /// );
     /// ```
     pub fn finish(&mut self) {
-        if self.has_fields {
-            if self.is_pretty() {
-                self.fmt.write_str("}")
-            } else {
-                self.fmt.write_str(" }")
-            }
-        }
-    }
+        // if self.has_fields {
+        //     if self.is_pretty() {
+        //         self.fmt.write_str("}")
+        //     } else {
+        //         self.fmt.write_str(" }")
+        //     }
+        // }
 
-    pub(crate) fn is_pretty(&self) -> bool {
-        self.fmt.alternate()
+        if self.has_fields {
+            self.fmt.p.trailing_comma_or_space(true);
+        }
+        self.fmt.p.offset(-INDENT);
+        // TODO: Why 34
+        // https://github.com/dtolnay/prettyplease/commit/a98f613b661bba3eb4f54cf4bba5c74c23d395e8
+        self.fmt.p.end_with_max_width(34);
+        self.fmt.p.word("}");
     }
 }
