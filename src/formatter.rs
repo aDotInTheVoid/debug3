@@ -1,14 +1,15 @@
 use crate::{
-    algorithm::Printer,
+    // algorithm::Printer,
     builders::{self, DebugList, DebugMap, DebugSet, DebugStruct, DebugTuple},
-    Error, Formatter, Write,
+    Formatter,
+    Write,
 };
 
 impl<'a> Formatter<'a> {
     pub fn new(buf: &'a mut dyn Write) -> Self {
         Self {
             buf,
-            p: Printer::new(),
+            // p: Printer::new(),
         }
     }
 
@@ -33,7 +34,7 @@ impl<'a> Formatter<'a> {
             // precision: self.precision,
 
             // This is wrong, but we should remove this API and replace it with the printer one.
-            p: Printer::new(),
+            // p: Printer::new(),
         }
     }
 
@@ -76,7 +77,7 @@ impl<'a> Formatter<'a> {
     /// );
     /// ```
     pub fn debug_struct<'b>(&'b mut self, name: &str) -> DebugStruct<'b, 'a> {
-        builders::debug_struct_new(self, name)
+        builders::strukt::new(self, name)
     }
 
     /// Creates a `DebugTuple` builder designed to assist with creation of
@@ -106,7 +107,7 @@ impl<'a> Formatter<'a> {
     /// );
     /// ```
     pub fn debug_tuple<'b>(&'b mut self, name: &str) -> DebugTuple<'b, 'a> {
-        builders::debug_tuple_new(self, name)
+        builders::tuple::new(self, name)
     }
 
     /// Creates a `DebugList` builder designed to assist with creation of
@@ -128,7 +129,7 @@ impl<'a> Formatter<'a> {
     /// assert_eq!(format!("{:?}", Foo(vec![10, 11])), "[10, 11]");
     /// ```
     pub fn debug_list<'b>(&'b mut self) -> DebugList<'b, 'a> {
-        builders::debug_list_new(self)
+        builders::list::new(self)
     }
 
     /// Creates a `DebugSet` builder designed to assist with creation of
@@ -150,7 +151,7 @@ impl<'a> Formatter<'a> {
     /// assert_eq!(format!("{:?}", Foo(vec![10, 11])), "{10, 11}");
     /// ```
     pub fn debug_set<'b>(&'b mut self) -> DebugSet<'b, 'a> {
-        builders::debug_set_new(self)
+        builders::set::new(self)
     }
 
     /// Creates a `DebugMap` builder designed to assist with creation of
@@ -175,7 +176,7 @@ impl<'a> Formatter<'a> {
     ///  );
     /// ```
     pub fn debug_map<'b>(&'b mut self) -> DebugMap<'b, 'a> {
-        builders::debug_map_new(self)
+        builders::map::new(self)
     }
 }
 

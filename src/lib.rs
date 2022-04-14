@@ -8,25 +8,25 @@ mod std_impls;
 mod write;
 
 // From dtolnay/prettyplease/
-mod algorithm;
-mod convenience;
-mod ring;
+// mod algorithm;
+// mod convenience;
+// mod ring;
 
-// Target line width.
-const MARGIN: isize = 89;
+// // Target line width.
+// const MARGIN: isize = 89;
 
-// Number of spaces increment at each level of block indentation.
-const INDENT: isize = 4;
+// // Number of spaces increment at each level of block indentation.
+// const INDENT: isize = 4;
 
-// Every line is allowed at least this much space, even if highly indented.
-const MIN_SPACE: isize = 60;
+// // Every line is allowed at least this much space, even if highly indented.
+// const MIN_SPACE: isize = 60;
 
-use algorithm::Printer;
+// use algorithm::Printer;
 pub use debug3_derive::Debug;
 
 pub struct Formatter<'a> {
     buf: &'a mut dyn Write,
-    p: Printer,
+    // p: Printer,
 }
 
 pub trait Debug {
