@@ -5,13 +5,13 @@ use std::{
     sync::Arc,
 };
 
-use crate::{Debug, Formatter, Result, Write};
+use crate::{Debug, Formatter, Write};
 
 macro_rules! std_debug {
     ($($t:ty),+) => {
         $(
             impl Debug for $t {
-                fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+                fn fmt(&self, f: &mut Formatter<'_>) {
                     f.write_debug(self)
                 }
             }
@@ -50,7 +50,7 @@ macro_rules! tuple {
     ( $($name:ident,)+ ) => (
         impl<$($name:Debug),+> Debug for ($($name,)+) where last_type!($($name,)+): ?Sized {
             #[allow(non_snake_case, unused_assignments)]
-            fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+            fn fmt(&self, f: &mut Formatter<'_>) {
                 let mut builder = f.debug_tuple("");
                 let ($(ref $name,)+) = *self;
                 $(
@@ -75,10 +75,10 @@ macro_rules! fmt_refs {
     ($($tr:ident),*) => {
         $(
         impl<T: ?Sized + $tr> $tr for &T {
-            fn fmt(&self, f: &mut Formatter<'_>) -> Result { $tr::fmt(&**self, f) }
+            fn fmt(&self, f: &mut Formatter<'_>) { $tr::fmt(&**self, f) }
         }
         impl<T: ?Sized + $tr> $tr for &mut T {
-            fn fmt(&self, f: &mut Formatter<'_>) -> Result { $tr::fmt(&**self, f) }
+            fn fmt(&self, f: &mut Formatter<'_>) { $tr::fmt(&**self, f) }
         }
         )*
     }
@@ -87,37 +87,37 @@ macro_rules! fmt_refs {
 fmt_refs! { Debug /*, Display, Octal, Binary, LowerHex, UpperHex, LowerExp, UpperExp */ }
 
 impl<T: ?Sized + Debug> Debug for Box<T> {
-    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) {
         Debug::fmt(&**self, f)
     }
 }
 
 impl<T: Debug, const N: usize> Debug for [T; N] {
-    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) {
         Debug::fmt(&self[..], f)
     }
 }
 
 impl<T: ?Sized + Debug> Debug for Arc<T> {
-    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) {
         Debug::fmt(&**self, f)
     }
 }
 
 impl<T: ?Sized + Debug> Debug for Rc<T> {
-    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) {
         Debug::fmt(&**self, f)
     }
 }
 
 impl<T: ?Sized> Debug for *const T {
-    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) {
         f.write_debug(self)
     }
 }
 
 impl<T: ?Sized> Debug for *mut T {
-    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) {
         Debug::fmt(&(self as *const _), f)
     }
 }
@@ -126,7 +126,7 @@ macro_rules! list_like {
     ($($t:ty),+) => {
         $(
             impl<T: Debug> Debug for $t {
-                fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+                fn fmt(&self, f: &mut Formatter<'_>) {
                     f.debug_list().entries(self.iter()).finish()
                 }
             }
@@ -143,12 +143,12 @@ where
     K: Debug,
     V: Debug,
 {
-    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) {
         f.debug_map().entries(self.iter()).finish()
     }
 }
 impl<K: Debug, V: Debug> Debug for BTreeMap<K, V> {
-    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) {
         f.debug_map().entries(self.iter()).finish()
     }
 }
@@ -156,7 +156,7 @@ impl<T, S> Debug for HashSet<T, S>
 where
     T: Debug,
 {
-    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) {
         f.debug_set().entries(self.iter()).finish()
     }
 }
@@ -164,12 +164,12 @@ impl<T> Debug for BTreeSet<T>
 where
     T: Debug,
 {
-    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) {
         f.debug_set().entries(self.iter()).finish()
     }
 }
 impl<T: Debug> Debug for Option<T> {
-    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) {
         match self {
             Some(v) => f.debug_tuple("Some").field(v).finish(),
             None => f.debug_tuple("None").finish(),
@@ -178,19 +178,19 @@ impl<T: Debug> Debug for Option<T> {
 }
 
 impl<T: ?Sized> Debug for std::marker::PhantomData<T> {
-    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) {
         f.debug_struct("PhantomData").finish()
     }
 }
 
 impl<T: Copy + Debug> Debug for std::cell::Cell<T> {
-    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) {
         f.debug_struct("Cell").field("value", &self.get()).finish()
     }
 }
 
 impl<T: ?Sized + Debug> Debug for std::cell::RefCell<T> {
-    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) {
         match self.try_borrow() {
             Ok(borrow) => f.debug_struct("RefCell").field("value", &borrow).finish(),
             Err(_) => {
@@ -199,7 +199,7 @@ impl<T: ?Sized + Debug> Debug for std::cell::RefCell<T> {
                 struct BorrowedPlaceholder;
 
                 impl Debug for BorrowedPlaceholder {
-                    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+                    fn fmt(&self, f: &mut Formatter<'_>) {
                         f.write_str("<borrowed>")
                     }
                 }
@@ -213,25 +213,25 @@ impl<T: ?Sized + Debug> Debug for std::cell::RefCell<T> {
 }
 
 impl<T: ?Sized + Debug> Debug for std::cell::Ref<'_, T> {
-    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) {
         Debug::fmt(&**self, f)
     }
 }
 
 impl<T: ?Sized + Debug> Debug for std::cell::RefMut<'_, T> {
-    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) {
         Debug::fmt(&*(self.deref()), f)
     }
 }
 
 impl<T: ?Sized> Debug for std::cell::UnsafeCell<T> {
-    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) {
         f.debug_struct("UnsafeCell").finish_non_exhaustive()
     }
 }
 
 impl Debug for std::fmt::Arguments<'_> {
-    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) {
         f.write_debug(self)
     }
 }

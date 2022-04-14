@@ -1,7 +1,6 @@
 #![allow(dead_code)]
 
-use debug3::{pprint, Debug, Error, Formatter, Result};
-use std::fmt::Write;
+use debug3::{pprint, Debug, Formatter, Write};
 
 #[derive(Debug)]
 struct Unit;
@@ -86,8 +85,8 @@ struct J(Custom);
 
 struct Custom;
 impl Debug for Custom {
-    fn fmt(&self, f: &mut Formatter) -> Result {
-        write!(f, "yay").map_err(|_| Error {})
+    fn fmt(&self, f: &mut Formatter) {
+        f.write_str("yay")
     }
 }
 

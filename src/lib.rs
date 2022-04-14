@@ -21,17 +21,17 @@ const INDENT: isize = 4;
 // Every line is allowed at least this much space, even if highly indented.
 const MIN_SPACE: isize = 60;
 
+use algorithm::Printer;
 pub use debug3_derive::Debug;
 
 pub struct Formatter<'a> {
     buf: &'a mut dyn Write,
+    p: Printer,
 }
 
 pub trait Debug {
-    fn fmt(&self, f: &mut Formatter<'_>) -> Result;
+    fn fmt(&self, f: &mut Formatter<'_>);
 }
-
-pub type Result = std::result::Result<(), Error>;
 
 #[derive(Clone, Copy, std::fmt::Debug)]
 pub struct Error {}
@@ -60,15 +60,15 @@ pub trait Write {
     /// ```
     /// use debug3::{Error, Write};
     ///
-    /// fn writer<W: Write>(f: &mut W, s: &str) -> Result<(), Error> {
-    ///     f.write_str(s)
+    /// fn writer<W: Write>(f: &mut W, s: &str) {
+    ///     f.write_str(s);
     /// }
     ///
     /// let mut buf = String::new();
-    /// writer(&mut buf, "hola").unwrap();
+    /// writer(&mut buf, "hola");
     /// assert_eq!(&buf, "hola");
     /// ```
-    fn write_str(&mut self, s: &str) -> Result;
+    fn write_str(&mut self, s: &str);
 
     /// Writes a [`char`] into this writer, returning whether the write succeeded.
     ///
@@ -77,32 +77,28 @@ pub trait Write {
     /// written, and this method will not return until all data has been
     /// written or an error occurs.
     ///
-    /// # Errors
-    ///
-    /// This function will return an instance of [`Error`] on error.
-    ///
     /// # Examples
     ///
     /// ```
     /// use debug3::{Error, Write};
     ///
-    /// fn writer<W: Write>(f: &mut W, c: char) -> Result<(), Error> {
+    /// fn writer<W: Write>(f: &mut W, c: char) {
     ///     f.write_char(c)
     /// }
     ///
     /// let mut buf = String::new();
-    /// writer(&mut buf, 'a').unwrap();
-    /// writer(&mut buf, 'b').unwrap();
+    /// writer(&mut buf, 'a');
+    /// writer(&mut buf, 'b');
     /// assert_eq!(&buf, "ab");
     /// ```
-    fn write_char(&mut self, c: char) -> Result {
-        self.write_str(c.encode_utf8(&mut [0; 4]))
+    fn write_char(&mut self, c: char) {
+        self.write_str(c.encode_utf8(&mut [0; 4]));
     }
 }
 
 pub fn pprint<T: Debug>(x: T) -> String {
     let mut buf = String::new();
     let mut f = Formatter::new(&mut buf);
-    x.fmt(&mut f).unwrap();
+    x.fmt(&mut f);
     buf
 }

@@ -1,16 +1,20 @@
 use crate::{
+    algorithm::Printer,
     builders::{self, DebugList, DebugMap, DebugSet, DebugStruct, DebugTuple},
-    Error, Formatter, Result, Write,
+    Error, Formatter, Write,
 };
 
 impl<'a> Formatter<'a> {
     pub fn new(buf: &'a mut dyn Write) -> Self {
-        Self { buf }
+        Self {
+            buf,
+            p: Printer::new(),
+        }
     }
 
-    pub(crate) fn write_debug<T: std::fmt::Debug + ?Sized>(&mut self, val: &T) -> Result {
-        use std::fmt::Write as _;
-        write!(self, "{:?}", val).map_err(|_| Error {})
+    pub(crate) fn write_debug<T: std::fmt::Debug + ?Sized>(&mut self, val: &T) {
+        // write!(self, "{:?}", val).map_err(|_| Error {})
+        self.buf.write_str(&format!("{:?}", val))
     }
 
     pub(crate) fn wrap_buf<'b, 'c, F>(&'b mut self, wrap: F) -> Formatter<'c>
@@ -27,6 +31,9 @@ impl<'a> Formatter<'a> {
             // align: self.align,
             // width: self.width,
             // precision: self.precision,
+
+            // This is wrong, but we should remove this API and replace it with the printer one.
+            p: Printer::new(),
         }
     }
 
@@ -172,12 +179,12 @@ impl<'a> Formatter<'a> {
     }
 }
 
-impl std::fmt::Write for Formatter<'_> {
-    fn write_str(&mut self, s: &str) -> std::fmt::Result {
-        self.buf.write_str(s).map_err(|_| std::fmt::Error)
-    }
+// impl std::fmt::Write for Formatter<'_> {
+//     fn write_str(&mut self, s: &str) -> std::fmt::Result {
+//         self.buf.write_str(s).map_err(|_| std::fmt::Error)
+//     }
 
-    fn write_char(&mut self, c: char) -> std::fmt::Result {
-        self.buf.write_char(c).map_err(|_| std::fmt::Error)
-    }
-}
+//     fn write_char(&mut self, c: char) -> std::fmt::Result {
+//         self.buf.write_char(c).map_err(|_| std::fmt::Error)
+//     }
+// }
