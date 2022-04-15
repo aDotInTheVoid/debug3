@@ -9,30 +9,30 @@ use std::collections::VecDeque;
 use std::iter;
 
 #[derive(Clone, Copy, PartialEq)]
-pub enum Breaks {
+pub(crate) enum Breaks {
     Consistent,
     Inconsistent,
 }
 
 #[derive(Clone, Copy, Default)]
-pub struct BreakToken {
-    pub offset: isize,
-    pub blank_space: usize,
-    pub pre_break: Option<char>,
-    pub post_break: Option<char>,
-    pub no_break: Option<char>,
-    pub if_nonempty: bool,
-    pub never_break: bool,
+pub(crate) struct BreakToken {
+    pub(crate) offset: isize,
+    pub(crate) blank_space: usize,
+    pub(crate) pre_break: Option<char>,
+    pub(crate) post_break: Option<char>,
+    pub(crate) no_break: Option<char>,
+    pub(crate) if_nonempty: bool,
+    pub(crate) never_break: bool,
 }
 
 #[derive(Clone, Copy)]
-pub struct BeginToken {
-    pub offset: isize,
-    pub breaks: Breaks,
+pub(crate) struct BeginToken {
+    pub(crate) offset: isize,
+    pub(crate) breaks: Breaks,
 }
 
 #[derive(Clone)]
-pub enum Token {
+pub(crate) enum Token {
     String(Cow<'static, str>),
     Break(BreakToken),
     Begin(BeginToken),
@@ -45,7 +45,7 @@ enum PrintFrame {
     Broken(usize, Breaks),
 }
 
-pub const SIZE_INFINITY: isize = 0xffff;
+pub(crate) const SIZE_INFINITY: isize = 0xffff;
 
 pub struct Formatter {
     out: String,
@@ -78,7 +78,7 @@ struct BufEntry {
 }
 
 impl Formatter {
-    pub fn new() -> Self {
+    pub(crate) fn new() -> Self {
         Formatter {
             out: String::new(),
             space: MARGIN,
@@ -92,7 +92,7 @@ impl Formatter {
         }
     }
 
-    pub fn eof(mut self) -> String {
+    pub(crate) fn eof(mut self) -> String {
         if !self.scan_stack.is_empty() {
             self.check_stack(0);
             self.advance_left();
@@ -100,7 +100,7 @@ impl Formatter {
         self.out
     }
 
-    pub fn scan_begin(&mut self, token: BeginToken) {
+    pub(crate) fn scan_begin(&mut self, token: BeginToken) {
         if self.scan_stack.is_empty() {
             self.left_total = 1;
             self.right_total = 1;
@@ -113,7 +113,7 @@ impl Formatter {
         self.scan_stack.push_back(right);
     }
 
-    pub fn scan_end(&mut self) {
+    pub(crate) fn scan_end(&mut self) {
         if self.scan_stack.is_empty() {
             self.print_end();
         } else {
@@ -144,7 +144,7 @@ impl Formatter {
         }
     }
 
-    pub fn scan_break(&mut self, token: BreakToken) {
+    pub(crate) fn scan_break(&mut self, token: BreakToken) {
         if self.scan_stack.is_empty() {
             self.left_total = 1;
             self.right_total = 1;
@@ -160,7 +160,7 @@ impl Formatter {
         self.right_total += token.blank_space as isize;
     }
 
-    pub fn scan_string(&mut self, string: Cow<'static, str>) {
+    pub(crate) fn scan_string(&mut self, string: Cow<'static, str>) {
         if self.scan_stack.is_empty() {
             self.print_string(string);
         } else {
@@ -174,7 +174,7 @@ impl Formatter {
         }
     }
 
-    pub fn offset(&mut self, offset: isize) {
+    pub(crate) fn offset(&mut self, offset: isize) {
         match &mut self.buf.last_mut().token {
             Token::Break(token) => token.offset += offset,
             Token::Begin(_) => {}
@@ -182,7 +182,7 @@ impl Formatter {
         }
     }
 
-    pub fn end_with_max_width(&mut self, max: isize) {
+    pub(crate) fn end_with_max_width(&mut self, max: isize) {
         let mut depth = 1;
         for &index in self.scan_stack.iter().rev() {
             let entry = &self.buf[index];
