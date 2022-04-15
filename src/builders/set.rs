@@ -33,7 +33,7 @@ pub struct DebugSet<'a> {
     inner: DebugInner<'a>,
 }
 
-pub(crate) fn new<'a>(fmt: &'a mut Formatter) -> DebugSet<'a> {
+pub(crate) fn new(fmt: &mut Formatter) -> DebugSet {
     fmt.word("{");
     fmt.cbox(INDENT);
     fmt.zerobreak();

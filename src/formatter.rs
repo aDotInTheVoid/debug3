@@ -96,7 +96,7 @@ impl<'a> Formatter {
     ///
     /// assert_eq!(format!("{:?}", Foo(vec![10, 11])), "[10, 11]");
     /// ```
-    pub fn debug_list<'b>(&'b mut self) -> DebugList<'b> {
+    pub fn debug_list(&mut self) -> DebugList<'_> {
         builders::list::new(self)
     }
 
@@ -118,7 +118,7 @@ impl<'a> Formatter {
     ///
     /// assert_eq!(format!("{:?}", Foo(vec![10, 11])), "{10, 11}");
     /// ```
-    pub fn debug_set<'b>(&'b mut self) -> DebugSet<'b> {
+    pub fn debug_set(&mut self) -> DebugSet<'_> {
         builders::set::new(self)
     }
 
@@ -143,7 +143,7 @@ impl<'a> Formatter {
     ///     r#"{"A": 10, "B": 11}"#
     ///  );
     /// ```
-    pub fn debug_map<'b>(&'b mut self) -> DebugMap<'b> {
+    pub fn debug_map(&mut self) -> DebugMap<'_> {
         builders::map::new(self)
     }
 }

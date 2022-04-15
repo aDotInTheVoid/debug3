@@ -374,3 +374,9 @@ impl Formatter {
         self.pending_indentation = 0;
     }
 }
+
+impl Default for Formatter {
+    fn default() -> Self {
+        Self::new()
+    }
+}

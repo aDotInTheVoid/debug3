@@ -33,7 +33,7 @@ pub struct DebugMap<'a> {
     pub(crate) has_key: bool,
 }
 
-pub(crate) fn new<'a>(fmt: &'a mut Formatter) -> DebugMap<'a> {
+pub(crate) fn new(fmt: &mut Formatter) -> DebugMap<'_> {
     fmt.word("{");
     fmt.cbox(INDENT);
     fmt.zerobreak();
