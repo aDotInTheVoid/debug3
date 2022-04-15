@@ -190,6 +190,30 @@ pub trait Debug {
 /// This is the main entry point for non-debuging use. For Debugging, see the
 /// [`crate::dbg`] macro.
 ///
+/// Note that this takes ownership of `x`, but becasuse `impl<T: + Debug> Debug for &T`, you can still borrow.
+///
+/// Eg:
+///
+/// ```rust,compile_fail
+/// use debug3::pprint;
+/// let mut x = vec![1, 2, 3];
+/// assert_eq!(pprint(x), "[1, 2, 3]");
+/// x.push(4);
+/// assert_eq!(pprint(x), "[1, 2, 3, 4]");
+/// ```
+///
+/// should be:
+///
+/// ```rust
+/// use debug3::pprint;
+/// let mut x = vec![1, 2, 3];
+/// assert_eq!(pprint(&x), "[1, 2, 3]");
+/// x.push(4);
+/// assert_eq!(pprint(&x), "[1, 2, 3, 4]");
+/// ```
+///
+///
+///
 /// # Examples
 ///
 /// ```
