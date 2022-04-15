@@ -1,4 +1,4 @@
-use crate::{builders::pad::PadAdapter, Debug, Formatter, Write};
+use crate::{builders::pad::PadAdapter, Debug, Formatter, Write, INDENT};
 
 use super::pad::PadAdapterState;
 
@@ -37,7 +37,10 @@ pub struct DebugMap<'a, 'b: 'a> {
 }
 
 pub(crate) fn new<'a, 'b>(fmt: &'a mut Formatter<'b>) -> DebugMap<'a, 'b> {
-    fmt.write_str("{");
+    fmt.p.word("{");
+    fmt.p.cbox(INDENT);
+    fmt.p.zerobreak();
+
     DebugMap {
         fmt,
         has_fields: false,
@@ -111,25 +114,34 @@ impl<'a, 'b: 'a> DebugMap<'a, 'b> {
                                     without completing the previous one"
         );
 
-        if self.is_pretty() {
-            if !self.has_fields {
-                self.fmt.write_str("\n");
-            }
-            let mut slot = None;
-            self.state = Default::default();
-            let mut writer = PadAdapter::wrap(self.fmt, &mut slot, &mut self.state);
-            key.fmt(&mut writer);
-            writer.write_str(": ");
-        } else {
-            if self.has_fields {
-                self.fmt.write_str(", ");
-            }
-            key.fmt(self.fmt);
-            self.fmt.write_str(": ");
+        // if self.is_pretty() {
+        //     if !self.has_fields {
+        //         self.fmt.write_str("\n");
+        //     }
+        //     let mut slot = None;
+        //     self.state = Default::default();
+        //     let mut writer = PadAdapter::wrap(self.fmt, &mut slot, &mut self.state);
+        //     key.fmt(&mut writer);
+        //     writer.write_str(": ");
+        // } else {
+        //     if self.has_fields {
+        //         self.fmt.write_str(", ");
+        //     }
+        //     key.fmt(self.fmt);
+        //     self.fmt.write_str(": ");
+        // }
+
+        if self.has_fields {
+            self.fmt.p.trailing_comma_or_space(false);
         }
 
-        self.has_key = true;
+        self.fmt.p.ibox(0);
+        key.fmt(self.fmt); // TODO: Should this be Boxed?
+        self.fmt.p.end();
 
+        self.fmt.p.word(": ");
+
+        self.has_key = true;
         self
     }
 
@@ -170,17 +182,20 @@ impl<'a, 'b: 'a> DebugMap<'a, 'b> {
             "attempted to format a map value before its key"
         );
 
-        if self.is_pretty() {
-            let mut slot = None;
-            let mut writer = PadAdapter::wrap(self.fmt, &mut slot, &mut self.state);
-            value.fmt(&mut writer);
-            writer.write_str(",\n");
-        } else {
-            value.fmt(self.fmt);
-        }
+        // if self.is_pretty() {
+        //     let mut slot = None;
+        //     let mut writer = PadAdapter::wrap(self.fmt, &mut slot, &mut self.state);
+        //     value.fmt(&mut writer);
+        //     writer.write_str(",\n");
+        // } else {
+        //     value.fmt(self.fmt);
+        // }
+
+        self.fmt.p.ibox(0);
+        value.fmt(self.fmt);
+        self.fmt.p.end();
 
         self.has_key = false;
-
         self.has_fields = true;
         self
     }
@@ -254,10 +269,16 @@ impl<'a, 'b: 'a> DebugMap<'a, 'b> {
             "attempted to finish a map with a partial entry"
         );
 
-        self.fmt.write_str("}");
+        if self.has_fields {
+            self.fmt.p.trailing_comma(true);
+        }
+
+        self.fmt.p.offset(-INDENT);
+        self.fmt.p.end();
+        self.fmt.p.word("}");
     }
 
-    pub(crate) fn is_pretty(&self) -> bool {
-        self.fmt.alternate()
-    }
+    // pub(crate) fn is_pretty(&self) -> bool {
+    //     self.fmt.alternate()
+    // }
 }
