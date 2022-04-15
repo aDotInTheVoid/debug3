@@ -1,18 +1,13 @@
 use crate::{
-    algorithm::Printer,
     builders::{self, DebugList, DebugMap, DebugSet, DebugStruct, DebugTuple},
     Formatter,
 };
 
 impl<'a> Formatter {
-    pub fn new() -> Self {
-        Self { p: Printer::new() }
-    }
-
     pub(crate) fn write_debug<T: std::fmt::Debug + ?Sized>(&mut self, val: &T) {
         let s = format!("{:?}", val);
         // self.buf.write_str(&s);
-        self.p.word(s);
+        self.word(s);
     }
 
     /// Creates a [`DebugStruct`] builder designed to assist with creation of

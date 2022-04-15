@@ -1,7 +1,7 @@
-use crate::algorithm::{BeginToken, BreakToken, Breaks, Printer};
+use crate::algorithm::{BeginToken, BreakToken, Breaks, Formatter};
 use std::borrow::Cow;
 
-impl Printer {
+impl Formatter {
     pub fn ibox(&mut self, indent: isize) {
         self.scan_begin(BeginToken {
             offset: indent,

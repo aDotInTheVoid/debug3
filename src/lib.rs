@@ -20,12 +20,8 @@ const INDENT: isize = 4;
 // Every line is allowed at least this much space, even if highly indented.
 const MIN_SPACE: isize = 60;
 
-use algorithm::Printer;
+pub use algorithm::Formatter;
 pub use debug3_derive::Debug;
-
-pub struct Formatter {
-    p: Printer,
-}
 
 pub trait Debug {
     fn fmt(&self, f: &mut Formatter);
@@ -34,5 +30,5 @@ pub trait Debug {
 pub fn pprint<T: Debug>(x: T) -> String {
     let mut f = Formatter::new();
     x.fmt(&mut f);
-    f.p.eof()
+    f.eof()
 }

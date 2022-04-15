@@ -34,9 +34,9 @@ pub struct DebugMap<'a> {
 }
 
 pub(crate) fn new<'a>(fmt: &'a mut Formatter) -> DebugMap<'a> {
-    fmt.p.word("{");
-    fmt.p.cbox(INDENT);
-    fmt.p.zerobreak();
+    fmt.word("{");
+    fmt.cbox(INDENT);
+    fmt.zerobreak();
 
     DebugMap {
         fmt,
@@ -128,14 +128,14 @@ impl<'a> DebugMap<'a> {
         // }
 
         if self.has_fields {
-            self.fmt.p.trailing_comma_or_space(false);
+            self.fmt.trailing_comma_or_space(false);
         }
 
-        self.fmt.p.ibox(0);
+        self.fmt.ibox(0);
         key.fmt(self.fmt); // TODO: Should this be Boxed?
-        self.fmt.p.end();
+        self.fmt.end();
 
-        self.fmt.p.word(": ");
+        self.fmt.word(": ");
 
         self.has_key = true;
         self
@@ -187,9 +187,9 @@ impl<'a> DebugMap<'a> {
         //     value.fmt(self.fmt);
         // }
 
-        self.fmt.p.ibox(0);
+        self.fmt.ibox(0);
         value.fmt(self.fmt);
-        self.fmt.p.end();
+        self.fmt.end();
 
         self.has_key = false;
         self.has_fields = true;
@@ -266,12 +266,12 @@ impl<'a> DebugMap<'a> {
         );
 
         if self.has_fields {
-            self.fmt.p.trailing_comma(true);
+            self.fmt.trailing_comma(true);
         }
 
-        self.fmt.p.offset(-INDENT);
-        self.fmt.p.end();
-        self.fmt.p.word("}");
+        self.fmt.offset(-INDENT);
+        self.fmt.end();
+        self.fmt.word("}");
     }
 
     // pub(crate) fn is_pretty(&self) -> bool {

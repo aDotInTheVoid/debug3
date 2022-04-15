@@ -34,9 +34,9 @@ pub struct DebugSet<'a> {
 }
 
 pub(crate) fn new<'a>(fmt: &'a mut Formatter) -> DebugSet<'a> {
-    fmt.p.word("{");
-    fmt.p.cbox(INDENT);
-    fmt.p.zerobreak();
+    fmt.word("{");
+    fmt.cbox(INDENT);
+    fmt.zerobreak();
 
     DebugSet {
         inner: DebugInner {
@@ -135,11 +135,11 @@ impl<'a> DebugSet<'a> {
         // TODO: Move common code to Inner (this and DebugList).
 
         if self.inner.has_fields {
-            self.inner.fmt.p.trailing_comma(true);
+            self.inner.fmt.trailing_comma(true);
         }
 
-        self.inner.fmt.p.offset(-INDENT);
-        self.inner.fmt.p.end();
-        self.inner.fmt.p.word("}");
+        self.inner.fmt.offset(-INDENT);
+        self.inner.fmt.end();
+        self.inner.fmt.word("}");
     }
 }

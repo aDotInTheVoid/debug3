@@ -39,7 +39,7 @@ impl<'a> DebugInner<'a> {
         // }
 
         if self.has_fields {
-            self.fmt.p.trailing_comma(false);
+            self.fmt.trailing_comma(false);
         }
 
         // TODO: Should this be suroundid with ibox(0) and end, like `DebugStruct::field`?

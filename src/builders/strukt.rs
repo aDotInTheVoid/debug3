@@ -39,10 +39,10 @@ pub struct DebugStruct<'a> {
 }
 
 pub(crate) fn new<'a>(fmt: &'a mut Formatter, name: &str) -> DebugStruct<'a> {
-    fmt.p.cbox(INDENT);
-    fmt.p.ibox(-INDENT);
-    fmt.p.word_s(name);
-    fmt.p.end();
+    fmt.cbox(INDENT);
+    fmt.ibox(-INDENT);
+    fmt.word_s(name);
+    fmt.end();
 
     DebugStruct {
         fmt,
@@ -105,17 +105,17 @@ impl<'a> DebugStruct<'a> {
         // }
 
         if self.has_fields {
-            self.fmt.p.trailing_comma_or_space(false);
+            self.fmt.trailing_comma_or_space(false);
         } else {
-            self.fmt.p.word(" {");
-            self.fmt.p.space_if_nonempty();
+            self.fmt.word(" {");
+            self.fmt.space_if_nonempty();
         }
 
-        self.fmt.p.word_s(name);
-        self.fmt.p.word(": ");
-        self.fmt.p.ibox(0);
+        self.fmt.word_s(name);
+        self.fmt.word(": ");
+        self.fmt.ibox(0);
         value.fmt(self.fmt);
-        self.fmt.p.end();
+        self.fmt.end();
 
         self.has_fields = true;
         self
@@ -163,17 +163,17 @@ impl<'a> DebugStruct<'a> {
         // }
 
         if self.has_fields {
-            self.fmt.p.trailing_comma_or_space(false);
+            self.fmt.trailing_comma_or_space(false);
         } else {
-            self.fmt.p.word(" {");
-            self.fmt.p.space_if_nonempty();
+            self.fmt.word(" {");
+            self.fmt.space_if_nonempty();
         }
 
-        self.fmt.p.word("..");
-        self.fmt.p.space();
-        self.fmt.p.offset(-INDENT);
-        self.fmt.p.end_with_max_width(34); // TODO: Why 34
-        self.fmt.p.word("}");
+        self.fmt.word("..");
+        self.fmt.space();
+        self.fmt.offset(-INDENT);
+        self.fmt.end_with_max_width(34); // TODO: Why 34
+        self.fmt.word("}");
     }
 
     /// Finishes output and returns any error encountered.
@@ -213,17 +213,17 @@ impl<'a> DebugStruct<'a> {
         // }
 
         if self.has_fields {
-            self.fmt.p.trailing_comma_or_space(true);
+            self.fmt.trailing_comma_or_space(true);
         } else {
-            self.fmt.p.zerobreak();
+            self.fmt.zerobreak();
         }
-        self.fmt.p.offset(-INDENT);
+        self.fmt.offset(-INDENT);
         // TODO: Why 34
         // https://github.com/dtolnay/prettyplease/commit/a98f613b661bba3eb4f54cf4bba5c74c23d395e8
-        self.fmt.p.end_with_max_width(34);
+        self.fmt.end_with_max_width(34);
 
         if self.has_fields {
-            self.fmt.p.word("}");
+            self.fmt.word("}");
         }
     }
 }

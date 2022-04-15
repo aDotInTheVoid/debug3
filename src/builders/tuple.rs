@@ -38,7 +38,7 @@ pub struct DebugTuple<'a> {
 
 pub(crate) fn new<'a>(fmt: &'a mut Formatter, name: &str) -> DebugTuple<'a> {
     // fmt.write_str(name);
-    fmt.p.word_s(name);
+    fmt.word_s(name);
 
     DebugTuple {
         fmt,
@@ -88,11 +88,11 @@ impl<'a> DebugTuple<'a> {
         // }
 
         if self.fields == 0 {
-            self.fmt.p.word("(");
-            self.fmt.p.cbox(INDENT);
-            self.fmt.p.zerobreak();
+            self.fmt.word("(");
+            self.fmt.cbox(INDENT);
+            self.fmt.zerobreak();
         } else {
-            self.fmt.p.trailing_comma(false);
+            self.fmt.trailing_comma(false);
         }
 
         value.fmt(self.fmt);
@@ -136,16 +136,16 @@ impl<'a> DebugTuple<'a> {
         if self.fields > 0 {
             // Handle Closing Comma for tuple of 1,
             if self.fields == 1 && self.empty_name {
-                self.fmt.p.word(",");
-                self.fmt.p.zerobreak();
+                self.fmt.word(",");
+                self.fmt.zerobreak();
             } else {
-                self.fmt.p.trailing_comma(true);
+                self.fmt.trailing_comma(true);
             }
-            self.fmt.p.offset(-INDENT);
-            self.fmt.p.end();
-            self.fmt.p.word(")");
+            self.fmt.offset(-INDENT);
+            self.fmt.end();
+            self.fmt.word(")");
         } else if self.empty_name {
-            self.fmt.p.word("()");
+            self.fmt.word("()");
         }
     }
 }
