@@ -89,23 +89,60 @@ This has the oposite problem, where it uses too much space, even when the code c
 
 ## Overview
 
-TODO
+The main entrypoint is the [`Debug`] trait, which is the equivalent to [`std::fmt::Debug`], and has a similar API.
 
+This can be either `#[derive]`d, or implemented manually.
 
-## Feature matrix
+```rust
+use debug3::{Debug, Formatter, pprint};
 
-TODO
+#[derive(Debug)]
+struct MyStruct {
+    a: i32,
+    b: i32,
+}
 
+struct AnotherStruct {
+    a: i32,
+    b: i32,
+}
+
+impl Debug for AnotherStruct {
+    fn fmt(&self, f: &mut Formatter) {
+        f.debug_struct("AnotherStruct")
+            .field("a", &self.a)
+            .field("b", &self.b)
+            .finish()
+    }
+}
+
+assert_eq!(pprint(MyStruct { a: 1, b: 2 }), "MyStruct { a: 1, b: 2 }");
+assert_eq!(pprint(AnotherStruct { a: 1, b: 2 }), "AnotherStruct { a: 1, b: 2 }");
+```
+
+Once your type implements [`Debug`], you have several options to format it
+
+- [`pprint`]: Convert it to a [`String`]
+- [`dbg`]: Print it to stderr
+<!-- TODO: More -->
 
 ## Comparison to `std::fmt::Debug`:
 
- TODO
+While the main advantage of `debug3` is the superior output quality, it has several drawbacks compared to [`std::fmt`] that you should know
 
-
-
-## Example
-
-
+1. Commonness: Virtually every type in Rust implements [`std::fmt::Debug`],
+   vitrualy no types outside of [`std`] implement [`debug3::Debug`][`Debug`].
+2. Availibility: [`std::fmt`] is also availible as [`core::fmt`], which allows
+   you to use it in `no_std` environments. `debug3` requires several allocated
+   data structures, so cannot support these environments.
+3. Versitility: [`std::fmt::Formatter`] has many more API's for implementing
+   [`std::fmt::Debug`]. In order to achive nice formatting, we cannot accept
+   arbitrary strings, but must have items in the form of Structs, Tuples, Maps,
+   Lists and Sets.
+4. Configurabiliy: We dont suport stuff like `format!("{:x?}, 1)` to configure
+   how numbers are printed.
+5. Ease of use: We don't have a macro like [`std::format`] to easily create a
+   string from several elements which implement [`Debug`]
 
 ## Prior Art
 
