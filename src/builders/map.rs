@@ -16,7 +16,9 @@ use crate::{Debug, Formatter, INDENT};
 ///
 /// impl Debug for Foo {
 ///     fn fmt(&self, fmt: &mut Formatter) {
-///         fmt.debug_map().entries(self.0.iter().map(|&(ref k, ref v)| (k, v))).finish()
+///         fmt.debug_map()
+///             .entries(self.0.iter().map(|&(ref k, ref v)| (k, v)))
+///             .finish()
 ///     }
 /// }
 ///
@@ -57,8 +59,8 @@ impl<'a> DebugMap<'a> {
     /// impl Debug for Foo {
     ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_map()
-    ///            .entry(&"whole", &self.0) // We add the "whole" entry.
-    ///            .finish()
+    ///             .entry(&"whole", &self.0) // We add the "whole" entry.
+    ///             .finish()
     ///     }
     /// }
     ///
@@ -74,13 +76,14 @@ impl<'a> DebugMap<'a> {
     /// Adds the key part of a new entry to the map output.
     ///
     /// This method, together with `value`, is an alternative to `entry` that
-    /// can be used when the complete entry isn't known upfront. Prefer the `entry`
-    /// method when it's possible to use.
+    /// can be used when the complete entry isn't known upfront. Prefer the
+    /// `entry` method when it's possible to use.
     ///
     /// # Panics
     ///
-    /// `key` must be called before `value` and each call to `key` must be followed
-    /// by a corresponding call to `value`. Otherwise this method will panic.
+    /// `key` must be called before `value` and each call to `key` must be
+    /// followed by a corresponding call to `value`. Otherwise this method
+    /// will panic.
     ///
     /// # Examples
     ///
@@ -92,8 +95,9 @@ impl<'a> DebugMap<'a> {
     /// impl Debug for Foo {
     ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_map()
-    ///            .key(&"whole").value(&self.0) // We add the "whole" entry.
-    ///            .finish()
+    ///             .key(&"whole")
+    ///             .value(&self.0) // We add the "whole" entry.
+    ///             .finish()
     ///     }
     /// }
     ///
@@ -143,13 +147,14 @@ impl<'a> DebugMap<'a> {
     /// Adds the value part of a new entry to the map output.
     ///
     /// This method, together with `key`, is an alternative to `entry` that
-    /// can be used when the complete entry isn't known upfront. Prefer the `entry`
-    /// method when it's possible to use.
+    /// can be used when the complete entry isn't known upfront. Prefer the
+    /// `entry` method when it's possible to use.
     ///
     /// # Panics
     ///
-    /// `key` must be called before `value` and each call to `key` must be followed
-    /// by a corresponding call to `value`. Otherwise this method will panic.
+    /// `key` must be called before `value` and each call to `key` must be
+    /// followed by a corresponding call to `value`. Otherwise this method
+    /// will panic.
     ///
     /// # Examples
     ///
@@ -161,8 +166,9 @@ impl<'a> DebugMap<'a> {
     /// impl Debug for Foo {
     ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_map()
-    ///            .key(&"whole").value(&self.0) // We add the "whole" entry.
-    ///            .finish()
+    ///             .key(&"whole")
+    ///             .value(&self.0) // We add the "whole" entry.
+    ///             .finish()
     ///     }
     /// }
     ///
@@ -207,10 +213,10 @@ impl<'a> DebugMap<'a> {
     /// impl Debug for Foo {
     ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_map()
-    ///            // We map our vec so each entries' first field will become
-    ///            // the "key".
-    ///            .entries(self.0.iter().map(|&(ref k, ref v)| (k, v)))
-    ///            .finish()
+    ///             // We map our vec so each entries' first field will become
+    ///             // the "key".
+    ///             .entries(self.0.iter().map(|&(ref k, ref v)| (k, v)))
+    ///             .finish()
     ///     }
     /// }
     ///
@@ -235,8 +241,9 @@ impl<'a> DebugMap<'a> {
     ///
     /// # Panics
     ///
-    /// `key` must be called before `value` and each call to `key` must be followed
-    /// by a corresponding call to `value`. Otherwise this method will panic.
+    /// `key` must be called before `value` and each call to `key` must be
+    /// followed by a corresponding call to `value`. Otherwise this method
+    /// will panic.
     ///
     /// # Examples
     ///
@@ -248,8 +255,8 @@ impl<'a> DebugMap<'a> {
     /// impl Debug for Foo {
     ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_map()
-    ///            .entries(self.0.iter().map(|&(ref k, ref v)| (k, v)))
-    ///            .finish() // Ends the struct formatting.
+    ///             .entries(self.0.iter().map(|&(ref k, ref v)| (k, v)))
+    ///             .finish() // Ends the struct formatting.
     ///     }
     /// }
     ///

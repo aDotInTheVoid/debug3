@@ -25,7 +25,8 @@ impl<'a> DebugInner<'a> {
             self.fmt.trailing_comma(false);
         }
 
-        // TODO: Should this be suroundid with ibox(0) and end, like `DebugStruct::field`?
+        // TODO: Should this be suroundid with ibox(0) and end, like
+        // `DebugStruct::field`?
         entry.fmt(self.fmt);
 
         self.has_fields = true;

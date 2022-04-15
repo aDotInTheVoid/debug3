@@ -17,9 +17,9 @@ use crate::{Debug, Formatter, INDENT};
 /// impl Debug for Foo {
 ///     fn fmt(&self, fmt: &mut Formatter) {
 ///         fmt.debug_tuple("Foo")
-///            .field(&self.0)
-///            .field(&self.1)
-///            .finish()
+///             .field(&self.0)
+///             .field(&self.1)
+///             .finish()
 ///     }
 /// }
 ///
@@ -59,9 +59,9 @@ impl<'a> DebugTuple<'a> {
     /// impl Debug for Foo {
     ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_tuple("Foo")
-    ///            .field(&self.0) // We add the first field.
-    ///            .field(&self.1) // We add the second field.
-    ///            .finish() // We're good to go!
+    ///             .field(&self.0) // We add the first field.
+    ///             .field(&self.1) // We add the second field.
+    ///             .finish() // We're good to go!
     ///     }
     /// }
     ///
@@ -97,10 +97,10 @@ impl<'a> DebugTuple<'a> {
     /// impl Debug for Foo {
     ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_tuple("Foo")
-    ///            .field(&self.0)
-    ///            .field(&self.1)
-    ///            .finish() // You need to call it to "finish" the
-    ///                      // tuple formatting.
+    ///             .field(&self.0)
+    ///             .field(&self.1)
+    ///             .finish() // You need to call it to "finish" the
+    ///                       // tuple formatting.
     ///     }
     /// }
     ///

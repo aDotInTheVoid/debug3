@@ -21,8 +21,8 @@ impl<'a> Formatter {
     /// # Examples
     ///
     /// ```rust
+    /// use debug3::{pprint, Debug, Formatter};
     /// use std::net::Ipv4Addr;
-    /// use debug3::{Debug, Formatter, pprint};
     ///
     /// struct Foo {
     ///     bar: i32,
@@ -47,7 +47,7 @@ impl<'a> Formatter {
     ///     baz: \"Hello World\",
     ///     addr: 127.0.0.1,
     /// }",
-    ///      pprint(Foo {
+    ///     pprint(Foo {
     ///         bar: 10,
     ///         baz: "Hello World".to_string(),
     ///         addr: Ipv4Addr::new(127, 0, 0, 1),
@@ -64,7 +64,7 @@ impl<'a> Formatter {
     /// # Examples
     ///
     /// ```rust
-    /// use debug3::{Debug, Formatter, pprint};
+    /// use debug3::{pprint, Debug, Formatter};
     /// use std::marker::PhantomData;
     ///
     /// struct Foo<T>(i32, String, PhantomData<T>);
@@ -81,7 +81,7 @@ impl<'a> Formatter {
     ///
     /// assert_eq!(
     ///     "Foo(10, \"Hello\", _)",
-    ///      pprint(Foo(10, "Hello".to_string(), PhantomData::<u8>))
+    ///     pprint(Foo(10, "Hello".to_string(), PhantomData::<u8>))
     /// );
     /// ```
     pub fn debug_tuple<'b>(&'b mut self, name: &str) -> DebugTuple<'b> {
@@ -94,7 +94,7 @@ impl<'a> Formatter {
     /// # Examples
     ///
     /// ```rust
-    /// use debug3::{Debug, Formatter, pprint};
+    /// use debug3::{pprint, Debug, Formatter};
     ///
     /// struct Foo(Vec<i32>);
     ///
@@ -116,7 +116,7 @@ impl<'a> Formatter {
     /// # Examples
     ///
     /// ```rust
-    /// use debug3::{Debug, Formatter, pprint};
+    /// use debug3::{pprint, Debug, Formatter};
     ///
     /// struct Foo(Vec<i32>);
     ///
@@ -138,20 +138,22 @@ impl<'a> Formatter {
     /// # Examples
     ///
     /// ```rust
-    /// use debug3::{Debug, Formatter, pprint};
+    /// use debug3::{pprint, Debug, Formatter};
     ///
     /// struct Foo(Vec<(String, i32)>);
     ///
     /// impl Debug for Foo {
     ///     fn fmt(&self, fmt: &mut Formatter) {
-    ///         fmt.debug_map().entries(self.0.iter().map(|&(ref k, ref v)| (k, v))).finish()
+    ///         fmt.debug_map()
+    ///             .entries(self.0.iter().map(|&(ref k, ref v)| (k, v)))
+    ///             .finish()
     ///     }
     /// }
     ///
     /// assert_eq!(
     ///     pprint(Foo(vec![("A".to_string(), 10), ("B".to_string(), 11)])),
     ///     r#"{"A": 10, "B": 11}"#
-    ///  );
+    /// );
     /// ```
     pub fn debug_map(&mut self) -> DebugMap<'_> {
         builders::map::new(self)

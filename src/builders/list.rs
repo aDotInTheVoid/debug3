@@ -22,10 +22,7 @@ use super::DebugInner;
 ///     }
 /// }
 ///
-/// assert_eq!(
-///     debug3::pprint(Foo(vec![10, 11])),
-///     "[10, 11]",
-/// );
+/// assert_eq!(debug3::pprint(Foo(vec![10, 11])), "[10, 11]",);
 /// ```
 #[must_use = "must eventually call `finish()` on Debug builders"]
 pub struct DebugList<'a> {
@@ -58,9 +55,9 @@ impl<'a> DebugList<'a> {
     /// impl Debug for Foo {
     ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_list()
-    ///            .entry(&self.0) // We add the first "entry".
-    ///            .entry(&self.1) // We add the second "entry".
-    ///            .finish()
+    ///             .entry(&self.0) // We add the first "entry".
+    ///             .entry(&self.1) // We add the second "entry".
+    ///             .finish()
     ///     }
     /// }
     ///
@@ -86,9 +83,9 @@ impl<'a> DebugList<'a> {
     /// impl Debug for Foo {
     ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_list()
-    ///            .entries(self.0.iter())
-    ///            .entries(self.1.iter())
-    ///            .finish()
+    ///             .entries(self.0.iter())
+    ///             .entries(self.1.iter())
+    ///             .finish()
     ///     }
     /// }
     ///
@@ -119,16 +116,11 @@ impl<'a> DebugList<'a> {
     ///
     /// impl Debug for Foo {
     ///     fn fmt(&self, fmt: &mut Formatter) {
-    ///         fmt.debug_list()
-    ///            .entries(self.0.iter())
-    ///            .finish() // Ends the struct formatting.
+    ///         fmt.debug_list().entries(self.0.iter()).finish() // Ends the struct formatting.
     ///     }
     /// }
     ///
-    /// assert_eq!(
-    ///     debug3::pprint(Foo(vec![10, 11])),
-    ///     "[10, 11]",
-    /// );
+    /// assert_eq!(debug3::pprint(Foo(vec![10, 11])), "[10, 11]",);
     /// ```
     pub fn finish(&mut self) {
         if self.inner.has_fields {

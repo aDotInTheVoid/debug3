@@ -22,10 +22,7 @@ use super::DebugInner;
 ///     }
 /// }
 ///
-/// assert_eq!(
-///     debug3::pprint(Foo(vec![10, 11])),
-///     "{10, 11}",
-/// );
+/// assert_eq!(debug3::pprint(Foo(vec![10, 11])), "{10, 11}",);
 /// ```
 #[must_use = "must eventually call `finish()` on Debug builders"]
 pub struct DebugSet<'a> {
@@ -58,9 +55,9 @@ impl<'a> DebugSet<'a> {
     /// impl Debug for Foo {
     ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_set()
-    ///            .entry(&self.0) // Adds the first "entry".
-    ///            .entry(&self.1) // Adds the second "entry".
-    ///            .finish()
+    ///             .entry(&self.0) // Adds the first "entry".
+    ///             .entry(&self.1) // Adds the second "entry".
+    ///             .finish()
     ///     }
     /// }
     ///
@@ -86,9 +83,9 @@ impl<'a> DebugSet<'a> {
     /// impl Debug for Foo {
     ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_set()
-    ///            .entries(self.0.iter()) // Adds the first "entry".
-    ///            .entries(self.1.iter()) // Adds the second "entry".
-    ///            .finish()
+    ///             .entries(self.0.iter()) // Adds the first "entry".
+    ///             .entries(self.1.iter()) // Adds the second "entry".
+    ///             .finish()
     ///     }
     /// }
     ///
@@ -119,16 +116,11 @@ impl<'a> DebugSet<'a> {
     ///
     /// impl Debug for Foo {
     ///     fn fmt(&self, fmt: &mut Formatter) {
-    ///         fmt.debug_set()
-    ///            .entries(self.0.iter())
-    ///            .finish() // Ends the struct formatting.
+    ///         fmt.debug_set().entries(self.0.iter()).finish() // Ends the struct formatting.
     ///     }
     /// }
     ///
-    /// assert_eq!(
-    ///     debug3::pprint(Foo(vec![10, 11])),
-    ///     "{10, 11}",
-    /// );
+    /// assert_eq!(debug3::pprint(Foo(vec![10, 11])), "{10, 11}",);
     /// ```
     pub fn finish(&mut self) {
         // TODO: Move common code to Inner (this and DebugList).

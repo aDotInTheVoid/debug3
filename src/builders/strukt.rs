@@ -20,14 +20,17 @@ use crate::{Debug, Formatter, INDENT};
 /// impl Debug for Foo {
 ///     fn fmt(&self, fmt: &mut Formatter) {
 ///         fmt.debug_struct("Foo")
-///            .field("bar", &self.bar)
-///            .field("baz", &self.baz)
-///            .finish()
+///             .field("bar", &self.bar)
+///             .field("baz", &self.baz)
+///             .finish()
 ///     }
 /// }
 ///
 /// assert_eq!(
-///     debug3::pprint(Foo { bar: 10, baz: "Hello World".to_string() }),
+///     debug3::pprint(Foo {
+///         bar: 10,
+///         baz: "Hello World".to_string()
+///     }),
 ///     "Foo { bar: 10, baz: \"Hello World\" }",
 /// );
 /// ```
@@ -65,16 +68,19 @@ impl<'a> DebugStruct<'a> {
     /// impl Debug for Bar {
     ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_struct("Bar")
-    ///            .field("bar", &self.bar) // We add `bar` field.
-    ///            .field("another", &self.another) // We add `another` field.
-    ///            // We even add a field which doesn't exist (because why not?).
-    ///            .field("not_existing_field", &1)
-    ///            .finish() // We're good to go!
+    ///             .field("bar", &self.bar) // We add `bar` field.
+    ///             .field("another", &self.another) // We add `another` field.
+    ///             // We even add a field which doesn't exist (because why not?).
+    ///             .field("not_existing_field", &1)
+    ///             .finish() // We're good to go!
     ///     }
     /// }
     ///
     /// assert_eq!(
-    ///     debug3::pprint(Bar { bar: 10, another: "Hello World".to_string() }),
+    ///     debug3::pprint(Bar {
+    ///         bar: 10,
+    ///         another: "Hello World".to_string()
+    ///     }),
     ///     "\
     /// Bar {
     ///     bar: 10,
@@ -101,8 +107,9 @@ impl<'a> DebugStruct<'a> {
         self
     }
 
-    /// Marks the struct as non-exhaustive, indicating to the reader that there are some other
-    /// fields that are not shown in the debug representation.
+    /// Marks the struct as non-exhaustive, indicating to the reader that there
+    /// are some other fields that are not shown in the debug
+    /// representation.
     ///
     /// # Examples
     ///
@@ -117,13 +124,16 @@ impl<'a> DebugStruct<'a> {
     /// impl Debug for Bar {
     ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_struct("Bar")
-    ///            .field("bar", &self.bar)
-    ///            .finish_non_exhaustive() // Show that some other field(s) exist.
+    ///             .field("bar", &self.bar)
+    ///             .finish_non_exhaustive() // Show that some other field(s) exist.
     ///     }
     /// }
     ///
     /// assert_eq!(
-    ///     debug3::pprint(Bar { bar: 10, hidden: 1.0 }),
+    ///     debug3::pprint(Bar {
+    ///         bar: 10,
+    ///         hidden: 1.0
+    ///     }),
     ///     "Bar { bar: 10, .. }",
     /// );
     /// ```
@@ -157,15 +167,18 @@ impl<'a> DebugStruct<'a> {
     /// impl Debug for Bar {
     ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_struct("Bar")
-    ///            .field("bar", &self.bar)
-    ///            .field("baz", &self.baz)
-    ///            .finish() // You need to call it to "finish" the
-    ///                      // struct formatting.
+    ///             .field("bar", &self.bar)
+    ///             .field("baz", &self.baz)
+    ///             .finish() // You need to call it to "finish" the
+    ///                       // struct formatting.
     ///     }
     /// }
     ///
     /// assert_eq!(
-    ///     debug3::pprint(Bar { bar: 10, baz: "Hello World".to_string() }),
+    ///     debug3::pprint(Bar {
+    ///         bar: 10,
+    ///         baz: "Hello World".to_string()
+    ///     }),
     ///     "Bar { bar: 10, baz: \"Hello World\" }",
     /// );
     /// ```
