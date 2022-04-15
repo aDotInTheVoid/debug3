@@ -26,11 +26,10 @@ use crate::{Debug, Formatter, INDENT};
 /// );
 /// ```
 #[must_use = "must eventually call `finish()` on Debug builders"]
-#[allow(missing_debug_implementations)]
 pub struct DebugMap<'a> {
-    pub(crate) fmt: &'a mut Formatter,
-    pub(crate) has_fields: bool,
-    pub(crate) has_key: bool,
+    fmt: &'a mut Formatter,
+    has_fields: bool,
+    has_key: bool,
 }
 
 pub(crate) fn new(fmt: &mut Formatter) -> DebugMap<'_> {

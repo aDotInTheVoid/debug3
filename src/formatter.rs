@@ -4,9 +4,14 @@ use crate::{
 };
 
 impl<'a> Formatter {
+    // Escape hatches for base impls (String, str, bool, char, etc.)
     pub(crate) fn write_debug<T: std::fmt::Debug + ?Sized>(&mut self, val: &T) {
         let s = format!("{:?}", val);
-        // self.buf.write_str(&s);
+        self.word(s);
+    }
+
+    pub(crate) fn write_display<T: std::fmt::Display + ?Sized>(&mut self, val: &T) {
+        let s = format!("{}", val);
         self.word(s);
     }
 

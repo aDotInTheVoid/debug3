@@ -28,7 +28,6 @@ use super::DebugInner;
 /// );
 /// ```
 #[must_use = "must eventually call `finish()` on Debug builders"]
-#[allow(missing_debug_implementations)]
 pub struct DebugList<'a> {
     inner: DebugInner<'a>,
 }

@@ -32,10 +32,9 @@ use crate::{Debug, Formatter, INDENT};
 /// );
 /// ```
 #[must_use = "must eventually call `finish()` on Debug builders"]
-#[allow(missing_debug_implementations)]
 pub struct DebugStruct<'a> {
-    pub(crate) fmt: &'a mut Formatter,
-    pub(crate) has_fields: bool,
+    fmt: &'a mut Formatter,
+    has_fields: bool,
 }
 
 pub(crate) fn new<'a>(fmt: &'a mut Formatter, name: &str) -> DebugStruct<'a> {
@@ -85,25 +84,6 @@ impl<'a> DebugStruct<'a> {
     /// );
     /// ```
     pub fn field(&mut self, name: &str, value: &dyn Debug) -> &mut Self {
-        // if self.is_pretty() {
-        //     if !self.has_fields {
-        //         self.fmt.write_str(" {\n");
-        //     }
-        //     let mut slot = None;
-        //     let mut state = Default::default();
-        //     let mut writer = PadAdapter::wrap(self.fmt, &mut slot, &mut state);
-        //     writer.write_str(name);
-        //     writer.write_str(": ");
-        //     value.fmt(&mut writer);
-        //     writer.write_str(",\n")
-        // } else {
-        //     let prefix = if self.has_fields { ", " } else { " { " };
-        //     self.fmt.write_str(prefix);
-        //     self.fmt.write_str(name);
-        //     self.fmt.write_str(": ");
-        //     value.fmt(self.fmt)
-        // }
-
         if self.has_fields {
             self.fmt.trailing_comma_or_space(false);
         } else {
@@ -148,20 +128,6 @@ impl<'a> DebugStruct<'a> {
     /// );
     /// ```
     pub fn finish_non_exhaustive(&mut self) {
-        // if self.has_fields {
-        //     if self.is_pretty() {
-        //         let mut slot = None;
-        //         let mut state = Default::default();
-        //         let mut writer = PadAdapter::wrap(self.fmt, &mut slot, &mut state);
-        //         writer.write_str("..\n");
-        //         self.fmt.write_str("}")
-        //     } else {
-        //         self.fmt.write_str(", .. }")
-        //     }
-        // } else {
-        //     self.fmt.write_str(" { .. }")
-        // }
-
         if self.has_fields {
             self.fmt.trailing_comma_or_space(false);
         } else {
@@ -204,14 +170,6 @@ impl<'a> DebugStruct<'a> {
     /// );
     /// ```
     pub fn finish(&mut self) {
-        // if self.has_fields {
-        //     if self.is_pretty() {
-        //         self.fmt.write_str("}")
-        //     } else {
-        //         self.fmt.write_str(" }")
-        //     }
-        // }
-
         if self.has_fields {
             self.fmt.trailing_comma_or_space(true);
         } else {

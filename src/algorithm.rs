@@ -1,5 +1,7 @@
+// From: https://github.com/dtolnay/prettyplease/blob/1b841376d1caf0b233a7ee5d2f5ec0278c0f553b/src/algorithm.rs
+
 // Adapted from https://github.com/rust-lang/rust/blob/1.57.0/compiler/rustc_ast_pretty/src/pp.rs.
-// See "Algorithm notes" in the crate-level rustdoc.
+// See "Algorithm notes" in the crate-level rustdoc for prettyplease.
 
 use crate::ring::RingBuffer;
 use crate::{MARGIN, MIN_SPACE};

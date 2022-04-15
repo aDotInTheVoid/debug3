@@ -1,10 +1,9 @@
-#![allow(unused_imports)]
+//! Helpers for implementing [`Debug`] on your own types.
 
 use crate::{Debug, Formatter};
 
 pub(crate) mod list;
 pub(crate) mod map;
-pub(crate) mod pad;
 pub(crate) mod set;
 pub(crate) mod strukt;
 pub(crate) mod tuple;
@@ -22,22 +21,6 @@ struct DebugInner<'a> {
 
 impl<'a> DebugInner<'a> {
     fn entry(&mut self, entry: &dyn Debug) {
-        // if self.is_pretty() {
-        //     if !self.has_fields {
-        //         self.fmt.write_str("\n");
-        //     }
-        //     let mut slot = None;
-        //     let mut state = Default::default();
-        //     let mut writer = pad::PadAdapter::wrap(self.fmt, &mut slot, &mut state);
-        //     entry.fmt(&mut writer);
-        //     writer.write_str(",\n")
-        // } else {
-        //     if self.has_fields {
-        //         self.fmt.write_str(", ");
-        //     }
-        //     entry.fmt(self.fmt)
-        // }
-
         if self.has_fields {
             self.fmt.trailing_comma(false);
         }

@@ -200,7 +200,7 @@ impl<T: ?Sized + Debug> Debug for std::cell::RefCell<T> {
 
                 impl Debug for BorrowedPlaceholder {
                     fn fmt(&self, f: &mut Formatter) {
-                        f.write_debug(&format_args!("<borrowed>"))
+                        f.write_display("<borrowed>")
                     }
                 }
 

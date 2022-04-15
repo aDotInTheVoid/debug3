@@ -3,7 +3,6 @@
 // From rust-lang/rust/library
 pub mod builders;
 mod formatter;
-
 mod std_impls;
 
 // From dtolnay/prettyplease/

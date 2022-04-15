@@ -1,3 +1,5 @@
+// From https://github.com/dtolnay/prettyplease/blob/1b841376d1caf0b233a7ee5d2f5ec0278c0f553b/src/convenience.rs
+
 use crate::algorithm::{BeginToken, BreakToken, Breaks, Formatter};
 use std::borrow::Cow;
 
