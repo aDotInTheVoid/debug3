@@ -12,7 +12,7 @@ fn derive_debug(mut s: synstructure::Structure) -> proc_macro2::TokenStream {
     if s.variants().is_empty() {
         return s.gen_impl(quote! {
             gen impl debug3::Debug for @Self {
-                fn fmt(&self, f: &mut debug3::Formatter<'_>) {
+                fn fmt(&self, f: &mut debug3::Formatter) {
                     match *self {}
                 }
             }
@@ -52,7 +52,7 @@ fn derive_debug(mut s: synstructure::Structure) -> proc_macro2::TokenStream {
 
     s.gen_impl(quote! {
         gen impl debug3::Debug for @Self {
-            fn fmt(&self, f: &mut debug3::Formatter<'_>) {
+            fn fmt(&self, f: &mut debug3::Formatter) {
                 match self { #variants }
             }
         }

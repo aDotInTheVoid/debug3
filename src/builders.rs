@@ -15,12 +15,12 @@ pub use set::DebugSet;
 pub use strukt::DebugStruct;
 pub use tuple::DebugTuple;
 
-struct DebugInner<'a, 'b: 'a> {
-    fmt: &'a mut Formatter<'b>,
+struct DebugInner<'a> {
+    fmt: &'a mut Formatter,
     has_fields: bool,
 }
 
-impl<'a, 'b: 'a> DebugInner<'a, 'b> {
+impl<'a> DebugInner<'a> {
     fn entry(&mut self, entry: &dyn Debug) {
         // if self.is_pretty() {
         //     if !self.has_fields {

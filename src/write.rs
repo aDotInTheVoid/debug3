@@ -12,7 +12,7 @@ use crate::{Formatter, Write};
 //     }
 // }
 
-// impl Write for Formatter<'_> {
+// impl Write for Formatter {
 //     fn write_str(&mut self, s: &str) {
 //         self.buf.write_str(s)
 //     }
@@ -45,15 +45,5 @@ impl Write for String {
 
     fn write_char(&mut self, c: char) {
         self.push(c);
-    }
-}
-
-impl Write for Formatter<'_> {
-    fn write_str(&mut self, s: &str) {
-        self.buf.write_str(s)
-    }
-
-    fn write_char(&mut self, c: char) {
-        self.buf.write_char(c)
     }
 }

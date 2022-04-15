@@ -1,7 +1,5 @@
 use crate::{Debug, Formatter, Write, INDENT};
 
-use super::pad::PadAdapter;
-
 /// A struct to help with [`Debug`](Debug) implementations.
 ///
 /// This is useful when you wish to output a formatted struct as a part of your
@@ -35,12 +33,12 @@ use super::pad::PadAdapter;
 /// ```
 #[must_use = "must eventually call `finish()` on Debug builders"]
 #[allow(missing_debug_implementations)]
-pub struct DebugStruct<'a, 'b: 'a> {
-    pub(crate) fmt: &'a mut Formatter<'b>,
+pub struct DebugStruct<'a> {
+    pub(crate) fmt: &'a mut Formatter,
     pub(crate) has_fields: bool,
 }
 
-pub(crate) fn new<'a, 'b>(fmt: &'a mut Formatter<'b>, name: &str) -> DebugStruct<'a, 'b> {
+pub(crate) fn new<'a>(fmt: &'a mut Formatter, name: &str) -> DebugStruct<'a> {
     fmt.p.cbox(INDENT);
     fmt.p.ibox(-INDENT);
     fmt.p.word_s(name);
@@ -52,7 +50,7 @@ pub(crate) fn new<'a, 'b>(fmt: &'a mut Formatter<'b>, name: &str) -> DebugStruct
     }
 }
 
-impl<'a, 'b: 'a> DebugStruct<'a, 'b> {
+impl<'a> DebugStruct<'a> {
     /// Adds a new field to the generated struct output.
     ///
     /// # Examples
@@ -66,7 +64,7 @@ impl<'a, 'b: 'a> DebugStruct<'a, 'b> {
     /// }
     ///
     /// impl Debug for Bar {
-    ///     fn fmt(&self, fmt: &mut Formatter<'_>) {
+    ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_struct("Bar")
     ///            .field("bar", &self.bar) // We add `bar` field.
     ///            .field("another", &self.another) // We add `another` field.
@@ -132,7 +130,7 @@ impl<'a, 'b: 'a> DebugStruct<'a, 'b> {
     /// }
     ///
     /// impl Debug for Bar {
-    ///     fn fmt(&self, fmt: &mut Formatter<'_>) {
+    ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_struct("Bar")
     ///            .field("bar", &self.bar)
     ///            .finish_non_exhaustive() // Show that some other field(s) exist.
@@ -186,7 +184,7 @@ impl<'a, 'b: 'a> DebugStruct<'a, 'b> {
     /// }
     ///
     /// impl Debug for Bar {
-    ///     fn fmt(&self, fmt: &mut Formatter<'_>) {
+    ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_struct("Bar")
     ///            .field("bar", &self.bar)
     ///            .field("baz", &self.baz)

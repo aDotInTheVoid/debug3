@@ -86,7 +86,7 @@ struct J(Custom);
 struct Custom;
 impl Debug for Custom {
     fn fmt(&self, f: &mut Formatter) {
-        f.write_str("yay")
+        "yay".fmt(f);
     }
 }
 

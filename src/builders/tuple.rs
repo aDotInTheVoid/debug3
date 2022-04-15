@@ -1,7 +1,5 @@
 use crate::{Debug, Formatter, Write, INDENT};
 
-use super::pad::PadAdapter;
-
 /// A struct to help with [`Debug`](Debug) implementations.
 ///
 /// This is useful when you wish to output a formatted tuple as a part of your
@@ -32,13 +30,13 @@ use super::pad::PadAdapter;
 /// ```
 #[must_use = "must eventually call `finish()` on Debug builders"]
 #[allow(missing_debug_implementations)]
-pub struct DebugTuple<'a, 'b: 'a> {
-    pub(crate) fmt: &'a mut Formatter<'b>,
+pub struct DebugTuple<'a> {
+    pub(crate) fmt: &'a mut Formatter,
     pub(crate) fields: usize,
     pub(crate) empty_name: bool,
 }
 
-pub(crate) fn new<'a, 'b>(fmt: &'a mut Formatter<'b>, name: &str) -> DebugTuple<'a, 'b> {
+pub(crate) fn new<'a>(fmt: &'a mut Formatter, name: &str) -> DebugTuple<'a> {
     // fmt.write_str(name);
     fmt.p.word_s(name);
 
@@ -49,7 +47,7 @@ pub(crate) fn new<'a, 'b>(fmt: &'a mut Formatter<'b>, name: &str) -> DebugTuple<
     }
 }
 
-impl<'a, 'b: 'a> DebugTuple<'a, 'b> {
+impl<'a> DebugTuple<'a> {
     /// Adds a new field to the generated tuple struct output.
     ///
     /// # Examples
@@ -60,7 +58,7 @@ impl<'a, 'b: 'a> DebugTuple<'a, 'b> {
     /// struct Foo(i32, String);
     ///
     /// impl Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut Formatter<'_>) {
+    ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_tuple("Foo")
     ///            .field(&self.0) // We add the first field.
     ///            .field(&self.1) // We add the second field.
@@ -113,7 +111,7 @@ impl<'a, 'b: 'a> DebugTuple<'a, 'b> {
     /// struct Foo(i32, String);
     ///
     /// impl Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut Formatter<'_>) {
+    ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_tuple("Foo")
     ///            .field(&self.0)
     ///            .field(&self.1)

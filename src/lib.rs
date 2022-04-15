@@ -24,24 +24,12 @@ const MIN_SPACE: isize = 60;
 use algorithm::Printer;
 pub use debug3_derive::Debug;
 
-pub struct Formatter<'a> {
-    /*
-    Transition Notes
-    ----------------
-
-    The Old way (std) directly wrote to `buf`
-
-    The new Way (prettyplease) will use `p`
-
-    When the transition is complete, `buf` will be removed, as
-    `Printer's` fields will be inlined into `Formatter`
-    */
-    buf: &'a mut dyn Write,
+pub struct Formatter {
     p: Printer,
 }
 
 pub trait Debug {
-    fn fmt(&self, f: &mut Formatter<'_>);
+    fn fmt(&self, f: &mut Formatter);
 }
 
 pub trait Write {
@@ -98,22 +86,12 @@ pub trait Write {
 }
 
 pub fn pprint<T: Debug>(x: T) -> String {
-    let mut buf = String::new();
-    let mut f = Formatter::new(&mut buf);
+    let mut f = Formatter::new();
     x.fmt(&mut f);
-    buf
+    f.p.eof()
 }
 
+// TODO: Remove
 pub fn pprint_new<T: Debug>(x: T) -> String {
-    struct Canary {}
-    impl Write for Canary {
-        fn write_str(&mut self, _s: &str) {
-            panic!("CANARY WRITE");
-        }
-    }
-    let mut canary = Canary {};
-    let mut f = Formatter::new(&mut canary);
-    x.fmt(&mut f);
-    let out = f.p.eof();
-    return out;
+    pprint(x)
 }

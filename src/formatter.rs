@@ -1,45 +1,18 @@
 use crate::{
     algorithm::Printer,
     builders::{self, DebugList, DebugMap, DebugSet, DebugStruct, DebugTuple},
-    Formatter, Write,
+    Formatter,
 };
 
-impl<'a> Formatter<'a> {
-    pub fn new(buf: &'a mut dyn Write) -> Self {
-        Self {
-            buf,
-            p: Printer::new(),
-        }
+impl<'a> Formatter {
+    pub fn new() -> Self {
+        Self { p: Printer::new() }
     }
 
     pub(crate) fn write_debug<T: std::fmt::Debug + ?Sized>(&mut self, val: &T) {
         let s = format!("{:?}", val);
         // self.buf.write_str(&s);
         self.p.word(s);
-    }
-
-    pub(crate) fn wrap_buf<'b, 'c, F>(&'b mut self, wrap: F) -> Formatter<'c>
-    where
-        'b: 'c,
-        F: FnOnce(&'b mut (dyn Write + 'b)) -> &'c mut (dyn Write + 'c),
-    {
-        Formatter {
-            // We want to change this
-            buf: wrap(self.buf),
-            // And preserve these
-            // flags: self.flags,
-            // fill: self.fill,
-            // align: self.align,
-            // width: self.width,
-            // precision: self.precision,
-
-            // This is wrong, but we should remove this API and replace it with the printer one.
-            p: Printer::new(),
-        }
-    }
-
-    pub(crate) fn alternate(&self) -> bool {
-        false
     }
 
     /// Creates a [`DebugStruct`] builder designed to assist with creation of
@@ -76,7 +49,7 @@ impl<'a> Formatter<'a> {
     ///     })
     /// );
     /// ```
-    pub fn debug_struct<'b>(&'b mut self, name: &str) -> DebugStruct<'b, 'a> {
+    pub fn debug_struct<'b>(&'b mut self, name: &str) -> DebugStruct<'b> {
         builders::strukt::new(self, name)
     }
 
@@ -106,7 +79,7 @@ impl<'a> Formatter<'a> {
     ///     format!("{:?}", Foo(10, "Hello".to_string(), PhantomData::<u8>))
     /// );
     /// ```
-    pub fn debug_tuple<'b>(&'b mut self, name: &str) -> DebugTuple<'b, 'a> {
+    pub fn debug_tuple<'b>(&'b mut self, name: &str) -> DebugTuple<'b> {
         builders::tuple::new(self, name)
     }
 
@@ -128,7 +101,7 @@ impl<'a> Formatter<'a> {
     ///
     /// assert_eq!(format!("{:?}", Foo(vec![10, 11])), "[10, 11]");
     /// ```
-    pub fn debug_list<'b>(&'b mut self) -> DebugList<'b, 'a> {
+    pub fn debug_list<'b>(&'b mut self) -> DebugList<'b> {
         builders::list::new(self)
     }
 
@@ -150,7 +123,7 @@ impl<'a> Formatter<'a> {
     ///
     /// assert_eq!(format!("{:?}", Foo(vec![10, 11])), "{10, 11}");
     /// ```
-    pub fn debug_set<'b>(&'b mut self) -> DebugSet<'b, 'a> {
+    pub fn debug_set<'b>(&'b mut self) -> DebugSet<'b> {
         builders::set::new(self)
     }
 
@@ -175,12 +148,12 @@ impl<'a> Formatter<'a> {
     ///     r#"{"A": 10, "B": 11}"#
     ///  );
     /// ```
-    pub fn debug_map<'b>(&'b mut self) -> DebugMap<'b, 'a> {
+    pub fn debug_map<'b>(&'b mut self) -> DebugMap<'b> {
         builders::map::new(self)
     }
 }
 
-// impl std::fmt::Write for Formatter<'_> {
+// impl std::fmt::Write for Formatter {
 //     fn write_str(&mut self, s: &str) -> std::fmt::Result {
 //         self.buf.write_str(s).map_err(|_| std::fmt::Error)
 //     }

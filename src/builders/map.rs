@@ -1,6 +1,4 @@
-use crate::{builders::pad::PadAdapter, Debug, Formatter, Write, INDENT};
-
-use super::pad::PadAdapterState;
+use crate::{Debug, Formatter, Write, INDENT};
 
 /// A struct to help with [`Debug`](Debug) implementations.
 ///
@@ -29,14 +27,13 @@ use super::pad::PadAdapterState;
 /// ```
 #[must_use = "must eventually call `finish()` on Debug builders"]
 #[allow(missing_debug_implementations)]
-pub struct DebugMap<'a, 'b: 'a> {
-    pub(crate) fmt: &'a mut Formatter<'b>,
+pub struct DebugMap<'a> {
+    pub(crate) fmt: &'a mut Formatter,
     pub(crate) has_fields: bool,
     pub(crate) has_key: bool,
-    pub(crate) state: PadAdapterState,
 }
 
-pub(crate) fn new<'a, 'b>(fmt: &'a mut Formatter<'b>) -> DebugMap<'a, 'b> {
+pub(crate) fn new<'a>(fmt: &'a mut Formatter) -> DebugMap<'a> {
     fmt.p.word("{");
     fmt.p.cbox(INDENT);
     fmt.p.zerobreak();
@@ -45,11 +42,10 @@ pub(crate) fn new<'a, 'b>(fmt: &'a mut Formatter<'b>) -> DebugMap<'a, 'b> {
         fmt,
         has_fields: false,
         has_key: false,
-        state: Default::default(),
     }
 }
 
-impl<'a, 'b: 'a> DebugMap<'a, 'b> {
+impl<'a> DebugMap<'a> {
     /// Adds a new entry to the map output.
     ///
     /// # Examples
@@ -60,7 +56,7 @@ impl<'a, 'b: 'a> DebugMap<'a, 'b> {
     /// struct Foo(Vec<(String, i32)>);
     ///
     /// impl Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut Formatter<'_>) {
+    ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_map()
     ///            .entry(&"whole", &self.0) // We add the "whole" entry.
     ///            .finish()
@@ -95,7 +91,7 @@ impl<'a, 'b: 'a> DebugMap<'a, 'b> {
     /// struct Foo(Vec<(String, i32)>);
     ///
     /// impl Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut Formatter<'_>) {
+    ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_map()
     ///            .key(&"whole").value(&self.0) // We add the "whole" entry.
     ///            .finish()
@@ -164,7 +160,7 @@ impl<'a, 'b: 'a> DebugMap<'a, 'b> {
     /// struct Foo(Vec<(String, i32)>);
     ///
     /// impl Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut Formatter<'_>) {
+    ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_map()
     ///            .key(&"whole").value(&self.0) // We add the "whole" entry.
     ///            .finish()
@@ -210,7 +206,7 @@ impl<'a, 'b: 'a> DebugMap<'a, 'b> {
     /// struct Foo(Vec<(String, i32)>);
     ///
     /// impl Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut Formatter<'_>) {
+    ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_map()
     ///            // We map our vec so each entries' first field will become
     ///            // the "key".
@@ -251,7 +247,7 @@ impl<'a, 'b: 'a> DebugMap<'a, 'b> {
     /// struct Foo(Vec<(String, i32)>);
     ///
     /// impl Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut Formatter<'_>) {
+    ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_map()
     ///            .entries(self.0.iter().map(|&(ref k, ref v)| (k, v)))
     ///            .finish() // Ends the struct formatting.

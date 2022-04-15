@@ -29,11 +29,11 @@ use super::DebugInner;
 /// ```
 #[must_use = "must eventually call `finish()` on Debug builders"]
 #[allow(missing_debug_implementations)]
-pub struct DebugSet<'a, 'b: 'a> {
-    inner: DebugInner<'a, 'b>,
+pub struct DebugSet<'a> {
+    inner: DebugInner<'a>,
 }
 
-pub(crate) fn new<'a, 'b>(fmt: &'a mut Formatter<'b>) -> DebugSet<'a, 'b> {
+pub(crate) fn new<'a>(fmt: &'a mut Formatter) -> DebugSet<'a> {
     fmt.p.word("{");
     fmt.p.cbox(INDENT);
     fmt.p.zerobreak();
@@ -46,7 +46,7 @@ pub(crate) fn new<'a, 'b>(fmt: &'a mut Formatter<'b>) -> DebugSet<'a, 'b> {
     }
 }
 
-impl<'a, 'b: 'a> DebugSet<'a, 'b> {
+impl<'a> DebugSet<'a> {
     /// Adds a new entry to the set output.
     ///
     /// # Examples
@@ -57,7 +57,7 @@ impl<'a, 'b: 'a> DebugSet<'a, 'b> {
     /// struct Foo(Vec<i32>, Vec<u32>);
     ///
     /// impl Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut Formatter<'_>) {
+    ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_set()
     ///            .entry(&self.0) // Adds the first "entry".
     ///            .entry(&self.1) // Adds the second "entry".
@@ -85,7 +85,7 @@ impl<'a, 'b: 'a> DebugSet<'a, 'b> {
     /// struct Foo(Vec<i32>, Vec<u32>);
     ///
     /// impl Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut Formatter<'_>) {
+    ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_set()
     ///            .entries(self.0.iter()) // Adds the first "entry".
     ///            .entries(self.1.iter()) // Adds the second "entry".
@@ -119,7 +119,7 @@ impl<'a, 'b: 'a> DebugSet<'a, 'b> {
     /// struct Foo(Vec<i32>);
     ///
     /// impl Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut Formatter<'_>) {
+    ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_set()
     ///            .entries(self.0.iter())
     ///            .finish() // Ends the struct formatting.
