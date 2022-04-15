@@ -16,8 +16,8 @@ impl<'a> Formatter {
     /// # Examples
     ///
     /// ```rust
-    /// use std::fmt;
     /// use std::net::Ipv4Addr;
+    /// use debug3::{Debug, Formatter, pprint};
     ///
     /// struct Foo {
     ///     bar: i32,
@@ -25,8 +25,8 @@ impl<'a> Formatter {
     ///     addr: Ipv4Addr,
     /// }
     ///
-    /// impl fmt::Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
+    /// impl Debug for Foo {
+    ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_struct("Foo")
     ///             .field("bar", &self.bar)
     ///             .field("baz", &self.baz)
@@ -36,8 +36,13 @@ impl<'a> Formatter {
     /// }
     ///
     /// assert_eq!(
-    ///     "Foo { bar: 10, baz: \"Hello World\", addr: 127.0.0.1 }",
-    ///     format!("{:?}", Foo {
+    ///     "\
+    /// Foo {
+    ///     bar: 10,
+    ///     baz: \"Hello World\",
+    ///     addr: 127.0.0.1,
+    /// }",
+    ///      pprint(Foo {
     ///         bar: 10,
     ///         baz: "Hello World".to_string(),
     ///         addr: Ipv4Addr::new(127, 0, 0, 1),
@@ -54,13 +59,13 @@ impl<'a> Formatter {
     /// # Examples
     ///
     /// ```rust
-    /// use std::fmt;
+    /// use debug3::{Debug, Formatter, pprint};
     /// use std::marker::PhantomData;
     ///
     /// struct Foo<T>(i32, String, PhantomData<T>);
     ///
-    /// impl<T> fmt::Debug for Foo<T> {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
+    /// impl<T> Debug for Foo<T> {
+    ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_tuple("Foo")
     ///             .field(&self.0)
     ///             .field(&self.1)
@@ -71,7 +76,7 @@ impl<'a> Formatter {
     ///
     /// assert_eq!(
     ///     "Foo(10, \"Hello\", _)",
-    ///     format!("{:?}", Foo(10, "Hello".to_string(), PhantomData::<u8>))
+    ///      pprint(Foo(10, "Hello".to_string(), PhantomData::<u8>))
     /// );
     /// ```
     pub fn debug_tuple<'b>(&'b mut self, name: &str) -> DebugTuple<'b> {
@@ -84,17 +89,17 @@ impl<'a> Formatter {
     /// # Examples
     ///
     /// ```rust
-    /// use std::fmt;
+    /// use debug3::{Debug, Formatter, pprint};
     ///
     /// struct Foo(Vec<i32>);
     ///
-    /// impl fmt::Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
+    /// impl Debug for Foo {
+    ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_list().entries(self.0.iter()).finish()
     ///     }
     /// }
     ///
-    /// assert_eq!(format!("{:?}", Foo(vec![10, 11])), "[10, 11]");
+    /// assert_eq!(pprint(Foo(vec![10, 11])), "[10, 11]");
     /// ```
     pub fn debug_list(&mut self) -> DebugList<'_> {
         builders::list::new(self)
@@ -106,17 +111,17 @@ impl<'a> Formatter {
     /// # Examples
     ///
     /// ```rust
-    /// use std::fmt;
+    /// use debug3::{Debug, Formatter, pprint};
     ///
     /// struct Foo(Vec<i32>);
     ///
-    /// impl fmt::Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
+    /// impl Debug for Foo {
+    ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_set().entries(self.0.iter()).finish()
     ///     }
     /// }
     ///
-    /// assert_eq!(format!("{:?}", Foo(vec![10, 11])), "{10, 11}");
+    /// assert_eq!(pprint(Foo(vec![10, 11])), "{10, 11}");
     /// ```
     pub fn debug_set(&mut self) -> DebugSet<'_> {
         builders::set::new(self)
@@ -128,18 +133,18 @@ impl<'a> Formatter {
     /// # Examples
     ///
     /// ```rust
-    /// use std::fmt;
+    /// use debug3::{Debug, Formatter, pprint};
     ///
     /// struct Foo(Vec<(String, i32)>);
     ///
-    /// impl fmt::Debug for Foo {
-    ///     fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
+    /// impl Debug for Foo {
+    ///     fn fmt(&self, fmt: &mut Formatter) {
     ///         fmt.debug_map().entries(self.0.iter().map(|&(ref k, ref v)| (k, v))).finish()
     ///     }
     /// }
     ///
     /// assert_eq!(
-    ///     format!("{:?}",  Foo(vec![("A".to_string(), 10), ("B".to_string(), 11)])),
+    ///     pprint(Foo(vec![("A".to_string(), 10), ("B".to_string(), 11)])),
     ///     r#"{"A": 10, "B": 11}"#
     ///  );
     /// ```
@@ -147,13 +152,3 @@ impl<'a> Formatter {
         builders::map::new(self)
     }
 }
-
-// impl std::fmt::Write for Formatter {
-//     fn write_str(&mut self, s: &str) -> std::fmt::Result {
-//         self.buf.write_str(s).map_err(|_| std::fmt::Error)
-//     }
-
-//     fn write_char(&mut self, c: char) -> std::fmt::Result {
-//         self.buf.write_char(c).map_err(|_| std::fmt::Error)
-//     }
-// }

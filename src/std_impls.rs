@@ -2,7 +2,7 @@ use std::{
     collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet, LinkedList, VecDeque},
     ops::Deref,
     rc::Rc,
-    sync::Arc,
+    sync::{Arc, Mutex, TryLockError},
 };
 
 use crate::{Debug, Formatter};
@@ -200,7 +200,7 @@ impl<T: ?Sized + Debug> Debug for std::cell::RefCell<T> {
 
                 impl Debug for BorrowedPlaceholder {
                     fn fmt(&self, f: &mut Formatter) {
-                        "<borrowed>".fmt(f)
+                        f.write_debug(&format_args!("<borrowed>"))
                     }
                 }
 
@@ -235,3 +235,30 @@ impl Debug for std::fmt::Arguments<'_> {
         f.write_debug(self)
     }
 }
+
+impl<T: ?Sized + Debug> Debug for Mutex<T> {
+    fn fmt(&self, f: &mut Formatter) {
+        let mut d = f.debug_struct("Mutex");
+        match self.try_lock() {
+            Ok(guard) => {
+                d.field("data", &&*guard);
+            }
+            Err(TryLockError::Poisoned(err)) => {
+                d.field("data", &&**err.get_ref());
+            }
+            Err(TryLockError::WouldBlock) => {
+                struct LockedPlaceholder;
+                impl Debug for LockedPlaceholder {
+                    fn fmt(&self, f: &mut Formatter) {
+                        f.write_debug(&format_args!("<locked>"))
+                    }
+                }
+                d.field("data", &LockedPlaceholder);
+            }
+        }
+        d.field("poisoned", &self.is_poisoned());
+        d.finish_non_exhaustive()
+    }
+}
+
+// TODO: Tests

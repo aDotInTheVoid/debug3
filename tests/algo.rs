@@ -31,7 +31,7 @@ fn works() {
 
 #[test]
 fn empty_struct() {
-    #[derive(Debug, std::fmt::Debug)]
+    #[derive(Debug)]
     struct Empty {}
 
     assert_eq!(pprint(Empty {}), "Empty");
