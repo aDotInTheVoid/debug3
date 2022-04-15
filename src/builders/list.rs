@@ -1,4 +1,4 @@
-use crate::{Debug, Formatter, Write, INDENT};
+use crate::{Debug, Formatter, INDENT};
 
 use super::DebugInner;
 

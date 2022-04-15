@@ -1,4 +1,4 @@
-use crate::algorithm::{self, BeginToken, BreakToken, Breaks, Printer};
+use crate::algorithm::{BeginToken, BreakToken, Breaks, Printer};
 use std::borrow::Cow;
 
 impl Printer {
@@ -44,13 +44,13 @@ impl Printer {
         self.spaces(1);
     }
 
-    pub fn nbsp(&mut self) {
-        self.word(" ");
-    }
+    // pub fn nbsp(&mut self) {
+    //     self.word(" ");
+    // }
 
-    pub fn hardbreak(&mut self) {
-        self.spaces(algorithm::SIZE_INFINITY as usize);
-    }
+    // pub fn hardbreak(&mut self) {
+    //     self.spaces(algorithm::SIZE_INFINITY as usize);
+    // }
 
     pub fn space_if_nonempty(&mut self) {
         self.scan_break(BreakToken {
@@ -60,13 +60,13 @@ impl Printer {
         });
     }
 
-    pub fn hardbreak_if_nonempty(&mut self) {
-        self.scan_break(BreakToken {
-            blank_space: algorithm::SIZE_INFINITY as usize,
-            if_nonempty: true,
-            ..BreakToken::default()
-        });
-    }
+    // pub fn hardbreak_if_nonempty(&mut self) {
+    //     self.scan_break(BreakToken {
+    //         blank_space: algorithm::SIZE_INFINITY as usize,
+    //         if_nonempty: true,
+    //         ..BreakToken::default()
+    //     });
+    // }
 
     pub fn trailing_comma(&mut self, is_last: bool) {
         if is_last {
@@ -93,10 +93,10 @@ impl Printer {
         }
     }
 
-    pub fn neverbreak(&mut self) {
-        self.scan_break(BreakToken {
-            never_break: true,
-            ..BreakToken::default()
-        });
-    }
+    // pub fn neverbreak(&mut self) {
+    //     self.scan_break(BreakToken {
+    //         never_break: true,
+    //         ..BreakToken::default()
+    //     });
+    // }
 }

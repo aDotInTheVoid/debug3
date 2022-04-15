@@ -1,6 +1,6 @@
 #![allow(dead_code)]
 
-use debug3::{pprint, Debug, Formatter, Write};
+use debug3::{pprint, Debug, Formatter};
 
 #[derive(Debug)]
 struct Unit;
@@ -86,6 +86,11 @@ struct J(Custom);
 struct Custom;
 impl Debug for Custom {
     fn fmt(&self, f: &mut Formatter) {
+        // TODO: Do we want something like `f.write_str("Custom")`
+        // More generaly, How do we want custom `Debug` impls that dont look like
+        // Derives to work?
+
+        // Eg Rustc's Span and DefID
         "yay".fmt(f);
     }
 }
@@ -111,5 +116,5 @@ fn derive2() {
     assert_eq!(F(3).to_show(), "F(3)".to_string());
     assert_eq!(G(3, 4).to_show(), "G(3, 4)".to_string());
     assert_eq!(I { a: 2, b: 4 }.to_show(), "I { a: 2, b: 4 }".to_string());
-    assert_eq!(J(Custom).to_show(), "J(yay)".to_string());
+    assert_eq!(J(Custom).to_show(), "J(\"yay\")".to_string());
 }

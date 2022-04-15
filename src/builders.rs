@@ -1,6 +1,6 @@
 #![allow(unused_imports)]
 
-use crate::{Debug, Formatter, Write};
+use crate::{Debug, Formatter};
 
 pub(crate) mod list;
 pub(crate) mod map;

@@ -1,4 +1,4 @@
-use crate::{Debug, Formatter, Write, INDENT};
+use crate::{Debug, Formatter, INDENT};
 
 /// A struct to help with [`Debug`](Debug) implementations.
 ///
@@ -76,7 +76,12 @@ impl<'a> DebugStruct<'a> {
     ///
     /// assert_eq!(
     ///     debug3::pprint(Bar { bar: 10, another: "Hello World".to_string() }),
-    ///     "Bar { bar: 10, another: \"Hello World\", not_existing_field: 1 }",
+    ///     "\
+    /// Bar {
+    ///     bar: 10,
+    ///     another: \"Hello World\",
+    ///     not_existing_field: 1,
+    /// }",
     /// );
     /// ```
     pub fn field(&mut self, name: &str, value: &dyn Debug) -> &mut Self {

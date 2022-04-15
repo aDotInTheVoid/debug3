@@ -5,7 +5,7 @@ use std::{
     sync::Arc,
 };
 
-use crate::{Debug, Formatter, Write};
+use crate::{Debug, Formatter};
 
 macro_rules! std_debug {
     ($($t:ty),+) => {

@@ -1,4 +1,4 @@
-use debug3::{pprint_new, Debug, Formatter};
+use debug3::{pprint, Debug, Formatter};
 
 #[test]
 fn works() {
@@ -9,7 +9,7 @@ fn works() {
     }
 
     assert_eq!(
-        pprint_new(Basic {
+        pprint(Basic {
             a: "Hello World".to_string(),
             b: 10
         }),
@@ -17,7 +17,7 @@ fn works() {
     );
 
     assert_eq!(
-        pprint_new(Basic {
+        pprint(Basic {
             a: "This is a very long string, so that the function will be required to spill"
                 .to_string(),
             b: 10
@@ -34,7 +34,7 @@ fn empty_struct() {
     #[derive(Debug, std::fmt::Debug)]
     struct Empty {}
 
-    assert_eq!(pprint_new(Empty {}), "Empty");
+    assert_eq!(pprint(Empty {}), "Empty");
 }
 
 #[test]
@@ -56,7 +56,7 @@ fn non_exaustive() {
     }
 
     assert_eq!(
-        pprint_new(Bar {
+        pprint(Bar {
             bar: 10,
             bas: "Hey",
             hidden: 0.1
@@ -65,7 +65,7 @@ fn non_exaustive() {
     );
 
     assert_eq!(
-        pprint_new(Bar {
+        pprint(Bar {
             bar: 10,
             bas: "Hey Now, Your an all star",
             hidden: 0.1
@@ -89,7 +89,7 @@ fn non_exaustive_empty() {
         }
     }
 
-    assert_eq!(pprint_new(Foo {}), "Foo { .. }");
+    assert_eq!(pprint(Foo {}), "Foo { .. }");
 }
 
 mod debug_struct {
@@ -105,8 +105,8 @@ mod debug_struct {
             }
         }
 
-        assert_eq!("Foo", debug3::pprint_new(Foo));
-        assert_eq!("Foo", debug3::pprint_new(Foo));
+        assert_eq!("Foo", debug3::pprint(Foo));
+        assert_eq!("Foo", debug3::pprint(Foo));
     }
 
     #[test]
@@ -119,7 +119,7 @@ mod debug_struct {
             }
         }
 
-        assert_eq!("Foo { bar: true }", debug3::pprint_new(Foo));
+        assert_eq!("Foo { bar: true }", debug3::pprint(Foo));
     }
 
     #[test]
@@ -135,7 +135,7 @@ mod debug_struct {
             }
         }
 
-        assert_eq!("Foo { bar: true, baz: 10/20 }", debug3::pprint_new(Foo));
+        assert_eq!("Foo { bar: true, baz: 10/20 }", debug3::pprint(Foo));
     }
 
     #[test]
@@ -168,7 +168,7 @@ Bar {
     foo: Foo { bar: true, baz: 10/20 },
     hello: \"world\",
 }",
-            debug3::pprint_new(Bar)
+            debug3::pprint(Bar)
         );
     }
 
@@ -182,8 +182,8 @@ Bar {
             }
         }
 
-        assert_eq!("Foo { .. }", debug3::pprint_new(Foo));
-        assert_eq!("Foo { .. }", debug3::pprint_new(Foo));
+        assert_eq!("Foo { .. }", debug3::pprint(Foo));
+        assert_eq!("Foo { .. }", debug3::pprint(Foo));
     }
 
     #[test]
@@ -199,7 +199,7 @@ Bar {
             }
         }
 
-        assert_eq!("Foo { bar: true, baz: 10/20, .. }", debug3::pprint_new(Foo));
+        assert_eq!("Foo { bar: true, baz: 10/20, .. }", debug3::pprint(Foo));
     }
 
     #[test]
@@ -233,7 +233,7 @@ Bar {
     hello: \"world\",
     ..
 }",
-            debug3::pprint_new(Bar)
+            debug3::pprint(Bar)
         );
     }
 }
@@ -251,8 +251,8 @@ mod debug_set {
             }
         }
 
-        assert_eq!("{}", debug3::pprint_new(Foo));
-        assert_eq!("{}", debug3::pprint_new(Foo));
+        assert_eq!("{}", debug3::pprint(Foo));
+        assert_eq!("{}", debug3::pprint(Foo));
     }
 
     #[test]
@@ -265,7 +265,7 @@ mod debug_set {
             }
         }
 
-        assert_eq!("{true}", debug3::pprint_new(Foo));
+        assert_eq!("{true}", debug3::pprint(Foo));
     }
 
     #[test]
@@ -281,7 +281,7 @@ mod debug_set {
             }
         }
 
-        assert_eq!("{true, 10/20}", debug3::pprint_new(Foo));
+        assert_eq!("{true, 10/20}", debug3::pprint(Foo));
     }
 
     #[test]
@@ -305,7 +305,7 @@ mod debug_set {
             }
         }
 
-        assert_eq!("{{true, 10/20}, \"world\"}", debug3::pprint_new(Bar));
+        assert_eq!("{{true, 10/20}, \"world\"}", debug3::pprint(Bar));
     }
 }
 
@@ -322,8 +322,8 @@ mod debug_list {
             }
         }
 
-        assert_eq!("[]", debug3::pprint_new(Foo));
-        assert_eq!("[]", debug3::pprint_new(Foo));
+        assert_eq!("[]", debug3::pprint(Foo));
+        assert_eq!("[]", debug3::pprint(Foo));
     }
 
     #[test]
@@ -336,7 +336,7 @@ mod debug_list {
             }
         }
 
-        assert_eq!("[true]", debug3::pprint_new(Foo));
+        assert_eq!("[true]", debug3::pprint(Foo));
     }
 
     #[test]
@@ -352,7 +352,7 @@ mod debug_list {
             }
         }
 
-        assert_eq!("[true, 10/20]", debug3::pprint_new(Foo));
+        assert_eq!("[true, 10/20]", debug3::pprint(Foo));
     }
 
     #[test]
@@ -376,7 +376,7 @@ mod debug_list {
             }
         }
 
-        assert_eq!("[[true, 10/20], \"world\"]", debug3::pprint_new(Bar));
+        assert_eq!("[[true, 10/20], \"world\"]", debug3::pprint(Bar));
     }
 }
 
@@ -401,23 +401,23 @@ fn list_many() {
         [4, 5, 6],
     ],
 ]",
-        debug3::pprint_new(x)
+        debug3::pprint(x)
     );
 }
 
 #[test]
 fn empty_tuple() {
-    assert_eq!("()", debug3::pprint_new(()));
+    assert_eq!("()", debug3::pprint(()));
 }
 
 #[test]
 fn unary_tuple() {
-    assert_eq!("(1,)", debug3::pprint_new((1,)));
+    assert_eq!("(1,)", debug3::pprint((1,)));
 }
 
 #[test]
 fn binary_typle() {
-    assert_eq!("(1, 2)", debug3::pprint_new((1, 2)));
+    assert_eq!("(1, 2)", debug3::pprint((1, 2)));
 }
 
 #[test]
@@ -434,7 +434,7 @@ fn tuple_break() {
     \"FDSssssjgkl;kjgdfskl;jlkgkl;fsgjfdgsfk;gl\",
     \"dfgskldjfgkldfjkl;dfgj;lfg\",
 )",
-        debug3::pprint_new(x)
+        debug3::pprint(x)
     );
 }
 
@@ -451,8 +451,8 @@ mod debug_tuple {
             }
         }
 
-        assert_eq!("Foo", debug3::pprint_new(Foo));
-        assert_eq!("Foo", debug3::pprint_new(Foo));
+        assert_eq!("Foo", debug3::pprint(Foo));
+        assert_eq!("Foo", debug3::pprint(Foo));
     }
 
     #[test]
@@ -465,7 +465,7 @@ mod debug_tuple {
             }
         }
 
-        assert_eq!("Foo(true)", debug3::pprint_new(Foo));
+        assert_eq!("Foo(true)", debug3::pprint(Foo));
     }
 
     #[test]
@@ -481,7 +481,7 @@ mod debug_tuple {
             }
         }
 
-        assert_eq!("Foo(true, 10/20)", debug3::pprint_new(Foo));
+        assert_eq!("Foo(true, 10/20)", debug3::pprint(Foo));
     }
 
     #[test]
@@ -505,7 +505,7 @@ mod debug_tuple {
             }
         }
 
-        assert_eq!("Bar(Foo(true, 10/20), \"world\")", debug3::pprint_new(Bar));
+        assert_eq!("Bar(Foo(true, 10/20), \"world\")", debug3::pprint(Bar));
     }
 }
 
@@ -522,8 +522,8 @@ mod debug_map {
             }
         }
 
-        assert_eq!("{}", debug3::pprint_new(Foo));
-        assert_eq!("{}", debug3::pprint_new(Foo));
+        assert_eq!("{}", debug3::pprint(Foo));
+        assert_eq!("{}", debug3::pprint(Foo));
     }
 
     #[test]
@@ -544,8 +544,8 @@ mod debug_map {
             }
         }
 
-        assert_eq!(debug3::pprint_new(Entry), debug3::pprint_new(KeyValue));
-        assert_eq!("{\"bar\": true}", debug3::pprint_new(Entry));
+        assert_eq!(debug3::pprint(Entry), debug3::pprint(KeyValue));
+        assert_eq!("{\"bar\": true}", debug3::pprint(Entry));
     }
 
     #[test]
@@ -574,10 +574,10 @@ mod debug_map {
             }
         }
 
-        assert_eq!(debug3::pprint_new(Entry), debug3::pprint_new(KeyValue));
-        assert_eq!(debug3::pprint_new(Entry), debug3::pprint_new(KeyValue));
+        assert_eq!(debug3::pprint(Entry), debug3::pprint(KeyValue));
+        assert_eq!(debug3::pprint(Entry), debug3::pprint(KeyValue));
 
-        assert_eq!("{\"bar\": true, 10: 10/20}", debug3::pprint_new(Entry));
+        assert_eq!("{\"bar\": true, 10: 10/20}", debug3::pprint(Entry));
     }
 
     #[test]
@@ -607,7 +607,7 @@ mod debug_map {
         assert_eq!(
             "{\"foo\": {\"bar\": true, 10: 10/20}, \
                     {\"bar\": true, 10: 10/20}: \"world\"}",
-            debug3::pprint_new(Bar)
+            debug3::pprint(Bar)
         );
         // TODO: Get the better output
 
@@ -622,7 +622,7 @@ mod debug_map {
         //         10: 10/20,
         //     }: \"world\",
         // }",
-        //             debug3::pprint_new(Bar)
+        //             debug3::pprint(Bar)
         //         );
     }
 
@@ -637,7 +637,7 @@ mod debug_map {
             }
         }
 
-        debug3::pprint_new(Foo);
+        debug3::pprint(Foo);
     }
 
     #[test]
@@ -651,7 +651,7 @@ mod debug_map {
             }
         }
 
-        debug3::pprint_new(Foo);
+        debug3::pprint(Foo);
     }
 
     #[test]
@@ -665,7 +665,7 @@ mod debug_map {
             }
         }
 
-        debug3::pprint_new(Foo);
+        debug3::pprint(Foo);
     }
 }
 
@@ -729,7 +729,7 @@ fn big_map() {
         \"Swift\",
     ]: \"Braces\",
 }",
-        debug3::pprint_new(x)
+        debug3::pprint(x)
     );
 }
 
@@ -745,13 +745,13 @@ fn enum_many_ways() {
         F,
     }
 
-    assert_eq!("A(0)", debug3::pprint_new(Foo::A(0)));
-    assert_eq!("B(0, \"XX\")", debug3::pprint_new(Foo::B(0, "XX")));
+    assert_eq!("A(0)", debug3::pprint(Foo::A(0)));
+    assert_eq!("B(0, \"XX\")", debug3::pprint(Foo::B(0, "XX")));
     assert_eq!(
         "C { a: 0, b: \"XX\" }",
-        debug3::pprint_new(Foo::C { a: 0, b: "XX" })
+        debug3::pprint(Foo::C { a: 0, b: "XX" })
     );
-    assert_eq!("D", debug3::pprint_new(Foo::D {}));
-    assert_eq!("E", debug3::pprint_new(Foo::E()));
-    assert_eq!("F", debug3::pprint_new(Foo::F));
+    assert_eq!("D", debug3::pprint(Foo::D {}));
+    assert_eq!("E", debug3::pprint(Foo::E()));
+    assert_eq!("F", debug3::pprint(Foo::F));
 }

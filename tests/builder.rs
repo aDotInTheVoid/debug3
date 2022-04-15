@@ -71,7 +71,7 @@ mod debug_struct {
         assert_eq!(
             "\
 Bar {
-    foo: Foo { bar: true, baz: 10/20 }, 
+    foo: Foo { bar: true, baz: 10/20 },
     hello: \"world\",
 }",
             debug3::pprint(Bar)
