@@ -138,3 +138,19 @@ fn quadratic_form() {
 ]"
     );
 }
+
+#[derive(Debug)]
+enum LinkedList<T> {
+    Empty,
+    Node(T, Box<LinkedList<T>>),
+}
+
+#[test]
+fn deeply_nested() {
+    let mut list = LinkedList::Empty;
+    for i in 0..1000 {
+        list = LinkedList::Node(i, Box::new(list));
+    }
+    let x = debug3::pprint(&list);
+    assert_eq!(x, include_str!("./linked_list.txt"))
+}

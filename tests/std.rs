@@ -3,7 +3,7 @@ use std::{
     sync::{Arc, Mutex},
 };
 
-use debug3::pprint;
+use debug3::{pprint, Debug};
 
 #[test]
 fn refcell() {
@@ -45,4 +45,23 @@ fn mutex() {
         pprint(&x),
         "Mutex {\n    data: 5,\n    poisoned: true,\n    ..\n}"
     );
+}
+
+#[derive(Debug)]
+struct Ref<'a, T: ?Sized> {
+    ptr: &'a T,
+}
+
+#[test]
+fn unsized_ref() {
+    let x: Ref<'static, str> = Ref { ptr: "Heya" };
+    assert_eq!(pprint(x), "Ref { ptr: \"Heya\" }");
+
+    let x: Ref<'static, [u8]> = Ref { ptr: &[1, 2, 3] };
+    assert_eq!(pprint(x), "Ref { ptr: [1, 2, 3] }");
+
+    let x: Ref<'static, dyn Debug> = Ref {
+        ptr: &5 as &dyn Debug,
+    };
+    assert_eq!(pprint(x), "Ref { ptr: 5 }");
 }
