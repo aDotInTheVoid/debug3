@@ -1,4 +1,4 @@
-use crate::{Debug, Formatter, Write};
+use crate::{Debug, Formatter, Write, INDENT};
 
 use super::pad::PadAdapter;
 
@@ -39,7 +39,9 @@ pub struct DebugTuple<'a, 'b: 'a> {
 }
 
 pub(crate) fn new<'a, 'b>(fmt: &'a mut Formatter<'b>, name: &str) -> DebugTuple<'a, 'b> {
-    fmt.write_str(name);
+    // fmt.write_str(name);
+    fmt.p.word_s(name);
+
     DebugTuple {
         fmt,
         fields: 0,
@@ -72,20 +74,30 @@ impl<'a, 'b: 'a> DebugTuple<'a, 'b> {
     /// );
     /// ```
     pub fn field(&mut self, value: &dyn Debug) -> &mut Self {
-        if self.is_pretty() {
-            if self.fields == 0 {
-                self.fmt.write_str("(\n");
-            }
-            let mut slot = None;
-            let mut state = Default::default();
-            let mut writer = PadAdapter::wrap(self.fmt, &mut slot, &mut state);
-            value.fmt(&mut writer);
-            writer.write_str(",\n")
+        // if self.is_pretty() {
+        //     if self.fields == 0 {
+        //         self.fmt.write_str("(\n");
+        //     }
+        //     let mut slot = None;
+        //     let mut state = Default::default();
+        //     let mut writer = PadAdapter::wrap(self.fmt, &mut slot, &mut state);
+        //     value.fmt(&mut writer);
+        //     writer.write_str(",\n")
+        // } else {
+        //     let prefix = if self.fields == 0 { "(" } else { ", " };
+        //     self.fmt.write_str(prefix);
+        //     value.fmt(self.fmt)
+        // }
+
+        if self.fields == 0 {
+            self.fmt.p.word("(");
+            self.fmt.p.cbox(INDENT);
+            self.fmt.p.zerobreak();
         } else {
-            let prefix = if self.fields == 0 { "(" } else { ", " };
-            self.fmt.write_str(prefix);
-            value.fmt(self.fmt)
+            self.fmt.p.trailing_comma(false);
         }
+
+        value.fmt(self.fmt);
 
         self.fields += 1;
         self
@@ -116,15 +128,26 @@ impl<'a, 'b: 'a> DebugTuple<'a, 'b> {
     /// );
     /// ```
     pub fn finish(&mut self) {
-        if self.fields > 0 {
-            if self.fields == 1 && self.empty_name && !self.is_pretty() {
-                self.fmt.write_str(",");
-            }
-            self.fmt.write_str(")")
-        }
-    }
+        // if self.fields > 0 {
+        //     if self.fields == 1 && self.empty_name && !self.is_pretty() {
+        //         self.fmt.write_str(",");
+        //     }
+        //     self.fmt.write_str(")")
+        // }
 
-    pub(crate) fn is_pretty(&self) -> bool {
-        self.fmt.alternate()
+        if self.fields > 0 {
+            // Handle Closing Comma for tuple of 1,
+            if self.fields == 1 && self.empty_name {
+                self.fmt.p.word(",");
+                self.fmt.p.zerobreak();
+            } else {
+                self.fmt.p.trailing_comma(true);
+            }
+            self.fmt.p.offset(-INDENT);
+            self.fmt.p.end();
+            self.fmt.p.word(")");
+        } else if self.empty_name {
+            self.fmt.p.word("()");
+        }
     }
 }

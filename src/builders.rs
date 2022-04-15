@@ -22,26 +22,29 @@ struct DebugInner<'a, 'b: 'a> {
 
 impl<'a, 'b: 'a> DebugInner<'a, 'b> {
     fn entry(&mut self, entry: &dyn Debug) {
-        if self.is_pretty() {
-            if !self.has_fields {
-                self.fmt.write_str("\n");
-            }
-            let mut slot = None;
-            let mut state = Default::default();
-            let mut writer = pad::PadAdapter::wrap(self.fmt, &mut slot, &mut state);
-            entry.fmt(&mut writer);
-            writer.write_str(",\n")
-        } else {
-            if self.has_fields {
-                self.fmt.write_str(", ");
-            }
-            entry.fmt(self.fmt)
+        // if self.is_pretty() {
+        //     if !self.has_fields {
+        //         self.fmt.write_str("\n");
+        //     }
+        //     let mut slot = None;
+        //     let mut state = Default::default();
+        //     let mut writer = pad::PadAdapter::wrap(self.fmt, &mut slot, &mut state);
+        //     entry.fmt(&mut writer);
+        //     writer.write_str(",\n")
+        // } else {
+        //     if self.has_fields {
+        //         self.fmt.write_str(", ");
+        //     }
+        //     entry.fmt(self.fmt)
+        // }
+
+        if self.has_fields {
+            self.fmt.p.trailing_comma(false);
         }
 
-        self.has_fields = true;
-    }
+        // TODO: Should this be suroundid with ibox(0) and end, like `DebugStruct::field`?
+        entry.fmt(self.fmt);
 
-    fn is_pretty(&self) -> bool {
-        self.fmt.alternate()
+        self.has_fields = true;
     }
 }

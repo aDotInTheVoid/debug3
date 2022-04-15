@@ -1,4 +1,4 @@
-use crate::{Debug, Formatter, Write};
+use crate::{Debug, Formatter, Write, INDENT};
 
 use super::DebugInner;
 
@@ -34,7 +34,10 @@ pub struct DebugSet<'a, 'b: 'a> {
 }
 
 pub(crate) fn new<'a, 'b>(fmt: &'a mut Formatter<'b>) -> DebugSet<'a, 'b> {
-    fmt.write_str("{");
+    fmt.p.word("{");
+    fmt.p.cbox(INDENT);
+    fmt.p.zerobreak();
+
     DebugSet {
         inner: DebugInner {
             fmt,
@@ -129,6 +132,14 @@ impl<'a, 'b: 'a> DebugSet<'a, 'b> {
     /// );
     /// ```
     pub fn finish(&mut self) {
-        self.inner.fmt.write_str("}");
+        // TODO: Move common code to Inner (this and DebugList).
+
+        if self.inner.has_fields {
+            self.inner.fmt.p.trailing_comma(true);
+        }
+
+        self.inner.fmt.p.offset(-INDENT);
+        self.inner.fmt.p.end();
+        self.inner.fmt.p.word("}");
     }
 }

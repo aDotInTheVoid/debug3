@@ -1,4 +1,4 @@
-use crate::{Debug, Formatter, Write};
+use crate::{Debug, Formatter, Write, INDENT};
 
 use super::DebugInner;
 
@@ -34,7 +34,10 @@ pub struct DebugList<'a, 'b: 'a> {
 }
 
 pub(crate) fn new<'a, 'b>(fmt: &'a mut Formatter<'b>) -> DebugList<'a, 'b> {
-    fmt.write_str("[");
+    fmt.p.word("[");
+    fmt.p.cbox(INDENT);
+    fmt.p.zerobreak();
+
     DebugList {
         inner: DebugInner {
             fmt,
@@ -129,6 +132,12 @@ impl<'a, 'b: 'a> DebugList<'a, 'b> {
     /// );
     /// ```
     pub fn finish(&mut self) {
-        self.inner.fmt.write_str("]");
+        if self.inner.has_fields {
+            self.inner.fmt.p.trailing_comma(true);
+        }
+
+        self.inner.fmt.p.offset(-INDENT);
+        self.inner.fmt.p.end();
+        self.inner.fmt.p.word("]");
     }
 }
