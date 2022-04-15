@@ -49,6 +49,14 @@ enum PrintFrame {
 
 pub(crate) const SIZE_INFINITY: isize = 0xffff;
 
+/// A target for formatting.
+///
+/// Users do not construct `Formatter`s directly; a mutable reference to one is passed to
+/// the `fmt` method of [`crate::Debug`]
+///
+/// To interact with a `Formatter`, you'll call various methods to change the
+/// various options related to formatting. For examples, please see the
+/// documentation of the methods defined on `Formatter` below.
 pub struct Formatter {
     out: String,
     // Number of spaces left on line
