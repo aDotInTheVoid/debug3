@@ -41,14 +41,10 @@ pub struct DebugStruct<'a, 'b: 'a> {
 }
 
 pub(crate) fn new<'a, 'b>(fmt: &'a mut Formatter<'b>, name: &str) -> DebugStruct<'a, 'b> {
-    // fmt.write_str(name);
-
     fmt.p.cbox(INDENT);
     fmt.p.ibox(-INDENT);
     fmt.p.word_s(name);
     fmt.p.end();
-    fmt.p.word(" {");
-    fmt.p.space_if_nonempty();
 
     DebugStruct {
         fmt,
@@ -107,6 +103,9 @@ impl<'a, 'b: 'a> DebugStruct<'a, 'b> {
 
         if self.has_fields {
             self.fmt.p.trailing_comma_or_space(false);
+        } else {
+            self.fmt.p.word(" {");
+            self.fmt.p.space_if_nonempty();
         }
 
         self.fmt.p.word_s(name);
@@ -162,7 +161,11 @@ impl<'a, 'b: 'a> DebugStruct<'a, 'b> {
 
         if self.has_fields {
             self.fmt.p.trailing_comma_or_space(false);
+        } else {
+            self.fmt.p.word(" {");
+            self.fmt.p.space_if_nonempty();
         }
+
         self.fmt.p.word("..");
         self.fmt.p.space();
         self.fmt.p.offset(-INDENT);
@@ -208,11 +211,16 @@ impl<'a, 'b: 'a> DebugStruct<'a, 'b> {
 
         if self.has_fields {
             self.fmt.p.trailing_comma_or_space(true);
+        } else {
+            self.fmt.p.zerobreak();
         }
         self.fmt.p.offset(-INDENT);
         // TODO: Why 34
         // https://github.com/dtolnay/prettyplease/commit/a98f613b661bba3eb4f54cf4bba5c74c23d395e8
         self.fmt.p.end_with_max_width(34);
-        self.fmt.p.word("}");
+
+        if self.has_fields {
+            self.fmt.p.word("}");
+        }
     }
 }

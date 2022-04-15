@@ -34,7 +34,7 @@ fn empty_struct() {
     #[derive(Debug, std::fmt::Debug)]
     struct Empty {}
 
-    assert_eq!(pprint_new(Empty {}), "Empty {}");
+    assert_eq!(pprint_new(Empty {}), "Empty");
 }
 
 #[test]
@@ -105,8 +105,8 @@ mod debug_struct {
             }
         }
 
-        assert_eq!("Foo {}", debug3::pprint_new(Foo));
-        assert_eq!("Foo {}", debug3::pprint_new(Foo));
+        assert_eq!("Foo", debug3::pprint_new(Foo));
+        assert_eq!("Foo", debug3::pprint_new(Foo));
     }
 
     #[test]
@@ -751,8 +751,7 @@ fn enum_many_ways() {
         "C { a: 0, b: \"XX\" }",
         debug3::pprint_new(Foo::C { a: 0, b: "XX" })
     );
-    assert_eq!("D {}", debug3::pprint_new(Foo::D {}));
+    assert_eq!("D", debug3::pprint_new(Foo::D {}));
     assert_eq!("E", debug3::pprint_new(Foo::E()));
-    // TODO: Fix this
-    assert_eq!("F {}", debug3::pprint_new(Foo::F));
+    assert_eq!("F", debug3::pprint_new(Foo::F));
 }
