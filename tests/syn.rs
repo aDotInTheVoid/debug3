@@ -42,35 +42,32 @@ fn ref_mut() {
     check(
         y,
         expect![[r#"
-        Reference(
-            ExprReference {
-                attrs: [],
-                and_token: And,
-                raw: Reserved,
-                mutability: Some(Mut),
-                expr: Path(
-                    ExprPath {
-                        attrs: [],
-                        qself: None,
-                        path: Path {
-                            leading_colon: None,
-                            segments: [
-                                PathSegment {
-                                    ident: Ident {
-                                        sym: "x",
-                                        span: Span {
-                                            start: LineColumn { line: 1, column: 5 },
-                                            end: LineColumn { line: 1, column: 6 },
+            Reference(
+                ExprReference {
+                    attrs: [],
+                    and_token: And,
+                    raw: Reserved,
+                    mutability: Some(Mut),
+                    expr: Path(
+                        ExprPath {
+                            attrs: [],
+                            qself: None,
+                            path: Path {
+                                leading_colon: None,
+                                segments: [
+                                    PathSegment {
+                                        ident: Ident {
+                                            sym: "x",
+                                            span: Span(1:5: 1:6),
                                         },
+                                        arguments: None,
                                     },
-                                    arguments: None,
-                                },
-                            ],
+                                ],
+                            },
                         },
-                    },
-                ),
-            },
-        )"#]],
+                    ),
+                },
+            )"#]],
     );
 }
 
@@ -113,128 +110,119 @@ fn punct() {
     check(
         no_punct,
         expect![[r#"
-        ExprCall {
-            attrs: [],
-            func: Path(
-                ExprPath {
-                    attrs: [],
-                    qself: None,
-                    path: Path {
-                        leading_colon: None,
-                        segments: [
-                            PathSegment {
-                                ident: Ident {
-                                    sym: "Foo",
-                                    span: Span {
-                                        start: LineColumn { line: 1, column: 0 },
-                                        end: LineColumn { line: 1, column: 3 },
-                                    },
-                                },
-                                arguments: None,
-                            },
-                        ],
-                    },
-                },
-            ),
-            paren_token: Paren,
-            args: [
-                Lit(
-                    ExprLit {
+            ExprCall {
+                attrs: [],
+                func: Path(
+                    ExprPath {
                         attrs: [],
-                        lit: Int(LitInt { token: 1 }),
+                        qself: None,
+                        path: Path {
+                            leading_colon: None,
+                            segments: [
+                                PathSegment {
+                                    ident: Ident {
+                                        sym: "Foo",
+                                        span: Span(1:0: 1:3),
+                                    },
+                                    arguments: None,
+                                },
+                            ],
+                        },
                     },
                 ),
-            ],
-        }"#]],
+                paren_token: Paren,
+                args: [
+                    Lit(
+                        ExprLit {
+                            attrs: [],
+                            lit: Int(LitInt { token: 1 }),
+                        },
+                    ),
+                ],
+            }"#]],
     );
     check(
         punct,
         expect![[r#"
-        ExprCall {
-            attrs: [],
-            func: Path(
-                ExprPath {
-                    attrs: [],
-                    qself: None,
-                    path: Path {
-                        leading_colon: None,
-                        segments: [
-                            PathSegment {
-                                ident: Ident {
-                                    sym: "Foo",
-                                    span: Span {
-                                        start: LineColumn { line: 1, column: 0 },
-                                        end: LineColumn { line: 1, column: 3 },
+            ExprCall {
+                attrs: [],
+                func: Path(
+                    ExprPath {
+                        attrs: [],
+                        qself: None,
+                        path: Path {
+                            leading_colon: None,
+                            segments: [
+                                PathSegment {
+                                    ident: Ident {
+                                        sym: "Foo",
+                                        span: Span(1:0: 1:3),
                                     },
+                                    arguments: None,
                                 },
-                                arguments: None,
-                            },
-                        ],
-                    },
-                },
-            ),
-            paren_token: Paren,
-            args: [
-                Lit(
-                    ExprLit {
-                        attrs: [],
-                        lit: Int(LitInt { token: 1 }),
+                            ],
+                        },
                     },
                 ),
-                Comma,
-                Lit(
-                    ExprLit {
-                        attrs: [],
-                        lit: Int(LitInt { token: 2 }),
-                    },
-                ),
-            ],
-        }"#]],
+                paren_token: Paren,
+                args: [
+                    Lit(
+                        ExprLit {
+                            attrs: [],
+                            lit: Int(LitInt { token: 1 }),
+                        },
+                    ),
+                    Comma,
+                    Lit(
+                        ExprLit {
+                            attrs: [],
+                            lit: Int(LitInt { token: 2 }),
+                        },
+                    ),
+                ],
+            }"#]],
     );
     check(
         trailing_comma,
         expect![[r#"
-        ExprCall {
-            attrs: [],
-            func: Path(
-                ExprPath {
-                    attrs: [],
-                    qself: None,
-                    path: Path {
-                        leading_colon: None,
-                        segments: [
-                            PathSegment {
-                                ident: Ident {
-                                    sym: "Foo",
-                                    span: Span {
-                                        start: LineColumn { line: 1, column: 0 },
-                                        end: LineColumn { line: 1, column: 3 },
+            ExprCall {
+                attrs: [],
+                func: Path(
+                    ExprPath {
+                        attrs: [],
+                        qself: None,
+                        path: Path {
+                            leading_colon: None,
+                            segments: [
+                                PathSegment {
+                                    ident: Ident {
+                                        sym: "Foo",
+                                        span: Span(1:0: 1:3),
                                     },
+                                    arguments: None,
                                 },
-                                arguments: None,
-                            },
-                        ],
-                    },
-                },
-            ),
-            paren_token: Paren,
-            args: [
-                Lit(
-                    ExprLit {
-                        attrs: [],
-                        lit: Int(LitInt { token: 1 }),
+                            ],
+                        },
                     },
                 ),
-                Comma,
-                Lit(
-                    ExprLit {
-                        attrs: [],
-                        lit: Int(LitInt { token: 2 }),
-                    },
-                ),
-                Comma,
-            ],
-        }"#]],
+                paren_token: Paren,
+                args: [
+                    Lit(
+                        ExprLit {
+                            attrs: [],
+                            lit: Int(LitInt { token: 1 }),
+                        },
+                    ),
+                    Comma,
+                    Lit(
+                        ExprLit {
+                            attrs: [],
+                            lit: Int(LitInt { token: 2 }),
+                        },
+                    ),
+                    Comma,
+                ],
+            }"#]],
     );
 }
 
@@ -244,40 +232,34 @@ fn tuple_index_span() {
     check(
         expr,
         expect![[r#"
-        ExprField {
-            attrs: [],
-            base: Path(
-                ExprPath {
-                    attrs: [],
-                    qself: None,
-                    path: Path {
-                        leading_colon: None,
-                        segments: [
-                            PathSegment {
-                                ident: Ident {
-                                    sym: "answer",
-                                    span: Span {
-                                        start: LineColumn { line: 1, column: 0 },
-                                        end: LineColumn { line: 1, column: 6 },
+            ExprField {
+                attrs: [],
+                base: Path(
+                    ExprPath {
+                        attrs: [],
+                        qself: None,
+                        path: Path {
+                            leading_colon: None,
+                            segments: [
+                                PathSegment {
+                                    ident: Ident {
+                                        sym: "answer",
+                                        span: Span(1:0: 1:6),
                                     },
+                                    arguments: None,
                                 },
-                                arguments: None,
-                            },
-                        ],
+                            ],
+                        },
                     },
-                },
-            ),
-            dot_token: Dot,
-            member: Unnamed(
-                Index {
-                    index: 42,
-                    span: Span {
-                        start: LineColumn { line: 1, column: 7 },
-                        end: LineColumn { line: 1, column: 9 },
+                ),
+                dot_token: Dot,
+                member: Unnamed(
+                    Index {
+                        index: 42,
+                        span: Span(1:7: 1:9),
                     },
-                },
-            ),
-        }"#]],
+                ),
+            }"#]],
     )
 }
 
@@ -331,10 +313,7 @@ fn attrs() {
                                 PathSegment {
                                     ident: Ident {
                                         sym: "feature",
-                                        span: Span {
-                                            start: LineColumn { line: 1, column: 3 },
-                                            end: LineColumn { line: 1, column: 10 },
-                                        },
+                                        span: Span(1:3: 1:10),
                                     },
                                     arguments: None,
                                 },
@@ -346,16 +325,10 @@ fn attrs() {
                                 stream: TokenStream [
                                     Ident {
                                         sym: "no_core",
-                                        span: Span {
-                                            start: LineColumn { line: 1, column: 11 },
-                                            end: LineColumn { line: 1, column: 18 },
-                                        },
+                                        span: Span(1:11: 1:18),
                                     },
                                 ],
-                                span: Span {
-                                    start: LineColumn { line: 1, column: 10 },
-                                    end: LineColumn { line: 1, column: 19 },
-                                },
+                                span: Span(1:10: 1:19),
                             },
                         ],
                     },
@@ -421,169 +394,127 @@ fn macros() {
     check(
         x,
         expect![[r#"
-    ItemMacro {
-        attrs: [],
-        ident: Some(
-            Ident {
-                sym: "baz",
-                span: Span {
-                    start: LineColumn { line: 1, column: 13 },
-                    end: LineColumn { line: 1, column: 16 },
-                },
-            },
-        ),
-        mac: Macro {
-            path: Path {
-                leading_colon: None,
-                segments: [
-                    PathSegment {
-                        ident: Ident {
-                            sym: "macro_rules",
-                            span: Span {
-                                start: LineColumn { line: 1, column: 0 },
-                                end: LineColumn { line: 1, column: 11 },
-                            },
-                        },
-                        arguments: None,
+            ItemMacro {
+                attrs: [],
+                ident: Some(
+                    Ident {
+                        sym: "baz",
+                        span: Span(1:13: 1:16),
                     },
-                ],
-            },
-            bang_token: Bang,
-            delimiter: Brace(Brace),
-            tokens: TokenStream [
-                Group {
-                    delimiter: Parenthesis,
-                    stream: TokenStream [],
-                    span: Span {
-                        start: LineColumn { line: 2, column: 4 },
-                        end: LineColumn { line: 2, column: 6 },
+                ),
+                mac: Macro {
+                    path: Path {
+                        leading_colon: None,
+                        segments: [
+                            PathSegment {
+                                ident: Ident {
+                                    sym: "macro_rules",
+                                    span: Span(1:0: 1:11),
+                                },
+                                arguments: None,
+                            },
+                        ],
                     },
-                },
-                Punct {
-                    char: '=',
-                    spacing: Joint,
-                    span: Joint,
-                },
-                Punct {
-                    char: '>',
-                    spacing: Alone,
-                    span: Alone,
-                },
-                Group {
-                    delimiter: Brace,
-                    stream: TokenStream [
-                        Ident {
-                            sym: "fn",
-                            span: Span {
-                                start: LineColumn { line: 3, column: 8 },
-                                end: LineColumn { line: 3, column: 10 },
-                            },
-                        },
-                        Ident {
-                            sym: "main",
-                            span: Span {
-                                start: LineColumn { line: 3, column: 11 },
-                                end: LineColumn { line: 3, column: 15 },
-                            },
-                        },
+                    bang_token: Bang,
+                    delimiter: Brace(Brace),
+                    tokens: TokenStream [
                         Group {
                             delimiter: Parenthesis,
                             stream: TokenStream [],
-                            span: Span {
-                                start: LineColumn { line: 3, column: 15 },
-                                end: LineColumn { line: 3, column: 17 },
-                            },
+                            span: Span(2:4: 2:6),
+                        },
+                        Punct {
+                            char: '=',
+                            spacing: Joint,
+                            span: Joint,
+                        },
+                        Punct {
+                            char: '>',
+                            spacing: Alone,
+                            span: Alone,
                         },
                         Group {
                             delimiter: Brace,
                             stream: TokenStream [
                                 Ident {
-                                    sym: "let",
-                                    span: Span {
-                                        start: LineColumn { line: 4, column: 12 },
-                                        end: LineColumn { line: 4, column: 15 },
-                                    },
+                                    sym: "fn",
+                                    span: Span(3:8: 3:10),
                                 },
                                 Ident {
-                                    sym: "mut",
-                                    span: Span {
-                                        start: LineColumn { line: 4, column: 16 },
-                                        end: LineColumn { line: 4, column: 19 },
-                                    },
+                                    sym: "main",
+                                    span: Span(3:11: 3:15),
                                 },
-                                Ident {
-                                    sym: "x",
-                                    span: Span {
-                                        start: LineColumn { line: 4, column: 20 },
-                                        end: LineColumn { line: 4, column: 21 },
-                                    },
+                                Group {
+                                    delimiter: Parenthesis,
+                                    stream: TokenStream [],
+                                    span: Span(3:15: 3:17),
                                 },
-                                Punct {
-                                    char: '=',
-                                    spacing: Alone,
-                                    span: Alone,
-                                },
-                                Literal {
-                                    lit: 3,
-                                    span: Span {
-                                        start: LineColumn { line: 4, column: 24 },
-                                        end: LineColumn { line: 4, column: 25 },
-                                    },
-                                },
-                                Punct {
-                                    char: ';',
-                                    spacing: Alone,
-                                    span: Alone,
-                                },
-                                Ident {
-                                    sym: "x",
-                                    span: Span {
-                                        start: LineColumn { line: 5, column: 12 },
-                                        end: LineColumn { line: 5, column: 13 },
-                                    },
-                                },
-                                Punct {
-                                    char: '+',
-                                    spacing: Joint,
-                                    span: Joint,
-                                },
-                                Punct {
-                                    char: '=',
-                                    spacing: Alone,
-                                    span: Alone,
-                                },
-                                Literal {
-                                    lit: 1,
-                                    span: Span {
-                                        start: LineColumn { line: 5, column: 17 },
-                                        end: LineColumn { line: 5, column: 18 },
-                                    },
-                                },
-                                Punct {
-                                    char: ';',
-                                    spacing: Alone,
-                                    span: Alone,
+                                Group {
+                                    delimiter: Brace,
+                                    stream: TokenStream [
+                                        Ident {
+                                            sym: "let",
+                                            span: Span(4:12: 4:15),
+                                        },
+                                        Ident {
+                                            sym: "mut",
+                                            span: Span(4:16: 4:19),
+                                        },
+                                        Ident {
+                                            sym: "x",
+                                            span: Span(4:20: 4:21),
+                                        },
+                                        Punct {
+                                            char: '=',
+                                            spacing: Alone,
+                                            span: Alone,
+                                        },
+                                        Literal {
+                                            lit: 3,
+                                            span: Span(4:24: 4:25),
+                                        },
+                                        Punct {
+                                            char: ';',
+                                            spacing: Alone,
+                                            span: Alone,
+                                        },
+                                        Ident {
+                                            sym: "x",
+                                            span: Span(5:12: 5:13),
+                                        },
+                                        Punct {
+                                            char: '+',
+                                            spacing: Joint,
+                                            span: Joint,
+                                        },
+                                        Punct {
+                                            char: '=',
+                                            spacing: Alone,
+                                            span: Alone,
+                                        },
+                                        Literal {
+                                            lit: 1,
+                                            span: Span(5:17: 5:18),
+                                        },
+                                        Punct {
+                                            char: ';',
+                                            spacing: Alone,
+                                            span: Alone,
+                                        },
+                                    ],
+                                    span: Span(3:18: 6:9),
                                 },
                             ],
-                            span: Span {
-                                start: LineColumn { line: 3, column: 18 },
-                                end: LineColumn { line: 6, column: 9 },
-                            },
+                            span: Span(2:10: 7:5),
+                        },
+                        Punct {
+                            char: ';',
+                            spacing: Alone,
+                            span: Alone,
                         },
                     ],
-                    span: Span {
-                        start: LineColumn { line: 2, column: 10 },
-                        end: LineColumn { line: 7, column: 5 },
-                    },
                 },
-                Punct {
-                    char: ';',
-                    spacing: Alone,
-                    span: Alone,
-                },
-            ],
-        },
-        semi_token: None,
-    }"#]],
+                semi_token: None,
+            }"#]],
     );
 }

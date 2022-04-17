@@ -6,10 +6,22 @@ use proc_macro2::TokenTree;
 
 impl crate::Debug for proc_macro2::Span {
     fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Span")
-            .field("start", &self.start())
-            .field("end", &self.end())
-            .finish();
+        // f.debug_struct("Span")
+        //     .field("start", &self.start())
+        //     .field("end", &self.end())
+        //     .finish();
+        let start = self.start();
+        let end = self.end();
+        let start_line = start.line;
+        let end_line = end.line;
+        let start_col = start.column;
+        let end_col = end.column;
+
+        f.debug_tuple("Span")
+            .field(&format_args!(
+                "{start_line}:{start_col}: {end_line}:{end_col}"
+            ))
+            .finish()
     }
 }
 
