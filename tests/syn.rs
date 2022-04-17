@@ -1,21 +1,22 @@
-use debug3::pprint;
+use debug3::{pprint, Debug};
 use syn::{ ExprCall, ExprField};
-use pretty_assertions::assert_eq;
+use expect_test::{expect, Expect};
+
+fn check(actual: impl Debug, expacted: Expect) {
+    expacted.assert_eq(&pprint(actual));
+}
 
 #[test]
 fn char_lit() {
     let x = "'x'";
     let y: syn::Expr = syn::parse_str(x).unwrap();
-    assert_eq!(
-        pprint(y),
-        "\
-Lit(
-    ExprLit {
-        attrs: [],
-        lit: Char(LitChar { token: 'x' }),
-    },
-)"
-    )
+    check(y, expect![[r#"
+        Lit(
+            ExprLit {
+                attrs: [],
+                lit: Char(LitChar { token: 'x' }),
+            },
+        )"#]]);
 }
 
 /*
@@ -31,43 +32,43 @@ Lit(
 )
 */
 
+
+
+
 #[test]
 fn ref_mut() {
     let x = "&mut x";
     let y: syn::Expr = syn::parse_str(x).unwrap();
-    assert_eq!(
-        pprint(y),
-        "\
-Reference(
-    ExprReference {
-        attrs: [],
-        and_token: And,
-        raw: Reserved,
-        mutability: Some(Mut),
-        expr: Path(
-            ExprPath {
+    check(y, expect![[r#"
+        Reference(
+            ExprReference {
                 attrs: [],
-                qself: None,
-                path: Path {
-                    leading_colon: None,
-                    segments: [
-                        PathSegment {
-                            ident: Ident {
-                                sym: \"x\",
-                                span: Span {
-                                    start: LineColumn { line: 1, column: 5 },
-                                    end: LineColumn { line: 1, column: 6 },
+                and_token: And,
+                raw: Reserved,
+                mutability: Some(Mut),
+                expr: Path(
+                    ExprPath {
+                        attrs: [],
+                        qself: None,
+                        path: Path {
+                            leading_colon: None,
+                            segments: [
+                                PathSegment {
+                                    ident: Ident {
+                                        sym: "x",
+                                        span: Span {
+                                            start: LineColumn { line: 1, column: 5 },
+                                            end: LineColumn { line: 1, column: 6 },
+                                        },
+                                    },
+                                    arguments: None,
                                 },
-                            },
-                            arguments: None,
+                            ],
                         },
-                    ],
-                },
+                    },
+                ),
             },
-        ),
-    },
-)"
-    );
+        )"#]]);
 }
 
 /*
@@ -106,100 +107,163 @@ fn punct() {
     let no_punct: ExprCall = syn::parse_str("Foo(1)").unwrap();
     let punct: ExprCall = syn::parse_str("Foo(1,2)").unwrap();
     let trailing_comma: ExprCall = syn::parse_str("Foo(1,2,)").unwrap();
-    assert_eq!(
-        pprint(no_punct.args),
-        "\
-[
-    Lit(
-        ExprLit {
+    check(no_punct, expect![[r#"
+        ExprCall {
             attrs: [],
-            lit: Int(LitInt { token: 1 }),
-        },
-    ),
-]"
-    );
-    assert_eq!(
-        pprint(punct.args),
-        "\
-[
-    Lit(
-        ExprLit {
+            func: Path(
+                ExprPath {
+                    attrs: [],
+                    qself: None,
+                    path: Path {
+                        leading_colon: None,
+                        segments: [
+                            PathSegment {
+                                ident: Ident {
+                                    sym: "Foo",
+                                    span: Span {
+                                        start: LineColumn { line: 1, column: 0 },
+                                        end: LineColumn { line: 1, column: 3 },
+                                    },
+                                },
+                                arguments: None,
+                            },
+                        ],
+                    },
+                },
+            ),
+            paren_token: Paren,
+            args: [
+                Lit(
+                    ExprLit {
+                        attrs: [],
+                        lit: Int(LitInt { token: 1 }),
+                    },
+                ),
+            ],
+        }"#]]);
+    check(punct, expect![[r#"
+        ExprCall {
             attrs: [],
-            lit: Int(LitInt { token: 1 }),
-        },
-    ),
-    Comma,
-    Lit(
-        ExprLit {
+            func: Path(
+                ExprPath {
+                    attrs: [],
+                    qself: None,
+                    path: Path {
+                        leading_colon: None,
+                        segments: [
+                            PathSegment {
+                                ident: Ident {
+                                    sym: "Foo",
+                                    span: Span {
+                                        start: LineColumn { line: 1, column: 0 },
+                                        end: LineColumn { line: 1, column: 3 },
+                                    },
+                                },
+                                arguments: None,
+                            },
+                        ],
+                    },
+                },
+            ),
+            paren_token: Paren,
+            args: [
+                Lit(
+                    ExprLit {
+                        attrs: [],
+                        lit: Int(LitInt { token: 1 }),
+                    },
+                ),
+                Comma,
+                Lit(
+                    ExprLit {
+                        attrs: [],
+                        lit: Int(LitInt { token: 2 }),
+                    },
+                ),
+            ],
+        }"#]]);
+    check(trailing_comma, expect![[r#"
+        ExprCall {
             attrs: [],
-            lit: Int(LitInt { token: 2 }),
-        },
-    ),
-]"
-    );
-    assert_eq!(
-        pprint(trailing_comma.args),
-        "\
-[
-    Lit(
-        ExprLit {
-            attrs: [],
-            lit: Int(LitInt { token: 1 }),
-        },
-    ),
-    Comma,
-    Lit(
-        ExprLit {
-            attrs: [],
-            lit: Int(LitInt { token: 2 }),
-        },
-    ),
-    Comma,
-]"
-    );
+            func: Path(
+                ExprPath {
+                    attrs: [],
+                    qself: None,
+                    path: Path {
+                        leading_colon: None,
+                        segments: [
+                            PathSegment {
+                                ident: Ident {
+                                    sym: "Foo",
+                                    span: Span {
+                                        start: LineColumn { line: 1, column: 0 },
+                                        end: LineColumn { line: 1, column: 3 },
+                                    },
+                                },
+                                arguments: None,
+                            },
+                        ],
+                    },
+                },
+            ),
+            paren_token: Paren,
+            args: [
+                Lit(
+                    ExprLit {
+                        attrs: [],
+                        lit: Int(LitInt { token: 1 }),
+                    },
+                ),
+                Comma,
+                Lit(
+                    ExprLit {
+                        attrs: [],
+                        lit: Int(LitInt { token: 2 }),
+                    },
+                ),
+                Comma,
+            ],
+        }"#]]);
 }
 
 #[test]
 fn tuple_index_span() {
     let expr: ExprField = syn::parse_str("answer.42").unwrap();
-    assert_eq!(
-        pprint(expr),
-        "\
-ExprField {
-    attrs: [],
-    base: Path(
-        ExprPath {
+    check(expr, expect![[r#"
+        ExprField {
             attrs: [],
-            qself: None,
-            path: Path {
-                leading_colon: None,
-                segments: [
-                    PathSegment {
-                        ident: Ident {
-                            sym: \"answer\",
-                            span: Span {
-                                start: LineColumn { line: 1, column: 0 },
-                                end: LineColumn { line: 1, column: 6 },
+            base: Path(
+                ExprPath {
+                    attrs: [],
+                    qself: None,
+                    path: Path {
+                        leading_colon: None,
+                        segments: [
+                            PathSegment {
+                                ident: Ident {
+                                    sym: "answer",
+                                    span: Span {
+                                        start: LineColumn { line: 1, column: 0 },
+                                        end: LineColumn { line: 1, column: 6 },
+                                    },
+                                },
+                                arguments: None,
                             },
-                        },
-                        arguments: None,
+                        ],
                     },
-                ],
-            },
-        },
-    ),
-    dot_token: Dot,
-    member: Unnamed(
-        Index {
-            index: 42,
-            span: Span {
-                start: LineColumn { line: 1, column: 7 },
-                end: LineColumn { line: 1, column: 9 },
-            },
-        },
-    ),
-}"
-    );
+                },
+            ),
+            dot_token: Dot,
+            member: Unnamed(
+                Index {
+                    index: 42,
+                    span: Span {
+                        start: LineColumn { line: 1, column: 7 },
+                        end: LineColumn { line: 1, column: 9 },
+                    },
+                },
+            ),
+        }"#]])
 }
 
 /*
@@ -232,3 +296,5 @@ ExprField {
     ),
 }
 */
+
+
