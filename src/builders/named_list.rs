@@ -8,7 +8,7 @@ use super::DebugInner;
 /// of your [`Debug::fmt`] implementation, but to also name the list.
 ///
 /// It's also usefull if you want to make your output look like Mathmatica.
-/// 
+///
 /// This can be constructed by the [`Formatter::debug_named_list`] method.
 ///
 /// # Examples
@@ -38,7 +38,10 @@ pub(crate) fn new<'a>(fmt: &'a mut Formatter, name: &str) -> DebugNamedList<'a> 
     fmt.zerobreak();
 
     DebugNamedList {
-        inner: DebugInner { fmt: fmt, has_fields: false }
+        inner: DebugInner {
+            fmt: fmt,
+            has_fields: false,
+        },
     }
 }
 
@@ -70,7 +73,6 @@ impl<'a> DebugNamedList<'a> {
         self.inner.entry(value);
         self
     }
-
 
     /// Adds the contents of an iterator of entries to the list output.
     ///

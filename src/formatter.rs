@@ -1,5 +1,5 @@
 use crate::{
-    builders::{self, DebugList, DebugMap, DebugSet, DebugStruct, DebugTuple, DebugNamedList},
+    builders::{self, DebugList, DebugMap, DebugNamedList, DebugSet, DebugStruct, DebugTuple},
     Formatter,
 };
 

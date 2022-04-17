@@ -36,13 +36,4 @@ impl<>  crate::Debug for proc_macro2::Spacing<> where  {
 }
 // Skipping proc_macro2::Span due to hidden fields
 // Skipping proc_macro2::TokenStream due to hidden fields
-impl<>  crate::Debug for proc_macro2::TokenTree<> where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        match self {
-            proc_macro2::TokenTree::Group (__0, ) => { f.debug_tuple("Group").field(__0).finish(); }
-            proc_macro2::TokenTree::Ident (__0, ) => { f.debug_tuple("Ident").field(__0).finish(); }
-            proc_macro2::TokenTree::Punct (__0, ) => { f.debug_tuple("Punct").field(__0).finish(); }
-            proc_macro2::TokenTree::Literal (__0, ) => { f.debug_tuple("Literal").field(__0).finish(); }
-        }
-    }
-}
+// Skiping proc_macro2::TokenTree due to config rule TokenTree

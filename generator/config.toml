@@ -5,4 +5,4 @@ exclude = []
 exclude = ["ExprReference", "token::*"]
 
 [proc-macro2]
-exclude = []
+exclude = ["TokenTree"]

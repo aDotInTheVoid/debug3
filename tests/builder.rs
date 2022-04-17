@@ -517,8 +517,6 @@ mod debug_list {
     }
 }
 
-
-
 mod debug_named_list {
     use debug3::{Debug, Formatter};
 
@@ -581,7 +579,10 @@ mod debug_named_list {
 
         impl Debug for Bar {
             fn fmt(&self, fmt: &mut Formatter) {
-                fmt.debug_named_list("Bar").entry(&Foo).entry(&"world").finish()
+                fmt.debug_named_list("Bar")
+                    .entry(&Foo)
+                    .entry(&"world")
+                    .finish()
             }
         }
 

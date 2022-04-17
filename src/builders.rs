@@ -4,17 +4,17 @@ use crate::{Debug, Formatter};
 
 pub(crate) mod list;
 pub(crate) mod map;
+pub(crate) mod named_list;
 pub(crate) mod set;
 pub(crate) mod strukt;
 pub(crate) mod tuple;
-pub(crate) mod named_list;
 
 pub use list::DebugList;
 pub use map::DebugMap;
+pub use named_list::DebugNamedList;
 pub use set::DebugSet;
 pub use strukt::DebugStruct;
 pub use tuple::DebugTuple;
-pub use named_list::DebugNamedList;
 
 struct DebugInner<'a> {
     fmt: &'a mut Formatter,
