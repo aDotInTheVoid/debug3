@@ -1,5 +1,5 @@
 [rustdoc-types]
-exclude = ["Id"]
+exclude = []
 
 [syn]
-exclude = ["TypeGenerics", "Turbofish"]
+exclude = ["ExprReference"]

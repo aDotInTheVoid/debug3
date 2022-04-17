@@ -1,62 +1,10 @@
 Crate {
-    root: ,
+    root: Id("0:0"),
     crate_version: None,
     includes_private: false,
     index: {
-        : Item {
-            id: ,
-            crate_id: 0,
-            name: Some("Baz"),
-            span: Some(
-                Span {
-                    filename: ".\\foo.rs",
-                    begin: (5, 0),
-                    end: (5, 15),
-                },
-            ),
-            visibility: Public,
-            docs: None,
-            links: {},
-            attrs: [],
-            deprecation: None,
-            inner: Struct(
-                Struct {
-                    struct_type: Unit,
-                    generics: Generics {
-                        params: [],
-                        where_predicates: [],
-                    },
-                    fields_stripped: false,
-                    fields: [],
-                    impls: [],
-                },
-            ),
-        },
-        : Item {
-            id: ,
-            crate_id: 0,
-            name: Some("foo"),
-            span: Some(
-                Span {
-                    filename: ".\\foo.rs",
-                    begin: (1, 0),
-                    end: (5, 15),
-                },
-            ),
-            visibility: Public,
-            docs: None,
-            links: {},
-            attrs: ["#![feature(no_core)]", "#![no_core]"],
-            deprecation: None,
-            inner: Module(
-                Module {
-                    is_crate: true,
-                    items: [, , ],
-                },
-            ),
-        },
-        : Item {
-            id: ,
+        Id("0:1"): Item {
+            id: Id("0:1"),
             crate_id: 0,
             name: Some("Foo"),
             span: Some(
@@ -84,8 +32,8 @@ Crate {
                 },
             ),
         },
-        : Item {
-            id: ,
+        Id("0:2"): Item {
+            id: Id("0:2"),
             crate_id: 0,
             name: Some("Bar"),
             span: Some(
@@ -113,24 +61,76 @@ Crate {
                 },
             ),
         },
+        Id("0:0"): Item {
+            id: Id("0:0"),
+            crate_id: 0,
+            name: Some("foo"),
+            span: Some(
+                Span {
+                    filename: ".\\foo.rs",
+                    begin: (1, 0),
+                    end: (5, 15),
+                },
+            ),
+            visibility: Public,
+            docs: None,
+            links: {},
+            attrs: ["#![feature(no_core)]", "#![no_core]"],
+            deprecation: None,
+            inner: Module(
+                Module {
+                    is_crate: true,
+                    items: [Id("0:1"), Id("0:2"), Id("0:4")],
+                },
+            ),
+        },
+        Id("0:4"): Item {
+            id: Id("0:4"),
+            crate_id: 0,
+            name: Some("Baz"),
+            span: Some(
+                Span {
+                    filename: ".\\foo.rs",
+                    begin: (5, 0),
+                    end: (5, 15),
+                },
+            ),
+            visibility: Public,
+            docs: None,
+            links: {},
+            attrs: [],
+            deprecation: None,
+            inner: Struct(
+                Struct {
+                    struct_type: Unit,
+                    generics: Generics {
+                        params: [],
+                        where_predicates: [],
+                    },
+                    fields_stripped: false,
+                    fields: [],
+                    impls: [],
+                },
+            ),
+        },
     },
     paths: {
-        : ItemSummary {
-            crate_id: 0,
-            path: ["foo"],
-            kind: Module,
-        },
-        : ItemSummary {
-            crate_id: 0,
-            path: ["foo", "Baz"],
-            kind: Struct,
-        },
-        : ItemSummary {
+        Id("0:2"): ItemSummary {
             crate_id: 0,
             path: ["foo", "Bar"],
             kind: Struct,
         },
-        : ItemSummary {
+        Id("0:4"): ItemSummary {
+            crate_id: 0,
+            path: ["foo", "Baz"],
+            kind: Struct,
+        },
+        Id("0:0"): ItemSummary {
+            crate_id: 0,
+            path: ["foo"],
+            kind: Module,
+        },
+        Id("0:1"): ItemSummary {
             crate_id: 0,
             path: ["foo", "Foo"],
             kind: Struct,

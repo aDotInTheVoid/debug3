@@ -10,9 +10,11 @@ repository = "https://github.com/aDotInTheVoid/debug3/"
 
 [dependencies]
 debug3-derive = { version = "0.1.0", path = "derive" }
+
+# Thinks we impl for
 proc-macro2 = "1.0.37"
 rustdoc-types = "0.10.0"
-syn = { version = "1.0.91", optional = false }
+syn = { version = "1.0.91", optional = false, features = ["full"] }
 
 [workspace]
 members = [

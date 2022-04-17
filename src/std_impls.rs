@@ -1,9 +1,9 @@
 use std::{
     collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet, LinkedList, VecDeque},
     ops::Deref,
+    path::{Path, PathBuf},
     rc::Rc,
     sync::{Arc, Mutex, TryLockError},
-    path::{Path, PathBuf}
 };
 
 use crate::{Debug, Formatter};

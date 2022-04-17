@@ -62,6 +62,18 @@ impl<> crate::Debug for syn::AngleBracketedGenericArguments<>  where  {
             .finish()
     }
 }
+impl<> crate::Debug for syn::Arm<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("Arm")
+            .field("attrs", &self.attrs)
+            .field("pat", &self.pat)
+            .field("guard", &self.guard)
+            .field("fat_arrow_token", &self.fat_arrow_token)
+            .field("body", &self.body)
+            .field("comma", &self.comma)
+            .finish()
+    }
+}
 impl<> crate::Debug for syn::token::As<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("As")
@@ -179,6 +191,14 @@ impl<> crate::Debug for syn::Binding<>  where  {
             .field("ident", &self.ident)
             .field("eq_token", &self.eq_token)
             .field("ty", &self.ty)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::Block<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("Block")
+            .field("brace_token", &self.brace_token)
+            .field("stmts", &self.stmts)
             .finish()
     }
 }
@@ -491,11 +511,55 @@ impl<>  crate::Debug for syn::Expr<> where  {
         }
     }
 }
-// Skipping syn::ExprArray due to hidden fields
-// Skipping syn::ExprAssign due to hidden fields
-// Skipping syn::ExprAssignOp due to hidden fields
-// Skipping syn::ExprAsync due to hidden fields
-// Skipping syn::ExprAwait due to hidden fields
+impl<> crate::Debug for syn::ExprArray<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprArray")
+            .field("attrs", &self.attrs)
+            .field("bracket_token", &self.bracket_token)
+            .field("elems", &self.elems)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ExprAssign<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprAssign")
+            .field("attrs", &self.attrs)
+            .field("left", &self.left)
+            .field("eq_token", &self.eq_token)
+            .field("right", &self.right)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ExprAssignOp<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprAssignOp")
+            .field("attrs", &self.attrs)
+            .field("left", &self.left)
+            .field("op", &self.op)
+            .field("right", &self.right)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ExprAsync<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprAsync")
+            .field("attrs", &self.attrs)
+            .field("async_token", &self.async_token)
+            .field("capture", &self.capture)
+            .field("block", &self.block)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ExprAwait<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprAwait")
+            .field("attrs", &self.attrs)
+            .field("base", &self.base)
+            .field("dot_token", &self.dot_token)
+            .field("await_token", &self.await_token)
+            .finish()
+    }
+}
 impl<> crate::Debug for syn::ExprBinary<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprBinary")
@@ -506,9 +570,34 @@ impl<> crate::Debug for syn::ExprBinary<>  where  {
             .finish()
     }
 }
-// Skipping syn::ExprBlock due to hidden fields
-// Skipping syn::ExprBox due to hidden fields
-// Skipping syn::ExprBreak due to hidden fields
+impl<> crate::Debug for syn::ExprBlock<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprBlock")
+            .field("attrs", &self.attrs)
+            .field("label", &self.label)
+            .field("block", &self.block)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ExprBox<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprBox")
+            .field("attrs", &self.attrs)
+            .field("box_token", &self.box_token)
+            .field("expr", &self.expr)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ExprBreak<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprBreak")
+            .field("attrs", &self.attrs)
+            .field("break_token", &self.break_token)
+            .field("label", &self.label)
+            .field("expr", &self.expr)
+            .finish()
+    }
+}
 impl<> crate::Debug for syn::ExprCall<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprCall")
@@ -529,8 +618,30 @@ impl<> crate::Debug for syn::ExprCast<>  where  {
             .finish()
     }
 }
-// Skipping syn::ExprClosure due to hidden fields
-// Skipping syn::ExprContinue due to hidden fields
+impl<> crate::Debug for syn::ExprClosure<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprClosure")
+            .field("attrs", &self.attrs)
+            .field("movability", &self.movability)
+            .field("asyncness", &self.asyncness)
+            .field("capture", &self.capture)
+            .field("or1_token", &self.or1_token)
+            .field("inputs", &self.inputs)
+            .field("or2_token", &self.or2_token)
+            .field("output", &self.output)
+            .field("body", &self.body)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ExprContinue<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprContinue")
+            .field("attrs", &self.attrs)
+            .field("continue_token", &self.continue_token)
+            .field("label", &self.label)
+            .finish()
+    }
+}
 impl<> crate::Debug for syn::ExprField<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprField")
@@ -541,9 +652,39 @@ impl<> crate::Debug for syn::ExprField<>  where  {
             .finish()
     }
 }
-// Skipping syn::ExprForLoop due to hidden fields
-// Skipping syn::ExprGroup due to hidden fields
-// Skipping syn::ExprIf due to hidden fields
+impl<> crate::Debug for syn::ExprForLoop<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprForLoop")
+            .field("attrs", &self.attrs)
+            .field("label", &self.label)
+            .field("for_token", &self.for_token)
+            .field("pat", &self.pat)
+            .field("in_token", &self.in_token)
+            .field("expr", &self.expr)
+            .field("body", &self.body)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ExprGroup<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprGroup")
+            .field("attrs", &self.attrs)
+            .field("group_token", &self.group_token)
+            .field("expr", &self.expr)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ExprIf<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprIf")
+            .field("attrs", &self.attrs)
+            .field("if_token", &self.if_token)
+            .field("cond", &self.cond)
+            .field("then_branch", &self.then_branch)
+            .field("else_branch", &self.else_branch)
+            .finish()
+    }
+}
 impl<> crate::Debug for syn::ExprIndex<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprIndex")
@@ -554,7 +695,17 @@ impl<> crate::Debug for syn::ExprIndex<>  where  {
             .finish()
     }
 }
-// Skipping syn::ExprLet due to hidden fields
+impl<> crate::Debug for syn::ExprLet<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprLet")
+            .field("attrs", &self.attrs)
+            .field("let_token", &self.let_token)
+            .field("pat", &self.pat)
+            .field("eq_token", &self.eq_token)
+            .field("expr", &self.expr)
+            .finish()
+    }
+}
 impl<> crate::Debug for syn::ExprLit<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprLit")
@@ -563,10 +714,48 @@ impl<> crate::Debug for syn::ExprLit<>  where  {
             .finish()
     }
 }
-// Skipping syn::ExprLoop due to hidden fields
-// Skipping syn::ExprMacro due to hidden fields
-// Skipping syn::ExprMatch due to hidden fields
-// Skipping syn::ExprMethodCall due to hidden fields
+impl<> crate::Debug for syn::ExprLoop<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprLoop")
+            .field("attrs", &self.attrs)
+            .field("label", &self.label)
+            .field("loop_token", &self.loop_token)
+            .field("body", &self.body)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ExprMacro<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprMacro")
+            .field("attrs", &self.attrs)
+            .field("mac", &self.mac)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ExprMatch<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprMatch")
+            .field("attrs", &self.attrs)
+            .field("match_token", &self.match_token)
+            .field("expr", &self.expr)
+            .field("brace_token", &self.brace_token)
+            .field("arms", &self.arms)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ExprMethodCall<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprMethodCall")
+            .field("attrs", &self.attrs)
+            .field("receiver", &self.receiver)
+            .field("dot_token", &self.dot_token)
+            .field("method", &self.method)
+            .field("turbofish", &self.turbofish)
+            .field("paren_token", &self.paren_token)
+            .field("args", &self.args)
+            .finish()
+    }
+}
 impl<> crate::Debug for syn::ExprParen<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprParen")
@@ -585,15 +774,86 @@ impl<> crate::Debug for syn::ExprPath<>  where  {
             .finish()
     }
 }
-// Skipping syn::ExprRange due to hidden fields
-// Skipping syn::ExprReference due to hidden fields
-// Skipping syn::ExprRepeat due to hidden fields
-// Skipping syn::ExprReturn due to hidden fields
-// Skipping syn::ExprStruct due to hidden fields
-// Skipping syn::ExprTry due to hidden fields
-// Skipping syn::ExprTryBlock due to hidden fields
-// Skipping syn::ExprTuple due to hidden fields
-// Skipping syn::ExprType due to hidden fields
+impl<> crate::Debug for syn::ExprRange<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprRange")
+            .field("attrs", &self.attrs)
+            .field("from", &self.from)
+            .field("limits", &self.limits)
+            .field("to", &self.to)
+            .finish()
+    }
+}
+// Skiping syn::ExprReference due to config
+impl<> crate::Debug for syn::ExprRepeat<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprRepeat")
+            .field("attrs", &self.attrs)
+            .field("bracket_token", &self.bracket_token)
+            .field("expr", &self.expr)
+            .field("semi_token", &self.semi_token)
+            .field("len", &self.len)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ExprReturn<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprReturn")
+            .field("attrs", &self.attrs)
+            .field("return_token", &self.return_token)
+            .field("expr", &self.expr)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ExprStruct<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprStruct")
+            .field("attrs", &self.attrs)
+            .field("path", &self.path)
+            .field("brace_token", &self.brace_token)
+            .field("fields", &self.fields)
+            .field("dot2_token", &self.dot2_token)
+            .field("rest", &self.rest)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ExprTry<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprTry")
+            .field("attrs", &self.attrs)
+            .field("expr", &self.expr)
+            .field("question_token", &self.question_token)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ExprTryBlock<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprTryBlock")
+            .field("attrs", &self.attrs)
+            .field("try_token", &self.try_token)
+            .field("block", &self.block)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ExprTuple<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprTuple")
+            .field("attrs", &self.attrs)
+            .field("paren_token", &self.paren_token)
+            .field("elems", &self.elems)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ExprType<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprType")
+            .field("attrs", &self.attrs)
+            .field("expr", &self.expr)
+            .field("colon_token", &self.colon_token)
+            .field("ty", &self.ty)
+            .finish()
+    }
+}
 impl<> crate::Debug for syn::ExprUnary<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprUnary")
@@ -603,9 +863,35 @@ impl<> crate::Debug for syn::ExprUnary<>  where  {
             .finish()
     }
 }
-// Skipping syn::ExprUnsafe due to hidden fields
-// Skipping syn::ExprWhile due to hidden fields
-// Skipping syn::ExprYield due to hidden fields
+impl<> crate::Debug for syn::ExprUnsafe<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprUnsafe")
+            .field("attrs", &self.attrs)
+            .field("unsafe_token", &self.unsafe_token)
+            .field("block", &self.block)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ExprWhile<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprWhile")
+            .field("attrs", &self.attrs)
+            .field("label", &self.label)
+            .field("while_token", &self.while_token)
+            .field("cond", &self.cond)
+            .field("body", &self.body)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ExprYield<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ExprYield")
+            .field("attrs", &self.attrs)
+            .field("yield_token", &self.yield_token)
+            .field("expr", &self.expr)
+            .finish()
+    }
+}
 impl<> crate::Debug for syn::token::Extern<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Extern")
@@ -628,6 +914,26 @@ impl<> crate::Debug for syn::Field<>  where  {
             .field("ident", &self.ident)
             .field("colon_token", &self.colon_token)
             .field("ty", &self.ty)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::FieldPat<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("FieldPat")
+            .field("attrs", &self.attrs)
+            .field("member", &self.member)
+            .field("colon_token", &self.colon_token)
+            .field("pat", &self.pat)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::FieldValue<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("FieldValue")
+            .field("attrs", &self.attrs)
+            .field("member", &self.member)
+            .field("colon_token", &self.colon_token)
+            .field("expr", &self.expr)
             .finish()
     }
 }
@@ -656,6 +962,15 @@ impl<> crate::Debug for syn::FieldsUnnamed<>  where  {
             .finish()
     }
 }
+impl<> crate::Debug for syn::File<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("File")
+            .field("shebang", &self.shebang)
+            .field("attrs", &self.attrs)
+            .field("items", &self.items)
+            .finish()
+    }
+}
 impl<> crate::Debug for syn::token::Final<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Final")
@@ -670,10 +985,74 @@ impl<> crate::Debug for syn::token::Fn<>  where  {
             .finish()
     }
 }
+impl<>  crate::Debug for syn::FnArg<> where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        match self {
+            syn::FnArg::Receiver (__0, ) => { f.debug_tuple("Receiver").field(__0).finish(); }
+            syn::FnArg::Typed (__0, ) => { f.debug_tuple("Typed").field(__0).finish(); }
+        }
+    }
+}
 impl<> crate::Debug for syn::token::For<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("For")
             .field("span", &self.span)
+            .finish()
+    }
+}
+impl<>  crate::Debug for syn::ForeignItem<> where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        match self {
+            syn::ForeignItem::Fn (__0, ) => { f.debug_tuple("Fn").field(__0).finish(); }
+            syn::ForeignItem::Static (__0, ) => { f.debug_tuple("Static").field(__0).finish(); }
+            syn::ForeignItem::Type (__0, ) => { f.debug_tuple("Type").field(__0).finish(); }
+            syn::ForeignItem::Macro (__0, ) => { f.debug_tuple("Macro").field(__0).finish(); }
+            syn::ForeignItem::Verbatim (__0, ) => { f.debug_tuple("Verbatim").field(__0).finish(); }
+            _ => { "???".fmt(f) }
+        }
+    }
+}
+impl<> crate::Debug for syn::ForeignItemFn<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ForeignItemFn")
+            .field("attrs", &self.attrs)
+            .field("vis", &self.vis)
+            .field("sig", &self.sig)
+            .field("semi_token", &self.semi_token)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ForeignItemMacro<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ForeignItemMacro")
+            .field("attrs", &self.attrs)
+            .field("mac", &self.mac)
+            .field("semi_token", &self.semi_token)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ForeignItemStatic<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ForeignItemStatic")
+            .field("attrs", &self.attrs)
+            .field("vis", &self.vis)
+            .field("static_token", &self.static_token)
+            .field("mutability", &self.mutability)
+            .field("ident", &self.ident)
+            .field("colon_token", &self.colon_token)
+            .field("ty", &self.ty)
+            .field("semi_token", &self.semi_token)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ForeignItemType<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ForeignItemType")
+            .field("attrs", &self.attrs)
+            .field("vis", &self.vis)
+            .field("type_token", &self.type_token)
+            .field("ident", &self.ident)
+            .field("semi_token", &self.semi_token)
             .finish()
     }
 }
@@ -692,6 +1071,14 @@ impl<>  crate::Debug for syn::GenericArgument<> where  {
             syn::GenericArgument::Binding (__0, ) => { f.debug_tuple("Binding").field(__0).finish(); }
             syn::GenericArgument::Constraint (__0, ) => { f.debug_tuple("Constraint").field(__0).finish(); }
             syn::GenericArgument::Const (__0, ) => { f.debug_tuple("Const").field(__0).finish(); }
+        }
+    }
+}
+impl<>  crate::Debug for syn::GenericMethodArgument<> where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        match self {
+            syn::GenericMethodArgument::Type (__0, ) => { f.debug_tuple("Type").field(__0).finish(); }
+            syn::GenericMethodArgument::Const (__0, ) => { f.debug_tuple("Const").field(__0).finish(); }
         }
     }
 }
@@ -743,6 +1130,69 @@ impl<> crate::Debug for syn::token::Impl<>  where  {
     }
 }
 // Skipping syn::ImplGenerics due to hidden fields
+impl<>  crate::Debug for syn::ImplItem<> where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        match self {
+            syn::ImplItem::Const (__0, ) => { f.debug_tuple("Const").field(__0).finish(); }
+            syn::ImplItem::Method (__0, ) => { f.debug_tuple("Method").field(__0).finish(); }
+            syn::ImplItem::Type (__0, ) => { f.debug_tuple("Type").field(__0).finish(); }
+            syn::ImplItem::Macro (__0, ) => { f.debug_tuple("Macro").field(__0).finish(); }
+            syn::ImplItem::Verbatim (__0, ) => { f.debug_tuple("Verbatim").field(__0).finish(); }
+            _ => { "???".fmt(f) }
+        }
+    }
+}
+impl<> crate::Debug for syn::ImplItemConst<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ImplItemConst")
+            .field("attrs", &self.attrs)
+            .field("vis", &self.vis)
+            .field("defaultness", &self.defaultness)
+            .field("const_token", &self.const_token)
+            .field("ident", &self.ident)
+            .field("colon_token", &self.colon_token)
+            .field("ty", &self.ty)
+            .field("eq_token", &self.eq_token)
+            .field("expr", &self.expr)
+            .field("semi_token", &self.semi_token)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ImplItemMacro<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ImplItemMacro")
+            .field("attrs", &self.attrs)
+            .field("mac", &self.mac)
+            .field("semi_token", &self.semi_token)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ImplItemMethod<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ImplItemMethod")
+            .field("attrs", &self.attrs)
+            .field("vis", &self.vis)
+            .field("defaultness", &self.defaultness)
+            .field("sig", &self.sig)
+            .field("block", &self.block)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ImplItemType<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ImplItemType")
+            .field("attrs", &self.attrs)
+            .field("vis", &self.vis)
+            .field("defaultness", &self.defaultness)
+            .field("type_token", &self.type_token)
+            .field("ident", &self.ident)
+            .field("generics", &self.generics)
+            .field("eq_token", &self.eq_token)
+            .field("ty", &self.ty)
+            .field("semi_token", &self.semi_token)
+            .finish()
+    }
+}
 impl<> crate::Debug for syn::token::In<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("In")
@@ -760,12 +1210,251 @@ impl<> crate::Debug for syn::Index<>  where  {
 }
 // Skipping syn::punctuated::IntoIter due to hidden fields
 // Skipping syn::punctuated::IntoPairs due to hidden fields
+impl<>  crate::Debug for syn::Item<> where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        match self {
+            syn::Item::Const (__0, ) => { f.debug_tuple("Const").field(__0).finish(); }
+            syn::Item::Enum (__0, ) => { f.debug_tuple("Enum").field(__0).finish(); }
+            syn::Item::ExternCrate (__0, ) => { f.debug_tuple("ExternCrate").field(__0).finish(); }
+            syn::Item::Fn (__0, ) => { f.debug_tuple("Fn").field(__0).finish(); }
+            syn::Item::ForeignMod (__0, ) => { f.debug_tuple("ForeignMod").field(__0).finish(); }
+            syn::Item::Impl (__0, ) => { f.debug_tuple("Impl").field(__0).finish(); }
+            syn::Item::Macro (__0, ) => { f.debug_tuple("Macro").field(__0).finish(); }
+            syn::Item::Macro2 (__0, ) => { f.debug_tuple("Macro2").field(__0).finish(); }
+            syn::Item::Mod (__0, ) => { f.debug_tuple("Mod").field(__0).finish(); }
+            syn::Item::Static (__0, ) => { f.debug_tuple("Static").field(__0).finish(); }
+            syn::Item::Struct (__0, ) => { f.debug_tuple("Struct").field(__0).finish(); }
+            syn::Item::Trait (__0, ) => { f.debug_tuple("Trait").field(__0).finish(); }
+            syn::Item::TraitAlias (__0, ) => { f.debug_tuple("TraitAlias").field(__0).finish(); }
+            syn::Item::Type (__0, ) => { f.debug_tuple("Type").field(__0).finish(); }
+            syn::Item::Union (__0, ) => { f.debug_tuple("Union").field(__0).finish(); }
+            syn::Item::Use (__0, ) => { f.debug_tuple("Use").field(__0).finish(); }
+            syn::Item::Verbatim (__0, ) => { f.debug_tuple("Verbatim").field(__0).finish(); }
+            _ => { "???".fmt(f) }
+        }
+    }
+}
+impl<> crate::Debug for syn::ItemConst<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ItemConst")
+            .field("attrs", &self.attrs)
+            .field("vis", &self.vis)
+            .field("const_token", &self.const_token)
+            .field("ident", &self.ident)
+            .field("colon_token", &self.colon_token)
+            .field("ty", &self.ty)
+            .field("eq_token", &self.eq_token)
+            .field("expr", &self.expr)
+            .field("semi_token", &self.semi_token)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ItemEnum<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ItemEnum")
+            .field("attrs", &self.attrs)
+            .field("vis", &self.vis)
+            .field("enum_token", &self.enum_token)
+            .field("ident", &self.ident)
+            .field("generics", &self.generics)
+            .field("brace_token", &self.brace_token)
+            .field("variants", &self.variants)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ItemExternCrate<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ItemExternCrate")
+            .field("attrs", &self.attrs)
+            .field("vis", &self.vis)
+            .field("extern_token", &self.extern_token)
+            .field("crate_token", &self.crate_token)
+            .field("ident", &self.ident)
+            .field("rename", &self.rename)
+            .field("semi_token", &self.semi_token)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ItemFn<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ItemFn")
+            .field("attrs", &self.attrs)
+            .field("vis", &self.vis)
+            .field("sig", &self.sig)
+            .field("block", &self.block)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ItemForeignMod<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ItemForeignMod")
+            .field("attrs", &self.attrs)
+            .field("abi", &self.abi)
+            .field("brace_token", &self.brace_token)
+            .field("items", &self.items)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ItemImpl<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ItemImpl")
+            .field("attrs", &self.attrs)
+            .field("defaultness", &self.defaultness)
+            .field("unsafety", &self.unsafety)
+            .field("impl_token", &self.impl_token)
+            .field("generics", &self.generics)
+            .field("trait_", &self.trait_)
+            .field("self_ty", &self.self_ty)
+            .field("brace_token", &self.brace_token)
+            .field("items", &self.items)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ItemMacro<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ItemMacro")
+            .field("attrs", &self.attrs)
+            .field("ident", &self.ident)
+            .field("mac", &self.mac)
+            .field("semi_token", &self.semi_token)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ItemMacro2<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ItemMacro2")
+            .field("attrs", &self.attrs)
+            .field("vis", &self.vis)
+            .field("macro_token", &self.macro_token)
+            .field("ident", &self.ident)
+            .field("rules", &self.rules)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ItemMod<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ItemMod")
+            .field("attrs", &self.attrs)
+            .field("vis", &self.vis)
+            .field("mod_token", &self.mod_token)
+            .field("ident", &self.ident)
+            .field("content", &self.content)
+            .field("semi", &self.semi)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ItemStatic<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ItemStatic")
+            .field("attrs", &self.attrs)
+            .field("vis", &self.vis)
+            .field("static_token", &self.static_token)
+            .field("mutability", &self.mutability)
+            .field("ident", &self.ident)
+            .field("colon_token", &self.colon_token)
+            .field("ty", &self.ty)
+            .field("eq_token", &self.eq_token)
+            .field("expr", &self.expr)
+            .field("semi_token", &self.semi_token)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ItemStruct<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ItemStruct")
+            .field("attrs", &self.attrs)
+            .field("vis", &self.vis)
+            .field("struct_token", &self.struct_token)
+            .field("ident", &self.ident)
+            .field("generics", &self.generics)
+            .field("fields", &self.fields)
+            .field("semi_token", &self.semi_token)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ItemTrait<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ItemTrait")
+            .field("attrs", &self.attrs)
+            .field("vis", &self.vis)
+            .field("unsafety", &self.unsafety)
+            .field("auto_token", &self.auto_token)
+            .field("trait_token", &self.trait_token)
+            .field("ident", &self.ident)
+            .field("generics", &self.generics)
+            .field("colon_token", &self.colon_token)
+            .field("supertraits", &self.supertraits)
+            .field("brace_token", &self.brace_token)
+            .field("items", &self.items)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ItemTraitAlias<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ItemTraitAlias")
+            .field("attrs", &self.attrs)
+            .field("vis", &self.vis)
+            .field("trait_token", &self.trait_token)
+            .field("ident", &self.ident)
+            .field("generics", &self.generics)
+            .field("eq_token", &self.eq_token)
+            .field("bounds", &self.bounds)
+            .field("semi_token", &self.semi_token)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ItemType<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ItemType")
+            .field("attrs", &self.attrs)
+            .field("vis", &self.vis)
+            .field("type_token", &self.type_token)
+            .field("ident", &self.ident)
+            .field("generics", &self.generics)
+            .field("eq_token", &self.eq_token)
+            .field("ty", &self.ty)
+            .field("semi_token", &self.semi_token)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ItemUnion<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ItemUnion")
+            .field("attrs", &self.attrs)
+            .field("vis", &self.vis)
+            .field("union_token", &self.union_token)
+            .field("ident", &self.ident)
+            .field("generics", &self.generics)
+            .field("fields", &self.fields)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::ItemUse<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("ItemUse")
+            .field("attrs", &self.attrs)
+            .field("vis", &self.vis)
+            .field("use_token", &self.use_token)
+            .field("leading_colon", &self.leading_colon)
+            .field("tree", &self.tree)
+            .field("semi_token", &self.semi_token)
+            .finish()
+    }
+}
 // Skipping syn::punctuated::Iter due to hidden fields
 // Skipping syn::punctuated::IterMut due to hidden fields
 impl<> crate::Debug for syn::token::LArrow<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("LArrow")
             .field("spans", &self.spans)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::Label<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("Label")
+            .field("name", &self.name)
+            .field("colon_token", &self.colon_token)
             .finish()
     }
 }
@@ -829,6 +1518,17 @@ impl<> crate::Debug for syn::LitBool<>  where  {
 // Skipping syn::LitFloat due to hidden fields
 // Skipping syn::LitInt due to hidden fields
 // Skipping syn::LitStr due to hidden fields
+impl<> crate::Debug for syn::Local<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("Local")
+            .field("attrs", &self.attrs)
+            .field("let_token", &self.let_token)
+            .field("pat", &self.pat)
+            .field("init", &self.init)
+            .field("semi_token", &self.semi_token)
+            .finish()
+    }
+}
 // Skipping syn::parse::Lookahead1 due to hidden fields
 impl<> crate::Debug for syn::token::Loop<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
@@ -844,13 +1544,6 @@ impl<> crate::Debug for syn::token::Lt<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Macro<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Macro")
-            .field("span", &self.span)
-            .finish()
-    }
-}
 impl<> crate::Debug for syn::Macro<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Macro")
@@ -858,6 +1551,13 @@ impl<> crate::Debug for syn::Macro<>  where  {
             .field("bang_token", &self.bang_token)
             .field("delimiter", &self.delimiter)
             .field("tokens", &self.tokens)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::token::Macro<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("Macro")
+            .field("span", &self.span)
             .finish()
     }
 }
@@ -909,6 +1609,16 @@ impl<> crate::Debug for syn::MetaNameValue<>  where  {
             .field("path", &self.path)
             .field("eq_token", &self.eq_token)
             .field("lit", &self.lit)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::MethodTurbofish<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("MethodTurbofish")
+            .field("colon2_token", &self.colon2_token)
+            .field("lt_token", &self.lt_token)
+            .field("args", &self.args)
+            .field("gt_token", &self.gt_token)
             .finish()
     }
 }
@@ -1016,6 +1726,167 @@ impl<> crate::Debug for syn::ParenthesizedGenericArguments<>  where  {
     }
 }
 // Skipping syn::parse::ParseBuffer due to hidden fields
+impl<>  crate::Debug for syn::Pat<> where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        match self {
+            syn::Pat::Box (__0, ) => { f.debug_tuple("Box").field(__0).finish(); }
+            syn::Pat::Ident (__0, ) => { f.debug_tuple("Ident").field(__0).finish(); }
+            syn::Pat::Lit (__0, ) => { f.debug_tuple("Lit").field(__0).finish(); }
+            syn::Pat::Macro (__0, ) => { f.debug_tuple("Macro").field(__0).finish(); }
+            syn::Pat::Or (__0, ) => { f.debug_tuple("Or").field(__0).finish(); }
+            syn::Pat::Path (__0, ) => { f.debug_tuple("Path").field(__0).finish(); }
+            syn::Pat::Range (__0, ) => { f.debug_tuple("Range").field(__0).finish(); }
+            syn::Pat::Reference (__0, ) => { f.debug_tuple("Reference").field(__0).finish(); }
+            syn::Pat::Rest (__0, ) => { f.debug_tuple("Rest").field(__0).finish(); }
+            syn::Pat::Slice (__0, ) => { f.debug_tuple("Slice").field(__0).finish(); }
+            syn::Pat::Struct (__0, ) => { f.debug_tuple("Struct").field(__0).finish(); }
+            syn::Pat::Tuple (__0, ) => { f.debug_tuple("Tuple").field(__0).finish(); }
+            syn::Pat::TupleStruct (__0, ) => { f.debug_tuple("TupleStruct").field(__0).finish(); }
+            syn::Pat::Type (__0, ) => { f.debug_tuple("Type").field(__0).finish(); }
+            syn::Pat::Verbatim (__0, ) => { f.debug_tuple("Verbatim").field(__0).finish(); }
+            syn::Pat::Wild (__0, ) => { f.debug_tuple("Wild").field(__0).finish(); }
+            _ => { "???".fmt(f) }
+        }
+    }
+}
+impl<> crate::Debug for syn::PatBox<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("PatBox")
+            .field("attrs", &self.attrs)
+            .field("box_token", &self.box_token)
+            .field("pat", &self.pat)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::PatIdent<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("PatIdent")
+            .field("attrs", &self.attrs)
+            .field("by_ref", &self.by_ref)
+            .field("mutability", &self.mutability)
+            .field("ident", &self.ident)
+            .field("subpat", &self.subpat)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::PatLit<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("PatLit")
+            .field("attrs", &self.attrs)
+            .field("expr", &self.expr)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::PatMacro<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("PatMacro")
+            .field("attrs", &self.attrs)
+            .field("mac", &self.mac)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::PatOr<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("PatOr")
+            .field("attrs", &self.attrs)
+            .field("leading_vert", &self.leading_vert)
+            .field("cases", &self.cases)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::PatPath<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("PatPath")
+            .field("attrs", &self.attrs)
+            .field("qself", &self.qself)
+            .field("path", &self.path)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::PatRange<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("PatRange")
+            .field("attrs", &self.attrs)
+            .field("lo", &self.lo)
+            .field("limits", &self.limits)
+            .field("hi", &self.hi)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::PatReference<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("PatReference")
+            .field("attrs", &self.attrs)
+            .field("and_token", &self.and_token)
+            .field("mutability", &self.mutability)
+            .field("pat", &self.pat)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::PatRest<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("PatRest")
+            .field("attrs", &self.attrs)
+            .field("dot2_token", &self.dot2_token)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::PatSlice<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("PatSlice")
+            .field("attrs", &self.attrs)
+            .field("bracket_token", &self.bracket_token)
+            .field("elems", &self.elems)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::PatStruct<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("PatStruct")
+            .field("attrs", &self.attrs)
+            .field("path", &self.path)
+            .field("brace_token", &self.brace_token)
+            .field("fields", &self.fields)
+            .field("dot2_token", &self.dot2_token)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::PatTuple<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("PatTuple")
+            .field("attrs", &self.attrs)
+            .field("paren_token", &self.paren_token)
+            .field("elems", &self.elems)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::PatTupleStruct<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("PatTupleStruct")
+            .field("attrs", &self.attrs)
+            .field("path", &self.path)
+            .field("pat", &self.pat)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::PatType<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("PatType")
+            .field("attrs", &self.attrs)
+            .field("pat", &self.pat)
+            .field("colon_token", &self.colon_token)
+            .field("ty", &self.ty)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::PatWild<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("PatWild")
+            .field("attrs", &self.attrs)
+            .field("underscore_token", &self.underscore_token)
+            .finish()
+    }
+}
 impl<> crate::Debug for syn::Path<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Path")
@@ -1116,6 +1987,24 @@ impl<> crate::Debug for syn::token::RArrow<>  where  {
             .finish()
     }
 }
+impl<>  crate::Debug for syn::RangeLimits<> where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        match self {
+            syn::RangeLimits::HalfOpen (__0, ) => { f.debug_tuple("HalfOpen").field(__0).finish(); }
+            syn::RangeLimits::Closed (__0, ) => { f.debug_tuple("Closed").field(__0).finish(); }
+        }
+    }
+}
+impl<> crate::Debug for syn::Receiver<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("Receiver")
+            .field("attrs", &self.attrs)
+            .field("reference", &self.reference)
+            .field("mutability", &self.mutability)
+            .field("self_token", &self.self_token)
+            .finish()
+    }
+}
 impl<> crate::Debug for syn::token::Ref<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Ref")
@@ -1201,6 +2090,23 @@ impl<> crate::Debug for syn::token::ShrEq<>  where  {
             .finish()
     }
 }
+impl<> crate::Debug for syn::Signature<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("Signature")
+            .field("constness", &self.constness)
+            .field("asyncness", &self.asyncness)
+            .field("unsafety", &self.unsafety)
+            .field("abi", &self.abi)
+            .field("fn_token", &self.fn_token)
+            .field("ident", &self.ident)
+            .field("generics", &self.generics)
+            .field("paren_token", &self.paren_token)
+            .field("inputs", &self.inputs)
+            .field("variadic", &self.variadic)
+            .field("output", &self.output)
+            .finish()
+    }
+}
 impl<> crate::Debug for syn::token::Star<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Star")
@@ -1216,6 +2122,16 @@ impl<> crate::Debug for syn::token::Static<>  where  {
     }
 }
 // Skipping syn::parse::StepCursor due to hidden fields
+impl<>  crate::Debug for syn::Stmt<> where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        match self {
+            syn::Stmt::Local (__0, ) => { f.debug_tuple("Local").field(__0).finish(); }
+            syn::Stmt::Item (__0, ) => { f.debug_tuple("Item").field(__0).finish(); }
+            syn::Stmt::Expr (__0, ) => { f.debug_tuple("Expr").field(__0).finish(); }
+            syn::Stmt::Semi (__0, __1, ) => { f.debug_tuple("Semi").field(__0).field(__1).finish(); }
+        }
+    }
+}
 impl<>  crate::Debug for syn::StrStyle<> where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -1285,6 +2201,64 @@ impl<>  crate::Debug for syn::TraitBoundModifier<> where  {
         }
     }
 }
+impl<>  crate::Debug for syn::TraitItem<> where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        match self {
+            syn::TraitItem::Const (__0, ) => { f.debug_tuple("Const").field(__0).finish(); }
+            syn::TraitItem::Method (__0, ) => { f.debug_tuple("Method").field(__0).finish(); }
+            syn::TraitItem::Type (__0, ) => { f.debug_tuple("Type").field(__0).finish(); }
+            syn::TraitItem::Macro (__0, ) => { f.debug_tuple("Macro").field(__0).finish(); }
+            syn::TraitItem::Verbatim (__0, ) => { f.debug_tuple("Verbatim").field(__0).finish(); }
+            _ => { "???".fmt(f) }
+        }
+    }
+}
+impl<> crate::Debug for syn::TraitItemConst<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("TraitItemConst")
+            .field("attrs", &self.attrs)
+            .field("const_token", &self.const_token)
+            .field("ident", &self.ident)
+            .field("colon_token", &self.colon_token)
+            .field("ty", &self.ty)
+            .field("default", &self.default)
+            .field("semi_token", &self.semi_token)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::TraitItemMacro<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("TraitItemMacro")
+            .field("attrs", &self.attrs)
+            .field("mac", &self.mac)
+            .field("semi_token", &self.semi_token)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::TraitItemMethod<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("TraitItemMethod")
+            .field("attrs", &self.attrs)
+            .field("sig", &self.sig)
+            .field("default", &self.default)
+            .field("semi_token", &self.semi_token)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::TraitItemType<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("TraitItemType")
+            .field("attrs", &self.attrs)
+            .field("type_token", &self.type_token)
+            .field("ident", &self.ident)
+            .field("generics", &self.generics)
+            .field("colon_token", &self.colon_token)
+            .field("bounds", &self.bounds)
+            .field("default", &self.default)
+            .field("semi_token", &self.semi_token)
+            .finish()
+    }
+}
 impl<> crate::Debug for syn::token::Try<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Try")
@@ -1292,14 +2266,7 @@ impl<> crate::Debug for syn::token::Try<>  where  {
             .finish()
     }
 }
-// Skiping syn::Turbofish due to config
-impl<> crate::Debug for syn::token::Type<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Type")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skipping syn::Turbofish due to hidden fields
 impl<>  crate::Debug for syn::Type<> where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -1320,6 +2287,13 @@ impl<>  crate::Debug for syn::Type<> where  {
             syn::Type::Verbatim (__0, ) => { f.debug_tuple("Verbatim").field(__0).finish(); }
             _ => { "???".fmt(f) }
         }
+    }
+}
+impl<> crate::Debug for syn::token::Type<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("Type")
+            .field("span", &self.span)
+            .finish()
     }
 }
 impl<> crate::Debug for syn::TypeArray<>  where  {
@@ -1346,7 +2320,7 @@ impl<> crate::Debug for syn::TypeBareFn<>  where  {
             .finish()
     }
 }
-// Skiping syn::TypeGenerics due to config
+// Skipping syn::TypeGenerics due to hidden fields
 impl<> crate::Debug for syn::TypeGroup<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeGroup")
@@ -1513,6 +2487,57 @@ impl<> crate::Debug for syn::token::Use<>  where  {
         f.debug_struct("Use")
             .field("span", &self.span)
             .finish()
+    }
+}
+impl<> crate::Debug for syn::UseGlob<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("UseGlob")
+            .field("star_token", &self.star_token)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::UseGroup<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("UseGroup")
+            .field("brace_token", &self.brace_token)
+            .field("items", &self.items)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::UseName<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("UseName")
+            .field("ident", &self.ident)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::UsePath<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("UsePath")
+            .field("ident", &self.ident)
+            .field("colon2_token", &self.colon2_token)
+            .field("tree", &self.tree)
+            .finish()
+    }
+}
+impl<> crate::Debug for syn::UseRename<>  where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("UseRename")
+            .field("ident", &self.ident)
+            .field("as_token", &self.as_token)
+            .field("rename", &self.rename)
+            .finish()
+    }
+}
+impl<>  crate::Debug for syn::UseTree<> where  {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        match self {
+            syn::UseTree::Path (__0, ) => { f.debug_tuple("Path").field(__0).finish(); }
+            syn::UseTree::Name (__0, ) => { f.debug_tuple("Name").field(__0).finish(); }
+            syn::UseTree::Rename (__0, ) => { f.debug_tuple("Rename").field(__0).finish(); }
+            syn::UseTree::Glob (__0, ) => { f.debug_tuple("Glob").field(__0).finish(); }
+            syn::UseTree::Group (__0, ) => { f.debug_tuple("Group").field(__0).finish(); }
+        }
     }
 }
 impl<> crate::Debug for syn::Variadic<>  where  {
