@@ -6,3 +6,6 @@ exclude = ["ExprReference", "token::*"]
 
 [proc-macro2]
 exclude = ["TokenTree"]
+
+[serde_json]
+exclude = ["Value"]
