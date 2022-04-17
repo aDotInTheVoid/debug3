@@ -28,3 +28,6 @@ exclude = ["generator"]
 trybuild = "1.0.56"
 rustversion = "1.0.6"
 serde_json = "1.0.79"
+pretty_assertions = "1.2.1"
+
+[features]

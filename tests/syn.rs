@@ -1,5 +1,6 @@
 use debug3::pprint;
-use syn::{Expr, ExprCall, ExprField};
+use syn::{ ExprCall, ExprField};
+use pretty_assertions::assert_eq;
 
 #[test]
 fn char_lit() {
@@ -51,7 +52,13 @@ Reference(
                     leading_colon: None,
                     segments: [
                         PathSegment {
-                            ident: ,
+                            ident: Ident {
+                                sym: \"x\",
+                                span: Span {
+                                    start: LineColumn { line: 1, column: 5 },
+                                    end: LineColumn { line: 1, column: 6 },
+                                },
+                            },
                             arguments: None,
                         },
                     ],
@@ -168,7 +175,13 @@ ExprField {
                 leading_colon: None,
                 segments: [
                     PathSegment {
-                        ident: ,
+                        ident: Ident {
+                            sym: \"answer\",
+                            span: Span {
+                                start: LineColumn { line: 1, column: 0 },
+                                end: LineColumn { line: 1, column: 6 },
+                            },
+                        },
                         arguments: None,
                     },
                 ],

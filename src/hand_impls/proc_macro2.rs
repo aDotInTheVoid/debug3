@@ -19,7 +19,10 @@ impl crate::Debug for proc_macro2::TokenStream {
 
 impl crate::Debug for proc_macro2::Ident {
     fn fmt(&self, f: &mut crate::Formatter) {
-        // TODO
+        f.debug_struct("Ident")
+            .field("sym", &self.to_string())
+            .field("span", &self.span())
+            .finish();
     }
 }
 
