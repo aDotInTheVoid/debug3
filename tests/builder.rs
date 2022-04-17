@@ -516,3 +516,75 @@ mod debug_list {
         assert_eq!("[[true, 10/20], \"world\"]", debug3::pprint(Bar));
     }
 }
+
+
+
+mod debug_named_list {
+    use debug3::{Debug, Formatter};
+
+    #[test]
+    fn test_empty() {
+        struct Foo;
+
+        impl Debug for Foo {
+            fn fmt(&self, fmt: &mut Formatter) {
+                fmt.debug_named_list("Foo").finish()
+            }
+        }
+
+        assert_eq!("Foo []", debug3::pprint(Foo));
+    }
+
+    #[test]
+    fn test_single() {
+        struct Foo;
+
+        impl Debug for Foo {
+            fn fmt(&self, fmt: &mut Formatter) {
+                fmt.debug_named_list("Foo").entry(&true).finish()
+            }
+        }
+
+        assert_eq!("Foo [true]", debug3::pprint(Foo));
+    }
+
+    #[test]
+    fn test_multiple() {
+        struct Foo;
+
+        impl Debug for Foo {
+            fn fmt(&self, fmt: &mut Formatter) {
+                fmt.debug_named_list("Foo")
+                    .entry(&true)
+                    .entry(&format_args!("{}/{}", 10, 20))
+                    .finish()
+            }
+        }
+
+        assert_eq!("Foo [true, 10/20]", debug3::pprint(Foo));
+    }
+
+    #[test]
+    fn test_nested() {
+        struct Foo;
+
+        impl Debug for Foo {
+            fn fmt(&self, fmt: &mut Formatter) {
+                fmt.debug_named_list("Foo")
+                    .entry(&true)
+                    .entry(&format_args!("{}/{}", 10, 20))
+                    .finish()
+            }
+        }
+
+        struct Bar;
+
+        impl Debug for Bar {
+            fn fmt(&self, fmt: &mut Formatter) {
+                fmt.debug_named_list("Bar").entry(&Foo).entry(&"world").finish()
+            }
+        }
+
+        assert_eq!("Bar [Foo [true, 10/20], \"world\"]", debug3::pprint(Bar));
+    }
+}

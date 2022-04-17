@@ -1,5 +1,5 @@
 use crate::{
-    builders::{self, DebugList, DebugMap, DebugSet, DebugStruct, DebugTuple},
+    builders::{self, DebugList, DebugMap, DebugSet, DebugStruct, DebugTuple, DebugNamedList},
     Formatter,
 };
 
@@ -108,6 +108,28 @@ impl<'a> Formatter {
     /// ```
     pub fn debug_list(&mut self) -> DebugList<'_> {
         builders::list::new(self)
+    }
+
+    /// Creates a `DebugList` builder designed to assist with creation of
+    /// `fmt::Debug` implementations for list-like structures with names.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use debug3::{pprint, Debug, Formatter};
+    ///
+    /// struct Foo(Vec<i32>);
+    ///
+    /// impl Debug for Foo {
+    ///     fn fmt(&self, fmt: &mut Formatter) {
+    ///         fmt.debug_named_list("Foo").entries(self.0.iter()).finish()
+    ///     }
+    /// }
+    ///
+    /// assert_eq!(pprint(Foo(vec![10, 11])), "Foo [10, 11]");
+    /// ```
+    pub fn debug_named_list(&mut self, name: &str) -> DebugNamedList<'_> {
+        builders::named_list::new(self, name)
     }
 
     /// Creates a `DebugSet` builder designed to assist with creation of
