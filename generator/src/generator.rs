@@ -131,7 +131,29 @@ fn generate_enum(
                     }
                     writeln!(out, ".finish(); }}")?;
                 }
-                Variant::Struct(_) => todo!(),
+                Variant::Struct(ids) => {
+                    write!(out, "{{")?;
+
+                    for i in ids {
+                        let f_name = krate.index[i]
+                            .name
+                            .as_ref()
+                            .ok_or_else(|| anyhow!("No name"))?;
+                        write!(out, "{f_name}, ")?;
+                    }
+
+                    writeln!(out, " }} => {{")?;
+                    writeln!(out, "            f.debug_struct({v_name:?})")?;
+                    for i in ids {
+                        let f_name = krate.index[i]
+                            .name
+                            .as_ref()
+                            .ok_or_else(|| anyhow!("No name"))?;
+                        writeln!(out, "                .field({f_name:?}, {f_name})")?;
+                    }
+                    writeln!(out, "                .finish()")?;
+                    writeln!(out, "        }}")?;
+                }
             }
         } else {
             bail!("Excpeced Variant");

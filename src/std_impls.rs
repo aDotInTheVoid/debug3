@@ -3,6 +3,7 @@ use std::{
     ops::Deref,
     rc::Rc,
     sync::{Arc, Mutex, TryLockError},
+    path::{Path, PathBuf}
 };
 
 use crate::{Debug, Formatter};
@@ -38,7 +39,9 @@ std_debug! {
     u128,
     String,
     str,
-    ()
+    (),
+    Path,
+    PathBuf
 }
 
 macro_rules! peel {
