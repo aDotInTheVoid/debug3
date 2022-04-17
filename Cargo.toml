@@ -30,5 +30,6 @@ trybuild = "1.0.56"
 rustversion = "1.0.6"
 serde_json = "1.0.79"
 expect-test = "1.2.2"
+fxhash = "0.2.1"
 
 [features]
