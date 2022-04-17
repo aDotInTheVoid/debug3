@@ -1,6 +1,6 @@
 use debug3::{pprint, Debug};
 use expect_test::{expect, Expect};
-use syn::{ ExprCall, ExprField,  ItemMacro};
+use syn::{ExprCall, ExprField, ItemMacro};
 
 fn check(actual: impl Debug, expacted: Expect) {
     expacted.assert_eq(&pprint(actual));
@@ -405,18 +405,22 @@ File {
 }
 */
 
-
 #[test]
 fn macros() {
-    let x: ItemMacro = syn::parse_str("macro_rules! baz {
+    let x: ItemMacro = syn::parse_str(
+        "macro_rules! baz {
     () => {
         fn main() {
             let mut x = 3;
             x += 1;
         }
     };
-}").unwrap();
-check(x, expect![[r#"
+}",
+    )
+    .unwrap();
+    check(
+        x,
+        expect![[r#"
     ItemMacro {
         attrs: [],
         ident: Some(
@@ -580,6 +584,6 @@ check(x, expect![[r#"
             ],
         },
         semi_token: None,
-    }"#]]);
+    }"#]],
+    );
 }
-

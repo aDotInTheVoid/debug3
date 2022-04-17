@@ -2,7 +2,7 @@
 //
 // Crate Name: `syn`
 // Crate Version: `1.0.91`
-impl<> crate::Debug for syn::Abi<>  where  {
+impl crate::Debug for syn::Abi {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Abi")
             .field("extern_token", &self.extern_token)
@@ -16,7 +16,7 @@ impl<> crate::Debug for syn::Abi<>  where  {
 // Skiping syn::token::And due to config rule token::*
 // Skiping syn::token::AndAnd due to config rule token::*
 // Skiping syn::token::AndEq due to config rule token::*
-impl<> crate::Debug for syn::AngleBracketedGenericArguments<>  where  {
+impl crate::Debug for syn::AngleBracketedGenericArguments {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("AngleBracketedGenericArguments")
             .field("colon2_token", &self.colon2_token)
@@ -26,7 +26,7 @@ impl<> crate::Debug for syn::AngleBracketedGenericArguments<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::Arm<>  where  {
+impl crate::Debug for syn::Arm {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Arm")
             .field("attrs", &self.attrs)
@@ -41,15 +41,19 @@ impl<> crate::Debug for syn::Arm<>  where  {
 // Skiping syn::token::As due to config rule token::*
 // Skiping syn::token::Async due to config rule token::*
 // Skiping syn::token::At due to config rule token::*
-impl<>  crate::Debug for syn::AttrStyle<> where  {
+impl crate::Debug for syn::AttrStyle {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::AttrStyle::Outer => { f.debug_tuple("Outer").finish(); }
-            syn::AttrStyle::Inner (__0, ) => { f.debug_tuple("Inner").field(__0).finish(); }
+            syn::AttrStyle::Outer => {
+                f.debug_tuple("Outer").finish();
+            }
+            syn::AttrStyle::Inner(__0) => {
+                f.debug_tuple("Inner").field(__0).finish();
+            }
         }
     }
 }
-impl<> crate::Debug for syn::Attribute<>  where  {
+impl crate::Debug for syn::Attribute {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Attribute")
             .field("pound_token", &self.pound_token)
@@ -63,7 +67,7 @@ impl<> crate::Debug for syn::Attribute<>  where  {
 // Skiping syn::token::Auto due to config rule token::*
 // Skiping syn::token::Await due to config rule token::*
 // Skiping syn::token::Bang due to config rule token::*
-impl<> crate::Debug for syn::BareFnArg<>  where  {
+impl crate::Debug for syn::BareFnArg {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("BareFnArg")
             .field("attrs", &self.attrs)
@@ -73,41 +77,97 @@ impl<> crate::Debug for syn::BareFnArg<>  where  {
     }
 }
 // Skiping syn::token::Become due to config rule token::*
-impl<>  crate::Debug for syn::BinOp<> where  {
+impl crate::Debug for syn::BinOp {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::BinOp::Add (__0, ) => { f.debug_tuple("Add").field(__0).finish(); }
-            syn::BinOp::Sub (__0, ) => { f.debug_tuple("Sub").field(__0).finish(); }
-            syn::BinOp::Mul (__0, ) => { f.debug_tuple("Mul").field(__0).finish(); }
-            syn::BinOp::Div (__0, ) => { f.debug_tuple("Div").field(__0).finish(); }
-            syn::BinOp::Rem (__0, ) => { f.debug_tuple("Rem").field(__0).finish(); }
-            syn::BinOp::And (__0, ) => { f.debug_tuple("And").field(__0).finish(); }
-            syn::BinOp::Or (__0, ) => { f.debug_tuple("Or").field(__0).finish(); }
-            syn::BinOp::BitXor (__0, ) => { f.debug_tuple("BitXor").field(__0).finish(); }
-            syn::BinOp::BitAnd (__0, ) => { f.debug_tuple("BitAnd").field(__0).finish(); }
-            syn::BinOp::BitOr (__0, ) => { f.debug_tuple("BitOr").field(__0).finish(); }
-            syn::BinOp::Shl (__0, ) => { f.debug_tuple("Shl").field(__0).finish(); }
-            syn::BinOp::Shr (__0, ) => { f.debug_tuple("Shr").field(__0).finish(); }
-            syn::BinOp::Eq (__0, ) => { f.debug_tuple("Eq").field(__0).finish(); }
-            syn::BinOp::Lt (__0, ) => { f.debug_tuple("Lt").field(__0).finish(); }
-            syn::BinOp::Le (__0, ) => { f.debug_tuple("Le").field(__0).finish(); }
-            syn::BinOp::Ne (__0, ) => { f.debug_tuple("Ne").field(__0).finish(); }
-            syn::BinOp::Ge (__0, ) => { f.debug_tuple("Ge").field(__0).finish(); }
-            syn::BinOp::Gt (__0, ) => { f.debug_tuple("Gt").field(__0).finish(); }
-            syn::BinOp::AddEq (__0, ) => { f.debug_tuple("AddEq").field(__0).finish(); }
-            syn::BinOp::SubEq (__0, ) => { f.debug_tuple("SubEq").field(__0).finish(); }
-            syn::BinOp::MulEq (__0, ) => { f.debug_tuple("MulEq").field(__0).finish(); }
-            syn::BinOp::DivEq (__0, ) => { f.debug_tuple("DivEq").field(__0).finish(); }
-            syn::BinOp::RemEq (__0, ) => { f.debug_tuple("RemEq").field(__0).finish(); }
-            syn::BinOp::BitXorEq (__0, ) => { f.debug_tuple("BitXorEq").field(__0).finish(); }
-            syn::BinOp::BitAndEq (__0, ) => { f.debug_tuple("BitAndEq").field(__0).finish(); }
-            syn::BinOp::BitOrEq (__0, ) => { f.debug_tuple("BitOrEq").field(__0).finish(); }
-            syn::BinOp::ShlEq (__0, ) => { f.debug_tuple("ShlEq").field(__0).finish(); }
-            syn::BinOp::ShrEq (__0, ) => { f.debug_tuple("ShrEq").field(__0).finish(); }
+            syn::BinOp::Add(__0) => {
+                f.debug_tuple("Add").field(__0).finish();
+            }
+            syn::BinOp::Sub(__0) => {
+                f.debug_tuple("Sub").field(__0).finish();
+            }
+            syn::BinOp::Mul(__0) => {
+                f.debug_tuple("Mul").field(__0).finish();
+            }
+            syn::BinOp::Div(__0) => {
+                f.debug_tuple("Div").field(__0).finish();
+            }
+            syn::BinOp::Rem(__0) => {
+                f.debug_tuple("Rem").field(__0).finish();
+            }
+            syn::BinOp::And(__0) => {
+                f.debug_tuple("And").field(__0).finish();
+            }
+            syn::BinOp::Or(__0) => {
+                f.debug_tuple("Or").field(__0).finish();
+            }
+            syn::BinOp::BitXor(__0) => {
+                f.debug_tuple("BitXor").field(__0).finish();
+            }
+            syn::BinOp::BitAnd(__0) => {
+                f.debug_tuple("BitAnd").field(__0).finish();
+            }
+            syn::BinOp::BitOr(__0) => {
+                f.debug_tuple("BitOr").field(__0).finish();
+            }
+            syn::BinOp::Shl(__0) => {
+                f.debug_tuple("Shl").field(__0).finish();
+            }
+            syn::BinOp::Shr(__0) => {
+                f.debug_tuple("Shr").field(__0).finish();
+            }
+            syn::BinOp::Eq(__0) => {
+                f.debug_tuple("Eq").field(__0).finish();
+            }
+            syn::BinOp::Lt(__0) => {
+                f.debug_tuple("Lt").field(__0).finish();
+            }
+            syn::BinOp::Le(__0) => {
+                f.debug_tuple("Le").field(__0).finish();
+            }
+            syn::BinOp::Ne(__0) => {
+                f.debug_tuple("Ne").field(__0).finish();
+            }
+            syn::BinOp::Ge(__0) => {
+                f.debug_tuple("Ge").field(__0).finish();
+            }
+            syn::BinOp::Gt(__0) => {
+                f.debug_tuple("Gt").field(__0).finish();
+            }
+            syn::BinOp::AddEq(__0) => {
+                f.debug_tuple("AddEq").field(__0).finish();
+            }
+            syn::BinOp::SubEq(__0) => {
+                f.debug_tuple("SubEq").field(__0).finish();
+            }
+            syn::BinOp::MulEq(__0) => {
+                f.debug_tuple("MulEq").field(__0).finish();
+            }
+            syn::BinOp::DivEq(__0) => {
+                f.debug_tuple("DivEq").field(__0).finish();
+            }
+            syn::BinOp::RemEq(__0) => {
+                f.debug_tuple("RemEq").field(__0).finish();
+            }
+            syn::BinOp::BitXorEq(__0) => {
+                f.debug_tuple("BitXorEq").field(__0).finish();
+            }
+            syn::BinOp::BitAndEq(__0) => {
+                f.debug_tuple("BitAndEq").field(__0).finish();
+            }
+            syn::BinOp::BitOrEq(__0) => {
+                f.debug_tuple("BitOrEq").field(__0).finish();
+            }
+            syn::BinOp::ShlEq(__0) => {
+                f.debug_tuple("ShlEq").field(__0).finish();
+            }
+            syn::BinOp::ShrEq(__0) => {
+                f.debug_tuple("ShrEq").field(__0).finish();
+            }
         }
     }
 }
-impl<> crate::Debug for syn::Binding<>  where  {
+impl crate::Debug for syn::Binding {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Binding")
             .field("ident", &self.ident)
@@ -116,7 +176,7 @@ impl<> crate::Debug for syn::Binding<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::Block<>  where  {
+impl crate::Debug for syn::Block {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Block")
             .field("brace_token", &self.brace_token)
@@ -124,7 +184,7 @@ impl<> crate::Debug for syn::Block<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::BoundLifetimes<>  where  {
+impl crate::Debug for syn::BoundLifetimes {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("BoundLifetimes")
             .field("for_token", &self.for_token)
@@ -144,7 +204,7 @@ impl<> crate::Debug for syn::BoundLifetimes<>  where  {
 // Skiping syn::token::Colon2 due to config rule token::*
 // Skiping syn::token::Comma due to config rule token::*
 // Skiping syn::token::Const due to config rule token::*
-impl<> crate::Debug for syn::ConstParam<>  where  {
+impl crate::Debug for syn::ConstParam {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ConstParam")
             .field("attrs", &self.attrs)
@@ -157,7 +217,7 @@ impl<> crate::Debug for syn::ConstParam<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::Constraint<>  where  {
+impl crate::Debug for syn::Constraint {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Constraint")
             .field("ident", &self.ident)
@@ -169,16 +229,22 @@ impl<> crate::Debug for syn::Constraint<>  where  {
 // Skiping syn::token::Continue due to config rule token::*
 // Skiping syn::token::Crate due to config rule token::*
 // Skipping syn::buffer::Cursor due to hidden fields
-impl<>  crate::Debug for syn::Data<> where  {
+impl crate::Debug for syn::Data {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Data::Struct (__0, ) => { f.debug_tuple("Struct").field(__0).finish(); }
-            syn::Data::Enum (__0, ) => { f.debug_tuple("Enum").field(__0).finish(); }
-            syn::Data::Union (__0, ) => { f.debug_tuple("Union").field(__0).finish(); }
+            syn::Data::Struct(__0) => {
+                f.debug_tuple("Struct").field(__0).finish();
+            }
+            syn::Data::Enum(__0) => {
+                f.debug_tuple("Enum").field(__0).finish();
+            }
+            syn::Data::Union(__0) => {
+                f.debug_tuple("Union").field(__0).finish();
+            }
         }
     }
 }
-impl<> crate::Debug for syn::DataEnum<>  where  {
+impl crate::Debug for syn::DataEnum {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("DataEnum")
             .field("enum_token", &self.enum_token)
@@ -187,7 +253,7 @@ impl<> crate::Debug for syn::DataEnum<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::DataStruct<>  where  {
+impl crate::Debug for syn::DataStruct {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("DataStruct")
             .field("struct_token", &self.struct_token)
@@ -196,7 +262,7 @@ impl<> crate::Debug for syn::DataStruct<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::DataUnion<>  where  {
+impl crate::Debug for syn::DataUnion {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("DataUnion")
             .field("union_token", &self.union_token)
@@ -205,7 +271,7 @@ impl<> crate::Debug for syn::DataUnion<>  where  {
     }
 }
 // Skiping syn::token::Default due to config rule token::*
-impl<> crate::Debug for syn::DeriveInput<>  where  {
+impl crate::Debug for syn::DeriveInput {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("DeriveInput")
             .field("attrs", &self.attrs)
@@ -230,54 +296,134 @@ impl<> crate::Debug for syn::DeriveInput<>  where  {
 // Skiping syn::token::Eq due to config rule token::*
 // Skiping syn::token::EqEq due to config rule token::*
 // Skipping syn::parse::Error due to hidden fields
-impl<>  crate::Debug for syn::Expr<> where  {
+impl crate::Debug for syn::Expr {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Expr::Array (__0, ) => { f.debug_tuple("Array").field(__0).finish(); }
-            syn::Expr::Assign (__0, ) => { f.debug_tuple("Assign").field(__0).finish(); }
-            syn::Expr::AssignOp (__0, ) => { f.debug_tuple("AssignOp").field(__0).finish(); }
-            syn::Expr::Async (__0, ) => { f.debug_tuple("Async").field(__0).finish(); }
-            syn::Expr::Await (__0, ) => { f.debug_tuple("Await").field(__0).finish(); }
-            syn::Expr::Binary (__0, ) => { f.debug_tuple("Binary").field(__0).finish(); }
-            syn::Expr::Block (__0, ) => { f.debug_tuple("Block").field(__0).finish(); }
-            syn::Expr::Box (__0, ) => { f.debug_tuple("Box").field(__0).finish(); }
-            syn::Expr::Break (__0, ) => { f.debug_tuple("Break").field(__0).finish(); }
-            syn::Expr::Call (__0, ) => { f.debug_tuple("Call").field(__0).finish(); }
-            syn::Expr::Cast (__0, ) => { f.debug_tuple("Cast").field(__0).finish(); }
-            syn::Expr::Closure (__0, ) => { f.debug_tuple("Closure").field(__0).finish(); }
-            syn::Expr::Continue (__0, ) => { f.debug_tuple("Continue").field(__0).finish(); }
-            syn::Expr::Field (__0, ) => { f.debug_tuple("Field").field(__0).finish(); }
-            syn::Expr::ForLoop (__0, ) => { f.debug_tuple("ForLoop").field(__0).finish(); }
-            syn::Expr::Group (__0, ) => { f.debug_tuple("Group").field(__0).finish(); }
-            syn::Expr::If (__0, ) => { f.debug_tuple("If").field(__0).finish(); }
-            syn::Expr::Index (__0, ) => { f.debug_tuple("Index").field(__0).finish(); }
-            syn::Expr::Let (__0, ) => { f.debug_tuple("Let").field(__0).finish(); }
-            syn::Expr::Lit (__0, ) => { f.debug_tuple("Lit").field(__0).finish(); }
-            syn::Expr::Loop (__0, ) => { f.debug_tuple("Loop").field(__0).finish(); }
-            syn::Expr::Macro (__0, ) => { f.debug_tuple("Macro").field(__0).finish(); }
-            syn::Expr::Match (__0, ) => { f.debug_tuple("Match").field(__0).finish(); }
-            syn::Expr::MethodCall (__0, ) => { f.debug_tuple("MethodCall").field(__0).finish(); }
-            syn::Expr::Paren (__0, ) => { f.debug_tuple("Paren").field(__0).finish(); }
-            syn::Expr::Path (__0, ) => { f.debug_tuple("Path").field(__0).finish(); }
-            syn::Expr::Range (__0, ) => { f.debug_tuple("Range").field(__0).finish(); }
-            syn::Expr::Reference (__0, ) => { f.debug_tuple("Reference").field(__0).finish(); }
-            syn::Expr::Repeat (__0, ) => { f.debug_tuple("Repeat").field(__0).finish(); }
-            syn::Expr::Return (__0, ) => { f.debug_tuple("Return").field(__0).finish(); }
-            syn::Expr::Struct (__0, ) => { f.debug_tuple("Struct").field(__0).finish(); }
-            syn::Expr::Try (__0, ) => { f.debug_tuple("Try").field(__0).finish(); }
-            syn::Expr::TryBlock (__0, ) => { f.debug_tuple("TryBlock").field(__0).finish(); }
-            syn::Expr::Tuple (__0, ) => { f.debug_tuple("Tuple").field(__0).finish(); }
-            syn::Expr::Type (__0, ) => { f.debug_tuple("Type").field(__0).finish(); }
-            syn::Expr::Unary (__0, ) => { f.debug_tuple("Unary").field(__0).finish(); }
-            syn::Expr::Unsafe (__0, ) => { f.debug_tuple("Unsafe").field(__0).finish(); }
-            syn::Expr::Verbatim (__0, ) => { f.debug_tuple("Verbatim").field(__0).finish(); }
-            syn::Expr::While (__0, ) => { f.debug_tuple("While").field(__0).finish(); }
-            syn::Expr::Yield (__0, ) => { f.debug_tuple("Yield").field(__0).finish(); }
-            _ => { "???".fmt(f) }
+            syn::Expr::Array(__0) => {
+                f.debug_tuple("Array").field(__0).finish();
+            }
+            syn::Expr::Assign(__0) => {
+                f.debug_tuple("Assign").field(__0).finish();
+            }
+            syn::Expr::AssignOp(__0) => {
+                f.debug_tuple("AssignOp").field(__0).finish();
+            }
+            syn::Expr::Async(__0) => {
+                f.debug_tuple("Async").field(__0).finish();
+            }
+            syn::Expr::Await(__0) => {
+                f.debug_tuple("Await").field(__0).finish();
+            }
+            syn::Expr::Binary(__0) => {
+                f.debug_tuple("Binary").field(__0).finish();
+            }
+            syn::Expr::Block(__0) => {
+                f.debug_tuple("Block").field(__0).finish();
+            }
+            syn::Expr::Box(__0) => {
+                f.debug_tuple("Box").field(__0).finish();
+            }
+            syn::Expr::Break(__0) => {
+                f.debug_tuple("Break").field(__0).finish();
+            }
+            syn::Expr::Call(__0) => {
+                f.debug_tuple("Call").field(__0).finish();
+            }
+            syn::Expr::Cast(__0) => {
+                f.debug_tuple("Cast").field(__0).finish();
+            }
+            syn::Expr::Closure(__0) => {
+                f.debug_tuple("Closure").field(__0).finish();
+            }
+            syn::Expr::Continue(__0) => {
+                f.debug_tuple("Continue").field(__0).finish();
+            }
+            syn::Expr::Field(__0) => {
+                f.debug_tuple("Field").field(__0).finish();
+            }
+            syn::Expr::ForLoop(__0) => {
+                f.debug_tuple("ForLoop").field(__0).finish();
+            }
+            syn::Expr::Group(__0) => {
+                f.debug_tuple("Group").field(__0).finish();
+            }
+            syn::Expr::If(__0) => {
+                f.debug_tuple("If").field(__0).finish();
+            }
+            syn::Expr::Index(__0) => {
+                f.debug_tuple("Index").field(__0).finish();
+            }
+            syn::Expr::Let(__0) => {
+                f.debug_tuple("Let").field(__0).finish();
+            }
+            syn::Expr::Lit(__0) => {
+                f.debug_tuple("Lit").field(__0).finish();
+            }
+            syn::Expr::Loop(__0) => {
+                f.debug_tuple("Loop").field(__0).finish();
+            }
+            syn::Expr::Macro(__0) => {
+                f.debug_tuple("Macro").field(__0).finish();
+            }
+            syn::Expr::Match(__0) => {
+                f.debug_tuple("Match").field(__0).finish();
+            }
+            syn::Expr::MethodCall(__0) => {
+                f.debug_tuple("MethodCall").field(__0).finish();
+            }
+            syn::Expr::Paren(__0) => {
+                f.debug_tuple("Paren").field(__0).finish();
+            }
+            syn::Expr::Path(__0) => {
+                f.debug_tuple("Path").field(__0).finish();
+            }
+            syn::Expr::Range(__0) => {
+                f.debug_tuple("Range").field(__0).finish();
+            }
+            syn::Expr::Reference(__0) => {
+                f.debug_tuple("Reference").field(__0).finish();
+            }
+            syn::Expr::Repeat(__0) => {
+                f.debug_tuple("Repeat").field(__0).finish();
+            }
+            syn::Expr::Return(__0) => {
+                f.debug_tuple("Return").field(__0).finish();
+            }
+            syn::Expr::Struct(__0) => {
+                f.debug_tuple("Struct").field(__0).finish();
+            }
+            syn::Expr::Try(__0) => {
+                f.debug_tuple("Try").field(__0).finish();
+            }
+            syn::Expr::TryBlock(__0) => {
+                f.debug_tuple("TryBlock").field(__0).finish();
+            }
+            syn::Expr::Tuple(__0) => {
+                f.debug_tuple("Tuple").field(__0).finish();
+            }
+            syn::Expr::Type(__0) => {
+                f.debug_tuple("Type").field(__0).finish();
+            }
+            syn::Expr::Unary(__0) => {
+                f.debug_tuple("Unary").field(__0).finish();
+            }
+            syn::Expr::Unsafe(__0) => {
+                f.debug_tuple("Unsafe").field(__0).finish();
+            }
+            syn::Expr::Verbatim(__0) => {
+                f.debug_tuple("Verbatim").field(__0).finish();
+            }
+            syn::Expr::While(__0) => {
+                f.debug_tuple("While").field(__0).finish();
+            }
+            syn::Expr::Yield(__0) => {
+                f.debug_tuple("Yield").field(__0).finish();
+            }
+            _ => "???".fmt(f),
         }
     }
 }
-impl<> crate::Debug for syn::ExprArray<>  where  {
+impl crate::Debug for syn::ExprArray {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprArray")
             .field("attrs", &self.attrs)
@@ -286,7 +432,7 @@ impl<> crate::Debug for syn::ExprArray<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprAssign<>  where  {
+impl crate::Debug for syn::ExprAssign {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprAssign")
             .field("attrs", &self.attrs)
@@ -296,7 +442,7 @@ impl<> crate::Debug for syn::ExprAssign<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprAssignOp<>  where  {
+impl crate::Debug for syn::ExprAssignOp {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprAssignOp")
             .field("attrs", &self.attrs)
@@ -306,7 +452,7 @@ impl<> crate::Debug for syn::ExprAssignOp<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprAsync<>  where  {
+impl crate::Debug for syn::ExprAsync {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprAsync")
             .field("attrs", &self.attrs)
@@ -316,7 +462,7 @@ impl<> crate::Debug for syn::ExprAsync<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprAwait<>  where  {
+impl crate::Debug for syn::ExprAwait {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprAwait")
             .field("attrs", &self.attrs)
@@ -326,7 +472,7 @@ impl<> crate::Debug for syn::ExprAwait<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprBinary<>  where  {
+impl crate::Debug for syn::ExprBinary {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprBinary")
             .field("attrs", &self.attrs)
@@ -336,7 +482,7 @@ impl<> crate::Debug for syn::ExprBinary<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprBlock<>  where  {
+impl crate::Debug for syn::ExprBlock {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprBlock")
             .field("attrs", &self.attrs)
@@ -345,7 +491,7 @@ impl<> crate::Debug for syn::ExprBlock<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprBox<>  where  {
+impl crate::Debug for syn::ExprBox {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprBox")
             .field("attrs", &self.attrs)
@@ -354,7 +500,7 @@ impl<> crate::Debug for syn::ExprBox<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprBreak<>  where  {
+impl crate::Debug for syn::ExprBreak {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprBreak")
             .field("attrs", &self.attrs)
@@ -364,7 +510,7 @@ impl<> crate::Debug for syn::ExprBreak<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprCall<>  where  {
+impl crate::Debug for syn::ExprCall {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprCall")
             .field("attrs", &self.attrs)
@@ -374,7 +520,7 @@ impl<> crate::Debug for syn::ExprCall<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprCast<>  where  {
+impl crate::Debug for syn::ExprCast {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprCast")
             .field("attrs", &self.attrs)
@@ -384,7 +530,7 @@ impl<> crate::Debug for syn::ExprCast<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprClosure<>  where  {
+impl crate::Debug for syn::ExprClosure {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprClosure")
             .field("attrs", &self.attrs)
@@ -399,7 +545,7 @@ impl<> crate::Debug for syn::ExprClosure<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprContinue<>  where  {
+impl crate::Debug for syn::ExprContinue {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprContinue")
             .field("attrs", &self.attrs)
@@ -408,7 +554,7 @@ impl<> crate::Debug for syn::ExprContinue<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprField<>  where  {
+impl crate::Debug for syn::ExprField {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprField")
             .field("attrs", &self.attrs)
@@ -418,7 +564,7 @@ impl<> crate::Debug for syn::ExprField<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprForLoop<>  where  {
+impl crate::Debug for syn::ExprForLoop {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprForLoop")
             .field("attrs", &self.attrs)
@@ -431,7 +577,7 @@ impl<> crate::Debug for syn::ExprForLoop<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprGroup<>  where  {
+impl crate::Debug for syn::ExprGroup {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprGroup")
             .field("attrs", &self.attrs)
@@ -440,7 +586,7 @@ impl<> crate::Debug for syn::ExprGroup<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprIf<>  where  {
+impl crate::Debug for syn::ExprIf {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprIf")
             .field("attrs", &self.attrs)
@@ -451,7 +597,7 @@ impl<> crate::Debug for syn::ExprIf<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprIndex<>  where  {
+impl crate::Debug for syn::ExprIndex {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprIndex")
             .field("attrs", &self.attrs)
@@ -461,7 +607,7 @@ impl<> crate::Debug for syn::ExprIndex<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprLet<>  where  {
+impl crate::Debug for syn::ExprLet {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprLet")
             .field("attrs", &self.attrs)
@@ -472,7 +618,7 @@ impl<> crate::Debug for syn::ExprLet<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprLit<>  where  {
+impl crate::Debug for syn::ExprLit {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprLit")
             .field("attrs", &self.attrs)
@@ -480,7 +626,7 @@ impl<> crate::Debug for syn::ExprLit<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprLoop<>  where  {
+impl crate::Debug for syn::ExprLoop {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprLoop")
             .field("attrs", &self.attrs)
@@ -490,7 +636,7 @@ impl<> crate::Debug for syn::ExprLoop<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprMacro<>  where  {
+impl crate::Debug for syn::ExprMacro {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprMacro")
             .field("attrs", &self.attrs)
@@ -498,7 +644,7 @@ impl<> crate::Debug for syn::ExprMacro<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprMatch<>  where  {
+impl crate::Debug for syn::ExprMatch {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprMatch")
             .field("attrs", &self.attrs)
@@ -509,7 +655,7 @@ impl<> crate::Debug for syn::ExprMatch<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprMethodCall<>  where  {
+impl crate::Debug for syn::ExprMethodCall {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprMethodCall")
             .field("attrs", &self.attrs)
@@ -522,7 +668,7 @@ impl<> crate::Debug for syn::ExprMethodCall<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprParen<>  where  {
+impl crate::Debug for syn::ExprParen {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprParen")
             .field("attrs", &self.attrs)
@@ -531,7 +677,7 @@ impl<> crate::Debug for syn::ExprParen<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprPath<>  where  {
+impl crate::Debug for syn::ExprPath {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprPath")
             .field("attrs", &self.attrs)
@@ -540,7 +686,7 @@ impl<> crate::Debug for syn::ExprPath<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprRange<>  where  {
+impl crate::Debug for syn::ExprRange {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprRange")
             .field("attrs", &self.attrs)
@@ -551,7 +697,7 @@ impl<> crate::Debug for syn::ExprRange<>  where  {
     }
 }
 // Skiping syn::ExprReference due to config rule ExprReference
-impl<> crate::Debug for syn::ExprRepeat<>  where  {
+impl crate::Debug for syn::ExprRepeat {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprRepeat")
             .field("attrs", &self.attrs)
@@ -562,7 +708,7 @@ impl<> crate::Debug for syn::ExprRepeat<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprReturn<>  where  {
+impl crate::Debug for syn::ExprReturn {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprReturn")
             .field("attrs", &self.attrs)
@@ -571,7 +717,7 @@ impl<> crate::Debug for syn::ExprReturn<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprStruct<>  where  {
+impl crate::Debug for syn::ExprStruct {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprStruct")
             .field("attrs", &self.attrs)
@@ -583,7 +729,7 @@ impl<> crate::Debug for syn::ExprStruct<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprTry<>  where  {
+impl crate::Debug for syn::ExprTry {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprTry")
             .field("attrs", &self.attrs)
@@ -592,7 +738,7 @@ impl<> crate::Debug for syn::ExprTry<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprTryBlock<>  where  {
+impl crate::Debug for syn::ExprTryBlock {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprTryBlock")
             .field("attrs", &self.attrs)
@@ -601,7 +747,7 @@ impl<> crate::Debug for syn::ExprTryBlock<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprTuple<>  where  {
+impl crate::Debug for syn::ExprTuple {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprTuple")
             .field("attrs", &self.attrs)
@@ -610,7 +756,7 @@ impl<> crate::Debug for syn::ExprTuple<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprType<>  where  {
+impl crate::Debug for syn::ExprType {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprType")
             .field("attrs", &self.attrs)
@@ -620,7 +766,7 @@ impl<> crate::Debug for syn::ExprType<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprUnary<>  where  {
+impl crate::Debug for syn::ExprUnary {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprUnary")
             .field("attrs", &self.attrs)
@@ -629,7 +775,7 @@ impl<> crate::Debug for syn::ExprUnary<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprUnsafe<>  where  {
+impl crate::Debug for syn::ExprUnsafe {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprUnsafe")
             .field("attrs", &self.attrs)
@@ -638,7 +784,7 @@ impl<> crate::Debug for syn::ExprUnsafe<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprWhile<>  where  {
+impl crate::Debug for syn::ExprWhile {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprWhile")
             .field("attrs", &self.attrs)
@@ -649,7 +795,7 @@ impl<> crate::Debug for syn::ExprWhile<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ExprYield<>  where  {
+impl crate::Debug for syn::ExprYield {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprYield")
             .field("attrs", &self.attrs)
@@ -660,7 +806,7 @@ impl<> crate::Debug for syn::ExprYield<>  where  {
 }
 // Skiping syn::token::Extern due to config rule token::*
 // Skiping syn::token::FatArrow due to config rule token::*
-impl<> crate::Debug for syn::Field<>  where  {
+impl crate::Debug for syn::Field {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Field")
             .field("attrs", &self.attrs)
@@ -671,7 +817,7 @@ impl<> crate::Debug for syn::Field<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::FieldPat<>  where  {
+impl crate::Debug for syn::FieldPat {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("FieldPat")
             .field("attrs", &self.attrs)
@@ -681,7 +827,7 @@ impl<> crate::Debug for syn::FieldPat<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::FieldValue<>  where  {
+impl crate::Debug for syn::FieldValue {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("FieldValue")
             .field("attrs", &self.attrs)
@@ -691,16 +837,22 @@ impl<> crate::Debug for syn::FieldValue<>  where  {
             .finish()
     }
 }
-impl<>  crate::Debug for syn::Fields<> where  {
+impl crate::Debug for syn::Fields {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Fields::Named (__0, ) => { f.debug_tuple("Named").field(__0).finish(); }
-            syn::Fields::Unnamed (__0, ) => { f.debug_tuple("Unnamed").field(__0).finish(); }
-            syn::Fields::Unit => { f.debug_tuple("Unit").finish(); }
+            syn::Fields::Named(__0) => {
+                f.debug_tuple("Named").field(__0).finish();
+            }
+            syn::Fields::Unnamed(__0) => {
+                f.debug_tuple("Unnamed").field(__0).finish();
+            }
+            syn::Fields::Unit => {
+                f.debug_tuple("Unit").finish();
+            }
         }
     }
 }
-impl<> crate::Debug for syn::FieldsNamed<>  where  {
+impl crate::Debug for syn::FieldsNamed {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("FieldsNamed")
             .field("brace_token", &self.brace_token)
@@ -708,7 +860,7 @@ impl<> crate::Debug for syn::FieldsNamed<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::FieldsUnnamed<>  where  {
+impl crate::Debug for syn::FieldsUnnamed {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("FieldsUnnamed")
             .field("paren_token", &self.paren_token)
@@ -716,7 +868,7 @@ impl<> crate::Debug for syn::FieldsUnnamed<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::File<>  where  {
+impl crate::Debug for syn::File {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("File")
             .field("shebang", &self.shebang)
@@ -727,28 +879,42 @@ impl<> crate::Debug for syn::File<>  where  {
 }
 // Skiping syn::token::Final due to config rule token::*
 // Skiping syn::token::Fn due to config rule token::*
-impl<>  crate::Debug for syn::FnArg<> where  {
+impl crate::Debug for syn::FnArg {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::FnArg::Receiver (__0, ) => { f.debug_tuple("Receiver").field(__0).finish(); }
-            syn::FnArg::Typed (__0, ) => { f.debug_tuple("Typed").field(__0).finish(); }
+            syn::FnArg::Receiver(__0) => {
+                f.debug_tuple("Receiver").field(__0).finish();
+            }
+            syn::FnArg::Typed(__0) => {
+                f.debug_tuple("Typed").field(__0).finish();
+            }
         }
     }
 }
 // Skiping syn::token::For due to config rule token::*
-impl<>  crate::Debug for syn::ForeignItem<> where  {
+impl crate::Debug for syn::ForeignItem {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::ForeignItem::Fn (__0, ) => { f.debug_tuple("Fn").field(__0).finish(); }
-            syn::ForeignItem::Static (__0, ) => { f.debug_tuple("Static").field(__0).finish(); }
-            syn::ForeignItem::Type (__0, ) => { f.debug_tuple("Type").field(__0).finish(); }
-            syn::ForeignItem::Macro (__0, ) => { f.debug_tuple("Macro").field(__0).finish(); }
-            syn::ForeignItem::Verbatim (__0, ) => { f.debug_tuple("Verbatim").field(__0).finish(); }
-            _ => { "???".fmt(f) }
+            syn::ForeignItem::Fn(__0) => {
+                f.debug_tuple("Fn").field(__0).finish();
+            }
+            syn::ForeignItem::Static(__0) => {
+                f.debug_tuple("Static").field(__0).finish();
+            }
+            syn::ForeignItem::Type(__0) => {
+                f.debug_tuple("Type").field(__0).finish();
+            }
+            syn::ForeignItem::Macro(__0) => {
+                f.debug_tuple("Macro").field(__0).finish();
+            }
+            syn::ForeignItem::Verbatim(__0) => {
+                f.debug_tuple("Verbatim").field(__0).finish();
+            }
+            _ => "???".fmt(f),
         }
     }
 }
-impl<> crate::Debug for syn::ForeignItemFn<>  where  {
+impl crate::Debug for syn::ForeignItemFn {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ForeignItemFn")
             .field("attrs", &self.attrs)
@@ -758,7 +924,7 @@ impl<> crate::Debug for syn::ForeignItemFn<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ForeignItemMacro<>  where  {
+impl crate::Debug for syn::ForeignItemMacro {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ForeignItemMacro")
             .field("attrs", &self.attrs)
@@ -767,7 +933,7 @@ impl<> crate::Debug for syn::ForeignItemMacro<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ForeignItemStatic<>  where  {
+impl crate::Debug for syn::ForeignItemStatic {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ForeignItemStatic")
             .field("attrs", &self.attrs)
@@ -781,7 +947,7 @@ impl<> crate::Debug for syn::ForeignItemStatic<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ForeignItemType<>  where  {
+impl crate::Debug for syn::ForeignItemType {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ForeignItemType")
             .field("attrs", &self.attrs)
@@ -793,35 +959,55 @@ impl<> crate::Debug for syn::ForeignItemType<>  where  {
     }
 }
 // Skiping syn::token::Ge due to config rule token::*
-impl<>  crate::Debug for syn::GenericArgument<> where  {
+impl crate::Debug for syn::GenericArgument {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::GenericArgument::Lifetime (__0, ) => { f.debug_tuple("Lifetime").field(__0).finish(); }
-            syn::GenericArgument::Type (__0, ) => { f.debug_tuple("Type").field(__0).finish(); }
-            syn::GenericArgument::Binding (__0, ) => { f.debug_tuple("Binding").field(__0).finish(); }
-            syn::GenericArgument::Constraint (__0, ) => { f.debug_tuple("Constraint").field(__0).finish(); }
-            syn::GenericArgument::Const (__0, ) => { f.debug_tuple("Const").field(__0).finish(); }
+            syn::GenericArgument::Lifetime(__0) => {
+                f.debug_tuple("Lifetime").field(__0).finish();
+            }
+            syn::GenericArgument::Type(__0) => {
+                f.debug_tuple("Type").field(__0).finish();
+            }
+            syn::GenericArgument::Binding(__0) => {
+                f.debug_tuple("Binding").field(__0).finish();
+            }
+            syn::GenericArgument::Constraint(__0) => {
+                f.debug_tuple("Constraint").field(__0).finish();
+            }
+            syn::GenericArgument::Const(__0) => {
+                f.debug_tuple("Const").field(__0).finish();
+            }
         }
     }
 }
-impl<>  crate::Debug for syn::GenericMethodArgument<> where  {
+impl crate::Debug for syn::GenericMethodArgument {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::GenericMethodArgument::Type (__0, ) => { f.debug_tuple("Type").field(__0).finish(); }
-            syn::GenericMethodArgument::Const (__0, ) => { f.debug_tuple("Const").field(__0).finish(); }
+            syn::GenericMethodArgument::Type(__0) => {
+                f.debug_tuple("Type").field(__0).finish();
+            }
+            syn::GenericMethodArgument::Const(__0) => {
+                f.debug_tuple("Const").field(__0).finish();
+            }
         }
     }
 }
-impl<>  crate::Debug for syn::GenericParam<> where  {
+impl crate::Debug for syn::GenericParam {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::GenericParam::Type (__0, ) => { f.debug_tuple("Type").field(__0).finish(); }
-            syn::GenericParam::Lifetime (__0, ) => { f.debug_tuple("Lifetime").field(__0).finish(); }
-            syn::GenericParam::Const (__0, ) => { f.debug_tuple("Const").field(__0).finish(); }
+            syn::GenericParam::Type(__0) => {
+                f.debug_tuple("Type").field(__0).finish();
+            }
+            syn::GenericParam::Lifetime(__0) => {
+                f.debug_tuple("Lifetime").field(__0).finish();
+            }
+            syn::GenericParam::Const(__0) => {
+                f.debug_tuple("Const").field(__0).finish();
+            }
         }
     }
 }
-impl<> crate::Debug for syn::Generics<>  where  {
+impl crate::Debug for syn::Generics {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Generics")
             .field("lt_token", &self.lt_token)
@@ -836,19 +1022,29 @@ impl<> crate::Debug for syn::Generics<>  where  {
 // Skiping syn::token::If due to config rule token::*
 // Skiping syn::token::Impl due to config rule token::*
 // Skipping syn::ImplGenerics due to hidden fields
-impl<>  crate::Debug for syn::ImplItem<> where  {
+impl crate::Debug for syn::ImplItem {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::ImplItem::Const (__0, ) => { f.debug_tuple("Const").field(__0).finish(); }
-            syn::ImplItem::Method (__0, ) => { f.debug_tuple("Method").field(__0).finish(); }
-            syn::ImplItem::Type (__0, ) => { f.debug_tuple("Type").field(__0).finish(); }
-            syn::ImplItem::Macro (__0, ) => { f.debug_tuple("Macro").field(__0).finish(); }
-            syn::ImplItem::Verbatim (__0, ) => { f.debug_tuple("Verbatim").field(__0).finish(); }
-            _ => { "???".fmt(f) }
+            syn::ImplItem::Const(__0) => {
+                f.debug_tuple("Const").field(__0).finish();
+            }
+            syn::ImplItem::Method(__0) => {
+                f.debug_tuple("Method").field(__0).finish();
+            }
+            syn::ImplItem::Type(__0) => {
+                f.debug_tuple("Type").field(__0).finish();
+            }
+            syn::ImplItem::Macro(__0) => {
+                f.debug_tuple("Macro").field(__0).finish();
+            }
+            syn::ImplItem::Verbatim(__0) => {
+                f.debug_tuple("Verbatim").field(__0).finish();
+            }
+            _ => "???".fmt(f),
         }
     }
 }
-impl<> crate::Debug for syn::ImplItemConst<>  where  {
+impl crate::Debug for syn::ImplItemConst {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ImplItemConst")
             .field("attrs", &self.attrs)
@@ -864,7 +1060,7 @@ impl<> crate::Debug for syn::ImplItemConst<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ImplItemMacro<>  where  {
+impl crate::Debug for syn::ImplItemMacro {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ImplItemMacro")
             .field("attrs", &self.attrs)
@@ -873,7 +1069,7 @@ impl<> crate::Debug for syn::ImplItemMacro<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ImplItemMethod<>  where  {
+impl crate::Debug for syn::ImplItemMethod {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ImplItemMethod")
             .field("attrs", &self.attrs)
@@ -884,7 +1080,7 @@ impl<> crate::Debug for syn::ImplItemMethod<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ImplItemType<>  where  {
+impl crate::Debug for syn::ImplItemType {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ImplItemType")
             .field("attrs", &self.attrs)
@@ -900,7 +1096,7 @@ impl<> crate::Debug for syn::ImplItemType<>  where  {
     }
 }
 // Skiping syn::token::In due to config rule token::*
-impl<> crate::Debug for syn::Index<>  where  {
+impl crate::Debug for syn::Index {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Index")
             .field("index", &self.index)
@@ -910,31 +1106,65 @@ impl<> crate::Debug for syn::Index<>  where  {
 }
 // Skipping syn::punctuated::IntoIter due to hidden fields
 // Skipping syn::punctuated::IntoPairs due to hidden fields
-impl<>  crate::Debug for syn::Item<> where  {
+impl crate::Debug for syn::Item {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Item::Const (__0, ) => { f.debug_tuple("Const").field(__0).finish(); }
-            syn::Item::Enum (__0, ) => { f.debug_tuple("Enum").field(__0).finish(); }
-            syn::Item::ExternCrate (__0, ) => { f.debug_tuple("ExternCrate").field(__0).finish(); }
-            syn::Item::Fn (__0, ) => { f.debug_tuple("Fn").field(__0).finish(); }
-            syn::Item::ForeignMod (__0, ) => { f.debug_tuple("ForeignMod").field(__0).finish(); }
-            syn::Item::Impl (__0, ) => { f.debug_tuple("Impl").field(__0).finish(); }
-            syn::Item::Macro (__0, ) => { f.debug_tuple("Macro").field(__0).finish(); }
-            syn::Item::Macro2 (__0, ) => { f.debug_tuple("Macro2").field(__0).finish(); }
-            syn::Item::Mod (__0, ) => { f.debug_tuple("Mod").field(__0).finish(); }
-            syn::Item::Static (__0, ) => { f.debug_tuple("Static").field(__0).finish(); }
-            syn::Item::Struct (__0, ) => { f.debug_tuple("Struct").field(__0).finish(); }
-            syn::Item::Trait (__0, ) => { f.debug_tuple("Trait").field(__0).finish(); }
-            syn::Item::TraitAlias (__0, ) => { f.debug_tuple("TraitAlias").field(__0).finish(); }
-            syn::Item::Type (__0, ) => { f.debug_tuple("Type").field(__0).finish(); }
-            syn::Item::Union (__0, ) => { f.debug_tuple("Union").field(__0).finish(); }
-            syn::Item::Use (__0, ) => { f.debug_tuple("Use").field(__0).finish(); }
-            syn::Item::Verbatim (__0, ) => { f.debug_tuple("Verbatim").field(__0).finish(); }
-            _ => { "???".fmt(f) }
+            syn::Item::Const(__0) => {
+                f.debug_tuple("Const").field(__0).finish();
+            }
+            syn::Item::Enum(__0) => {
+                f.debug_tuple("Enum").field(__0).finish();
+            }
+            syn::Item::ExternCrate(__0) => {
+                f.debug_tuple("ExternCrate").field(__0).finish();
+            }
+            syn::Item::Fn(__0) => {
+                f.debug_tuple("Fn").field(__0).finish();
+            }
+            syn::Item::ForeignMod(__0) => {
+                f.debug_tuple("ForeignMod").field(__0).finish();
+            }
+            syn::Item::Impl(__0) => {
+                f.debug_tuple("Impl").field(__0).finish();
+            }
+            syn::Item::Macro(__0) => {
+                f.debug_tuple("Macro").field(__0).finish();
+            }
+            syn::Item::Macro2(__0) => {
+                f.debug_tuple("Macro2").field(__0).finish();
+            }
+            syn::Item::Mod(__0) => {
+                f.debug_tuple("Mod").field(__0).finish();
+            }
+            syn::Item::Static(__0) => {
+                f.debug_tuple("Static").field(__0).finish();
+            }
+            syn::Item::Struct(__0) => {
+                f.debug_tuple("Struct").field(__0).finish();
+            }
+            syn::Item::Trait(__0) => {
+                f.debug_tuple("Trait").field(__0).finish();
+            }
+            syn::Item::TraitAlias(__0) => {
+                f.debug_tuple("TraitAlias").field(__0).finish();
+            }
+            syn::Item::Type(__0) => {
+                f.debug_tuple("Type").field(__0).finish();
+            }
+            syn::Item::Union(__0) => {
+                f.debug_tuple("Union").field(__0).finish();
+            }
+            syn::Item::Use(__0) => {
+                f.debug_tuple("Use").field(__0).finish();
+            }
+            syn::Item::Verbatim(__0) => {
+                f.debug_tuple("Verbatim").field(__0).finish();
+            }
+            _ => "???".fmt(f),
         }
     }
 }
-impl<> crate::Debug for syn::ItemConst<>  where  {
+impl crate::Debug for syn::ItemConst {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemConst")
             .field("attrs", &self.attrs)
@@ -949,7 +1179,7 @@ impl<> crate::Debug for syn::ItemConst<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ItemEnum<>  where  {
+impl crate::Debug for syn::ItemEnum {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemEnum")
             .field("attrs", &self.attrs)
@@ -962,7 +1192,7 @@ impl<> crate::Debug for syn::ItemEnum<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ItemExternCrate<>  where  {
+impl crate::Debug for syn::ItemExternCrate {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemExternCrate")
             .field("attrs", &self.attrs)
@@ -975,7 +1205,7 @@ impl<> crate::Debug for syn::ItemExternCrate<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ItemFn<>  where  {
+impl crate::Debug for syn::ItemFn {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemFn")
             .field("attrs", &self.attrs)
@@ -985,7 +1215,7 @@ impl<> crate::Debug for syn::ItemFn<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ItemForeignMod<>  where  {
+impl crate::Debug for syn::ItemForeignMod {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemForeignMod")
             .field("attrs", &self.attrs)
@@ -995,7 +1225,7 @@ impl<> crate::Debug for syn::ItemForeignMod<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ItemImpl<>  where  {
+impl crate::Debug for syn::ItemImpl {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemImpl")
             .field("attrs", &self.attrs)
@@ -1010,7 +1240,7 @@ impl<> crate::Debug for syn::ItemImpl<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ItemMacro<>  where  {
+impl crate::Debug for syn::ItemMacro {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemMacro")
             .field("attrs", &self.attrs)
@@ -1020,7 +1250,7 @@ impl<> crate::Debug for syn::ItemMacro<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ItemMacro2<>  where  {
+impl crate::Debug for syn::ItemMacro2 {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemMacro2")
             .field("attrs", &self.attrs)
@@ -1031,7 +1261,7 @@ impl<> crate::Debug for syn::ItemMacro2<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ItemMod<>  where  {
+impl crate::Debug for syn::ItemMod {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemMod")
             .field("attrs", &self.attrs)
@@ -1043,7 +1273,7 @@ impl<> crate::Debug for syn::ItemMod<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ItemStatic<>  where  {
+impl crate::Debug for syn::ItemStatic {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemStatic")
             .field("attrs", &self.attrs)
@@ -1059,7 +1289,7 @@ impl<> crate::Debug for syn::ItemStatic<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ItemStruct<>  where  {
+impl crate::Debug for syn::ItemStruct {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemStruct")
             .field("attrs", &self.attrs)
@@ -1072,7 +1302,7 @@ impl<> crate::Debug for syn::ItemStruct<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ItemTrait<>  where  {
+impl crate::Debug for syn::ItemTrait {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemTrait")
             .field("attrs", &self.attrs)
@@ -1089,7 +1319,7 @@ impl<> crate::Debug for syn::ItemTrait<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ItemTraitAlias<>  where  {
+impl crate::Debug for syn::ItemTraitAlias {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemTraitAlias")
             .field("attrs", &self.attrs)
@@ -1103,7 +1333,7 @@ impl<> crate::Debug for syn::ItemTraitAlias<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ItemType<>  where  {
+impl crate::Debug for syn::ItemType {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemType")
             .field("attrs", &self.attrs)
@@ -1117,7 +1347,7 @@ impl<> crate::Debug for syn::ItemType<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ItemUnion<>  where  {
+impl crate::Debug for syn::ItemUnion {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemUnion")
             .field("attrs", &self.attrs)
@@ -1129,7 +1359,7 @@ impl<> crate::Debug for syn::ItemUnion<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::ItemUse<>  where  {
+impl crate::Debug for syn::ItemUse {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemUse")
             .field("attrs", &self.attrs)
@@ -1144,7 +1374,7 @@ impl<> crate::Debug for syn::ItemUse<>  where  {
 // Skipping syn::punctuated::Iter due to hidden fields
 // Skipping syn::punctuated::IterMut due to hidden fields
 // Skiping syn::token::LArrow due to config rule token::*
-impl<> crate::Debug for syn::Label<>  where  {
+impl crate::Debug for syn::Label {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Label")
             .field("name", &self.name)
@@ -1154,7 +1384,7 @@ impl<> crate::Debug for syn::Label<>  where  {
 }
 // Skiping syn::token::Le due to config rule token::*
 // Skiping syn::token::Let due to config rule token::*
-impl<> crate::Debug for syn::Lifetime<>  where  {
+impl crate::Debug for syn::Lifetime {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Lifetime")
             .field("apostrophe", &self.apostrophe)
@@ -1162,7 +1392,7 @@ impl<> crate::Debug for syn::Lifetime<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::LifetimeDef<>  where  {
+impl crate::Debug for syn::LifetimeDef {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("LifetimeDef")
             .field("attrs", &self.attrs)
@@ -1172,21 +1402,37 @@ impl<> crate::Debug for syn::LifetimeDef<>  where  {
             .finish()
     }
 }
-impl<>  crate::Debug for syn::Lit<> where  {
+impl crate::Debug for syn::Lit {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Lit::Str (__0, ) => { f.debug_tuple("Str").field(__0).finish(); }
-            syn::Lit::ByteStr (__0, ) => { f.debug_tuple("ByteStr").field(__0).finish(); }
-            syn::Lit::Byte (__0, ) => { f.debug_tuple("Byte").field(__0).finish(); }
-            syn::Lit::Char (__0, ) => { f.debug_tuple("Char").field(__0).finish(); }
-            syn::Lit::Int (__0, ) => { f.debug_tuple("Int").field(__0).finish(); }
-            syn::Lit::Float (__0, ) => { f.debug_tuple("Float").field(__0).finish(); }
-            syn::Lit::Bool (__0, ) => { f.debug_tuple("Bool").field(__0).finish(); }
-            syn::Lit::Verbatim (__0, ) => { f.debug_tuple("Verbatim").field(__0).finish(); }
+            syn::Lit::Str(__0) => {
+                f.debug_tuple("Str").field(__0).finish();
+            }
+            syn::Lit::ByteStr(__0) => {
+                f.debug_tuple("ByteStr").field(__0).finish();
+            }
+            syn::Lit::Byte(__0) => {
+                f.debug_tuple("Byte").field(__0).finish();
+            }
+            syn::Lit::Char(__0) => {
+                f.debug_tuple("Char").field(__0).finish();
+            }
+            syn::Lit::Int(__0) => {
+                f.debug_tuple("Int").field(__0).finish();
+            }
+            syn::Lit::Float(__0) => {
+                f.debug_tuple("Float").field(__0).finish();
+            }
+            syn::Lit::Bool(__0) => {
+                f.debug_tuple("Bool").field(__0).finish();
+            }
+            syn::Lit::Verbatim(__0) => {
+                f.debug_tuple("Verbatim").field(__0).finish();
+            }
         }
     }
 }
-impl<> crate::Debug for syn::LitBool<>  where  {
+impl crate::Debug for syn::LitBool {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("LitBool")
             .field("value", &self.value)
@@ -1200,7 +1446,7 @@ impl<> crate::Debug for syn::LitBool<>  where  {
 // Skipping syn::LitFloat due to hidden fields
 // Skipping syn::LitInt due to hidden fields
 // Skipping syn::LitStr due to hidden fields
-impl<> crate::Debug for syn::Local<>  where  {
+impl crate::Debug for syn::Local {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Local")
             .field("attrs", &self.attrs)
@@ -1214,7 +1460,7 @@ impl<> crate::Debug for syn::Local<>  where  {
 // Skipping syn::parse::Lookahead1 due to hidden fields
 // Skiping syn::token::Loop due to config rule token::*
 // Skiping syn::token::Lt due to config rule token::*
-impl<> crate::Debug for syn::Macro<>  where  {
+impl crate::Debug for syn::Macro {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Macro")
             .field("path", &self.path)
@@ -1225,34 +1471,50 @@ impl<> crate::Debug for syn::Macro<>  where  {
     }
 }
 // Skiping syn::token::Macro due to config rule token::*
-impl<>  crate::Debug for syn::MacroDelimiter<> where  {
+impl crate::Debug for syn::MacroDelimiter {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::MacroDelimiter::Paren (__0, ) => { f.debug_tuple("Paren").field(__0).finish(); }
-            syn::MacroDelimiter::Brace (__0, ) => { f.debug_tuple("Brace").field(__0).finish(); }
-            syn::MacroDelimiter::Bracket (__0, ) => { f.debug_tuple("Bracket").field(__0).finish(); }
+            syn::MacroDelimiter::Paren(__0) => {
+                f.debug_tuple("Paren").field(__0).finish();
+            }
+            syn::MacroDelimiter::Brace(__0) => {
+                f.debug_tuple("Brace").field(__0).finish();
+            }
+            syn::MacroDelimiter::Bracket(__0) => {
+                f.debug_tuple("Bracket").field(__0).finish();
+            }
         }
     }
 }
 // Skiping syn::token::Match due to config rule token::*
-impl<>  crate::Debug for syn::Member<> where  {
+impl crate::Debug for syn::Member {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Member::Named (__0, ) => { f.debug_tuple("Named").field(__0).finish(); }
-            syn::Member::Unnamed (__0, ) => { f.debug_tuple("Unnamed").field(__0).finish(); }
+            syn::Member::Named(__0) => {
+                f.debug_tuple("Named").field(__0).finish();
+            }
+            syn::Member::Unnamed(__0) => {
+                f.debug_tuple("Unnamed").field(__0).finish();
+            }
         }
     }
 }
-impl<>  crate::Debug for syn::Meta<> where  {
+impl crate::Debug for syn::Meta {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Meta::Path (__0, ) => { f.debug_tuple("Path").field(__0).finish(); }
-            syn::Meta::List (__0, ) => { f.debug_tuple("List").field(__0).finish(); }
-            syn::Meta::NameValue (__0, ) => { f.debug_tuple("NameValue").field(__0).finish(); }
+            syn::Meta::Path(__0) => {
+                f.debug_tuple("Path").field(__0).finish();
+            }
+            syn::Meta::List(__0) => {
+                f.debug_tuple("List").field(__0).finish();
+            }
+            syn::Meta::NameValue(__0) => {
+                f.debug_tuple("NameValue").field(__0).finish();
+            }
         }
     }
 }
-impl<> crate::Debug for syn::MetaList<>  where  {
+impl crate::Debug for syn::MetaList {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("MetaList")
             .field("path", &self.path)
@@ -1261,7 +1523,7 @@ impl<> crate::Debug for syn::MetaList<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::MetaNameValue<>  where  {
+impl crate::Debug for syn::MetaNameValue {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("MetaNameValue")
             .field("path", &self.path)
@@ -1270,7 +1532,7 @@ impl<> crate::Debug for syn::MetaNameValue<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::MethodTurbofish<>  where  {
+impl crate::Debug for syn::MethodTurbofish {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("MethodTurbofish")
             .field("colon2_token", &self.colon2_token)
@@ -1285,36 +1547,47 @@ impl<> crate::Debug for syn::MethodTurbofish<>  where  {
 // Skiping syn::token::MulEq due to config rule token::*
 // Skiping syn::token::Mut due to config rule token::*
 // Skiping syn::token::Ne due to config rule token::*
-impl<>  crate::Debug for syn::NestedMeta<> where  {
+impl crate::Debug for syn::NestedMeta {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::NestedMeta::Meta (__0, ) => { f.debug_tuple("Meta").field(__0).finish(); }
-            syn::NestedMeta::Lit (__0, ) => { f.debug_tuple("Lit").field(__0).finish(); }
+            syn::NestedMeta::Meta(__0) => {
+                f.debug_tuple("Meta").field(__0).finish();
+            }
+            syn::NestedMeta::Lit(__0) => {
+                f.debug_tuple("Lit").field(__0).finish();
+            }
         }
     }
 }
-impl<> crate::Debug for syn::parse::Nothing<>  where  {
+impl crate::Debug for syn::parse::Nothing {
     fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Nothing")
-            .finish()
+        f.debug_struct("Nothing").finish()
     }
 }
 // Skiping syn::token::Or due to config rule token::*
 // Skiping syn::token::OrEq due to config rule token::*
 // Skiping syn::token::OrOr due to config rule token::*
 // Skiping syn::token::Override due to config rule token::*
-impl<T,P>  crate::Debug for syn::punctuated::Pair<T,P> where T : crate::Debug,P : crate::Debug {
+impl<T, P> crate::Debug for syn::punctuated::Pair<T, P>
+where
+    T: crate::Debug,
+    P: crate::Debug,
+{
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::punctuated::Pair::Punctuated (__0, __1, ) => { f.debug_tuple("Punctuated").field(__0).field(__1).finish(); }
-            syn::punctuated::Pair::End (__0, ) => { f.debug_tuple("End").field(__0).finish(); }
+            syn::punctuated::Pair::Punctuated(__0, __1) => {
+                f.debug_tuple("Punctuated").field(__0).field(__1).finish();
+            }
+            syn::punctuated::Pair::End(__0) => {
+                f.debug_tuple("End").field(__0).finish();
+            }
         }
     }
 }
 // Skipping syn::punctuated::Pairs due to hidden fields
 // Skipping syn::punctuated::PairsMut due to hidden fields
 // Skiping syn::token::Paren due to config rule token::*
-impl<> crate::Debug for syn::ParenthesizedGenericArguments<>  where  {
+impl crate::Debug for syn::ParenthesizedGenericArguments {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ParenthesizedGenericArguments")
             .field("paren_token", &self.paren_token)
@@ -1324,30 +1597,62 @@ impl<> crate::Debug for syn::ParenthesizedGenericArguments<>  where  {
     }
 }
 // Skipping syn::parse::ParseBuffer due to hidden fields
-impl<>  crate::Debug for syn::Pat<> where  {
+impl crate::Debug for syn::Pat {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Pat::Box (__0, ) => { f.debug_tuple("Box").field(__0).finish(); }
-            syn::Pat::Ident (__0, ) => { f.debug_tuple("Ident").field(__0).finish(); }
-            syn::Pat::Lit (__0, ) => { f.debug_tuple("Lit").field(__0).finish(); }
-            syn::Pat::Macro (__0, ) => { f.debug_tuple("Macro").field(__0).finish(); }
-            syn::Pat::Or (__0, ) => { f.debug_tuple("Or").field(__0).finish(); }
-            syn::Pat::Path (__0, ) => { f.debug_tuple("Path").field(__0).finish(); }
-            syn::Pat::Range (__0, ) => { f.debug_tuple("Range").field(__0).finish(); }
-            syn::Pat::Reference (__0, ) => { f.debug_tuple("Reference").field(__0).finish(); }
-            syn::Pat::Rest (__0, ) => { f.debug_tuple("Rest").field(__0).finish(); }
-            syn::Pat::Slice (__0, ) => { f.debug_tuple("Slice").field(__0).finish(); }
-            syn::Pat::Struct (__0, ) => { f.debug_tuple("Struct").field(__0).finish(); }
-            syn::Pat::Tuple (__0, ) => { f.debug_tuple("Tuple").field(__0).finish(); }
-            syn::Pat::TupleStruct (__0, ) => { f.debug_tuple("TupleStruct").field(__0).finish(); }
-            syn::Pat::Type (__0, ) => { f.debug_tuple("Type").field(__0).finish(); }
-            syn::Pat::Verbatim (__0, ) => { f.debug_tuple("Verbatim").field(__0).finish(); }
-            syn::Pat::Wild (__0, ) => { f.debug_tuple("Wild").field(__0).finish(); }
-            _ => { "???".fmt(f) }
+            syn::Pat::Box(__0) => {
+                f.debug_tuple("Box").field(__0).finish();
+            }
+            syn::Pat::Ident(__0) => {
+                f.debug_tuple("Ident").field(__0).finish();
+            }
+            syn::Pat::Lit(__0) => {
+                f.debug_tuple("Lit").field(__0).finish();
+            }
+            syn::Pat::Macro(__0) => {
+                f.debug_tuple("Macro").field(__0).finish();
+            }
+            syn::Pat::Or(__0) => {
+                f.debug_tuple("Or").field(__0).finish();
+            }
+            syn::Pat::Path(__0) => {
+                f.debug_tuple("Path").field(__0).finish();
+            }
+            syn::Pat::Range(__0) => {
+                f.debug_tuple("Range").field(__0).finish();
+            }
+            syn::Pat::Reference(__0) => {
+                f.debug_tuple("Reference").field(__0).finish();
+            }
+            syn::Pat::Rest(__0) => {
+                f.debug_tuple("Rest").field(__0).finish();
+            }
+            syn::Pat::Slice(__0) => {
+                f.debug_tuple("Slice").field(__0).finish();
+            }
+            syn::Pat::Struct(__0) => {
+                f.debug_tuple("Struct").field(__0).finish();
+            }
+            syn::Pat::Tuple(__0) => {
+                f.debug_tuple("Tuple").field(__0).finish();
+            }
+            syn::Pat::TupleStruct(__0) => {
+                f.debug_tuple("TupleStruct").field(__0).finish();
+            }
+            syn::Pat::Type(__0) => {
+                f.debug_tuple("Type").field(__0).finish();
+            }
+            syn::Pat::Verbatim(__0) => {
+                f.debug_tuple("Verbatim").field(__0).finish();
+            }
+            syn::Pat::Wild(__0) => {
+                f.debug_tuple("Wild").field(__0).finish();
+            }
+            _ => "???".fmt(f),
         }
     }
 }
-impl<> crate::Debug for syn::PatBox<>  where  {
+impl crate::Debug for syn::PatBox {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatBox")
             .field("attrs", &self.attrs)
@@ -1356,7 +1661,7 @@ impl<> crate::Debug for syn::PatBox<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::PatIdent<>  where  {
+impl crate::Debug for syn::PatIdent {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatIdent")
             .field("attrs", &self.attrs)
@@ -1367,7 +1672,7 @@ impl<> crate::Debug for syn::PatIdent<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::PatLit<>  where  {
+impl crate::Debug for syn::PatLit {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatLit")
             .field("attrs", &self.attrs)
@@ -1375,7 +1680,7 @@ impl<> crate::Debug for syn::PatLit<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::PatMacro<>  where  {
+impl crate::Debug for syn::PatMacro {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatMacro")
             .field("attrs", &self.attrs)
@@ -1383,7 +1688,7 @@ impl<> crate::Debug for syn::PatMacro<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::PatOr<>  where  {
+impl crate::Debug for syn::PatOr {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatOr")
             .field("attrs", &self.attrs)
@@ -1392,7 +1697,7 @@ impl<> crate::Debug for syn::PatOr<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::PatPath<>  where  {
+impl crate::Debug for syn::PatPath {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatPath")
             .field("attrs", &self.attrs)
@@ -1401,7 +1706,7 @@ impl<> crate::Debug for syn::PatPath<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::PatRange<>  where  {
+impl crate::Debug for syn::PatRange {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatRange")
             .field("attrs", &self.attrs)
@@ -1411,7 +1716,7 @@ impl<> crate::Debug for syn::PatRange<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::PatReference<>  where  {
+impl crate::Debug for syn::PatReference {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatReference")
             .field("attrs", &self.attrs)
@@ -1421,7 +1726,7 @@ impl<> crate::Debug for syn::PatReference<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::PatRest<>  where  {
+impl crate::Debug for syn::PatRest {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatRest")
             .field("attrs", &self.attrs)
@@ -1429,7 +1734,7 @@ impl<> crate::Debug for syn::PatRest<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::PatSlice<>  where  {
+impl crate::Debug for syn::PatSlice {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatSlice")
             .field("attrs", &self.attrs)
@@ -1438,7 +1743,7 @@ impl<> crate::Debug for syn::PatSlice<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::PatStruct<>  where  {
+impl crate::Debug for syn::PatStruct {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatStruct")
             .field("attrs", &self.attrs)
@@ -1449,7 +1754,7 @@ impl<> crate::Debug for syn::PatStruct<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::PatTuple<>  where  {
+impl crate::Debug for syn::PatTuple {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatTuple")
             .field("attrs", &self.attrs)
@@ -1458,7 +1763,7 @@ impl<> crate::Debug for syn::PatTuple<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::PatTupleStruct<>  where  {
+impl crate::Debug for syn::PatTupleStruct {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatTupleStruct")
             .field("attrs", &self.attrs)
@@ -1467,7 +1772,7 @@ impl<> crate::Debug for syn::PatTupleStruct<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::PatType<>  where  {
+impl crate::Debug for syn::PatType {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatType")
             .field("attrs", &self.attrs)
@@ -1477,7 +1782,7 @@ impl<> crate::Debug for syn::PatType<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::PatWild<>  where  {
+impl crate::Debug for syn::PatWild {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatWild")
             .field("attrs", &self.attrs)
@@ -1485,7 +1790,7 @@ impl<> crate::Debug for syn::PatWild<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::Path<>  where  {
+impl crate::Debug for syn::Path {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Path")
             .field("leading_colon", &self.leading_colon)
@@ -1493,16 +1798,22 @@ impl<> crate::Debug for syn::Path<>  where  {
             .finish()
     }
 }
-impl<>  crate::Debug for syn::PathArguments<> where  {
+impl crate::Debug for syn::PathArguments {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::PathArguments::None => { f.debug_tuple("None").finish(); }
-            syn::PathArguments::AngleBracketed (__0, ) => { f.debug_tuple("AngleBracketed").field(__0).finish(); }
-            syn::PathArguments::Parenthesized (__0, ) => { f.debug_tuple("Parenthesized").field(__0).finish(); }
+            syn::PathArguments::None => {
+                f.debug_tuple("None").finish();
+            }
+            syn::PathArguments::AngleBracketed(__0) => {
+                f.debug_tuple("AngleBracketed").field(__0).finish();
+            }
+            syn::PathArguments::Parenthesized(__0) => {
+                f.debug_tuple("Parenthesized").field(__0).finish();
+            }
         }
     }
 }
-impl<> crate::Debug for syn::PathSegment<>  where  {
+impl crate::Debug for syn::PathSegment {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PathSegment")
             .field("ident", &self.ident)
@@ -1511,7 +1822,7 @@ impl<> crate::Debug for syn::PathSegment<>  where  {
     }
 }
 // Skiping syn::token::Pound due to config rule token::*
-impl<> crate::Debug for syn::PredicateEq<>  where  {
+impl crate::Debug for syn::PredicateEq {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PredicateEq")
             .field("lhs_ty", &self.lhs_ty)
@@ -1520,7 +1831,7 @@ impl<> crate::Debug for syn::PredicateEq<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::PredicateLifetime<>  where  {
+impl crate::Debug for syn::PredicateLifetime {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PredicateLifetime")
             .field("lifetime", &self.lifetime)
@@ -1529,7 +1840,7 @@ impl<> crate::Debug for syn::PredicateLifetime<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::PredicateType<>  where  {
+impl crate::Debug for syn::PredicateType {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PredicateType")
             .field("lifetimes", &self.lifetimes)
@@ -1542,7 +1853,7 @@ impl<> crate::Debug for syn::PredicateType<>  where  {
 // Skiping syn::token::Priv due to config rule token::*
 // Skiping syn::token::Pub due to config rule token::*
 // Skipping syn::punctuated::Punctuated due to hidden fields
-impl<> crate::Debug for syn::QSelf<>  where  {
+impl crate::Debug for syn::QSelf {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("QSelf")
             .field("lt_token", &self.lt_token)
@@ -1555,15 +1866,19 @@ impl<> crate::Debug for syn::QSelf<>  where  {
 }
 // Skiping syn::token::Question due to config rule token::*
 // Skiping syn::token::RArrow due to config rule token::*
-impl<>  crate::Debug for syn::RangeLimits<> where  {
+impl crate::Debug for syn::RangeLimits {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::RangeLimits::HalfOpen (__0, ) => { f.debug_tuple("HalfOpen").field(__0).finish(); }
-            syn::RangeLimits::Closed (__0, ) => { f.debug_tuple("Closed").field(__0).finish(); }
+            syn::RangeLimits::HalfOpen(__0) => {
+                f.debug_tuple("HalfOpen").field(__0).finish();
+            }
+            syn::RangeLimits::Closed(__0) => {
+                f.debug_tuple("Closed").field(__0).finish();
+            }
         }
     }
 }
-impl<> crate::Debug for syn::Receiver<>  where  {
+impl crate::Debug for syn::Receiver {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Receiver")
             .field("attrs", &self.attrs)
@@ -1577,11 +1892,15 @@ impl<> crate::Debug for syn::Receiver<>  where  {
 // Skiping syn::token::Rem due to config rule token::*
 // Skiping syn::token::RemEq due to config rule token::*
 // Skiping syn::token::Return due to config rule token::*
-impl<>  crate::Debug for syn::ReturnType<> where  {
+impl crate::Debug for syn::ReturnType {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::ReturnType::Default => { f.debug_tuple("Default").finish(); }
-            syn::ReturnType::Type (__0, __1, ) => { f.debug_tuple("Type").field(__0).field(__1).finish(); }
+            syn::ReturnType::Default => {
+                f.debug_tuple("Default").finish();
+            }
+            syn::ReturnType::Type(__0, __1) => {
+                f.debug_tuple("Type").field(__0).field(__1).finish();
+            }
         }
     }
 }
@@ -1592,7 +1911,7 @@ impl<>  crate::Debug for syn::ReturnType<> where  {
 // Skiping syn::token::ShlEq due to config rule token::*
 // Skiping syn::token::Shr due to config rule token::*
 // Skiping syn::token::ShrEq due to config rule token::*
-impl<> crate::Debug for syn::Signature<>  where  {
+impl crate::Debug for syn::Signature {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Signature")
             .field("constness", &self.constness)
@@ -1612,21 +1931,33 @@ impl<> crate::Debug for syn::Signature<>  where  {
 // Skiping syn::token::Star due to config rule token::*
 // Skiping syn::token::Static due to config rule token::*
 // Skipping syn::parse::StepCursor due to hidden fields
-impl<>  crate::Debug for syn::Stmt<> where  {
+impl crate::Debug for syn::Stmt {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Stmt::Local (__0, ) => { f.debug_tuple("Local").field(__0).finish(); }
-            syn::Stmt::Item (__0, ) => { f.debug_tuple("Item").field(__0).finish(); }
-            syn::Stmt::Expr (__0, ) => { f.debug_tuple("Expr").field(__0).finish(); }
-            syn::Stmt::Semi (__0, __1, ) => { f.debug_tuple("Semi").field(__0).field(__1).finish(); }
+            syn::Stmt::Local(__0) => {
+                f.debug_tuple("Local").field(__0).finish();
+            }
+            syn::Stmt::Item(__0) => {
+                f.debug_tuple("Item").field(__0).finish();
+            }
+            syn::Stmt::Expr(__0) => {
+                f.debug_tuple("Expr").field(__0).finish();
+            }
+            syn::Stmt::Semi(__0, __1) => {
+                f.debug_tuple("Semi").field(__0).field(__1).finish();
+            }
         }
     }
 }
-impl<>  crate::Debug for syn::StrStyle<> where  {
+impl crate::Debug for syn::StrStyle {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::StrStyle::Cooked => { f.debug_tuple("Cooked").finish(); }
-            syn::StrStyle::Raw (__0, ) => { f.debug_tuple("Raw").field(__0).finish(); }
+            syn::StrStyle::Cooked => {
+                f.debug_tuple("Cooked").finish();
+            }
+            syn::StrStyle::Raw(__0) => {
+                f.debug_tuple("Raw").field(__0).finish();
+            }
         }
     }
 }
@@ -1637,7 +1968,7 @@ impl<>  crate::Debug for syn::StrStyle<> where  {
 // Skiping syn::token::Tilde due to config rule token::*
 // Skipping syn::buffer::TokenBuffer due to hidden fields
 // Skiping syn::token::Trait due to config rule token::*
-impl<> crate::Debug for syn::TraitBound<>  where  {
+impl crate::Debug for syn::TraitBound {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TraitBound")
             .field("paren_token", &self.paren_token)
@@ -1647,27 +1978,41 @@ impl<> crate::Debug for syn::TraitBound<>  where  {
             .finish()
     }
 }
-impl<>  crate::Debug for syn::TraitBoundModifier<> where  {
+impl crate::Debug for syn::TraitBoundModifier {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::TraitBoundModifier::None => { f.debug_tuple("None").finish(); }
-            syn::TraitBoundModifier::Maybe (__0, ) => { f.debug_tuple("Maybe").field(__0).finish(); }
+            syn::TraitBoundModifier::None => {
+                f.debug_tuple("None").finish();
+            }
+            syn::TraitBoundModifier::Maybe(__0) => {
+                f.debug_tuple("Maybe").field(__0).finish();
+            }
         }
     }
 }
-impl<>  crate::Debug for syn::TraitItem<> where  {
+impl crate::Debug for syn::TraitItem {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::TraitItem::Const (__0, ) => { f.debug_tuple("Const").field(__0).finish(); }
-            syn::TraitItem::Method (__0, ) => { f.debug_tuple("Method").field(__0).finish(); }
-            syn::TraitItem::Type (__0, ) => { f.debug_tuple("Type").field(__0).finish(); }
-            syn::TraitItem::Macro (__0, ) => { f.debug_tuple("Macro").field(__0).finish(); }
-            syn::TraitItem::Verbatim (__0, ) => { f.debug_tuple("Verbatim").field(__0).finish(); }
-            _ => { "???".fmt(f) }
+            syn::TraitItem::Const(__0) => {
+                f.debug_tuple("Const").field(__0).finish();
+            }
+            syn::TraitItem::Method(__0) => {
+                f.debug_tuple("Method").field(__0).finish();
+            }
+            syn::TraitItem::Type(__0) => {
+                f.debug_tuple("Type").field(__0).finish();
+            }
+            syn::TraitItem::Macro(__0) => {
+                f.debug_tuple("Macro").field(__0).finish();
+            }
+            syn::TraitItem::Verbatim(__0) => {
+                f.debug_tuple("Verbatim").field(__0).finish();
+            }
+            _ => "???".fmt(f),
         }
     }
 }
-impl<> crate::Debug for syn::TraitItemConst<>  where  {
+impl crate::Debug for syn::TraitItemConst {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TraitItemConst")
             .field("attrs", &self.attrs)
@@ -1680,7 +2025,7 @@ impl<> crate::Debug for syn::TraitItemConst<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::TraitItemMacro<>  where  {
+impl crate::Debug for syn::TraitItemMacro {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TraitItemMacro")
             .field("attrs", &self.attrs)
@@ -1689,7 +2034,7 @@ impl<> crate::Debug for syn::TraitItemMacro<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::TraitItemMethod<>  where  {
+impl crate::Debug for syn::TraitItemMethod {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TraitItemMethod")
             .field("attrs", &self.attrs)
@@ -1699,7 +2044,7 @@ impl<> crate::Debug for syn::TraitItemMethod<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::TraitItemType<>  where  {
+impl crate::Debug for syn::TraitItemType {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TraitItemType")
             .field("attrs", &self.attrs)
@@ -1716,29 +2061,59 @@ impl<> crate::Debug for syn::TraitItemType<>  where  {
 // Skiping syn::token::Try due to config rule token::*
 // Skipping syn::Turbofish due to hidden fields
 // Skiping syn::token::Type due to config rule token::*
-impl<>  crate::Debug for syn::Type<> where  {
+impl crate::Debug for syn::Type {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Type::Array (__0, ) => { f.debug_tuple("Array").field(__0).finish(); }
-            syn::Type::BareFn (__0, ) => { f.debug_tuple("BareFn").field(__0).finish(); }
-            syn::Type::Group (__0, ) => { f.debug_tuple("Group").field(__0).finish(); }
-            syn::Type::ImplTrait (__0, ) => { f.debug_tuple("ImplTrait").field(__0).finish(); }
-            syn::Type::Infer (__0, ) => { f.debug_tuple("Infer").field(__0).finish(); }
-            syn::Type::Macro (__0, ) => { f.debug_tuple("Macro").field(__0).finish(); }
-            syn::Type::Never (__0, ) => { f.debug_tuple("Never").field(__0).finish(); }
-            syn::Type::Paren (__0, ) => { f.debug_tuple("Paren").field(__0).finish(); }
-            syn::Type::Path (__0, ) => { f.debug_tuple("Path").field(__0).finish(); }
-            syn::Type::Ptr (__0, ) => { f.debug_tuple("Ptr").field(__0).finish(); }
-            syn::Type::Reference (__0, ) => { f.debug_tuple("Reference").field(__0).finish(); }
-            syn::Type::Slice (__0, ) => { f.debug_tuple("Slice").field(__0).finish(); }
-            syn::Type::TraitObject (__0, ) => { f.debug_tuple("TraitObject").field(__0).finish(); }
-            syn::Type::Tuple (__0, ) => { f.debug_tuple("Tuple").field(__0).finish(); }
-            syn::Type::Verbatim (__0, ) => { f.debug_tuple("Verbatim").field(__0).finish(); }
-            _ => { "???".fmt(f) }
+            syn::Type::Array(__0) => {
+                f.debug_tuple("Array").field(__0).finish();
+            }
+            syn::Type::BareFn(__0) => {
+                f.debug_tuple("BareFn").field(__0).finish();
+            }
+            syn::Type::Group(__0) => {
+                f.debug_tuple("Group").field(__0).finish();
+            }
+            syn::Type::ImplTrait(__0) => {
+                f.debug_tuple("ImplTrait").field(__0).finish();
+            }
+            syn::Type::Infer(__0) => {
+                f.debug_tuple("Infer").field(__0).finish();
+            }
+            syn::Type::Macro(__0) => {
+                f.debug_tuple("Macro").field(__0).finish();
+            }
+            syn::Type::Never(__0) => {
+                f.debug_tuple("Never").field(__0).finish();
+            }
+            syn::Type::Paren(__0) => {
+                f.debug_tuple("Paren").field(__0).finish();
+            }
+            syn::Type::Path(__0) => {
+                f.debug_tuple("Path").field(__0).finish();
+            }
+            syn::Type::Ptr(__0) => {
+                f.debug_tuple("Ptr").field(__0).finish();
+            }
+            syn::Type::Reference(__0) => {
+                f.debug_tuple("Reference").field(__0).finish();
+            }
+            syn::Type::Slice(__0) => {
+                f.debug_tuple("Slice").field(__0).finish();
+            }
+            syn::Type::TraitObject(__0) => {
+                f.debug_tuple("TraitObject").field(__0).finish();
+            }
+            syn::Type::Tuple(__0) => {
+                f.debug_tuple("Tuple").field(__0).finish();
+            }
+            syn::Type::Verbatim(__0) => {
+                f.debug_tuple("Verbatim").field(__0).finish();
+            }
+            _ => "???".fmt(f),
         }
     }
 }
-impl<> crate::Debug for syn::TypeArray<>  where  {
+impl crate::Debug for syn::TypeArray {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeArray")
             .field("bracket_token", &self.bracket_token)
@@ -1748,7 +2123,7 @@ impl<> crate::Debug for syn::TypeArray<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::TypeBareFn<>  where  {
+impl crate::Debug for syn::TypeBareFn {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeBareFn")
             .field("lifetimes", &self.lifetimes)
@@ -1763,7 +2138,7 @@ impl<> crate::Debug for syn::TypeBareFn<>  where  {
     }
 }
 // Skipping syn::TypeGenerics due to hidden fields
-impl<> crate::Debug for syn::TypeGroup<>  where  {
+impl crate::Debug for syn::TypeGroup {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeGroup")
             .field("group_token", &self.group_token)
@@ -1771,7 +2146,7 @@ impl<> crate::Debug for syn::TypeGroup<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::TypeImplTrait<>  where  {
+impl crate::Debug for syn::TypeImplTrait {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeImplTrait")
             .field("impl_token", &self.impl_token)
@@ -1779,28 +2154,26 @@ impl<> crate::Debug for syn::TypeImplTrait<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::TypeInfer<>  where  {
+impl crate::Debug for syn::TypeInfer {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeInfer")
             .field("underscore_token", &self.underscore_token)
             .finish()
     }
 }
-impl<> crate::Debug for syn::TypeMacro<>  where  {
+impl crate::Debug for syn::TypeMacro {
     fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("TypeMacro")
-            .field("mac", &self.mac)
-            .finish()
+        f.debug_struct("TypeMacro").field("mac", &self.mac).finish()
     }
 }
-impl<> crate::Debug for syn::TypeNever<>  where  {
+impl crate::Debug for syn::TypeNever {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeNever")
             .field("bang_token", &self.bang_token)
             .finish()
     }
 }
-impl<> crate::Debug for syn::TypeParam<>  where  {
+impl crate::Debug for syn::TypeParam {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeParam")
             .field("attrs", &self.attrs)
@@ -1812,15 +2185,19 @@ impl<> crate::Debug for syn::TypeParam<>  where  {
             .finish()
     }
 }
-impl<>  crate::Debug for syn::TypeParamBound<> where  {
+impl crate::Debug for syn::TypeParamBound {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::TypeParamBound::Trait (__0, ) => { f.debug_tuple("Trait").field(__0).finish(); }
-            syn::TypeParamBound::Lifetime (__0, ) => { f.debug_tuple("Lifetime").field(__0).finish(); }
+            syn::TypeParamBound::Trait(__0) => {
+                f.debug_tuple("Trait").field(__0).finish();
+            }
+            syn::TypeParamBound::Lifetime(__0) => {
+                f.debug_tuple("Lifetime").field(__0).finish();
+            }
         }
     }
 }
-impl<> crate::Debug for syn::TypeParen<>  where  {
+impl crate::Debug for syn::TypeParen {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeParen")
             .field("paren_token", &self.paren_token)
@@ -1828,7 +2205,7 @@ impl<> crate::Debug for syn::TypeParen<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::TypePath<>  where  {
+impl crate::Debug for syn::TypePath {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypePath")
             .field("qself", &self.qself)
@@ -1836,7 +2213,7 @@ impl<> crate::Debug for syn::TypePath<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::TypePtr<>  where  {
+impl crate::Debug for syn::TypePtr {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypePtr")
             .field("star_token", &self.star_token)
@@ -1846,7 +2223,7 @@ impl<> crate::Debug for syn::TypePtr<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::TypeReference<>  where  {
+impl crate::Debug for syn::TypeReference {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeReference")
             .field("and_token", &self.and_token)
@@ -1856,7 +2233,7 @@ impl<> crate::Debug for syn::TypeReference<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::TypeSlice<>  where  {
+impl crate::Debug for syn::TypeSlice {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeSlice")
             .field("bracket_token", &self.bracket_token)
@@ -1864,7 +2241,7 @@ impl<> crate::Debug for syn::TypeSlice<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::TypeTraitObject<>  where  {
+impl crate::Debug for syn::TypeTraitObject {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeTraitObject")
             .field("dyn_token", &self.dyn_token)
@@ -1872,7 +2249,7 @@ impl<> crate::Debug for syn::TypeTraitObject<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::TypeTuple<>  where  {
+impl crate::Debug for syn::TypeTuple {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeTuple")
             .field("paren_token", &self.paren_token)
@@ -1881,12 +2258,18 @@ impl<> crate::Debug for syn::TypeTuple<>  where  {
     }
 }
 // Skiping syn::token::Typeof due to config rule token::*
-impl<>  crate::Debug for syn::UnOp<> where  {
+impl crate::Debug for syn::UnOp {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::UnOp::Deref (__0, ) => { f.debug_tuple("Deref").field(__0).finish(); }
-            syn::UnOp::Not (__0, ) => { f.debug_tuple("Not").field(__0).finish(); }
-            syn::UnOp::Neg (__0, ) => { f.debug_tuple("Neg").field(__0).finish(); }
+            syn::UnOp::Deref(__0) => {
+                f.debug_tuple("Deref").field(__0).finish();
+            }
+            syn::UnOp::Not(__0) => {
+                f.debug_tuple("Not").field(__0).finish();
+            }
+            syn::UnOp::Neg(__0) => {
+                f.debug_tuple("Neg").field(__0).finish();
+            }
         }
     }
 }
@@ -1895,14 +2278,14 @@ impl<>  crate::Debug for syn::UnOp<> where  {
 // Skiping syn::token::Unsafe due to config rule token::*
 // Skiping syn::token::Unsized due to config rule token::*
 // Skiping syn::token::Use due to config rule token::*
-impl<> crate::Debug for syn::UseGlob<>  where  {
+impl crate::Debug for syn::UseGlob {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("UseGlob")
             .field("star_token", &self.star_token)
             .finish()
     }
 }
-impl<> crate::Debug for syn::UseGroup<>  where  {
+impl crate::Debug for syn::UseGroup {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("UseGroup")
             .field("brace_token", &self.brace_token)
@@ -1910,14 +2293,14 @@ impl<> crate::Debug for syn::UseGroup<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::UseName<>  where  {
+impl crate::Debug for syn::UseName {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("UseName")
             .field("ident", &self.ident)
             .finish()
     }
 }
-impl<> crate::Debug for syn::UsePath<>  where  {
+impl crate::Debug for syn::UsePath {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("UsePath")
             .field("ident", &self.ident)
@@ -1926,7 +2309,7 @@ impl<> crate::Debug for syn::UsePath<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::UseRename<>  where  {
+impl crate::Debug for syn::UseRename {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("UseRename")
             .field("ident", &self.ident)
@@ -1935,18 +2318,28 @@ impl<> crate::Debug for syn::UseRename<>  where  {
             .finish()
     }
 }
-impl<>  crate::Debug for syn::UseTree<> where  {
+impl crate::Debug for syn::UseTree {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::UseTree::Path (__0, ) => { f.debug_tuple("Path").field(__0).finish(); }
-            syn::UseTree::Name (__0, ) => { f.debug_tuple("Name").field(__0).finish(); }
-            syn::UseTree::Rename (__0, ) => { f.debug_tuple("Rename").field(__0).finish(); }
-            syn::UseTree::Glob (__0, ) => { f.debug_tuple("Glob").field(__0).finish(); }
-            syn::UseTree::Group (__0, ) => { f.debug_tuple("Group").field(__0).finish(); }
+            syn::UseTree::Path(__0) => {
+                f.debug_tuple("Path").field(__0).finish();
+            }
+            syn::UseTree::Name(__0) => {
+                f.debug_tuple("Name").field(__0).finish();
+            }
+            syn::UseTree::Rename(__0) => {
+                f.debug_tuple("Rename").field(__0).finish();
+            }
+            syn::UseTree::Glob(__0) => {
+                f.debug_tuple("Glob").field(__0).finish();
+            }
+            syn::UseTree::Group(__0) => {
+                f.debug_tuple("Group").field(__0).finish();
+            }
         }
     }
 }
-impl<> crate::Debug for syn::Variadic<>  where  {
+impl crate::Debug for syn::Variadic {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Variadic")
             .field("attrs", &self.attrs)
@@ -1954,7 +2347,7 @@ impl<> crate::Debug for syn::Variadic<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::Variant<>  where  {
+impl crate::Debug for syn::Variant {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Variant")
             .field("attrs", &self.attrs)
@@ -1965,21 +2358,21 @@ impl<> crate::Debug for syn::Variant<>  where  {
     }
 }
 // Skiping syn::token::Virtual due to config rule token::*
-impl<> crate::Debug for syn::VisCrate<>  where  {
+impl crate::Debug for syn::VisCrate {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("VisCrate")
             .field("crate_token", &self.crate_token)
             .finish()
     }
 }
-impl<> crate::Debug for syn::VisPublic<>  where  {
+impl crate::Debug for syn::VisPublic {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("VisPublic")
             .field("pub_token", &self.pub_token)
             .finish()
     }
 }
-impl<> crate::Debug for syn::VisRestricted<>  where  {
+impl crate::Debug for syn::VisRestricted {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("VisRestricted")
             .field("pub_token", &self.pub_token)
@@ -1989,18 +2382,26 @@ impl<> crate::Debug for syn::VisRestricted<>  where  {
             .finish()
     }
 }
-impl<>  crate::Debug for syn::Visibility<> where  {
+impl crate::Debug for syn::Visibility {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Visibility::Public (__0, ) => { f.debug_tuple("Public").field(__0).finish(); }
-            syn::Visibility::Crate (__0, ) => { f.debug_tuple("Crate").field(__0).finish(); }
-            syn::Visibility::Restricted (__0, ) => { f.debug_tuple("Restricted").field(__0).finish(); }
-            syn::Visibility::Inherited => { f.debug_tuple("Inherited").finish(); }
+            syn::Visibility::Public(__0) => {
+                f.debug_tuple("Public").field(__0).finish();
+            }
+            syn::Visibility::Crate(__0) => {
+                f.debug_tuple("Crate").field(__0).finish();
+            }
+            syn::Visibility::Restricted(__0) => {
+                f.debug_tuple("Restricted").field(__0).finish();
+            }
+            syn::Visibility::Inherited => {
+                f.debug_tuple("Inherited").finish();
+            }
         }
     }
 }
 // Skiping syn::token::Where due to config rule token::*
-impl<> crate::Debug for syn::WhereClause<>  where  {
+impl crate::Debug for syn::WhereClause {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("WhereClause")
             .field("where_token", &self.where_token)
@@ -2008,12 +2409,18 @@ impl<> crate::Debug for syn::WhereClause<>  where  {
             .finish()
     }
 }
-impl<>  crate::Debug for syn::WherePredicate<> where  {
+impl crate::Debug for syn::WherePredicate {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::WherePredicate::Type (__0, ) => { f.debug_tuple("Type").field(__0).finish(); }
-            syn::WherePredicate::Lifetime (__0, ) => { f.debug_tuple("Lifetime").field(__0).finish(); }
-            syn::WherePredicate::Eq (__0, ) => { f.debug_tuple("Eq").field(__0).finish(); }
+            syn::WherePredicate::Type(__0) => {
+                f.debug_tuple("Type").field(__0).finish();
+            }
+            syn::WherePredicate::Lifetime(__0) => {
+                f.debug_tuple("Lifetime").field(__0).finish();
+            }
+            syn::WherePredicate::Eq(__0) => {
+                f.debug_tuple("Eq").field(__0).finish();
+            }
         }
     }
 }

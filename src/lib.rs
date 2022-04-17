@@ -193,7 +193,8 @@ pub trait Debug {
 /// This is the main entry point for non-debuging use. For Debugging, see the
 /// [`crate::dbg`] macro.
 ///
-/// Note that this takes ownership of `x`, but becasuse `impl<T: + Debug> Debug for &T`, you can still borrow.
+/// Note that this takes ownership of `x`, but becasuse `impl<T: + Debug> Debug
+/// for &T`, you can still borrow.
 ///
 /// Eg:
 ///

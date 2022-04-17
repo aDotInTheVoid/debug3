@@ -2,13 +2,21 @@
 //
 // Crate Name: `proc_macro2`
 // Crate Version: `1.0.37`
-impl<>  crate::Debug for proc_macro2::Delimiter<> where  {
+impl crate::Debug for proc_macro2::Delimiter {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            proc_macro2::Delimiter::Parenthesis => { f.debug_tuple("Parenthesis").finish(); }
-            proc_macro2::Delimiter::Brace => { f.debug_tuple("Brace").finish(); }
-            proc_macro2::Delimiter::Bracket => { f.debug_tuple("Bracket").finish(); }
-            proc_macro2::Delimiter::None => { f.debug_tuple("None").finish(); }
+            proc_macro2::Delimiter::Parenthesis => {
+                f.debug_tuple("Parenthesis").finish();
+            }
+            proc_macro2::Delimiter::Brace => {
+                f.debug_tuple("Brace").finish();
+            }
+            proc_macro2::Delimiter::Bracket => {
+                f.debug_tuple("Bracket").finish();
+            }
+            proc_macro2::Delimiter::None => {
+                f.debug_tuple("None").finish();
+            }
         }
     }
 }
@@ -16,7 +24,7 @@ impl<>  crate::Debug for proc_macro2::Delimiter<> where  {
 // Skipping proc_macro2::Ident due to hidden fields
 // Skipping proc_macro2::token_stream::IntoIter due to hidden fields
 // Skipping proc_macro2::LexError due to hidden fields
-impl<> crate::Debug for proc_macro2::LineColumn<>  where  {
+impl crate::Debug for proc_macro2::LineColumn {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("LineColumn")
             .field("line", &self.line)
@@ -26,11 +34,15 @@ impl<> crate::Debug for proc_macro2::LineColumn<>  where  {
 }
 // Skipping proc_macro2::Literal due to hidden fields
 // Skipping proc_macro2::Punct due to hidden fields
-impl<>  crate::Debug for proc_macro2::Spacing<> where  {
+impl crate::Debug for proc_macro2::Spacing {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            proc_macro2::Spacing::Alone => { f.debug_tuple("Alone").finish(); }
-            proc_macro2::Spacing::Joint => { f.debug_tuple("Joint").finish(); }
+            proc_macro2::Spacing::Alone => {
+                f.debug_tuple("Alone").finish();
+            }
+            proc_macro2::Spacing::Joint => {
+                f.debug_tuple("Joint").finish();
+            }
         }
     }
 }

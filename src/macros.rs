@@ -44,12 +44,13 @@
 ///
 /// # Differences to [`std::dbg`]
 ///
-/// When invoked on multiple items, the output is grouped, to be clearer in loops.
+/// When invoked on multiple items, the output is grouped, to be clearer in
+/// loops.
 ///
 /// ```rust
 /// let x = [1, 2, 3];
 /// for i in 0..x.len() {
-///        dbg!(i, x[i]);
+///     dbg!(i, x[i]);
 /// }
 /// ```
 ///
