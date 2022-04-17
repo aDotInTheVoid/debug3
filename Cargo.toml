@@ -12,7 +12,7 @@ repository = "https://github.com/aDotInTheVoid/debug3/"
 debug3-derive = { version = "0.1.0", path = "derive" }
 
 # Thinks we impl for
-proc-macro2 = "1.0.37"
+proc-macro2 = {version = "1.0.37", features = ["span-locations"] }
 rustdoc-types = "0.10.0"
 syn = { version = "1.0.91", optional = false, features = ["full"] }
 

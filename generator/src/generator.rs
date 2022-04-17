@@ -86,13 +86,18 @@ impl Generator<'_> {
 
         let path = self.krate.paths[&item.id].path.join("::");
 
-        if self
-            .config
-            .exclude
-            .iter()
-            .any(|x| x == path.split_once("::").unwrap().1)
-        {
-            writeln!(out, "// Skiping {path} due to config")?;
+        // if self
+        //     .config
+        //     .exclude
+        //     .iter()
+        //     .any(|x| x == path.split_once("::").unwrap().1)
+        // {
+        //     writeln!(out, "// Skiping {path} due to config")?;
+        //     return Ok(());
+        // }
+        let simple_name = path.split_once("::").unwrap().1;
+        if let Some(p) = self.config.exclude.iter().find(|x| x.matches(simple_name)) {
+            writeln!(out, "// Skiping {path} due to config rule {p}")?;
             return Ok(());
         }
 
@@ -172,14 +177,9 @@ impl Generator<'_> {
         let krate = self.krate;
 
         let path = krate.paths[&item.id].path.join("::");
-
-        if self
-            .config
-            .exclude
-            .iter()
-            .any(|x| x == path.split_once("::").unwrap().1)
-        {
-            writeln!(out, "// Skiping {path} due to config")?;
+        let simple_name = path.split_once("::").unwrap().1;
+        if let Some(p) = self.config.exclude.iter().find(|x| x.matches(simple_name)) {
+            writeln!(out, "// Skiping {path} due to config rule {p}")?;
             return Ok(());
         }
 

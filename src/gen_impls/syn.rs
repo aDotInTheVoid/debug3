@@ -10,48 +10,12 @@ impl<> crate::Debug for syn::Abi<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Abstract<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Abstract")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Add<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Add")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::AddEq<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("AddEq")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::And<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("And")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::AndAnd<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("AndAnd")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::AndEq<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("AndEq")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
+// Skiping syn::token::Abstract due to config rule token::*
+// Skiping syn::token::Add due to config rule token::*
+// Skiping syn::token::AddEq due to config rule token::*
+// Skiping syn::token::And due to config rule token::*
+// Skiping syn::token::AndAnd due to config rule token::*
+// Skiping syn::token::AndEq due to config rule token::*
 impl<> crate::Debug for syn::AngleBracketedGenericArguments<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("AngleBracketedGenericArguments")
@@ -74,27 +38,9 @@ impl<> crate::Debug for syn::Arm<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::As<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("As")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Async<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Async")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::At<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("At")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
+// Skiping syn::token::As due to config rule token::*
+// Skiping syn::token::Async due to config rule token::*
+// Skiping syn::token::At due to config rule token::*
 impl<>  crate::Debug for syn::AttrStyle<> where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -114,27 +60,9 @@ impl<> crate::Debug for syn::Attribute<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Auto<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Auto")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Await<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Await")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Bang<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Bang")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
+// Skiping syn::token::Auto due to config rule token::*
+// Skiping syn::token::Await due to config rule token::*
+// Skiping syn::token::Bang due to config rule token::*
 impl<> crate::Debug for syn::BareFnArg<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("BareFnArg")
@@ -144,13 +72,7 @@ impl<> crate::Debug for syn::BareFnArg<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Become<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Become")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::Become due to config rule token::*
 impl<>  crate::Debug for syn::BinOp<> where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -212,76 +134,16 @@ impl<> crate::Debug for syn::BoundLifetimes<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Box<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Box")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Brace<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Brace")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Bracket<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Bracket")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Break<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Break")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Caret<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Caret")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::CaretEq<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("CaretEq")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Colon<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Colon")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Colon2<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Colon2")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Comma<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Comma")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Const<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Const")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::Box due to config rule token::*
+// Skiping syn::token::Brace due to config rule token::*
+// Skiping syn::token::Bracket due to config rule token::*
+// Skiping syn::token::Break due to config rule token::*
+// Skiping syn::token::Caret due to config rule token::*
+// Skiping syn::token::CaretEq due to config rule token::*
+// Skiping syn::token::Colon due to config rule token::*
+// Skiping syn::token::Colon2 due to config rule token::*
+// Skiping syn::token::Comma due to config rule token::*
+// Skiping syn::token::Const due to config rule token::*
 impl<> crate::Debug for syn::ConstParam<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ConstParam")
@@ -304,20 +166,8 @@ impl<> crate::Debug for syn::Constraint<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Continue<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Continue")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Crate<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Crate")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::Continue due to config rule token::*
+// Skiping syn::token::Crate due to config rule token::*
 // Skipping syn::buffer::Cursor due to hidden fields
 impl<>  crate::Debug for syn::Data<> where  {
     fn fmt(&self, f: &mut crate::Formatter) {
@@ -354,13 +204,7 @@ impl<> crate::Debug for syn::DataUnion<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Default<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Default")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::Default due to config rule token::*
 impl<> crate::Debug for syn::DeriveInput<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("DeriveInput")
@@ -372,97 +216,19 @@ impl<> crate::Debug for syn::DeriveInput<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Div<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Div")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::DivEq<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("DivEq")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Do<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Do")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Dollar<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Dollar")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Dot<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Dot")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Dot2<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Dot2")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Dot3<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Dot3")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::DotDotEq<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("DotDotEq")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Dyn<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Dyn")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Else<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Else")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Enum<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Enum")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Eq<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Eq")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::EqEq<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("EqEq")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
+// Skiping syn::token::Div due to config rule token::*
+// Skiping syn::token::DivEq due to config rule token::*
+// Skiping syn::token::Do due to config rule token::*
+// Skiping syn::token::Dollar due to config rule token::*
+// Skiping syn::token::Dot due to config rule token::*
+// Skiping syn::token::Dot2 due to config rule token::*
+// Skiping syn::token::Dot3 due to config rule token::*
+// Skiping syn::token::DotDotEq due to config rule token::*
+// Skiping syn::token::Dyn due to config rule token::*
+// Skiping syn::token::Else due to config rule token::*
+// Skiping syn::token::Enum due to config rule token::*
+// Skiping syn::token::Eq due to config rule token::*
+// Skiping syn::token::EqEq due to config rule token::*
 // Skipping syn::parse::Error due to hidden fields
 impl<>  crate::Debug for syn::Expr<> where  {
     fn fmt(&self, f: &mut crate::Formatter) {
@@ -784,7 +550,7 @@ impl<> crate::Debug for syn::ExprRange<>  where  {
             .finish()
     }
 }
-// Skiping syn::ExprReference due to config
+// Skiping syn::ExprReference due to config rule ExprReference
 impl<> crate::Debug for syn::ExprRepeat<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprRepeat")
@@ -892,20 +658,8 @@ impl<> crate::Debug for syn::ExprYield<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Extern<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Extern")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::FatArrow<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("FatArrow")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
+// Skiping syn::token::Extern due to config rule token::*
+// Skiping syn::token::FatArrow due to config rule token::*
 impl<> crate::Debug for syn::Field<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Field")
@@ -971,20 +725,8 @@ impl<> crate::Debug for syn::File<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Final<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Final")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Fn<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Fn")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::Final due to config rule token::*
+// Skiping syn::token::Fn due to config rule token::*
 impl<>  crate::Debug for syn::FnArg<> where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -993,13 +735,7 @@ impl<>  crate::Debug for syn::FnArg<> where  {
         }
     }
 }
-impl<> crate::Debug for syn::token::For<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("For")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::For due to config rule token::*
 impl<>  crate::Debug for syn::ForeignItem<> where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -1056,13 +792,7 @@ impl<> crate::Debug for syn::ForeignItemType<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Ge<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Ge")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
+// Skiping syn::token::Ge due to config rule token::*
 impl<>  crate::Debug for syn::GenericArgument<> where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -1101,34 +831,10 @@ impl<> crate::Debug for syn::Generics<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Group<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Group")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Gt<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Gt")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::If<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("If")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Impl<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Impl")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::Group due to config rule token::*
+// Skiping syn::token::Gt due to config rule token::*
+// Skiping syn::token::If due to config rule token::*
+// Skiping syn::token::Impl due to config rule token::*
 // Skipping syn::ImplGenerics due to hidden fields
 impl<>  crate::Debug for syn::ImplItem<> where  {
     fn fmt(&self, f: &mut crate::Formatter) {
@@ -1193,13 +899,7 @@ impl<> crate::Debug for syn::ImplItemType<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::In<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("In")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::In due to config rule token::*
 impl<> crate::Debug for syn::Index<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Index")
@@ -1443,13 +1143,7 @@ impl<> crate::Debug for syn::ItemUse<>  where  {
 }
 // Skipping syn::punctuated::Iter due to hidden fields
 // Skipping syn::punctuated::IterMut due to hidden fields
-impl<> crate::Debug for syn::token::LArrow<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("LArrow")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
+// Skiping syn::token::LArrow due to config rule token::*
 impl<> crate::Debug for syn::Label<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Label")
@@ -1458,20 +1152,8 @@ impl<> crate::Debug for syn::Label<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Le<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Le")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Let<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Let")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::Le due to config rule token::*
+// Skiping syn::token::Let due to config rule token::*
 impl<> crate::Debug for syn::Lifetime<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Lifetime")
@@ -1530,20 +1212,8 @@ impl<> crate::Debug for syn::Local<>  where  {
     }
 }
 // Skipping syn::parse::Lookahead1 due to hidden fields
-impl<> crate::Debug for syn::token::Loop<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Loop")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Lt<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Lt")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
+// Skiping syn::token::Loop due to config rule token::*
+// Skiping syn::token::Lt due to config rule token::*
 impl<> crate::Debug for syn::Macro<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Macro")
@@ -1554,13 +1224,7 @@ impl<> crate::Debug for syn::Macro<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Macro<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Macro")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::Macro due to config rule token::*
 impl<>  crate::Debug for syn::MacroDelimiter<> where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -1570,13 +1234,7 @@ impl<>  crate::Debug for syn::MacroDelimiter<> where  {
         }
     }
 }
-impl<> crate::Debug for syn::token::Match<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Match")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::Match due to config rule token::*
 impl<>  crate::Debug for syn::Member<> where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -1622,41 +1280,11 @@ impl<> crate::Debug for syn::MethodTurbofish<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Mod<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Mod")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Move<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Move")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::MulEq<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("MulEq")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Mut<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Mut")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Ne<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Ne")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
+// Skiping syn::token::Mod due to config rule token::*
+// Skiping syn::token::Move due to config rule token::*
+// Skiping syn::token::MulEq due to config rule token::*
+// Skiping syn::token::Mut due to config rule token::*
+// Skiping syn::token::Ne due to config rule token::*
 impl<>  crate::Debug for syn::NestedMeta<> where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -1671,34 +1299,10 @@ impl<> crate::Debug for syn::parse::Nothing<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Or<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Or")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::OrEq<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("OrEq")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::OrOr<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("OrOr")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Override<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Override")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::Or due to config rule token::*
+// Skiping syn::token::OrEq due to config rule token::*
+// Skiping syn::token::OrOr due to config rule token::*
+// Skiping syn::token::Override due to config rule token::*
 impl<T,P>  crate::Debug for syn::punctuated::Pair<T,P> where T : crate::Debug,P : crate::Debug {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -1709,13 +1313,7 @@ impl<T,P>  crate::Debug for syn::punctuated::Pair<T,P> where T : crate::Debug,P 
 }
 // Skipping syn::punctuated::Pairs due to hidden fields
 // Skipping syn::punctuated::PairsMut due to hidden fields
-impl<> crate::Debug for syn::token::Paren<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Paren")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::Paren due to config rule token::*
 impl<> crate::Debug for syn::ParenthesizedGenericArguments<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ParenthesizedGenericArguments")
@@ -1912,13 +1510,7 @@ impl<> crate::Debug for syn::PathSegment<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Pound<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Pound")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
+// Skiping syn::token::Pound due to config rule token::*
 impl<> crate::Debug for syn::PredicateEq<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PredicateEq")
@@ -1947,20 +1539,8 @@ impl<> crate::Debug for syn::PredicateType<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Priv<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Priv")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Pub<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Pub")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::Priv due to config rule token::*
+// Skiping syn::token::Pub due to config rule token::*
 // Skipping syn::punctuated::Punctuated due to hidden fields
 impl<> crate::Debug for syn::QSelf<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
@@ -1973,20 +1553,8 @@ impl<> crate::Debug for syn::QSelf<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Question<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Question")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::RArrow<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("RArrow")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
+// Skiping syn::token::Question due to config rule token::*
+// Skiping syn::token::RArrow due to config rule token::*
 impl<>  crate::Debug for syn::RangeLimits<> where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -2005,34 +1573,10 @@ impl<> crate::Debug for syn::Receiver<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Ref<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Ref")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Rem<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Rem")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::RemEq<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("RemEq")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Return<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Return")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::Ref due to config rule token::*
+// Skiping syn::token::Rem due to config rule token::*
+// Skiping syn::token::RemEq due to config rule token::*
+// Skiping syn::token::Return due to config rule token::*
 impl<>  crate::Debug for syn::ReturnType<> where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -2041,55 +1585,13 @@ impl<>  crate::Debug for syn::ReturnType<> where  {
         }
     }
 }
-impl<> crate::Debug for syn::token::SelfType<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("SelfType")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::SelfValue<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("SelfValue")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Semi<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Semi")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Shl<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Shl")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::ShlEq<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("ShlEq")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Shr<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Shr")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::ShrEq<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("ShrEq")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
+// Skiping syn::token::SelfType due to config rule token::*
+// Skiping syn::token::SelfValue due to config rule token::*
+// Skiping syn::token::Semi due to config rule token::*
+// Skiping syn::token::Shl due to config rule token::*
+// Skiping syn::token::ShlEq due to config rule token::*
+// Skiping syn::token::Shr due to config rule token::*
+// Skiping syn::token::ShrEq due to config rule token::*
 impl<> crate::Debug for syn::Signature<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Signature")
@@ -2107,20 +1609,8 @@ impl<> crate::Debug for syn::Signature<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Star<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Star")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Static<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Static")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::Star due to config rule token::*
+// Skiping syn::token::Static due to config rule token::*
 // Skipping syn::parse::StepCursor due to hidden fields
 impl<>  crate::Debug for syn::Stmt<> where  {
     fn fmt(&self, f: &mut crate::Formatter) {
@@ -2140,49 +1630,13 @@ impl<>  crate::Debug for syn::StrStyle<> where  {
         }
     }
 }
-impl<> crate::Debug for syn::token::Struct<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Struct")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Sub<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Sub")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::SubEq<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("SubEq")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Super<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Super")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Tilde<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Tilde")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
+// Skiping syn::token::Struct due to config rule token::*
+// Skiping syn::token::Sub due to config rule token::*
+// Skiping syn::token::SubEq due to config rule token::*
+// Skiping syn::token::Super due to config rule token::*
+// Skiping syn::token::Tilde due to config rule token::*
 // Skipping syn::buffer::TokenBuffer due to hidden fields
-impl<> crate::Debug for syn::token::Trait<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Trait")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::Trait due to config rule token::*
 impl<> crate::Debug for syn::TraitBound<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TraitBound")
@@ -2259,14 +1713,9 @@ impl<> crate::Debug for syn::TraitItemType<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Try<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Try")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::Try due to config rule token::*
 // Skipping syn::Turbofish due to hidden fields
+// Skiping syn::token::Type due to config rule token::*
 impl<>  crate::Debug for syn::Type<> where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -2287,13 +1736,6 @@ impl<>  crate::Debug for syn::Type<> where  {
             syn::Type::Verbatim (__0, ) => { f.debug_tuple("Verbatim").field(__0).finish(); }
             _ => { "???".fmt(f) }
         }
-    }
-}
-impl<> crate::Debug for syn::token::Type<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Type")
-            .field("span", &self.span)
-            .finish()
     }
 }
 impl<> crate::Debug for syn::TypeArray<>  where  {
@@ -2438,13 +1880,7 @@ impl<> crate::Debug for syn::TypeTuple<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Typeof<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Typeof")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::Typeof due to config rule token::*
 impl<>  crate::Debug for syn::UnOp<> where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -2454,41 +1890,11 @@ impl<>  crate::Debug for syn::UnOp<> where  {
         }
     }
 }
-impl<> crate::Debug for syn::token::Underscore<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Underscore")
-            .field("spans", &self.spans)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Union<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Union")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Unsafe<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Unsafe")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Unsized<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Unsized")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Use<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Use")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::Underscore due to config rule token::*
+// Skiping syn::token::Union due to config rule token::*
+// Skiping syn::token::Unsafe due to config rule token::*
+// Skiping syn::token::Unsized due to config rule token::*
+// Skiping syn::token::Use due to config rule token::*
 impl<> crate::Debug for syn::UseGlob<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("UseGlob")
@@ -2558,13 +1964,7 @@ impl<> crate::Debug for syn::Variant<>  where  {
             .finish()
     }
 }
-impl<> crate::Debug for syn::token::Virtual<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Virtual")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::Virtual due to config rule token::*
 impl<> crate::Debug for syn::VisCrate<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("VisCrate")
@@ -2599,13 +1999,7 @@ impl<>  crate::Debug for syn::Visibility<> where  {
         }
     }
 }
-impl<> crate::Debug for syn::token::Where<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Where")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::Where due to config rule token::*
 impl<> crate::Debug for syn::WhereClause<>  where  {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("WhereClause")
@@ -2623,17 +2017,5 @@ impl<>  crate::Debug for syn::WherePredicate<> where  {
         }
     }
 }
-impl<> crate::Debug for syn::token::While<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("While")
-            .field("span", &self.span)
-            .finish()
-    }
-}
-impl<> crate::Debug for syn::token::Yield<>  where  {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Yield")
-            .field("span", &self.span)
-            .finish()
-    }
-}
+// Skiping syn::token::While due to config rule token::*
+// Skiping syn::token::Yield due to config rule token::*

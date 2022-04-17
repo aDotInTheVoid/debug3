@@ -1,10 +1,10 @@
-use syn::{punctuated::Punctuated, LitByte, LitByteStr, LitChar, LitFloat, LitInt, LitStr};
+use syn::punctuated::Punctuated;
 
 use crate::{Debug, Formatter};
 
 macro_rules! lit {
-    ($($ty:path),*) => {
-        $(impl Debug for $ty {
+    ($($ty:ident),*) => {
+        $(impl Debug for syn :: $ty {
             fn fmt(&self, f: &mut Formatter) {
                 f.debug_struct(stringify!($ty))
                     .field("token", &format_args!("{}", self.token()))
@@ -60,4 +60,126 @@ impl Debug for syn::ExprReference {
             .field("expr", &self.expr)
             .finish()
     }
+}
+
+macro_rules! token {
+    ($($name:ident)*) => {
+        $(
+            impl Debug for syn :: token :: $name {
+                fn fmt(&self, f: &mut Formatter) {
+                    f.debug_struct(stringify!($name)).finish()
+                }
+            }
+        )*
+    };
+}
+
+token! {
+    // Keywords
+    Abstract
+    As
+    Async
+    Auto
+    Await
+    Become
+    Box
+    Break
+    Const
+    Continue
+    Crate
+    Default
+    Do
+    Dyn
+    Else
+    Enum
+    Extern
+    Final
+    Fn
+    For
+    If
+    Impl
+    In
+    Let
+    Loop
+    Macro
+    Match
+    Mod
+    Move
+    Mut
+    Override
+    Priv
+    Pub
+    Ref
+    Return
+    SelfType
+    SelfValue
+    Static
+    Struct
+    Super
+    Trait
+    Try
+    Type
+    Typeof
+    Union
+    Unsafe
+    Unsized
+    Use
+    Virtual
+    Where
+    While
+    Yield
+    // Punctuation
+    Add
+    AddEq
+    And
+    AndAnd
+    AndEq
+    At
+    Bang
+    Caret
+    CaretEq
+    Colon
+    Colon2
+    Comma
+    Div
+    DivEq
+    Dollar
+    Dot
+    Dot2
+    Dot3
+    DotDotEq
+    Eq
+    EqEq
+    Ge
+    Gt
+    Le
+    Lt
+    MulEq
+    Ne
+    Or
+    OrEq
+    OrOr
+    Pound
+    Question
+    RArrow
+    LArrow
+    Rem
+    RemEq
+    FatArrow
+    Semi
+    Shl
+    ShlEq
+    Shr
+    ShrEq
+    Star
+    Sub
+    SubEq
+    Tilde
+    // Delimeters
+    Brace
+    Bracket
+    Paren
+    Group
+    // Special for some reason
+    Underscore
 }

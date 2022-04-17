@@ -2,4 +2,7 @@
 exclude = []
 
 [syn]
-exclude = ["ExprReference"]
+exclude = ["ExprReference", "token::*"]
+
+[proc-macro2]
+exclude = []

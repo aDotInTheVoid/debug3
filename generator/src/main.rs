@@ -17,15 +17,30 @@ const CONF: &str = include_str!("../config.toml");
 const CARGO_MANIFEST_DIR: &str = env!("CARGO_MANIFEST_DIR");
 
 #[derive(Deserialize)]
-struct PackageConfig {
+struct PackageConfigToml {
     exclude: Vec<String>,
+}
+
+struct PackageConfig {
+    exclude: Vec<glob::Pattern>,
+}
+
+impl PackageConfig {
+    fn new(toml: &PackageConfigToml) -> Result<Self> {
+        let exclude = toml
+            .exclude
+            .iter()
+            .map(|s| glob::Pattern::new(s))
+            .collect::<Result<_, _>>()?;
+        Ok(Self { exclude })
+    }
 }
 
 fn main() -> Result<()> {
     let args = Args::parse();
-    let configs: HashMap<String, PackageConfig> = toml::from_str(CONF)?;
+    let configs: HashMap<String, PackageConfigToml> = toml::from_str(CONF)?;
     let package = &args.package;
-    let config = &configs[package];
+    let config = PackageConfig::new(&configs[package])?;
 
     let workspace_root = Path::new(CARGO_MANIFEST_DIR).parent().unwrap();
 

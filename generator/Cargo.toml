@@ -11,6 +11,7 @@ edition = "2021"
 anyhow = "1.0.56"
 clap = { version = "3.1.9", features = ["derive"] }
 fs-err = "2.7.0"
+glob = "0.3.0"
 rustdoc-types = "0.10.0"
 serde = "1.0.136"
 serde_json = "1.0.79"
