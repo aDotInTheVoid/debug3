@@ -12,6 +12,9 @@ mod algorithm;
 mod convenience;
 mod ring;
 
+mod gen_impls;
+mod hand_impls;
+
 // Target line width.
 const MARGIN: isize = 89;
 

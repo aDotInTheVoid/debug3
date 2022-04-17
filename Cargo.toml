@@ -10,12 +10,16 @@ repository = "https://github.com/aDotInTheVoid/debug3/"
 
 [dependencies]
 debug3-derive = { version = "0.1.0", path = "derive" }
+proc-macro2 = "1.0.37"
+syn = { version = "1.0.91", optional = false }
 
 [workspace]
 members = [
     ".",
     "./derive"
 ]
+
+exclude = ["generator"]
 
 [dev-dependencies]
 trybuild = "1.0.56"
