@@ -9,3 +9,9 @@ exclude = ["TokenTree"]
 
 [serde_json]
 exclude = ["Value"]
+
+[hashbrown]
+exclude = [
+ #   "hash_map::Entry", # Cannot write out entry bound
+ #   "hash_map::EntryRef",
+]

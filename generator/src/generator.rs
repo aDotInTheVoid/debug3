@@ -1,8 +1,17 @@
-use anyhow::{anyhow, bail, Result};
-use rustdoc_types::{Crate, Enum, GenericParamDefKind, Generics, Item, ItemEnum, Struct, Variant};
-use std::fmt::Write;
+use anyhow::{anyhow, bail, ensure, Context, Result};
+use rustdoc_types::{
+    Crate, Enum, GenericBound, GenericParamDefKind, Generics, Id, Item, ItemEnum, Struct, Type,
+    Variant, WherePredicate,
+};
+use std::{borrow::Borrow, collections::HashMap, fmt::Write};
 
 use crate::PackageConfig;
+
+macro_rules! here {
+    ($message:tt) => {
+        format!("[{}:{}] {}", file!(), line!(), format!($message))
+    };
+}
 
 struct Generator<'a> {
     krate: &'a Crate,
@@ -53,38 +62,9 @@ pub(crate) fn generate(krate: &Crate, config: &PackageConfig) -> Result<String> 
     Ok(gen.out)
 }
 
-fn extract_generics(generics: &Generics) -> Result<(String, String, String)> {
-    let mut impl_ = String::new();
-    let mut type_ = String::new();
-    let mut where_ = String::new();
-
-    for i in &generics.params {
-        match &i.kind {
-            GenericParamDefKind::Lifetime { .. } => {
-                write!(impl_, "{},", i.name)?;
-                write!(type_, "{},", i.name)?;
-            }
-            GenericParamDefKind::Type { .. } => {
-                write!(impl_, "{},", i.name)?;
-                write!(type_, "{},", i.name)?;
-                write!(where_, "{} : crate::Debug,", i.name)?;
-            }
-            GenericParamDefKind::Const { .. } => todo!(),
-        }
-    }
-    // Remove trailing comma
-    impl_.pop();
-    type_.pop();
-    where_.pop();
-
-    Ok((impl_, type_, where_))
-}
 impl Generator<'_> {
     fn generate_enum(&mut self, item: &Item, enumm: &Enum) -> Result<()> {
-        let out = &mut self.out;
-        let krate = self.krate;
-
-        let path = self.krate.paths[&item.id].path.join("::");
+        let path = self.path_of(&item.id)?;
 
         // if self
         //     .config
@@ -92,67 +72,69 @@ impl Generator<'_> {
         //     .iter()
         //     .any(|x| x == path.split_once("::").unwrap().1)
         // {
-        //     writeln!(out, "// Skiping {path} due to config")?;
+        //     writeln!(self.out, "// Skiping {path} due to config")?;
         //     return Ok(());
         // }
         let simple_name = path.split_once("::").unwrap().1;
         if let Some(p) = self.config.exclude.iter().find(|x| x.matches(simple_name)) {
-            writeln!(out, "// Skiping {path} due to config rule {p}")?;
+            writeln!(self.out, "// Skiping {path} due to config rule {p}")?;
             return Ok(());
         }
 
-        let (igen, tgen, where_) = extract_generics(&enumm.generics)?;
+        let (igen, tgen, where_) = self
+            .extract_generics(&enumm.generics)
+            .with_context(|| here!("Cannot extract generics for {path}"))?;
 
         writeln!(
-            out,
+            self.out,
             "impl<{igen}>  crate::Debug for {path}<{tgen}> where {where_} {{"
         )?;
-        writeln!(out, "    fn fmt(&self, f: &mut crate::Formatter) {{")?;
-        writeln!(out, "        match self {{")?;
+        writeln!(self.out, "    fn fmt(&self, f: &mut crate::Formatter) {{")?;
+        writeln!(self.out, "        match self {{")?;
 
         for i in &enumm.variants {
-            let v_item = &krate.index[i];
+            let v_item = &self.krate.index[i];
             let v_name = v_item.name.as_ref().ok_or_else(|| anyhow!("No name"))?;
 
             if let ItemEnum::Variant(varient) = &v_item.inner {
-                write!(out, "            {path}::{v_name} ")?;
+                write!(self.out, "            {path}::{v_name} ")?;
                 match varient {
                     Variant::Plain => {
-                        writeln!(out, "=> {{ f.debug_tuple({v_name:?}).finish(); }}")?
+                        writeln!(self.out, "=> {{ f.debug_tuple({v_name:?}).finish(); }}")?
                     }
                     Variant::Tuple(ids) => {
-                        write!(out, "(")?;
+                        write!(self.out, "(")?;
                         for i in 0..ids.len() {
-                            write!(out, "__{}, ", i)?;
+                            write!(self.out, "__{}, ", i)?;
                         }
-                        write!(out, ") => {{ f.debug_tuple({v_name:?})")?;
+                        write!(self.out, ") => {{ f.debug_tuple({v_name:?})")?;
                         for i in 0..ids.len() {
-                            write!(out, ".field(__{i})")?;
+                            write!(self.out, ".field(__{i})")?;
                         }
-                        writeln!(out, ".finish(); }}")?;
+                        writeln!(self.out, ".finish(); }}")?;
                     }
                     Variant::Struct(ids) => {
-                        write!(out, "{{")?;
+                        write!(self.out, "{{")?;
 
                         for i in ids {
-                            let f_name = krate.index[i]
+                            let f_name = self.krate.index[i]
                                 .name
                                 .as_ref()
                                 .ok_or_else(|| anyhow!("No name"))?;
-                            write!(out, "{f_name}, ")?;
+                            write!(self.out, "{f_name}, ")?;
                         }
 
-                        writeln!(out, " }} => {{")?;
-                        writeln!(out, "            f.debug_struct({v_name:?})")?;
+                        writeln!(self.out, " }} => {{")?;
+                        writeln!(self.out, "            f.debug_struct({v_name:?})")?;
                         for i in ids {
-                            let f_name = krate.index[i]
+                            let f_name = self.krate.index[i]
                                 .name
                                 .as_ref()
                                 .ok_or_else(|| anyhow!("No name"))?;
-                            writeln!(out, "                .field({f_name:?}, {f_name})")?;
+                            writeln!(self.out, "                .field({f_name:?}, {f_name})")?;
                         }
-                        writeln!(out, "                .finish()")?;
-                        writeln!(out, "        }}")?;
+                        writeln!(self.out, "                .finish()")?;
+                        writeln!(self.out, "        }}")?;
                     }
                 }
             } else {
@@ -162,69 +144,247 @@ impl Generator<'_> {
 
         // TODO: Document #[non_exaustive] in JSON
         if enumm.variants_stripped || item.attrs.iter().any(|x| x == "#[non_exhaustive]") {
-            writeln!(out, "            _ => {{ \"???\".fmt(f) }}")?;
+            writeln!(self.out, "            _ => {{ \"???\".fmt(f) }}")?;
         }
 
-        writeln!(out, "        }}")?;
-        writeln!(out, "    }}")?;
-        writeln!(out, "}}")?;
+        writeln!(self.out, "        }}")?;
+        writeln!(self.out, "    }}")?;
+        writeln!(self.out, "}}")?;
 
         Ok(())
     }
 
     fn generate_struct(&mut self, item: &Item, strukt: &Struct) -> Result<()> {
-        let out = &mut self.out;
-        let krate = self.krate;
+        // let path = self.path_of(&item.id).context()?;
+        let path = match self.path_of(&item.id) {
+            Ok(path) => path,
+            Err(_) => {
+                // Not all public items have paths
+                // See https://github.com/rust-lang/rust/issues/96161
+                writeln!(
+                    self.out,
+                    "// Skiping struct {:?} due to not having path",
+                    item.name
+                )?;
+                return Ok(());
+            }
+        };
 
-        let path = krate.paths[&item.id].path.join("::");
         let simple_name = path.split_once("::").unwrap().1;
         if let Some(p) = self.config.exclude.iter().find(|x| x.matches(simple_name)) {
-            writeln!(out, "// Skiping {path} due to config rule {p}")?;
+            writeln!(self.out, "// Skiping {path} due to config rule {p}")?;
             return Ok(());
         }
 
         if strukt.fields_stripped {
-            writeln!(out, "// Skipping {path} due to hidden fields")?;
+            writeln!(self.out, "// Skipping {path} due to hidden fields")?;
             return Ok(());
         }
 
-        let (igen, tgen, where_) = extract_generics(&strukt.generics)?;
+        let (igen, tgen, where_) = self
+            .extract_generics(&strukt.generics)
+            .with_context(|| here!("Cannot get generics for struct {path}"))?;
 
         writeln!(
-            out,
+            self.out,
             "impl<{igen}> crate::Debug for {path}<{tgen}>  where {where_} {{"
         )?;
-        writeln!(out, "    fn fmt(&self, f: &mut crate::Formatter) {{")?;
+        writeln!(self.out, "    fn fmt(&self, f: &mut crate::Formatter) {{")?;
 
         let name = item.name.as_ref().ok_or_else(|| anyhow!("No name"))?;
 
         let striped = strukt.fields_stripped;
 
         if striped {
-            writeln!(out, "        // Warning: Striped Fields")?;
+            writeln!(self.out, "        // Warning: Striped Fields")?;
         }
 
         match strukt.struct_type {
             rustdoc_types::StructType::Plain => {
-                writeln!(out, "        f.debug_struct({name:?})")?;
+                writeln!(self.out, "        f.debug_struct({name:?})")?;
                 for i in &strukt.fields {
-                    let f_name = krate.index[i]
+                    let f_name = self.krate.index[i]
                         .name
                         .as_ref()
                         .ok_or_else(|| anyhow!("No name"))?;
-                    writeln!(out, "            .field({f_name:?}, &self.{f_name})")?;
+                    writeln!(self.out, "            .field({f_name:?}, &self.{f_name})")?;
                 }
-                writeln!(out, "            .finish()")?;
+                writeln!(self.out, "            .finish()")?;
             }
             rustdoc_types::StructType::Tuple => {}
             rustdoc_types::StructType::Unit => {
-                writeln!(out, "        f.debug_struct({name:?})")?;
-                writeln!(out, "            .finish()")?;
+                writeln!(self.out, "        f.debug_struct({name:?})")?;
+                writeln!(self.out, "            .finish()")?;
             }
         }
 
-        writeln!(out, "    }}\n}}")?;
+        writeln!(self.out, "    }}\n}}")?;
 
         Ok(())
+    }
+
+    fn extract_generics(&self, generics: &Generics) -> Result<(String, String, String)> {
+        let mut impl_ = String::new();
+        let mut type_ = String::new();
+        let mut where_ = String::new();
+
+        struct Bounds {
+            bounds: String,
+            has_default: bool,
+            useing_default: bool,
+        }
+
+        let mut map = HashMap::<String, Bounds>::new();
+
+        let mut order = Vec::new();
+
+        for i in &generics.params {
+            match &i.kind {
+                GenericParamDefKind::Lifetime { .. } => {
+                    // write!(impl_, "{},", i.name)?;
+                    // write!(type_, "{},", i.name)?;
+                    order.push(i.to_owned());
+                }
+                GenericParamDefKind::Type {
+                    bounds, default, ..
+                } => {
+                    let mut n_bounds = Bounds {
+                        bounds: String::new(),
+                        has_default: default.is_some(),
+                        useing_default: false,
+                    };
+                    match self.write_where_pred(&Type::Generic(i.name.to_owned()), &bounds) {
+                        Ok(b) => n_bounds.bounds = b,
+                        Err(e) => {
+                            if n_bounds.has_default {
+                                n_bounds.useing_default = true;
+                            } else {
+                                return Err(e);
+                            }
+                        }
+                    }
+                    map.insert(i.name.to_owned(), n_bounds);
+                    order.push(i.to_owned());
+                }
+                GenericParamDefKind::Const { .. } => todo!(),
+            }
+        }
+
+        for i in &generics.where_predicates {
+            match i {
+                WherePredicate::BoundPredicate { type_, bounds } => {
+                    if let Type::Generic(name) = type_ {
+                        let old_bounds = map.get_mut(name).unwrap();
+                        match self.write_where_pred(type_, bounds) {
+                            Ok(b) => old_bounds.bounds.push_str(&b),
+                            Err(e) => {
+                                if old_bounds.has_default {
+                                    old_bounds.useing_default = true
+                                } else {
+                                    return Err(e);
+                                }
+                            }
+                        }
+                    } else {
+                        write!(where_, "{}", self.write_where_pred(type_, bounds)?)?;
+                    }
+                }
+                WherePredicate::RegionPredicate { lifetime, bounds } => todo!(),
+                WherePredicate::EqPredicate { lhs, rhs } => todo!(),
+            }
+        }
+
+        for i in &order {
+            match &i.kind {
+                GenericParamDefKind::Lifetime { outlives } => {
+                    ensure!(outlives.is_empty());
+                    write!(impl_, "{},", i.name)?;
+                    write!(type_, "{},", i.name)?;
+                }
+                GenericParamDefKind::Type { .. } => {
+                    let bounds = &map[&i.name];
+                    if !bounds.useing_default {
+                        write!(impl_, "{},", i.name)?;
+                        write!(type_, "{},", i.name)?;
+                        // // TODO: Perfect bounds
+                        write!(where_, "{} : crate::Debug,{}", i.name, bounds.bounds)?;
+                    }
+                }
+                GenericParamDefKind::Const { .. } => todo!(),
+            }
+        }
+
+        // Remove trailing comma
+        // impl_.pop();
+        // type_.pop();
+        // where_.pop();
+
+        Ok((impl_, type_, where_))
+    }
+
+    fn write_where_pred(&self, type_: &Type, bounds: &[GenericBound]) -> Result<String> {
+        let type_s = self.print_type(type_)?;
+        let bounds_s = bounds
+            .iter()
+            .map(|b| {
+                self.print_bound(b)
+                    .with_context(|| here!("Cannot create bound {type_s} implements {b:?}"))
+            })
+            .collect::<Result<Vec<_>, _>>()?
+            .join("+");
+        Ok(format!("{type_s}: {bounds_s},"))
+    }
+
+    fn path_of(&self, id: &Id) -> Result<String> {
+        Ok(self
+            .krate
+            .paths
+            .get(id)
+            .ok_or_else(|| anyhow!("No Path for {id:?}"))?
+            // .unwrap()
+            .path
+            .join("::"))
+    }
+
+    fn print_type(&self, ty: &Type) -> Result<String> {
+        match ty {
+            Type::ResolvedPath { id, .. } => self
+                .path_of(id)
+                .with_context(|| here!("Cannot print Resoved Path {id:?}")),
+            Type::Generic(name) => Ok(name.to_owned()),
+            Type::Primitive(_) => todo!(),
+            Type::FunctionPointer(_) => todo!(),
+            Type::Tuple(_) => todo!(),
+            Type::Slice(_) => todo!(),
+            Type::Array { .. } => todo!(),
+            Type::ImplTrait(_) => todo!(),
+            Type::Infer => todo!(),
+            Type::RawPointer { .. } => todo!(),
+            Type::BorrowedRef { .. } => todo!(),
+            Type::QualifiedPath { .. } => todo!(),
+        }
+    }
+
+    fn print_bound(&self, bound: &GenericBound) -> Result<String> {
+        match bound {
+            GenericBound::TraitBound {
+                trait_,
+                generic_params,
+                modifier,
+            } => {
+                ensure!(generic_params.len() == 0);
+
+                let trait_name = self
+                    .print_type(trait_)
+                    .with_context(|| here!("Cannot print bound {bound:?}"))?;
+
+                match modifier {
+                    rustdoc_types::TraitBoundModifier::None => Ok(trait_name),
+                    rustdoc_types::TraitBoundModifier::Maybe => Ok(format!("?{trait_name}")),
+                    rustdoc_types::TraitBoundModifier::MaybeConst => todo!(),
+                }
+            }
+            GenericBound::Outlives(name) => Ok(name.to_owned()),
+        }
     }
 }
