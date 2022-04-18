@@ -12,12 +12,8 @@
 // Skipping dashmap::iter_set::OwningIter due to hidden fields
 impl<'a, K, V, S> crate::Debug for dashmap::mapref::entry::Entry<'a, K, V, S>
 where
-    K: crate::Debug,
-    K:,
-    V: crate::Debug,
-    V:,
-    S: crate::Debug,
-    S:,
+    dashmap::mapref::entry::OccupiedEntry<'a, K, V, S>: crate::Debug,
+    dashmap::mapref::entry::VacantEntry<'a, K, V, S>: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -41,7 +37,6 @@ where
 impl<R> crate::Debug for dashmap::try_result::TryResult<R>
 where
     R: crate::Debug,
-    R:,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {

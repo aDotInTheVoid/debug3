@@ -23,7 +23,11 @@ impl crate::Debug for proc_macro2::Delimiter {
 // Skipping proc_macro2::Group due to hidden fields
 // Skipping proc_macro2::Ident due to hidden fields
 // Skipping proc_macro2::LexError due to hidden fields
-impl crate::Debug for proc_macro2::LineColumn {
+impl crate::Debug for proc_macro2::LineColumn
+where
+    usize: crate::Debug,
+    usize: crate::Debug,
+{
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("LineColumn")
             .field("line", &self.line)

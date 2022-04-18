@@ -29,7 +29,11 @@ impl crate::Debug for serde_json::error::Category {
         }
     }
 }
-impl<'a> crate::Debug for serde_json::map::Entry<'a> {
+impl<'a> crate::Debug for serde_json::map::Entry<'a>
+where
+    serde_json::map::VacantEntry<'a>: crate::Debug,
+    serde_json::map::OccupiedEntry<'a>: crate::Debug,
+{
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             serde_json::map::Entry::Vacant(__0) => {
@@ -49,7 +53,10 @@ impl<'a> crate::Debug for serde_json::map::Entry<'a> {
 // Skipping serde_json::map::VacantEntry due to hidden fields
 // Skipping serde_json::map::Values due to hidden fields
 // Skipping serde_json::map::ValuesMut due to hidden fields
-impl crate::Debug for serde_json::ser::CharEscape {
+impl crate::Debug for serde_json::ser::CharEscape
+where
+    u8: crate::Debug,
+{
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             serde_json::ser::CharEscape::Quote => {

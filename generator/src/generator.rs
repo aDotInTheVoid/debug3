@@ -1,7 +1,7 @@
 use anyhow::{anyhow, bail, ensure, Context, Result};
 use rustdoc_types::{
-    Crate, Enum, GenericBound, GenericParamDefKind, Generics, Id, Item, ItemEnum, Struct, Type,
-    Variant, WherePredicate,
+    Crate, Enum, GenericArg, GenericArgs, GenericBound, GenericParamDefKind, Generics, Id, Item,
+    ItemEnum, Struct, Type, Variant, WherePredicate,
 };
 use std::{collections::HashMap, fmt::Write};
 
@@ -81,8 +81,27 @@ impl Generator<'_> {
             return Ok(());
         }
 
+        let mut tys = Vec::new();
+        for i in &enumm.variants {
+            if let ItemEnum::Variant(v) = &self.krate.index[&i].inner {
+                match v {
+                    Variant::Plain => {}
+                    Variant::Tuple(fields) => tys.extend(fields),
+                    Variant::Struct(fields) => {
+                        for f in fields {
+                            if let ItemEnum::StructField(f) = &self.krate.index[f].inner {
+                                tys.push(f)
+                            } else {
+                                bail!("Expected type fields here");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         let (igen, tgen, where_) = self
-            .extract_generics(&enumm.generics)
+            .extract_generics(&enumm.generics, &tys)
             .with_context(|| here!("Cannot extract generics for {path}"))?;
 
         writeln!(
@@ -102,21 +121,21 @@ impl Generator<'_> {
                     Variant::Plain => {
                         writeln!(self.out, "=> {{ f.debug_tuple({v_name:?}).finish(); }}")?
                     }
-                    Variant::Tuple(ids) => {
+                    Variant::Tuple(fields) => {
                         write!(self.out, "(")?;
-                        for i in 0..ids.len() {
+                        for i in 0..fields.len() {
                             write!(self.out, "__{}, ", i)?;
                         }
                         write!(self.out, ") => {{ f.debug_tuple({v_name:?})")?;
-                        for i in 0..ids.len() {
+                        for i in 0..fields.len() {
                             write!(self.out, ".field(__{i})")?;
                         }
                         writeln!(self.out, ".finish(); }}")?;
                     }
-                    Variant::Struct(ids) => {
+                    Variant::Struct(fields) => {
                         write!(self.out, "{{")?;
 
-                        for i in ids {
+                        for i in fields {
                             let f_name = self.krate.index[i]
                                 .name
                                 .as_ref()
@@ -126,7 +145,7 @@ impl Generator<'_> {
 
                         writeln!(self.out, " }} => {{")?;
                         writeln!(self.out, "            f.debug_struct({v_name:?})")?;
-                        for i in ids {
+                        for i in fields {
                             let f_name = self.krate.index[i]
                                 .name
                                 .as_ref()
@@ -181,8 +200,17 @@ impl Generator<'_> {
             return Ok(());
         }
 
+        let mut tys = Vec::new();
+        for f in &strukt.fields {
+            if let ItemEnum::StructField(ty) = &self.krate.index[f].inner {
+                tys.push(ty);
+            } else {
+                bail!("Expected StructField")
+            }
+        }
+
         let (igen, tgen, where_) = self
-            .extract_generics(&strukt.generics)
+            .extract_generics(&strukt.generics, &tys)
             .with_context(|| here!("Cannot get generics for struct {path}"))?;
 
         writeln!(
@@ -229,7 +257,11 @@ impl Generator<'_> {
         Ok(())
     }
 
-    fn extract_generics(&self, generics: &Generics) -> Result<(String, String, String)> {
+    fn extract_generics(
+        &self,
+        generics: &Generics,
+        fields: &[&Type],
+    ) -> Result<(String, String, String)> {
         let mut impl_ = String::new();
         let mut type_ = String::new();
         let mut where_ = String::new();
@@ -313,11 +345,15 @@ impl Generator<'_> {
                         write!(impl_, "{},", i.name)?;
                         write!(type_, "{},", i.name)?;
                         // // TODO: Perfect bounds
-                        write!(where_, "{} : crate::Debug,{}", i.name, bounds.bounds)?;
+                        // write!(where_, "{} : crate::Debug,{}", i.name, bounds.bounds)?;
                     }
                 }
                 GenericParamDefKind::Const { .. } => todo!(),
             }
+        }
+
+        for i in fields {
+            write!(where_, "{}: crate::Debug,", self.print_type(i)?)?;
         }
 
         // Remove trailing comma
@@ -354,13 +390,32 @@ impl Generator<'_> {
 
     fn print_type(&self, ty: &Type) -> Result<String> {
         match ty {
-            Type::ResolvedPath { id, .. } => self
-                .path_of(id)
-                .with_context(|| here!("Cannot print Resoved Path {id:?}")),
+            Type::ResolvedPath {
+                id,
+                args,
+                param_names,
+                ..
+            } => {
+                ensure!(param_names.is_empty());
+                let path = self
+                    .path_of(id)
+                    .with_context(|| here!("Cannot print Resoved Path {id:?}"))?;
+                let args = match args {
+                    Some(args) => self.print_args(args)?,
+                    None => String::new(),
+                };
+                Ok(format!("{path}<{args}>"))
+            }
             Type::Generic(name) => Ok(name.to_owned()),
-            Type::Primitive(_) => todo!(),
+            Type::Primitive(name) => Ok(name.to_owned()),
             Type::FunctionPointer(_) => todo!(),
-            Type::Tuple(_) => todo!(),
+            Type::Tuple(ids) => {
+                let names = ids
+                    .iter()
+                    .map(|i| self.print_type(i))
+                    .collect::<Result<Vec<_>, _>>()?;
+                Ok(format!("({})", names.join(",")))
+            }
             Type::Slice(_) => todo!(),
             Type::Array { .. } => todo!(),
             Type::ImplTrait(_) => todo!(),
@@ -391,6 +446,25 @@ impl Generator<'_> {
                 }
             }
             GenericBound::Outlives(name) => Ok(name.to_owned()),
+        }
+    }
+
+    pub(crate) fn print_args(&self, args: &GenericArgs) -> Result<String> {
+        match args {
+            GenericArgs::AngleBracketed { args, bindings } => {
+                ensure!(bindings == &[]);
+                let mut out = String::new();
+                for i in args {
+                    match i {
+                        GenericArg::Lifetime(l) => write!(out, "{l},")?,
+                        GenericArg::Type(ty) => write!(out, "{},", self.print_type(ty)?)?,
+                        GenericArg::Const(_) => todo!(),
+                        GenericArg::Infer => todo!(),
+                    }
+                }
+                Ok(out)
+            }
+            GenericArgs::Parenthesized { .. } => todo!(),
         }
     }
 }
