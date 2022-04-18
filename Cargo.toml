@@ -10,6 +10,7 @@ repository = "https://github.com/aDotInTheVoid/debug3/"
 
 [dependencies]
 bytes = "1.1.0"
+dashmap = "5.2.0"
 debug3-derive = { version = "0.1.0", path = "derive" }
 hashbrown = "0.12.0"
 

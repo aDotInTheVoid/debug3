@@ -1,4 +1,4 @@
-// #[cfg(syn)]
+mod dashmap;
 mod hashbrown;
 mod proc_macro2;
 mod rustdoc_types;
