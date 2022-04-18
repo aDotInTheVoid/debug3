@@ -12,6 +12,7 @@ mod algorithm;
 mod convenience;
 mod ring;
 
+#[allow(clippy::just_underscores_and_digits)]
 mod gen_impls;
 mod hand_impls;
 
