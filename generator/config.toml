@@ -15,3 +15,6 @@ exclude = [
    "hash_map::Entry", # Need a custom bound on K: Borrow<Q>
    "hash_map::EntryRef"
 ]
+
+[smallvec]
+exclude = []

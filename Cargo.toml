@@ -16,6 +16,7 @@ hashbrown = "0.12.0"
 proc-macro2 = {version = "1.0.37", features = ["span-locations"] }
 rustdoc-types = "0.10.0"
 serde_json = "1.0.79"
+smallvec = { version = "1.8.0", features = ["const_generics"] }
 syn = { version = "1.0.91", optional = false, features = ["full"] }
 
 [workspace]
