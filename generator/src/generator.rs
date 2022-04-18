@@ -269,35 +269,28 @@ impl Generator<'_> {
         let mut type_ = String::new();
         let mut where_ = String::new();
 
-        struct Bounds {
-            bounds: String,
-            has_default: bool,
-            useing_default: bool,
-        }
-
-        let mut map = HashMap::<String, Bounds>::new();
-
+        // Map of generic name to what to do about it
+        let mut map = BoundsMap::new();
+        // Order generics appear for type
         let mut order = Vec::new();
 
         for i in &generics.params {
             match &i.kind {
                 GenericParamDefKind::Lifetime { .. } => {
-                    // write!(impl_, "{},", i.name)?;
-                    // write!(type_, "{},", i.name)?;
                     order.push(i.to_owned());
                 }
                 GenericParamDefKind::Type {
                     bounds, default, ..
                 } => {
-                    let mut n_bounds = Bounds {
+                    let mut n_bounds = BoundsInfo {
                         bounds: String::new(),
-                        has_default: default.is_some(),
                         useing_default: false,
+                        default: default.to_owned(),
                     };
                     match self.write_where_pred(&Type::Generic(i.name.to_owned()), &bounds) {
                         Ok(b) => n_bounds.bounds = b,
                         Err(e) => {
-                            if n_bounds.has_default {
+                            if n_bounds.default.is_some() {
                                 n_bounds.useing_default = true;
                             } else {
                                 return Err(e);
@@ -319,7 +312,7 @@ impl Generator<'_> {
                         match self.write_where_pred(type_, bounds) {
                             Ok(b) => old_bounds.bounds.push_str(&b),
                             Err(e) => {
-                                if old_bounds.has_default {
+                                if old_bounds.default.is_some() {
                                     old_bounds.useing_default = true
                                 } else {
                                     return Err(e);
@@ -347,8 +340,6 @@ impl Generator<'_> {
                     if !bounds.useing_default {
                         write!(impl_, "{},", i.name)?;
                         write!(type_, "{},", i.name)?;
-                        // // TODO: Perfect bounds
-                        // write!(where_, "{} : crate::Debug,{}", i.name, bounds.bounds)?;
                     }
                 }
                 GenericParamDefKind::Const { .. } => todo!(),
@@ -356,20 +347,19 @@ impl Generator<'_> {
         }
 
         let mut seen = HashSet::new();
-        for i in fields {
+        for &i in fields {
             if seen.contains(i) {
                 continue;
             }
             if is_generic(i)? {
-                write!(where_, "{}: crate::Debug,", self.print_type(i)?)?;
+                write!(
+                    where_,
+                    "{}: crate::Debug,",
+                    self.print_type_with_bm(i, &map)?
+                )?;
             }
             seen.insert(i);
         }
-
-        // Remove trailing comma
-        // impl_.pop();
-        // type_.pop();
-        // where_.pop();
 
         Ok((impl_, type_, where_))
     }
@@ -399,6 +389,10 @@ impl Generator<'_> {
     }
 
     fn print_type(&self, ty: &Type) -> Result<String> {
+        self.print_type_with_bm(ty, &BoundsMap::new())
+    }
+
+    fn print_type_with_bm(&self, ty: &Type, bm: &BoundsMap) -> Result<String> {
         match ty {
             Type::ResolvedPath {
                 id,
@@ -411,7 +405,7 @@ impl Generator<'_> {
                     .path_of(id)
                     .with_context(|| here!("Cannot print Resoved Path {id:?}"))?;
                 let args = match args {
-                    Some(args) => self.print_args(args)?,
+                    Some(args) => self.print_args(args, bm)?,
                     None => String::new(),
                 };
                 Ok(format!("{path}<{args}>"))
@@ -459,7 +453,7 @@ impl Generator<'_> {
         }
     }
 
-    pub(crate) fn print_args(&self, args: &GenericArgs) -> Result<String> {
+    pub(crate) fn print_args(&self, args: &GenericArgs, bm: &BoundsMap) -> Result<String> {
         match args {
             GenericArgs::AngleBracketed { args, bindings } => {
                 ensure!(bindings == &[]);
@@ -467,7 +461,17 @@ impl Generator<'_> {
                 for i in args {
                     match i {
                         GenericArg::Lifetime(l) => write!(out, "{l},")?,
-                        GenericArg::Type(ty) => write!(out, "{},", self.print_type(ty)?)?,
+                        GenericArg::Type(ty) => {
+                            if let Type::Generic(name) = ty {
+                                if let Some(b_info) = bm.get(name) {
+                                    if b_info.useing_default {
+                                        // TODO: Check that the default is the same
+                                        continue;
+                                    }
+                                }
+                            }
+                            write!(out, "{},", self.print_type_with_bm(ty, bm)?)?;
+                        }
                         GenericArg::Const(_) => todo!(),
                         GenericArg::Infer => todo!(),
                     }
@@ -539,3 +543,10 @@ fn try_any(x: impl Iterator<Item = Result<bool>>) -> Result<bool> {
     }
     Ok(false)
 }
+
+struct BoundsInfo {
+    bounds: String,
+    useing_default: bool,
+    default: Option<Type>,
+}
+type BoundsMap = HashMap<String, BoundsInfo>;

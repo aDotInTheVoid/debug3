@@ -14,9 +14,12 @@ where
     S: Clone + BuildHasher,
 {
     fn fmt(&self, f: &mut Formatter) {
-        f.debug_map()
-            .entries(self.iter().map(|x| x.pair()))
-            .finish()
+        let mut m = f.debug_map();
+        for entry in self.iter() {
+            let (k, v) = entry.pair();
+            m.entry(k, v);
+        }
+        m.finish()
     }
 }
 
@@ -26,7 +29,11 @@ where
     S: Clone + BuildHasher,
 {
     fn fmt(&self, f: &mut Formatter) {
-        f.debug_set().entries(self.iter().map(|x| x.key())).finish()
+        let mut s = f.debug_set();
+        for x in self.iter() {
+            s.entry(x.key());
+        }
+        s.finish()
     }
 }
 

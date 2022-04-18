@@ -30,7 +30,7 @@ impl crate::Debug for hashbrown::TryReserveError {
 // Skipping hashbrown::hash_map::OccupiedEntryRef due to hidden fields
 impl<'a, K, V, S> crate::Debug for hashbrown::hash_map::OccupiedError<'a, K, V, S>
 where
-    hashbrown::hash_map::OccupiedEntry<'a, K, V, S, A>: crate::Debug,
+    hashbrown::hash_map::OccupiedEntry<'a, K, V, S>: crate::Debug,
     V: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
@@ -44,8 +44,8 @@ where
 // Skipping hashbrown::hash_map::RawEntryBuilderMut due to hidden fields
 impl<'a, K, V, S> crate::Debug for hashbrown::hash_map::RawEntryMut<'a, K, V, S>
 where
-    hashbrown::hash_map::RawOccupiedEntryMut<'a, K, V, S, A>: crate::Debug,
-    hashbrown::hash_map::RawVacantEntryMut<'a, K, V, S, A>: crate::Debug,
+    hashbrown::hash_map::RawOccupiedEntryMut<'a, K, V, S>: crate::Debug,
+    hashbrown::hash_map::RawVacantEntryMut<'a, K, V, S>: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
