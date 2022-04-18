@@ -12,7 +12,7 @@ anyhow = "1.0.56"
 clap = { version = "3.1.9", features = ["derive"] }
 fs-err = "2.7.0"
 glob = "0.3.0"
-rustdoc-types = "0.10.0"
+rustdoc-types = { git = "https://github.com/aDotInTheVoid/rustdoc-types", branch = "type-hash" }
 serde = "1.0.136"
 serde_json = "1.0.79"
 toml = "0.5.9"

@@ -561,7 +561,6 @@ where
     alloc::vec::Vec<syn::Attribute>: crate::Debug,
     alloc::boxed::Box<syn::Expr>: crate::Debug,
     syn::token::Eq: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprAssign")
@@ -577,7 +576,6 @@ where
     alloc::vec::Vec<syn::Attribute>: crate::Debug,
     alloc::boxed::Box<syn::Expr>: crate::Debug,
     syn::BinOp: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprAssignOp")
@@ -625,7 +623,6 @@ where
     alloc::vec::Vec<syn::Attribute>: crate::Debug,
     alloc::boxed::Box<syn::Expr>: crate::Debug,
     syn::BinOp: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprBinary")
@@ -720,7 +717,6 @@ where
     core::option::Option<syn::token::Move>: crate::Debug,
     syn::token::Or: crate::Debug,
     syn::punctuated::Punctuated<syn::Pat, syn::token::Comma>: crate::Debug,
-    syn::token::Or: crate::Debug,
     syn::ReturnType: crate::Debug,
     alloc::boxed::Box<syn::Expr>: crate::Debug,
 {
@@ -827,7 +823,6 @@ where
     alloc::vec::Vec<syn::Attribute>: crate::Debug,
     alloc::boxed::Box<syn::Expr>: crate::Debug,
     syn::token::Bracket: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprIndex")
@@ -969,7 +964,6 @@ where
     alloc::vec::Vec<syn::Attribute>: crate::Debug,
     core::option::Option<alloc::boxed::Box<syn::Expr>>: crate::Debug,
     syn::RangeLimits: crate::Debug,
-    core::option::Option<alloc::boxed::Box<syn::Expr>>: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprRange")
@@ -987,7 +981,6 @@ where
     syn::token::Bracket: crate::Debug,
     alloc::boxed::Box<syn::Expr>: crate::Debug,
     syn::token::Semi: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprRepeat")
@@ -2438,7 +2431,6 @@ where
     alloc::vec::Vec<syn::Attribute>: crate::Debug,
     alloc::boxed::Box<syn::Expr>: crate::Debug,
     syn::RangeLimits: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatRange")
@@ -2612,7 +2604,6 @@ impl crate::Debug for syn::PredicateEq
 where
     syn::Type: crate::Debug,
     syn::token::Eq: crate::Debug,
-    syn::Type: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PredicateEq")
@@ -2752,7 +2743,6 @@ impl crate::Debug for syn::Stmt
 where
     syn::Local: crate::Debug,
     syn::Item: crate::Debug,
-    syn::Expr: crate::Debug,
     syn::Expr: crate::Debug,
     syn::token::Semi: crate::Debug,
 {
@@ -3285,7 +3275,6 @@ impl crate::Debug for syn::UseRename
 where
     proc_macro2::Ident: crate::Debug,
     syn::token::As: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("UseRename")
@@ -3461,7 +3450,6 @@ impl<T, P> crate::Debug for syn::punctuated::Pair<T, P>
 where
     T: crate::Debug,
     P: crate::Debug,
-    T: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {

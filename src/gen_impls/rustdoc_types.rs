@@ -5,13 +5,6 @@
 impl crate::Debug for rustdoc_types::Abi
 where
     bool: crate::Debug,
-    bool: crate::Debug,
-    bool: crate::Debug,
-    bool: crate::Debug,
-    bool: crate::Debug,
-    bool: crate::Debug,
-    bool: crate::Debug,
-    bool: crate::Debug,
     alloc::string::String: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
@@ -91,7 +84,6 @@ where
 impl crate::Debug for rustdoc_types::Deprecation
 where
     core::option::Option<alloc::string::String>: crate::Debug,
-    core::option::Option<alloc::string::String>: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Deprecation")
@@ -104,7 +96,6 @@ impl crate::Debug for rustdoc_types::Enum
 where
     rustdoc_types::Generics: crate::Debug,
     bool: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::Id>: crate::Debug,
     alloc::vec::Vec<rustdoc_types::Id>: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
@@ -300,8 +291,6 @@ where
 impl crate::Debug for rustdoc_types::Header
 where
     bool: crate::Debug,
-    bool: crate::Debug,
-    bool: crate::Debug,
     rustdoc_types::Abi: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
@@ -329,9 +318,6 @@ where
     core::option::Option<rustdoc_types::Type>: crate::Debug,
     rustdoc_types::Type: crate::Debug,
     alloc::vec::Vec<rustdoc_types::Id>: crate::Debug,
-    bool: crate::Debug,
-    bool: crate::Debug,
-    core::option::Option<rustdoc_types::Type>: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Impl")
@@ -349,7 +335,6 @@ where
 }
 impl crate::Debug for rustdoc_types::Import
 where
-    alloc::string::String: crate::Debug,
     alloc::string::String: crate::Debug,
     core::option::Option<rustdoc_types::Id>: crate::Debug,
     bool: crate::Debug,
@@ -370,7 +355,6 @@ where
     core::option::Option<alloc::string::String>: crate::Debug,
     core::option::Option<rustdoc_types::Span>: crate::Debug,
     rustdoc_types::Visibility: crate::Debug,
-    core::option::Option<alloc::string::String>: crate::Debug,
     std::collections::hash::map::HashMap<alloc::string::String, rustdoc_types::Id>: crate::Debug,
     alloc::vec::Vec<alloc::string::String>: crate::Debug,
     core::option::Option<rustdoc_types::Deprecation>: crate::Debug,
@@ -411,11 +395,7 @@ where
     rustdoc_types::OpaqueTy: crate::Debug,
     rustdoc_types::Constant: crate::Debug,
     rustdoc_types::Static: crate::Debug,
-    alloc::string::String: crate::Debug,
     rustdoc_types::ProcMacro: crate::Debug,
-    alloc::string::String: crate::Debug,
-    rustdoc_types::Type: crate::Debug,
-    core::option::Option<alloc::string::String>: crate::Debug,
     rustdoc_types::Generics: crate::Debug,
     alloc::vec::Vec<rustdoc_types::GenericBound>: crate::Debug,
     core::option::Option<rustdoc_types::Type>: crate::Debug,
@@ -671,7 +651,6 @@ impl crate::Debug for rustdoc_types::Span
 where
     std::path::PathBuf: crate::Debug,
     (usize, usize): crate::Debug,
-    (usize, usize): crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Span")
@@ -700,7 +679,6 @@ where
     rustdoc_types::StructType: crate::Debug,
     rustdoc_types::Generics: crate::Debug,
     bool: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::Id>: crate::Debug,
     alloc::vec::Vec<rustdoc_types::Id>: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
@@ -747,11 +725,9 @@ where
 impl crate::Debug for rustdoc_types::Trait
 where
     bool: crate::Debug,
-    bool: crate::Debug,
     alloc::vec::Vec<rustdoc_types::Id>: crate::Debug,
     rustdoc_types::Generics: crate::Debug,
     alloc::vec::Vec<rustdoc_types::GenericBound>: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::Id>: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Trait")
@@ -797,23 +773,12 @@ where
     rustdoc_types::Id: crate::Debug,
     core::option::Option<alloc::boxed::Box<rustdoc_types::GenericArgs>>: crate::Debug,
     alloc::vec::Vec<rustdoc_types::GenericBound>: crate::Debug,
-    alloc::string::String: crate::Debug,
-    alloc::string::String: crate::Debug,
     alloc::boxed::Box<rustdoc_types::FunctionPointer>: crate::Debug,
     alloc::vec::Vec<rustdoc_types::Type>: crate::Debug,
     alloc::boxed::Box<rustdoc_types::Type>: crate::Debug,
-    alloc::boxed::Box<rustdoc_types::Type>: crate::Debug,
-    alloc::string::String: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::GenericBound>: crate::Debug,
     bool: crate::Debug,
-    alloc::boxed::Box<rustdoc_types::Type>: crate::Debug,
     core::option::Option<alloc::string::String>: crate::Debug,
-    bool: crate::Debug,
-    alloc::boxed::Box<rustdoc_types::Type>: crate::Debug,
-    alloc::string::String: crate::Debug,
     alloc::boxed::Box<rustdoc_types::GenericArgs>: crate::Debug,
-    alloc::boxed::Box<rustdoc_types::Type>: crate::Debug,
-    alloc::boxed::Box<rustdoc_types::Type>: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -932,7 +897,6 @@ where
     rustdoc_types::Generics: crate::Debug,
     bool: crate::Debug,
     alloc::vec::Vec<rustdoc_types::Id>: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::Id>: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Union")
@@ -991,8 +955,6 @@ where
     rustdoc_types::Type: crate::Debug,
     alloc::vec::Vec<rustdoc_types::GenericBound>: crate::Debug,
     alloc::string::String: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::GenericBound>: crate::Debug,
-    rustdoc_types::Type: crate::Debug,
     rustdoc_types::Term: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {

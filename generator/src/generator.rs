@@ -3,7 +3,10 @@ use rustdoc_types::{
     Crate, Enum, GenericArg, GenericArgs, GenericBound, GenericParamDefKind, Generics, Id, Item,
     ItemEnum, Struct, Type, Variant, WherePredicate,
 };
-use std::{collections::HashMap, fmt::Write};
+use std::{
+    collections::{HashMap, HashSet},
+    fmt::Write,
+};
 
 use crate::PackageConfig;
 
@@ -352,8 +355,13 @@ impl Generator<'_> {
             }
         }
 
+        let mut seen = HashSet::new();
         for i in fields {
+            if seen.contains(i) {
+                continue;
+            }
             write!(where_, "{}: crate::Debug,", self.print_type(i)?)?;
+            seen.insert(i);
         }
 
         // Remove trailing comma

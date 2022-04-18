@@ -26,7 +26,6 @@ impl crate::Debug for proc_macro2::Delimiter {
 impl crate::Debug for proc_macro2::LineColumn
 where
     usize: crate::Debug,
-    usize: crate::Debug,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("LineColumn")
