@@ -1571,7 +1571,9 @@ impl crate::Debug for syn::parse::Nothing {
 impl<T, P> crate::Debug for syn::punctuated::Pair<T, P>
 where
     T: crate::Debug,
+    T:,
     P: crate::Debug,
+    P:,
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -2060,7 +2062,6 @@ impl crate::Debug for syn::TraitItemType {
 }
 // Skiping syn::token::Try due to config rule token::*
 // Skipping syn::Turbofish due to hidden fields
-// Skiping syn::token::Type due to config rule token::*
 impl crate::Debug for syn::Type {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -2113,6 +2114,7 @@ impl crate::Debug for syn::Type {
         }
     }
 }
+// Skiping syn::token::Type due to config rule token::*
 impl crate::Debug for syn::TypeArray {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeArray")

@@ -1,6 +1,6 @@
 use std::{collections::HashMap, path::Path, process::Command};
 
-use anyhow::{ensure, Result};
+use anyhow::{anyhow, ensure, Result};
 use clap::Parser;
 use fs_err as fs;
 use serde::Deserialize;
@@ -40,7 +40,12 @@ fn main() -> Result<()> {
     let args = Args::parse();
     let configs: HashMap<String, PackageConfigToml> = toml::from_str(CONF)?;
     let package = &args.package;
-    let config = PackageConfig::new(&configs[package])?;
+    let config = PackageConfig::new(configs.get(package).ok_or_else(|| {
+        anyhow!(
+            "No known package {package}, all I know is {:?}",
+            configs.keys().collect::<Vec<_>>()
+        )
+    })?)?;
 
     let workspace_root = Path::new(CARGO_MANIFEST_DIR).parent().unwrap();
 

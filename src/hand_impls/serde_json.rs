@@ -1,4 +1,7 @@
-use serde_json::{Map, Number, Value};
+use serde_json::{
+    map::{OccupiedEntry, VacantEntry},
+    Map, Number, Value,
+};
 
 use crate::{Debug, Formatter};
 
@@ -44,5 +47,20 @@ impl Debug for Number {
             n.field(&UnsupportedNumber);
         }
         n.finish()
+    }
+}
+
+impl Debug for VacantEntry<'_> {
+    fn fmt(&self, f: &mut Formatter) {
+        f.debug_tuple("VacantEntry").field(&self.key()).finish()
+    }
+}
+
+impl Debug for OccupiedEntry<'_> {
+    fn fmt(&self, f: &mut Formatter) {
+        f.debug_struct("OccupiedEntry")
+            .field("key", self.key())
+            .field("value", self.get())
+            .finish()
     }
 }

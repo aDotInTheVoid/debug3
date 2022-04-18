@@ -10,6 +10,7 @@ repository = "https://github.com/aDotInTheVoid/debug3/"
 
 [dependencies]
 debug3-derive = { version = "0.1.0", path = "derive" }
+hashbrown = "0.12.0"
 
 # Thinks we impl for
 proc-macro2 = {version = "1.0.37", features = ["span-locations"] }

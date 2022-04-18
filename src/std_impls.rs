@@ -1,4 +1,5 @@
 use std::{
+    alloc::Layout,
     collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet, LinkedList, VecDeque},
     ops::Deref,
     path::{Path, PathBuf},
@@ -261,6 +262,15 @@ impl<T: ?Sized + Debug> Debug for Mutex<T> {
         }
         d.field("poisoned", &self.is_poisoned());
         d.finish_non_exhaustive()
+    }
+}
+
+impl Debug for Layout {
+    fn fmt(&self, f: &mut Formatter) {
+        f.debug_struct("Layout")
+            .field("size", &self.size())
+            .field("align", &self.align())
+            .finish()
     }
 }
 

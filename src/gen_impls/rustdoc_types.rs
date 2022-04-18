@@ -218,7 +218,11 @@ impl crate::Debug for rustdoc_types::Header {
             .finish()
     }
 }
-// Skiping rustdoc_types::Id due to config
+impl crate::Debug for rustdoc_types::Id {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_tuple("Id").field(&self.0).finish()
+    }
+}
 impl crate::Debug for rustdoc_types::Impl {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Impl")

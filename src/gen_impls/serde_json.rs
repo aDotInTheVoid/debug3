@@ -2,43 +2,72 @@
 //
 // Crate Name: `serde_json`
 // Crate Version: `1.0.79`
-impl<>  crate::Debug for serde_json::error::Category<> where  {
+impl crate::Debug for serde_json::error::Category {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            serde_json::error::Category::Io => { f.debug_tuple("Io").finish(); }
-            serde_json::error::Category::Syntax => { f.debug_tuple("Syntax").finish(); }
-            serde_json::error::Category::Data => { f.debug_tuple("Data").finish(); }
-            serde_json::error::Category::Eof => { f.debug_tuple("Eof").finish(); }
+            serde_json::error::Category::Io => {
+                f.debug_tuple("Io").finish();
+            }
+            serde_json::error::Category::Syntax => {
+                f.debug_tuple("Syntax").finish();
+            }
+            serde_json::error::Category::Data => {
+                f.debug_tuple("Data").finish();
+            }
+            serde_json::error::Category::Eof => {
+                f.debug_tuple("Eof").finish();
+            }
         }
     }
 }
-impl<>  crate::Debug for serde_json::ser::CharEscape<> where  {
+impl crate::Debug for serde_json::ser::CharEscape {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            serde_json::ser::CharEscape::Quote => { f.debug_tuple("Quote").finish(); }
-            serde_json::ser::CharEscape::ReverseSolidus => { f.debug_tuple("ReverseSolidus").finish(); }
-            serde_json::ser::CharEscape::Solidus => { f.debug_tuple("Solidus").finish(); }
-            serde_json::ser::CharEscape::Backspace => { f.debug_tuple("Backspace").finish(); }
-            serde_json::ser::CharEscape::FormFeed => { f.debug_tuple("FormFeed").finish(); }
-            serde_json::ser::CharEscape::LineFeed => { f.debug_tuple("LineFeed").finish(); }
-            serde_json::ser::CharEscape::CarriageReturn => { f.debug_tuple("CarriageReturn").finish(); }
-            serde_json::ser::CharEscape::Tab => { f.debug_tuple("Tab").finish(); }
-            serde_json::ser::CharEscape::AsciiControl (__0, ) => { f.debug_tuple("AsciiControl").field(__0).finish(); }
+            serde_json::ser::CharEscape::Quote => {
+                f.debug_tuple("Quote").finish();
+            }
+            serde_json::ser::CharEscape::ReverseSolidus => {
+                f.debug_tuple("ReverseSolidus").finish();
+            }
+            serde_json::ser::CharEscape::Solidus => {
+                f.debug_tuple("Solidus").finish();
+            }
+            serde_json::ser::CharEscape::Backspace => {
+                f.debug_tuple("Backspace").finish();
+            }
+            serde_json::ser::CharEscape::FormFeed => {
+                f.debug_tuple("FormFeed").finish();
+            }
+            serde_json::ser::CharEscape::LineFeed => {
+                f.debug_tuple("LineFeed").finish();
+            }
+            serde_json::ser::CharEscape::CarriageReturn => {
+                f.debug_tuple("CarriageReturn").finish();
+            }
+            serde_json::ser::CharEscape::Tab => {
+                f.debug_tuple("Tab").finish();
+            }
+            serde_json::ser::CharEscape::AsciiControl(__0) => {
+                f.debug_tuple("AsciiControl").field(__0).finish();
+            }
         }
     }
 }
-impl<> crate::Debug for serde_json::ser::CompactFormatter<>  where  {
+impl crate::Debug for serde_json::ser::CompactFormatter {
     fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("CompactFormatter")
-            .finish()
+        f.debug_struct("CompactFormatter").finish()
     }
 }
 // Skipping serde_json::Deserializer due to hidden fields
-impl<'a>  crate::Debug for serde_json::map::Entry<'a> where  {
+impl<'a> crate::Debug for serde_json::map::Entry<'a> {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            serde_json::map::Entry::Vacant (__0, ) => { f.debug_tuple("Vacant").field(__0).finish(); }
-            serde_json::map::Entry::Occupied (__0, ) => { f.debug_tuple("Occupied").field(__0).finish(); }
+            serde_json::map::Entry::Vacant(__0) => {
+                f.debug_tuple("Vacant").field(__0).finish();
+            }
+            serde_json::map::Entry::Occupied(__0) => {
+                f.debug_tuple("Occupied").field(__0).finish();
+            }
         }
     }
 }
@@ -52,10 +81,9 @@ impl<'a>  crate::Debug for serde_json::map::Entry<'a> where  {
 // Skipping serde_json::value::Number due to hidden fields
 // Skipping serde_json::map::OccupiedEntry due to hidden fields
 // Skipping serde_json::ser::PrettyFormatter due to hidden fields
-impl<> crate::Debug for serde_json::value::Serializer<>  where  {
+impl crate::Debug for serde_json::value::Serializer {
     fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Serializer")
-            .finish()
+        f.debug_struct("Serializer").finish()
     }
 }
 // Skipping serde_json::Serializer due to hidden fields

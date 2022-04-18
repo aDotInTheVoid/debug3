@@ -3,7 +3,7 @@ use rustdoc_types::{
     Crate, Enum, GenericBound, GenericParamDefKind, Generics, Id, Item, ItemEnum, Struct, Type,
     Variant, WherePredicate,
 };
-use std::{borrow::Borrow, collections::HashMap, fmt::Write};
+use std::{collections::HashMap, fmt::Write};
 
 use crate::PackageConfig;
 
@@ -211,7 +211,13 @@ impl Generator<'_> {
                 }
                 writeln!(self.out, "            .finish()")?;
             }
-            rustdoc_types::StructType::Tuple => {}
+            rustdoc_types::StructType::Tuple => {
+                write!(self.out, "f.debug_tuple({name:?})")?;
+                for i in 0..strukt.fields.len() {
+                    write!(self.out, ".field(&self.{i})")?;
+                }
+                write!(self.out, ".finish()")?;
+            }
             rustdoc_types::StructType::Unit => {
                 writeln!(self.out, "        f.debug_struct({name:?})")?;
                 writeln!(self.out, "            .finish()")?;
@@ -289,8 +295,8 @@ impl Generator<'_> {
                         write!(where_, "{}", self.write_where_pred(type_, bounds)?)?;
                     }
                 }
-                WherePredicate::RegionPredicate { lifetime, bounds } => todo!(),
-                WherePredicate::EqPredicate { lhs, rhs } => todo!(),
+                WherePredicate::RegionPredicate { .. } => todo!(),
+                WherePredicate::EqPredicate { .. } => todo!(),
             }
         }
 

@@ -12,6 +12,6 @@ exclude = ["Value"]
 
 [hashbrown]
 exclude = [
- #   "hash_map::Entry", # Cannot write out entry bound
- #   "hash_map::EntryRef",
+   "hash_map::Entry", # Need a custom bound on K: Borrow<Q>
+   "hash_map::EntryRef"
 ]
