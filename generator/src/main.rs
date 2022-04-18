@@ -39,16 +39,29 @@ impl PackageConfig {
 fn main() -> Result<()> {
     let args = Args::parse();
     let configs: HashMap<String, PackageConfigToml> = toml::from_str(CONF)?;
+
     let package = &args.package;
+    if package == "all" {
+        for i in configs.keys() {
+            do_package(&configs, i)?;
+        }
+    } else {
+        do_package(&configs, &package)?;
+    }
+    Ok(())
+}
+
+fn do_package(
+    configs: &HashMap<String, PackageConfigToml>,
+    package: &str,
+) -> Result<(), anyhow::Error> {
     let config = PackageConfig::new(configs.get(package).ok_or_else(|| {
         anyhow!(
             "No known package {package}, all I know is {:?}",
             configs.keys().collect::<Vec<_>>()
         )
     })?)?;
-
     let workspace_root = Path::new(CARGO_MANIFEST_DIR).parent().unwrap();
-
     // cargo +nightly rustdoc -p syn  -- -w json -Z unstable-options
     ensure!(Command::new("cargo")
         .args([
@@ -65,23 +78,19 @@ fn main() -> Result<()> {
         .current_dir(workspace_root)
         .status()?
         .success());
-
     let package = package.replace("-", "_");
-
     let json_path = workspace_root
         .join("target")
         .join("doc")
         .join(format!("{package}.json"));
-
     let output_path = workspace_root
         .join("src")
         .join("gen_impls")
         .join(format!("{package}.rs"));
-
     let json = fs::read_to_string(&json_path)?;
     let krate = json_loader::load_rjd(&json)?;
     let rust = generator::generate(&krate, &config)?;
-    fs::write(output_path, rust)?;
 
+    fs::write(output_path, rust)?;
     Ok(())
 }

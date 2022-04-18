@@ -41,7 +41,7 @@ pub(crate) fn generate(krate: &Crate, config: &PackageConfig) -> Result<String> 
     let mut gen = Generator { krate, out, config };
 
     let mut items = krate.index.values().collect::<Vec<_>>();
-    items.sort_by_key(|item| item.name.as_ref());
+    items.sort_by_key(|item| gen.path_of(&item.id).ok());
 
     for item in items {
         if item.crate_id != root_id {

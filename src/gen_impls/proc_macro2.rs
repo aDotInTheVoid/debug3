@@ -22,7 +22,6 @@ impl crate::Debug for proc_macro2::Delimiter {
 }
 // Skipping proc_macro2::Group due to hidden fields
 // Skipping proc_macro2::Ident due to hidden fields
-// Skipping proc_macro2::token_stream::IntoIter due to hidden fields
 // Skipping proc_macro2::LexError due to hidden fields
 impl crate::Debug for proc_macro2::LineColumn {
     fn fmt(&self, f: &mut crate::Formatter) {
@@ -49,3 +48,4 @@ impl crate::Debug for proc_macro2::Spacing {
 // Skipping proc_macro2::Span due to hidden fields
 // Skipping proc_macro2::TokenStream due to hidden fields
 // Skiping proc_macro2::TokenTree due to config rule TokenTree
+// Skipping proc_macro2::token_stream::IntoIter due to hidden fields

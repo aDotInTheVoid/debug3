@@ -4,6 +4,12 @@
 // Crate Version: `5.2.0`
 // Skipping dashmap::DashMap due to hidden fields
 // Skipping dashmap::DashSet due to hidden fields
+// Skipping dashmap::ReadOnlyView due to hidden fields
+// Skipping dashmap::iter::Iter due to hidden fields
+// Skipping dashmap::iter::IterMut due to hidden fields
+// Skipping dashmap::iter::OwningIter due to hidden fields
+// Skipping dashmap::iter_set::Iter due to hidden fields
+// Skipping dashmap::iter_set::OwningIter due to hidden fields
 impl<'a, K, V, S> crate::Debug for dashmap::mapref::entry::Entry<'a, K, V, S>
 where
     K: crate::Debug,
@@ -24,19 +30,14 @@ where
         }
     }
 }
-// Skipping dashmap::iter::Iter due to hidden fields
-// Skipping dashmap::iter_set::Iter due to hidden fields
-// Skipping dashmap::iter::IterMut due to hidden fields
 // Skipping dashmap::mapref::entry::OccupiedEntry due to hidden fields
-// Skipping dashmap::iter::OwningIter due to hidden fields
-// Skipping dashmap::iter_set::OwningIter due to hidden fields
-// Skipping dashmap::ReadOnlyView due to hidden fields
-// Skipping dashmap::mapref::one::Ref due to hidden fields
-// Skipping dashmap::setref::one::Ref due to hidden fields
-// Skipping dashmap::setref::multiple::RefMulti due to hidden fields
+// Skipping dashmap::mapref::entry::VacantEntry due to hidden fields
 // Skipping dashmap::mapref::multiple::RefMulti due to hidden fields
-// Skipping dashmap::mapref::one::RefMut due to hidden fields
 // Skipping dashmap::mapref::multiple::RefMutMulti due to hidden fields
+// Skipping dashmap::mapref::one::Ref due to hidden fields
+// Skipping dashmap::mapref::one::RefMut due to hidden fields
+// Skipping dashmap::setref::multiple::RefMulti due to hidden fields
+// Skipping dashmap::setref::one::Ref due to hidden fields
 impl<R> crate::Debug for dashmap::try_result::TryResult<R>
 where
     R: crate::Debug,
@@ -56,4 +57,3 @@ where
         }
     }
 }
-// Skipping dashmap::mapref::entry::VacantEntry due to hidden fields

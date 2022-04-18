@@ -10,12 +10,6 @@ impl crate::Debug for syn::Abi {
             .finish()
     }
 }
-// Skiping syn::token::Abstract due to config rule token::*
-// Skiping syn::token::Add due to config rule token::*
-// Skiping syn::token::AddEq due to config rule token::*
-// Skiping syn::token::And due to config rule token::*
-// Skiping syn::token::AndAnd due to config rule token::*
-// Skiping syn::token::AndEq due to config rule token::*
 impl crate::Debug for syn::AngleBracketedGenericArguments {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("AngleBracketedGenericArguments")
@@ -38,9 +32,6 @@ impl crate::Debug for syn::Arm {
             .finish()
     }
 }
-// Skiping syn::token::As due to config rule token::*
-// Skiping syn::token::Async due to config rule token::*
-// Skiping syn::token::At due to config rule token::*
 impl crate::Debug for syn::AttrStyle {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -64,9 +55,6 @@ impl crate::Debug for syn::Attribute {
             .finish()
     }
 }
-// Skiping syn::token::Auto due to config rule token::*
-// Skiping syn::token::Await due to config rule token::*
-// Skiping syn::token::Bang due to config rule token::*
 impl crate::Debug for syn::BareFnArg {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("BareFnArg")
@@ -76,7 +64,6 @@ impl crate::Debug for syn::BareFnArg {
             .finish()
     }
 }
-// Skiping syn::token::Become due to config rule token::*
 impl crate::Debug for syn::BinOp {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -194,16 +181,6 @@ impl crate::Debug for syn::BoundLifetimes {
             .finish()
     }
 }
-// Skiping syn::token::Box due to config rule token::*
-// Skiping syn::token::Brace due to config rule token::*
-// Skiping syn::token::Bracket due to config rule token::*
-// Skiping syn::token::Break due to config rule token::*
-// Skiping syn::token::Caret due to config rule token::*
-// Skiping syn::token::CaretEq due to config rule token::*
-// Skiping syn::token::Colon due to config rule token::*
-// Skiping syn::token::Colon2 due to config rule token::*
-// Skiping syn::token::Comma due to config rule token::*
-// Skiping syn::token::Const due to config rule token::*
 impl crate::Debug for syn::ConstParam {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ConstParam")
@@ -226,9 +203,6 @@ impl crate::Debug for syn::Constraint {
             .finish()
     }
 }
-// Skiping syn::token::Continue due to config rule token::*
-// Skiping syn::token::Crate due to config rule token::*
-// Skipping syn::buffer::Cursor due to hidden fields
 impl crate::Debug for syn::Data {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -270,7 +244,6 @@ impl crate::Debug for syn::DataUnion {
             .finish()
     }
 }
-// Skiping syn::token::Default due to config rule token::*
 impl crate::Debug for syn::DeriveInput {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("DeriveInput")
@@ -282,20 +255,6 @@ impl crate::Debug for syn::DeriveInput {
             .finish()
     }
 }
-// Skiping syn::token::Div due to config rule token::*
-// Skiping syn::token::DivEq due to config rule token::*
-// Skiping syn::token::Do due to config rule token::*
-// Skiping syn::token::Dollar due to config rule token::*
-// Skiping syn::token::Dot due to config rule token::*
-// Skiping syn::token::Dot2 due to config rule token::*
-// Skiping syn::token::Dot3 due to config rule token::*
-// Skiping syn::token::DotDotEq due to config rule token::*
-// Skiping syn::token::Dyn due to config rule token::*
-// Skiping syn::token::Else due to config rule token::*
-// Skiping syn::token::Enum due to config rule token::*
-// Skiping syn::token::Eq due to config rule token::*
-// Skiping syn::token::EqEq due to config rule token::*
-// Skipping syn::parse::Error due to hidden fields
 impl crate::Debug for syn::Expr {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -804,8 +763,6 @@ impl crate::Debug for syn::ExprYield {
             .finish()
     }
 }
-// Skiping syn::token::Extern due to config rule token::*
-// Skiping syn::token::FatArrow due to config rule token::*
 impl crate::Debug for syn::Field {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Field")
@@ -877,8 +834,6 @@ impl crate::Debug for syn::File {
             .finish()
     }
 }
-// Skiping syn::token::Final due to config rule token::*
-// Skiping syn::token::Fn due to config rule token::*
 impl crate::Debug for syn::FnArg {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -891,7 +846,6 @@ impl crate::Debug for syn::FnArg {
         }
     }
 }
-// Skiping syn::token::For due to config rule token::*
 impl crate::Debug for syn::ForeignItem {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -958,7 +912,6 @@ impl crate::Debug for syn::ForeignItemType {
             .finish()
     }
 }
-// Skiping syn::token::Ge due to config rule token::*
 impl crate::Debug for syn::GenericArgument {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -1017,10 +970,6 @@ impl crate::Debug for syn::Generics {
             .finish()
     }
 }
-// Skiping syn::token::Group due to config rule token::*
-// Skiping syn::token::Gt due to config rule token::*
-// Skiping syn::token::If due to config rule token::*
-// Skiping syn::token::Impl due to config rule token::*
 // Skipping syn::ImplGenerics due to hidden fields
 impl crate::Debug for syn::ImplItem {
     fn fmt(&self, f: &mut crate::Formatter) {
@@ -1095,7 +1044,6 @@ impl crate::Debug for syn::ImplItemType {
             .finish()
     }
 }
-// Skiping syn::token::In due to config rule token::*
 impl crate::Debug for syn::Index {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Index")
@@ -1104,8 +1052,6 @@ impl crate::Debug for syn::Index {
             .finish()
     }
 }
-// Skipping syn::punctuated::IntoIter due to hidden fields
-// Skipping syn::punctuated::IntoPairs due to hidden fields
 impl crate::Debug for syn::Item {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -1371,9 +1317,6 @@ impl crate::Debug for syn::ItemUse {
             .finish()
     }
 }
-// Skipping syn::punctuated::Iter due to hidden fields
-// Skipping syn::punctuated::IterMut due to hidden fields
-// Skiping syn::token::LArrow due to config rule token::*
 impl crate::Debug for syn::Label {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Label")
@@ -1382,8 +1325,6 @@ impl crate::Debug for syn::Label {
             .finish()
     }
 }
-// Skiping syn::token::Le due to config rule token::*
-// Skiping syn::token::Let due to config rule token::*
 impl crate::Debug for syn::Lifetime {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Lifetime")
@@ -1457,9 +1398,6 @@ impl crate::Debug for syn::Local {
             .finish()
     }
 }
-// Skipping syn::parse::Lookahead1 due to hidden fields
-// Skiping syn::token::Loop due to config rule token::*
-// Skiping syn::token::Lt due to config rule token::*
 impl crate::Debug for syn::Macro {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Macro")
@@ -1470,7 +1408,6 @@ impl crate::Debug for syn::Macro {
             .finish()
     }
 }
-// Skiping syn::token::Macro due to config rule token::*
 impl crate::Debug for syn::MacroDelimiter {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -1486,7 +1423,6 @@ impl crate::Debug for syn::MacroDelimiter {
         }
     }
 }
-// Skiping syn::token::Match due to config rule token::*
 impl crate::Debug for syn::Member {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -1542,11 +1478,6 @@ impl crate::Debug for syn::MethodTurbofish {
             .finish()
     }
 }
-// Skiping syn::token::Mod due to config rule token::*
-// Skiping syn::token::Move due to config rule token::*
-// Skiping syn::token::MulEq due to config rule token::*
-// Skiping syn::token::Mut due to config rule token::*
-// Skiping syn::token::Ne due to config rule token::*
 impl crate::Debug for syn::NestedMeta {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -1559,36 +1490,6 @@ impl crate::Debug for syn::NestedMeta {
         }
     }
 }
-impl crate::Debug for syn::parse::Nothing {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Nothing").finish()
-    }
-}
-// Skiping syn::token::Or due to config rule token::*
-// Skiping syn::token::OrEq due to config rule token::*
-// Skiping syn::token::OrOr due to config rule token::*
-// Skiping syn::token::Override due to config rule token::*
-impl<T, P> crate::Debug for syn::punctuated::Pair<T, P>
-where
-    T: crate::Debug,
-    T:,
-    P: crate::Debug,
-    P:,
-{
-    fn fmt(&self, f: &mut crate::Formatter) {
-        match self {
-            syn::punctuated::Pair::Punctuated(__0, __1) => {
-                f.debug_tuple("Punctuated").field(__0).field(__1).finish();
-            }
-            syn::punctuated::Pair::End(__0) => {
-                f.debug_tuple("End").field(__0).finish();
-            }
-        }
-    }
-}
-// Skipping syn::punctuated::Pairs due to hidden fields
-// Skipping syn::punctuated::PairsMut due to hidden fields
-// Skiping syn::token::Paren due to config rule token::*
 impl crate::Debug for syn::ParenthesizedGenericArguments {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ParenthesizedGenericArguments")
@@ -1598,7 +1499,6 @@ impl crate::Debug for syn::ParenthesizedGenericArguments {
             .finish()
     }
 }
-// Skipping syn::parse::ParseBuffer due to hidden fields
 impl crate::Debug for syn::Pat {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -1823,7 +1723,6 @@ impl crate::Debug for syn::PathSegment {
             .finish()
     }
 }
-// Skiping syn::token::Pound due to config rule token::*
 impl crate::Debug for syn::PredicateEq {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PredicateEq")
@@ -1852,9 +1751,6 @@ impl crate::Debug for syn::PredicateType {
             .finish()
     }
 }
-// Skiping syn::token::Priv due to config rule token::*
-// Skiping syn::token::Pub due to config rule token::*
-// Skipping syn::punctuated::Punctuated due to hidden fields
 impl crate::Debug for syn::QSelf {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("QSelf")
@@ -1866,8 +1762,6 @@ impl crate::Debug for syn::QSelf {
             .finish()
     }
 }
-// Skiping syn::token::Question due to config rule token::*
-// Skiping syn::token::RArrow due to config rule token::*
 impl crate::Debug for syn::RangeLimits {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -1890,10 +1784,6 @@ impl crate::Debug for syn::Receiver {
             .finish()
     }
 }
-// Skiping syn::token::Ref due to config rule token::*
-// Skiping syn::token::Rem due to config rule token::*
-// Skiping syn::token::RemEq due to config rule token::*
-// Skiping syn::token::Return due to config rule token::*
 impl crate::Debug for syn::ReturnType {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -1906,13 +1796,6 @@ impl crate::Debug for syn::ReturnType {
         }
     }
 }
-// Skiping syn::token::SelfType due to config rule token::*
-// Skiping syn::token::SelfValue due to config rule token::*
-// Skiping syn::token::Semi due to config rule token::*
-// Skiping syn::token::Shl due to config rule token::*
-// Skiping syn::token::ShlEq due to config rule token::*
-// Skiping syn::token::Shr due to config rule token::*
-// Skiping syn::token::ShrEq due to config rule token::*
 impl crate::Debug for syn::Signature {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Signature")
@@ -1930,9 +1813,6 @@ impl crate::Debug for syn::Signature {
             .finish()
     }
 }
-// Skiping syn::token::Star due to config rule token::*
-// Skiping syn::token::Static due to config rule token::*
-// Skipping syn::parse::StepCursor due to hidden fields
 impl crate::Debug for syn::Stmt {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -1963,13 +1843,6 @@ impl crate::Debug for syn::StrStyle {
         }
     }
 }
-// Skiping syn::token::Struct due to config rule token::*
-// Skiping syn::token::Sub due to config rule token::*
-// Skiping syn::token::SubEq due to config rule token::*
-// Skiping syn::token::Super due to config rule token::*
-// Skiping syn::token::Tilde due to config rule token::*
-// Skipping syn::buffer::TokenBuffer due to hidden fields
-// Skiping syn::token::Trait due to config rule token::*
 impl crate::Debug for syn::TraitBound {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TraitBound")
@@ -2060,7 +1933,6 @@ impl crate::Debug for syn::TraitItemType {
             .finish()
     }
 }
-// Skiping syn::token::Try due to config rule token::*
 // Skipping syn::Turbofish due to hidden fields
 impl crate::Debug for syn::Type {
     fn fmt(&self, f: &mut crate::Formatter) {
@@ -2114,7 +1986,6 @@ impl crate::Debug for syn::Type {
         }
     }
 }
-// Skiping syn::token::Type due to config rule token::*
 impl crate::Debug for syn::TypeArray {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeArray")
@@ -2259,7 +2130,6 @@ impl crate::Debug for syn::TypeTuple {
             .finish()
     }
 }
-// Skiping syn::token::Typeof due to config rule token::*
 impl crate::Debug for syn::UnOp {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
@@ -2275,11 +2145,6 @@ impl crate::Debug for syn::UnOp {
         }
     }
 }
-// Skiping syn::token::Underscore due to config rule token::*
-// Skiping syn::token::Union due to config rule token::*
-// Skiping syn::token::Unsafe due to config rule token::*
-// Skiping syn::token::Unsized due to config rule token::*
-// Skiping syn::token::Use due to config rule token::*
 impl crate::Debug for syn::UseGlob {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("UseGlob")
@@ -2359,7 +2224,6 @@ impl crate::Debug for syn::Variant {
             .finish()
     }
 }
-// Skiping syn::token::Virtual due to config rule token::*
 impl crate::Debug for syn::VisCrate {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("VisCrate")
@@ -2402,7 +2266,6 @@ impl crate::Debug for syn::Visibility {
         }
     }
 }
-// Skiping syn::token::Where due to config rule token::*
 impl crate::Debug for syn::WhereClause {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("WhereClause")
@@ -2426,5 +2289,142 @@ impl crate::Debug for syn::WherePredicate {
         }
     }
 }
+// Skipping syn::buffer::Cursor due to hidden fields
+// Skipping syn::buffer::TokenBuffer due to hidden fields
+// Skipping syn::parse::Error due to hidden fields
+// Skipping syn::parse::Lookahead1 due to hidden fields
+impl crate::Debug for syn::parse::Nothing {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        f.debug_struct("Nothing").finish()
+    }
+}
+// Skipping syn::parse::ParseBuffer due to hidden fields
+// Skipping syn::parse::StepCursor due to hidden fields
+// Skipping syn::punctuated::IntoIter due to hidden fields
+// Skipping syn::punctuated::IntoPairs due to hidden fields
+// Skipping syn::punctuated::Iter due to hidden fields
+// Skipping syn::punctuated::IterMut due to hidden fields
+impl<T, P> crate::Debug for syn::punctuated::Pair<T, P>
+where
+    T: crate::Debug,
+    T:,
+    P: crate::Debug,
+    P:,
+{
+    fn fmt(&self, f: &mut crate::Formatter) {
+        match self {
+            syn::punctuated::Pair::Punctuated(__0, __1) => {
+                f.debug_tuple("Punctuated").field(__0).field(__1).finish();
+            }
+            syn::punctuated::Pair::End(__0) => {
+                f.debug_tuple("End").field(__0).finish();
+            }
+        }
+    }
+}
+// Skipping syn::punctuated::Pairs due to hidden fields
+// Skipping syn::punctuated::PairsMut due to hidden fields
+// Skipping syn::punctuated::Punctuated due to hidden fields
+// Skiping syn::token::Abstract due to config rule token::*
+// Skiping syn::token::Add due to config rule token::*
+// Skiping syn::token::AddEq due to config rule token::*
+// Skiping syn::token::And due to config rule token::*
+// Skiping syn::token::AndAnd due to config rule token::*
+// Skiping syn::token::AndEq due to config rule token::*
+// Skiping syn::token::As due to config rule token::*
+// Skiping syn::token::Async due to config rule token::*
+// Skiping syn::token::At due to config rule token::*
+// Skiping syn::token::Auto due to config rule token::*
+// Skiping syn::token::Await due to config rule token::*
+// Skiping syn::token::Bang due to config rule token::*
+// Skiping syn::token::Become due to config rule token::*
+// Skiping syn::token::Box due to config rule token::*
+// Skiping syn::token::Brace due to config rule token::*
+// Skiping syn::token::Bracket due to config rule token::*
+// Skiping syn::token::Break due to config rule token::*
+// Skiping syn::token::Caret due to config rule token::*
+// Skiping syn::token::CaretEq due to config rule token::*
+// Skiping syn::token::Colon due to config rule token::*
+// Skiping syn::token::Colon2 due to config rule token::*
+// Skiping syn::token::Comma due to config rule token::*
+// Skiping syn::token::Const due to config rule token::*
+// Skiping syn::token::Continue due to config rule token::*
+// Skiping syn::token::Crate due to config rule token::*
+// Skiping syn::token::Default due to config rule token::*
+// Skiping syn::token::Div due to config rule token::*
+// Skiping syn::token::DivEq due to config rule token::*
+// Skiping syn::token::Do due to config rule token::*
+// Skiping syn::token::Dollar due to config rule token::*
+// Skiping syn::token::Dot due to config rule token::*
+// Skiping syn::token::Dot2 due to config rule token::*
+// Skiping syn::token::Dot3 due to config rule token::*
+// Skiping syn::token::DotDotEq due to config rule token::*
+// Skiping syn::token::Dyn due to config rule token::*
+// Skiping syn::token::Else due to config rule token::*
+// Skiping syn::token::Enum due to config rule token::*
+// Skiping syn::token::Eq due to config rule token::*
+// Skiping syn::token::EqEq due to config rule token::*
+// Skiping syn::token::Extern due to config rule token::*
+// Skiping syn::token::FatArrow due to config rule token::*
+// Skiping syn::token::Final due to config rule token::*
+// Skiping syn::token::Fn due to config rule token::*
+// Skiping syn::token::For due to config rule token::*
+// Skiping syn::token::Ge due to config rule token::*
+// Skiping syn::token::Group due to config rule token::*
+// Skiping syn::token::Gt due to config rule token::*
+// Skiping syn::token::If due to config rule token::*
+// Skiping syn::token::Impl due to config rule token::*
+// Skiping syn::token::In due to config rule token::*
+// Skiping syn::token::LArrow due to config rule token::*
+// Skiping syn::token::Le due to config rule token::*
+// Skiping syn::token::Let due to config rule token::*
+// Skiping syn::token::Loop due to config rule token::*
+// Skiping syn::token::Lt due to config rule token::*
+// Skiping syn::token::Macro due to config rule token::*
+// Skiping syn::token::Match due to config rule token::*
+// Skiping syn::token::Mod due to config rule token::*
+// Skiping syn::token::Move due to config rule token::*
+// Skiping syn::token::MulEq due to config rule token::*
+// Skiping syn::token::Mut due to config rule token::*
+// Skiping syn::token::Ne due to config rule token::*
+// Skiping syn::token::Or due to config rule token::*
+// Skiping syn::token::OrEq due to config rule token::*
+// Skiping syn::token::OrOr due to config rule token::*
+// Skiping syn::token::Override due to config rule token::*
+// Skiping syn::token::Paren due to config rule token::*
+// Skiping syn::token::Pound due to config rule token::*
+// Skiping syn::token::Priv due to config rule token::*
+// Skiping syn::token::Pub due to config rule token::*
+// Skiping syn::token::Question due to config rule token::*
+// Skiping syn::token::RArrow due to config rule token::*
+// Skiping syn::token::Ref due to config rule token::*
+// Skiping syn::token::Rem due to config rule token::*
+// Skiping syn::token::RemEq due to config rule token::*
+// Skiping syn::token::Return due to config rule token::*
+// Skiping syn::token::SelfType due to config rule token::*
+// Skiping syn::token::SelfValue due to config rule token::*
+// Skiping syn::token::Semi due to config rule token::*
+// Skiping syn::token::Shl due to config rule token::*
+// Skiping syn::token::ShlEq due to config rule token::*
+// Skiping syn::token::Shr due to config rule token::*
+// Skiping syn::token::ShrEq due to config rule token::*
+// Skiping syn::token::Star due to config rule token::*
+// Skiping syn::token::Static due to config rule token::*
+// Skiping syn::token::Struct due to config rule token::*
+// Skiping syn::token::Sub due to config rule token::*
+// Skiping syn::token::SubEq due to config rule token::*
+// Skiping syn::token::Super due to config rule token::*
+// Skiping syn::token::Tilde due to config rule token::*
+// Skiping syn::token::Trait due to config rule token::*
+// Skiping syn::token::Try due to config rule token::*
+// Skiping syn::token::Type due to config rule token::*
+// Skiping syn::token::Typeof due to config rule token::*
+// Skiping syn::token::Underscore due to config rule token::*
+// Skiping syn::token::Union due to config rule token::*
+// Skiping syn::token::Unsafe due to config rule token::*
+// Skiping syn::token::Unsized due to config rule token::*
+// Skiping syn::token::Use due to config rule token::*
+// Skiping syn::token::Virtual due to config rule token::*
+// Skiping syn::token::Where due to config rule token::*
 // Skiping syn::token::While due to config rule token::*
 // Skiping syn::token::Yield due to config rule token::*

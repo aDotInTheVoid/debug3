@@ -2,21 +2,27 @@
 //
 // Crate Name: `hashbrown`
 // Crate Version: `0.12.0`
-// Skipping hashbrown::hash_set::Difference due to hidden fields
-// Skipping hashbrown::hash_set::Drain due to hidden fields
+impl crate::Debug for hashbrown::TryReserveError {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        match self {
+            hashbrown::TryReserveError::CapacityOverflow => {
+                f.debug_tuple("CapacityOverflow").finish();
+            }
+            hashbrown::TryReserveError::AllocError { layout } => f
+                .debug_struct("AllocError")
+                .field("layout", layout)
+                .finish(),
+        }
+    }
+}
 // Skipping hashbrown::hash_map::Drain due to hidden fields
-// Skipping hashbrown::hash_set::DrainFilter due to hidden fields
 // Skipping hashbrown::hash_map::DrainFilter due to hidden fields
 // Skiping hashbrown::hash_map::Entry due to config rule hash_map::Entry
 // Skiping hashbrown::hash_map::EntryRef due to config rule hash_map::EntryRef
 // Skipping hashbrown::hash_map::HashMap due to hidden fields
-// Skipping hashbrown::hash_set::HashSet due to hidden fields
-// Skipping hashbrown::hash_set::Intersection due to hidden fields
 // Skipping hashbrown::hash_map::IntoIter due to hidden fields
-// Skipping hashbrown::hash_set::IntoIter due to hidden fields
 // Skipping hashbrown::hash_map::IntoKeys due to hidden fields
 // Skipping hashbrown::hash_map::IntoValues due to hidden fields
-// Skipping hashbrown::hash_set::Iter due to hidden fields
 // Skipping hashbrown::hash_map::Iter due to hidden fields
 // Skipping hashbrown::hash_map::IterMut due to hidden fields
 // Skipping hashbrown::hash_map::Keys due to hidden fields
@@ -62,22 +68,16 @@ where
 }
 // Skipping hashbrown::hash_map::RawOccupiedEntryMut due to hidden fields
 // Skipping hashbrown::hash_map::RawVacantEntryMut due to hidden fields
-// Skipping hashbrown::hash_set::SymmetricDifference due to hidden fields
-impl crate::Debug for hashbrown::TryReserveError {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        match self {
-            hashbrown::TryReserveError::CapacityOverflow => {
-                f.debug_tuple("CapacityOverflow").finish();
-            }
-            hashbrown::TryReserveError::AllocError { layout } => f
-                .debug_struct("AllocError")
-                .field("layout", layout)
-                .finish(),
-        }
-    }
-}
-// Skipping hashbrown::hash_set::Union due to hidden fields
 // Skipping hashbrown::hash_map::VacantEntry due to hidden fields
 // Skipping hashbrown::hash_map::VacantEntryRef due to hidden fields
 // Skipping hashbrown::hash_map::Values due to hidden fields
 // Skipping hashbrown::hash_map::ValuesMut due to hidden fields
+// Skipping hashbrown::hash_set::Difference due to hidden fields
+// Skipping hashbrown::hash_set::Drain due to hidden fields
+// Skipping hashbrown::hash_set::DrainFilter due to hidden fields
+// Skipping hashbrown::hash_set::HashSet due to hidden fields
+// Skipping hashbrown::hash_set::Intersection due to hidden fields
+// Skipping hashbrown::hash_set::IntoIter due to hidden fields
+// Skipping hashbrown::hash_set::Iter due to hidden fields
+// Skipping hashbrown::hash_set::SymmetricDifference due to hidden fields
+// Skipping hashbrown::hash_set::Union due to hidden fields
