@@ -2,10 +2,7 @@
 //
 // Crate Name: `smallvec`
 // Crate Version: `1.8.0`
-impl crate::Debug for smallvec::CollectionAllocErr
-where
-    core::alloc::layout::Layout: crate::Debug,
-{
+impl crate::Debug for smallvec::CollectionAllocErr {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             smallvec::CollectionAllocErr::CapacityOverflow => {

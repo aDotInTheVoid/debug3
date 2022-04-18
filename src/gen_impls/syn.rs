@@ -2,11 +2,7 @@
 //
 // Crate Name: `syn`
 // Crate Version: `1.0.91`
-impl crate::Debug for syn::Abi
-where
-    syn::token::Extern: crate::Debug,
-    core::option::Option<syn::LitStr>: crate::Debug,
-{
+impl crate::Debug for syn::Abi {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Abi")
             .field("extern_token", &self.extern_token)
@@ -14,13 +10,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::AngleBracketedGenericArguments
-where
-    core::option::Option<syn::token::Colon2>: crate::Debug,
-    syn::token::Lt: crate::Debug,
-    syn::punctuated::Punctuated<syn::GenericArgument, syn::token::Comma>: crate::Debug,
-    syn::token::Gt: crate::Debug,
-{
+impl crate::Debug for syn::AngleBracketedGenericArguments {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("AngleBracketedGenericArguments")
             .field("colon2_token", &self.colon2_token)
@@ -30,15 +20,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::Arm
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Pat: crate::Debug,
-    core::option::Option<(syn::token::If, alloc::boxed::Box<syn::Expr>)>: crate::Debug,
-    syn::token::FatArrow: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-    core::option::Option<syn::token::Comma>: crate::Debug,
-{
+impl crate::Debug for syn::Arm {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Arm")
             .field("attrs", &self.attrs)
@@ -50,10 +32,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::AttrStyle
-where
-    syn::token::Bang: crate::Debug,
-{
+impl crate::Debug for syn::AttrStyle {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::AttrStyle::Outer => {
@@ -65,14 +44,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::Attribute
-where
-    syn::token::Pound: crate::Debug,
-    syn::AttrStyle: crate::Debug,
-    syn::token::Bracket: crate::Debug,
-    syn::Path: crate::Debug,
-    proc_macro2::TokenStream: crate::Debug,
-{
+impl crate::Debug for syn::Attribute {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Attribute")
             .field("pound_token", &self.pound_token)
@@ -83,12 +55,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::BareFnArg
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    core::option::Option<(proc_macro2::Ident, syn::token::Colon)>: crate::Debug,
-    syn::Type: crate::Debug,
-{
+impl crate::Debug for syn::BareFnArg {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("BareFnArg")
             .field("attrs", &self.attrs)
@@ -97,37 +64,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::BinOp
-where
-    syn::token::Add: crate::Debug,
-    syn::token::Sub: crate::Debug,
-    syn::token::Star: crate::Debug,
-    syn::token::Div: crate::Debug,
-    syn::token::Rem: crate::Debug,
-    syn::token::AndAnd: crate::Debug,
-    syn::token::OrOr: crate::Debug,
-    syn::token::Caret: crate::Debug,
-    syn::token::And: crate::Debug,
-    syn::token::Or: crate::Debug,
-    syn::token::Shl: crate::Debug,
-    syn::token::Shr: crate::Debug,
-    syn::token::EqEq: crate::Debug,
-    syn::token::Lt: crate::Debug,
-    syn::token::Le: crate::Debug,
-    syn::token::Ne: crate::Debug,
-    syn::token::Ge: crate::Debug,
-    syn::token::Gt: crate::Debug,
-    syn::token::AddEq: crate::Debug,
-    syn::token::SubEq: crate::Debug,
-    syn::token::MulEq: crate::Debug,
-    syn::token::DivEq: crate::Debug,
-    syn::token::RemEq: crate::Debug,
-    syn::token::CaretEq: crate::Debug,
-    syn::token::AndEq: crate::Debug,
-    syn::token::OrEq: crate::Debug,
-    syn::token::ShlEq: crate::Debug,
-    syn::token::ShrEq: crate::Debug,
-{
+impl crate::Debug for syn::BinOp {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::BinOp::Add(__0) => {
@@ -217,12 +154,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::Binding
-where
-    proc_macro2::Ident: crate::Debug,
-    syn::token::Eq: crate::Debug,
-    syn::Type: crate::Debug,
-{
+impl crate::Debug for syn::Binding {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Binding")
             .field("ident", &self.ident)
@@ -231,11 +163,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::Block
-where
-    syn::token::Brace: crate::Debug,
-    alloc::vec::Vec<syn::Stmt>: crate::Debug,
-{
+impl crate::Debug for syn::Block {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Block")
             .field("brace_token", &self.brace_token)
@@ -243,13 +171,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::BoundLifetimes
-where
-    syn::token::For: crate::Debug,
-    syn::token::Lt: crate::Debug,
-    syn::punctuated::Punctuated<syn::LifetimeDef, syn::token::Comma>: crate::Debug,
-    syn::token::Gt: crate::Debug,
-{
+impl crate::Debug for syn::BoundLifetimes {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("BoundLifetimes")
             .field("for_token", &self.for_token)
@@ -259,16 +181,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ConstParam
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Const: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    syn::token::Colon: crate::Debug,
-    syn::Type: crate::Debug,
-    core::option::Option<syn::token::Eq>: crate::Debug,
-    core::option::Option<syn::Expr>: crate::Debug,
-{
+impl crate::Debug for syn::ConstParam {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ConstParam")
             .field("attrs", &self.attrs)
@@ -281,12 +194,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::Constraint
-where
-    proc_macro2::Ident: crate::Debug,
-    syn::token::Colon: crate::Debug,
-    syn::punctuated::Punctuated<syn::TypeParamBound, syn::token::Add>: crate::Debug,
-{
+impl crate::Debug for syn::Constraint {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Constraint")
             .field("ident", &self.ident)
@@ -295,12 +203,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::Data
-where
-    syn::DataStruct: crate::Debug,
-    syn::DataEnum: crate::Debug,
-    syn::DataUnion: crate::Debug,
-{
+impl crate::Debug for syn::Data {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::Data::Struct(__0) => {
@@ -315,12 +218,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::DataEnum
-where
-    syn::token::Enum: crate::Debug,
-    syn::token::Brace: crate::Debug,
-    syn::punctuated::Punctuated<syn::Variant, syn::token::Comma>: crate::Debug,
-{
+impl crate::Debug for syn::DataEnum {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("DataEnum")
             .field("enum_token", &self.enum_token)
@@ -329,12 +227,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::DataStruct
-where
-    syn::token::Struct: crate::Debug,
-    syn::Fields: crate::Debug,
-    core::option::Option<syn::token::Semi>: crate::Debug,
-{
+impl crate::Debug for syn::DataStruct {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("DataStruct")
             .field("struct_token", &self.struct_token)
@@ -343,11 +236,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::DataUnion
-where
-    syn::token::Union: crate::Debug,
-    syn::FieldsNamed: crate::Debug,
-{
+impl crate::Debug for syn::DataUnion {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("DataUnion")
             .field("union_token", &self.union_token)
@@ -355,14 +244,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::DeriveInput
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    syn::Generics: crate::Debug,
-    syn::Data: crate::Debug,
-{
+impl crate::Debug for syn::DeriveInput {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("DeriveInput")
             .field("attrs", &self.attrs)
@@ -373,49 +255,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::Expr
-where
-    syn::ExprArray: crate::Debug,
-    syn::ExprAssign: crate::Debug,
-    syn::ExprAssignOp: crate::Debug,
-    syn::ExprAsync: crate::Debug,
-    syn::ExprAwait: crate::Debug,
-    syn::ExprBinary: crate::Debug,
-    syn::ExprBlock: crate::Debug,
-    syn::ExprBox: crate::Debug,
-    syn::ExprBreak: crate::Debug,
-    syn::ExprCall: crate::Debug,
-    syn::ExprCast: crate::Debug,
-    syn::ExprClosure: crate::Debug,
-    syn::ExprContinue: crate::Debug,
-    syn::ExprField: crate::Debug,
-    syn::ExprForLoop: crate::Debug,
-    syn::ExprGroup: crate::Debug,
-    syn::ExprIf: crate::Debug,
-    syn::ExprIndex: crate::Debug,
-    syn::ExprLet: crate::Debug,
-    syn::ExprLit: crate::Debug,
-    syn::ExprLoop: crate::Debug,
-    syn::ExprMacro: crate::Debug,
-    syn::ExprMatch: crate::Debug,
-    syn::ExprMethodCall: crate::Debug,
-    syn::ExprParen: crate::Debug,
-    syn::ExprPath: crate::Debug,
-    syn::ExprRange: crate::Debug,
-    syn::ExprReference: crate::Debug,
-    syn::ExprRepeat: crate::Debug,
-    syn::ExprReturn: crate::Debug,
-    syn::ExprStruct: crate::Debug,
-    syn::ExprTry: crate::Debug,
-    syn::ExprTryBlock: crate::Debug,
-    syn::ExprTuple: crate::Debug,
-    syn::ExprType: crate::Debug,
-    syn::ExprUnary: crate::Debug,
-    syn::ExprUnsafe: crate::Debug,
-    proc_macro2::TokenStream: crate::Debug,
-    syn::ExprWhile: crate::Debug,
-    syn::ExprYield: crate::Debug,
-{
+impl crate::Debug for syn::Expr {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::Expr::Array(__0) => {
@@ -542,12 +382,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::ExprArray
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Bracket: crate::Debug,
-    syn::punctuated::Punctuated<syn::Expr, syn::token::Comma>: crate::Debug,
-{
+impl crate::Debug for syn::ExprArray {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprArray")
             .field("attrs", &self.attrs)
@@ -556,12 +391,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprAssign
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-    syn::token::Eq: crate::Debug,
-{
+impl crate::Debug for syn::ExprAssign {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprAssign")
             .field("attrs", &self.attrs)
@@ -571,12 +401,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprAssignOp
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-    syn::BinOp: crate::Debug,
-{
+impl crate::Debug for syn::ExprAssignOp {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprAssignOp")
             .field("attrs", &self.attrs)
@@ -586,13 +411,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprAsync
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Async: crate::Debug,
-    core::option::Option<syn::token::Move>: crate::Debug,
-    syn::Block: crate::Debug,
-{
+impl crate::Debug for syn::ExprAsync {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprAsync")
             .field("attrs", &self.attrs)
@@ -602,13 +421,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprAwait
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-    syn::token::Dot: crate::Debug,
-    syn::token::Await: crate::Debug,
-{
+impl crate::Debug for syn::ExprAwait {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprAwait")
             .field("attrs", &self.attrs)
@@ -618,12 +431,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprBinary
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-    syn::BinOp: crate::Debug,
-{
+impl crate::Debug for syn::ExprBinary {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprBinary")
             .field("attrs", &self.attrs)
@@ -633,12 +441,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprBlock
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    core::option::Option<syn::Label>: crate::Debug,
-    syn::Block: crate::Debug,
-{
+impl crate::Debug for syn::ExprBlock {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprBlock")
             .field("attrs", &self.attrs)
@@ -647,12 +450,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprBox
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Box: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-{
+impl crate::Debug for syn::ExprBox {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprBox")
             .field("attrs", &self.attrs)
@@ -661,13 +459,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprBreak
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Break: crate::Debug,
-    core::option::Option<syn::Lifetime>: crate::Debug,
-    core::option::Option<alloc::boxed::Box<syn::Expr>>: crate::Debug,
-{
+impl crate::Debug for syn::ExprBreak {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprBreak")
             .field("attrs", &self.attrs)
@@ -677,13 +469,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprCall
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-    syn::token::Paren: crate::Debug,
-    syn::punctuated::Punctuated<syn::Expr, syn::token::Comma>: crate::Debug,
-{
+impl crate::Debug for syn::ExprCall {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprCall")
             .field("attrs", &self.attrs)
@@ -693,13 +479,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprCast
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-    syn::token::As: crate::Debug,
-    alloc::boxed::Box<syn::Type>: crate::Debug,
-{
+impl crate::Debug for syn::ExprCast {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprCast")
             .field("attrs", &self.attrs)
@@ -709,17 +489,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprClosure
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    core::option::Option<syn::token::Static>: crate::Debug,
-    core::option::Option<syn::token::Async>: crate::Debug,
-    core::option::Option<syn::token::Move>: crate::Debug,
-    syn::token::Or: crate::Debug,
-    syn::punctuated::Punctuated<syn::Pat, syn::token::Comma>: crate::Debug,
-    syn::ReturnType: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-{
+impl crate::Debug for syn::ExprClosure {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprClosure")
             .field("attrs", &self.attrs)
@@ -734,12 +504,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprContinue
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Continue: crate::Debug,
-    core::option::Option<syn::Lifetime>: crate::Debug,
-{
+impl crate::Debug for syn::ExprContinue {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprContinue")
             .field("attrs", &self.attrs)
@@ -748,13 +513,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprField
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-    syn::token::Dot: crate::Debug,
-    syn::Member: crate::Debug,
-{
+impl crate::Debug for syn::ExprField {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprField")
             .field("attrs", &self.attrs)
@@ -764,16 +523,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprForLoop
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    core::option::Option<syn::Label>: crate::Debug,
-    syn::token::For: crate::Debug,
-    syn::Pat: crate::Debug,
-    syn::token::In: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-    syn::Block: crate::Debug,
-{
+impl crate::Debug for syn::ExprForLoop {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprForLoop")
             .field("attrs", &self.attrs)
@@ -786,12 +536,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprGroup
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Group: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-{
+impl crate::Debug for syn::ExprGroup {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprGroup")
             .field("attrs", &self.attrs)
@@ -800,14 +545,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprIf
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::If: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-    syn::Block: crate::Debug,
-    core::option::Option<(syn::token::Else, alloc::boxed::Box<syn::Expr>)>: crate::Debug,
-{
+impl crate::Debug for syn::ExprIf {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprIf")
             .field("attrs", &self.attrs)
@@ -818,12 +556,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprIndex
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-    syn::token::Bracket: crate::Debug,
-{
+impl crate::Debug for syn::ExprIndex {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprIndex")
             .field("attrs", &self.attrs)
@@ -833,14 +566,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprLet
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Let: crate::Debug,
-    syn::Pat: crate::Debug,
-    syn::token::Eq: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-{
+impl crate::Debug for syn::ExprLet {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprLet")
             .field("attrs", &self.attrs)
@@ -851,11 +577,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprLit
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Lit: crate::Debug,
-{
+impl crate::Debug for syn::ExprLit {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprLit")
             .field("attrs", &self.attrs)
@@ -863,13 +585,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprLoop
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    core::option::Option<syn::Label>: crate::Debug,
-    syn::token::Loop: crate::Debug,
-    syn::Block: crate::Debug,
-{
+impl crate::Debug for syn::ExprLoop {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprLoop")
             .field("attrs", &self.attrs)
@@ -879,11 +595,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprMacro
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Macro: crate::Debug,
-{
+impl crate::Debug for syn::ExprMacro {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprMacro")
             .field("attrs", &self.attrs)
@@ -891,14 +603,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprMatch
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Match: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-    syn::token::Brace: crate::Debug,
-    alloc::vec::Vec<syn::Arm>: crate::Debug,
-{
+impl crate::Debug for syn::ExprMatch {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprMatch")
             .field("attrs", &self.attrs)
@@ -909,16 +614,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprMethodCall
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-    syn::token::Dot: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    core::option::Option<syn::MethodTurbofish>: crate::Debug,
-    syn::token::Paren: crate::Debug,
-    syn::punctuated::Punctuated<syn::Expr, syn::token::Comma>: crate::Debug,
-{
+impl crate::Debug for syn::ExprMethodCall {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprMethodCall")
             .field("attrs", &self.attrs)
@@ -931,12 +627,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprParen
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Paren: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-{
+impl crate::Debug for syn::ExprParen {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprParen")
             .field("attrs", &self.attrs)
@@ -945,12 +636,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprPath
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    core::option::Option<syn::QSelf>: crate::Debug,
-    syn::Path: crate::Debug,
-{
+impl crate::Debug for syn::ExprPath {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprPath")
             .field("attrs", &self.attrs)
@@ -959,12 +645,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprRange
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    core::option::Option<alloc::boxed::Box<syn::Expr>>: crate::Debug,
-    syn::RangeLimits: crate::Debug,
-{
+impl crate::Debug for syn::ExprRange {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprRange")
             .field("attrs", &self.attrs)
@@ -975,13 +656,7 @@ where
     }
 }
 // Skiping syn::ExprReference due to config rule ExprReference
-impl crate::Debug for syn::ExprRepeat
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Bracket: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-    syn::token::Semi: crate::Debug,
-{
+impl crate::Debug for syn::ExprRepeat {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprRepeat")
             .field("attrs", &self.attrs)
@@ -992,12 +667,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprReturn
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Return: crate::Debug,
-    core::option::Option<alloc::boxed::Box<syn::Expr>>: crate::Debug,
-{
+impl crate::Debug for syn::ExprReturn {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprReturn")
             .field("attrs", &self.attrs)
@@ -1006,15 +676,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprStruct
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Path: crate::Debug,
-    syn::token::Brace: crate::Debug,
-    syn::punctuated::Punctuated<syn::FieldValue, syn::token::Comma>: crate::Debug,
-    core::option::Option<syn::token::Dot2>: crate::Debug,
-    core::option::Option<alloc::boxed::Box<syn::Expr>>: crate::Debug,
-{
+impl crate::Debug for syn::ExprStruct {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprStruct")
             .field("attrs", &self.attrs)
@@ -1026,12 +688,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprTry
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-    syn::token::Question: crate::Debug,
-{
+impl crate::Debug for syn::ExprTry {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprTry")
             .field("attrs", &self.attrs)
@@ -1040,12 +697,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprTryBlock
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Try: crate::Debug,
-    syn::Block: crate::Debug,
-{
+impl crate::Debug for syn::ExprTryBlock {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprTryBlock")
             .field("attrs", &self.attrs)
@@ -1054,12 +706,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprTuple
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Paren: crate::Debug,
-    syn::punctuated::Punctuated<syn::Expr, syn::token::Comma>: crate::Debug,
-{
+impl crate::Debug for syn::ExprTuple {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprTuple")
             .field("attrs", &self.attrs)
@@ -1068,13 +715,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprType
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-    syn::token::Colon: crate::Debug,
-    alloc::boxed::Box<syn::Type>: crate::Debug,
-{
+impl crate::Debug for syn::ExprType {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprType")
             .field("attrs", &self.attrs)
@@ -1084,12 +725,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprUnary
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::UnOp: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-{
+impl crate::Debug for syn::ExprUnary {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprUnary")
             .field("attrs", &self.attrs)
@@ -1098,12 +734,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprUnsafe
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Unsafe: crate::Debug,
-    syn::Block: crate::Debug,
-{
+impl crate::Debug for syn::ExprUnsafe {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprUnsafe")
             .field("attrs", &self.attrs)
@@ -1112,14 +743,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprWhile
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    core::option::Option<syn::Label>: crate::Debug,
-    syn::token::While: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-    syn::Block: crate::Debug,
-{
+impl crate::Debug for syn::ExprWhile {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprWhile")
             .field("attrs", &self.attrs)
@@ -1130,12 +754,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ExprYield
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Yield: crate::Debug,
-    core::option::Option<alloc::boxed::Box<syn::Expr>>: crate::Debug,
-{
+impl crate::Debug for syn::ExprYield {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExprYield")
             .field("attrs", &self.attrs)
@@ -1144,14 +763,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::Field
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    core::option::Option<proc_macro2::Ident>: crate::Debug,
-    core::option::Option<syn::token::Colon>: crate::Debug,
-    syn::Type: crate::Debug,
-{
+impl crate::Debug for syn::Field {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Field")
             .field("attrs", &self.attrs)
@@ -1162,13 +774,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::FieldPat
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Member: crate::Debug,
-    core::option::Option<syn::token::Colon>: crate::Debug,
-    alloc::boxed::Box<syn::Pat>: crate::Debug,
-{
+impl crate::Debug for syn::FieldPat {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("FieldPat")
             .field("attrs", &self.attrs)
@@ -1178,13 +784,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::FieldValue
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Member: crate::Debug,
-    core::option::Option<syn::token::Colon>: crate::Debug,
-    syn::Expr: crate::Debug,
-{
+impl crate::Debug for syn::FieldValue {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("FieldValue")
             .field("attrs", &self.attrs)
@@ -1194,11 +794,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::Fields
-where
-    syn::FieldsNamed: crate::Debug,
-    syn::FieldsUnnamed: crate::Debug,
-{
+impl crate::Debug for syn::Fields {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::Fields::Named(__0) => {
@@ -1213,11 +809,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::FieldsNamed
-where
-    syn::token::Brace: crate::Debug,
-    syn::punctuated::Punctuated<syn::Field, syn::token::Comma>: crate::Debug,
-{
+impl crate::Debug for syn::FieldsNamed {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("FieldsNamed")
             .field("brace_token", &self.brace_token)
@@ -1225,11 +817,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::FieldsUnnamed
-where
-    syn::token::Paren: crate::Debug,
-    syn::punctuated::Punctuated<syn::Field, syn::token::Comma>: crate::Debug,
-{
+impl crate::Debug for syn::FieldsUnnamed {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("FieldsUnnamed")
             .field("paren_token", &self.paren_token)
@@ -1237,12 +825,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::File
-where
-    core::option::Option<alloc::string::String>: crate::Debug,
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    alloc::vec::Vec<syn::Item>: crate::Debug,
-{
+impl crate::Debug for syn::File {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("File")
             .field("shebang", &self.shebang)
@@ -1251,11 +834,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::FnArg
-where
-    syn::Receiver: crate::Debug,
-    syn::PatType: crate::Debug,
-{
+impl crate::Debug for syn::FnArg {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::FnArg::Receiver(__0) => {
@@ -1267,14 +846,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::ForeignItem
-where
-    syn::ForeignItemFn: crate::Debug,
-    syn::ForeignItemStatic: crate::Debug,
-    syn::ForeignItemType: crate::Debug,
-    syn::ForeignItemMacro: crate::Debug,
-    proc_macro2::TokenStream: crate::Debug,
-{
+impl crate::Debug for syn::ForeignItem {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::ForeignItem::Fn(__0) => {
@@ -1296,13 +868,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::ForeignItemFn
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    syn::Signature: crate::Debug,
-    syn::token::Semi: crate::Debug,
-{
+impl crate::Debug for syn::ForeignItemFn {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ForeignItemFn")
             .field("attrs", &self.attrs)
@@ -1312,12 +878,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ForeignItemMacro
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Macro: crate::Debug,
-    core::option::Option<syn::token::Semi>: crate::Debug,
-{
+impl crate::Debug for syn::ForeignItemMacro {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ForeignItemMacro")
             .field("attrs", &self.attrs)
@@ -1326,17 +887,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ForeignItemStatic
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    syn::token::Static: crate::Debug,
-    core::option::Option<syn::token::Mut>: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    syn::token::Colon: crate::Debug,
-    alloc::boxed::Box<syn::Type>: crate::Debug,
-    syn::token::Semi: crate::Debug,
-{
+impl crate::Debug for syn::ForeignItemStatic {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ForeignItemStatic")
             .field("attrs", &self.attrs)
@@ -1350,14 +901,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ForeignItemType
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    syn::token::Type: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    syn::token::Semi: crate::Debug,
-{
+impl crate::Debug for syn::ForeignItemType {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ForeignItemType")
             .field("attrs", &self.attrs)
@@ -1368,14 +912,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::GenericArgument
-where
-    syn::Lifetime: crate::Debug,
-    syn::Type: crate::Debug,
-    syn::Binding: crate::Debug,
-    syn::Constraint: crate::Debug,
-    syn::Expr: crate::Debug,
-{
+impl crate::Debug for syn::GenericArgument {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::GenericArgument::Lifetime(__0) => {
@@ -1396,11 +933,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::GenericMethodArgument
-where
-    syn::Type: crate::Debug,
-    syn::Expr: crate::Debug,
-{
+impl crate::Debug for syn::GenericMethodArgument {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::GenericMethodArgument::Type(__0) => {
@@ -1412,12 +945,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::GenericParam
-where
-    syn::TypeParam: crate::Debug,
-    syn::LifetimeDef: crate::Debug,
-    syn::ConstParam: crate::Debug,
-{
+impl crate::Debug for syn::GenericParam {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::GenericParam::Type(__0) => {
@@ -1432,13 +960,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::Generics
-where
-    core::option::Option<syn::token::Lt>: crate::Debug,
-    syn::punctuated::Punctuated<syn::GenericParam, syn::token::Comma>: crate::Debug,
-    core::option::Option<syn::token::Gt>: crate::Debug,
-    core::option::Option<syn::WhereClause>: crate::Debug,
-{
+impl crate::Debug for syn::Generics {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Generics")
             .field("lt_token", &self.lt_token)
@@ -1449,14 +971,7 @@ where
     }
 }
 // Skipping syn::ImplGenerics due to hidden fields
-impl crate::Debug for syn::ImplItem
-where
-    syn::ImplItemConst: crate::Debug,
-    syn::ImplItemMethod: crate::Debug,
-    syn::ImplItemType: crate::Debug,
-    syn::ImplItemMacro: crate::Debug,
-    proc_macro2::TokenStream: crate::Debug,
-{
+impl crate::Debug for syn::ImplItem {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::ImplItem::Const(__0) => {
@@ -1478,19 +993,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::ImplItemConst
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    core::option::Option<syn::token::Default>: crate::Debug,
-    syn::token::Const: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    syn::token::Colon: crate::Debug,
-    syn::Type: crate::Debug,
-    syn::token::Eq: crate::Debug,
-    syn::Expr: crate::Debug,
-    syn::token::Semi: crate::Debug,
-{
+impl crate::Debug for syn::ImplItemConst {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ImplItemConst")
             .field("attrs", &self.attrs)
@@ -1506,12 +1009,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ImplItemMacro
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Macro: crate::Debug,
-    core::option::Option<syn::token::Semi>: crate::Debug,
-{
+impl crate::Debug for syn::ImplItemMacro {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ImplItemMacro")
             .field("attrs", &self.attrs)
@@ -1520,14 +1018,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ImplItemMethod
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    core::option::Option<syn::token::Default>: crate::Debug,
-    syn::Signature: crate::Debug,
-    syn::Block: crate::Debug,
-{
+impl crate::Debug for syn::ImplItemMethod {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ImplItemMethod")
             .field("attrs", &self.attrs)
@@ -1538,18 +1029,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ImplItemType
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    core::option::Option<syn::token::Default>: crate::Debug,
-    syn::token::Type: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    syn::Generics: crate::Debug,
-    syn::token::Eq: crate::Debug,
-    syn::Type: crate::Debug,
-    syn::token::Semi: crate::Debug,
-{
+impl crate::Debug for syn::ImplItemType {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ImplItemType")
             .field("attrs", &self.attrs)
@@ -1564,11 +1044,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::Index
-where
-    u32: crate::Debug,
-    proc_macro2::Span: crate::Debug,
-{
+impl crate::Debug for syn::Index {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Index")
             .field("index", &self.index)
@@ -1576,26 +1052,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::Item
-where
-    syn::ItemConst: crate::Debug,
-    syn::ItemEnum: crate::Debug,
-    syn::ItemExternCrate: crate::Debug,
-    syn::ItemFn: crate::Debug,
-    syn::ItemForeignMod: crate::Debug,
-    syn::ItemImpl: crate::Debug,
-    syn::ItemMacro: crate::Debug,
-    syn::ItemMacro2: crate::Debug,
-    syn::ItemMod: crate::Debug,
-    syn::ItemStatic: crate::Debug,
-    syn::ItemStruct: crate::Debug,
-    syn::ItemTrait: crate::Debug,
-    syn::ItemTraitAlias: crate::Debug,
-    syn::ItemType: crate::Debug,
-    syn::ItemUnion: crate::Debug,
-    syn::ItemUse: crate::Debug,
-    proc_macro2::TokenStream: crate::Debug,
-{
+impl crate::Debug for syn::Item {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::Item::Const(__0) => {
@@ -1653,18 +1110,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::ItemConst
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    syn::token::Const: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    syn::token::Colon: crate::Debug,
-    alloc::boxed::Box<syn::Type>: crate::Debug,
-    syn::token::Eq: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-    syn::token::Semi: crate::Debug,
-{
+impl crate::Debug for syn::ItemConst {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemConst")
             .field("attrs", &self.attrs)
@@ -1679,16 +1125,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ItemEnum
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    syn::token::Enum: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    syn::Generics: crate::Debug,
-    syn::token::Brace: crate::Debug,
-    syn::punctuated::Punctuated<syn::Variant, syn::token::Comma>: crate::Debug,
-{
+impl crate::Debug for syn::ItemEnum {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemEnum")
             .field("attrs", &self.attrs)
@@ -1701,16 +1138,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ItemExternCrate
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    syn::token::Extern: crate::Debug,
-    syn::token::Crate: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    core::option::Option<(syn::token::As, proc_macro2::Ident)>: crate::Debug,
-    syn::token::Semi: crate::Debug,
-{
+impl crate::Debug for syn::ItemExternCrate {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemExternCrate")
             .field("attrs", &self.attrs)
@@ -1723,13 +1151,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ItemFn
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    syn::Signature: crate::Debug,
-    alloc::boxed::Box<syn::Block>: crate::Debug,
-{
+impl crate::Debug for syn::ItemFn {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemFn")
             .field("attrs", &self.attrs)
@@ -1739,13 +1161,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ItemForeignMod
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Abi: crate::Debug,
-    syn::token::Brace: crate::Debug,
-    alloc::vec::Vec<syn::ForeignItem>: crate::Debug,
-{
+impl crate::Debug for syn::ItemForeignMod {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemForeignMod")
             .field("attrs", &self.attrs)
@@ -1755,22 +1171,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ItemImpl
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    core::option::Option<syn::token::Default>: crate::Debug,
-    core::option::Option<syn::token::Unsafe>: crate::Debug,
-    syn::token::Impl: crate::Debug,
-    syn::Generics: crate::Debug,
-    core::option::Option<(
-        core::option::Option<syn::token::Bang>,
-        syn::Path,
-        syn::token::For,
-    )>: crate::Debug,
-    alloc::boxed::Box<syn::Type>: crate::Debug,
-    syn::token::Brace: crate::Debug,
-    alloc::vec::Vec<syn::ImplItem>: crate::Debug,
-{
+impl crate::Debug for syn::ItemImpl {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemImpl")
             .field("attrs", &self.attrs)
@@ -1785,13 +1186,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ItemMacro
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    core::option::Option<proc_macro2::Ident>: crate::Debug,
-    syn::Macro: crate::Debug,
-    core::option::Option<syn::token::Semi>: crate::Debug,
-{
+impl crate::Debug for syn::ItemMacro {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemMacro")
             .field("attrs", &self.attrs)
@@ -1801,14 +1196,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ItemMacro2
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    syn::token::Macro: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    proc_macro2::TokenStream: crate::Debug,
-{
+impl crate::Debug for syn::ItemMacro2 {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemMacro2")
             .field("attrs", &self.attrs)
@@ -1819,15 +1207,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ItemMod
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    syn::token::Mod: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    core::option::Option<(syn::token::Brace, alloc::vec::Vec<syn::Item>)>: crate::Debug,
-    core::option::Option<syn::token::Semi>: crate::Debug,
-{
+impl crate::Debug for syn::ItemMod {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemMod")
             .field("attrs", &self.attrs)
@@ -1839,19 +1219,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ItemStatic
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    syn::token::Static: crate::Debug,
-    core::option::Option<syn::token::Mut>: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    syn::token::Colon: crate::Debug,
-    alloc::boxed::Box<syn::Type>: crate::Debug,
-    syn::token::Eq: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-    syn::token::Semi: crate::Debug,
-{
+impl crate::Debug for syn::ItemStatic {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemStatic")
             .field("attrs", &self.attrs)
@@ -1867,16 +1235,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ItemStruct
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    syn::token::Struct: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    syn::Generics: crate::Debug,
-    syn::Fields: crate::Debug,
-    core::option::Option<syn::token::Semi>: crate::Debug,
-{
+impl crate::Debug for syn::ItemStruct {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemStruct")
             .field("attrs", &self.attrs)
@@ -1889,20 +1248,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ItemTrait
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    core::option::Option<syn::token::Unsafe>: crate::Debug,
-    core::option::Option<syn::token::Auto>: crate::Debug,
-    syn::token::Trait: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    syn::Generics: crate::Debug,
-    core::option::Option<syn::token::Colon>: crate::Debug,
-    syn::punctuated::Punctuated<syn::TypeParamBound, syn::token::Add>: crate::Debug,
-    syn::token::Brace: crate::Debug,
-    alloc::vec::Vec<syn::TraitItem>: crate::Debug,
-{
+impl crate::Debug for syn::ItemTrait {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemTrait")
             .field("attrs", &self.attrs)
@@ -1919,17 +1265,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ItemTraitAlias
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    syn::token::Trait: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    syn::Generics: crate::Debug,
-    syn::token::Eq: crate::Debug,
-    syn::punctuated::Punctuated<syn::TypeParamBound, syn::token::Add>: crate::Debug,
-    syn::token::Semi: crate::Debug,
-{
+impl crate::Debug for syn::ItemTraitAlias {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemTraitAlias")
             .field("attrs", &self.attrs)
@@ -1943,17 +1279,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ItemType
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    syn::token::Type: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    syn::Generics: crate::Debug,
-    syn::token::Eq: crate::Debug,
-    alloc::boxed::Box<syn::Type>: crate::Debug,
-    syn::token::Semi: crate::Debug,
-{
+impl crate::Debug for syn::ItemType {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemType")
             .field("attrs", &self.attrs)
@@ -1967,15 +1293,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ItemUnion
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    syn::token::Union: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    syn::Generics: crate::Debug,
-    syn::FieldsNamed: crate::Debug,
-{
+impl crate::Debug for syn::ItemUnion {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemUnion")
             .field("attrs", &self.attrs)
@@ -1987,15 +1305,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ItemUse
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Visibility: crate::Debug,
-    syn::token::Use: crate::Debug,
-    core::option::Option<syn::token::Colon2>: crate::Debug,
-    syn::UseTree: crate::Debug,
-    syn::token::Semi: crate::Debug,
-{
+impl crate::Debug for syn::ItemUse {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemUse")
             .field("attrs", &self.attrs)
@@ -2007,11 +1317,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::Label
-where
-    syn::Lifetime: crate::Debug,
-    syn::token::Colon: crate::Debug,
-{
+impl crate::Debug for syn::Label {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Label")
             .field("name", &self.name)
@@ -2019,11 +1325,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::Lifetime
-where
-    proc_macro2::Span: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-{
+impl crate::Debug for syn::Lifetime {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Lifetime")
             .field("apostrophe", &self.apostrophe)
@@ -2031,13 +1333,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::LifetimeDef
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Lifetime: crate::Debug,
-    core::option::Option<syn::token::Colon>: crate::Debug,
-    syn::punctuated::Punctuated<syn::Lifetime, syn::token::Add>: crate::Debug,
-{
+impl crate::Debug for syn::LifetimeDef {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("LifetimeDef")
             .field("attrs", &self.attrs)
@@ -2047,17 +1343,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::Lit
-where
-    syn::LitStr: crate::Debug,
-    syn::LitByteStr: crate::Debug,
-    syn::LitByte: crate::Debug,
-    syn::LitChar: crate::Debug,
-    syn::LitInt: crate::Debug,
-    syn::LitFloat: crate::Debug,
-    syn::LitBool: crate::Debug,
-    proc_macro2::Literal: crate::Debug,
-{
+impl crate::Debug for syn::Lit {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::Lit::Str(__0) => {
@@ -2087,11 +1373,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::LitBool
-where
-    bool: crate::Debug,
-    proc_macro2::Span: crate::Debug,
-{
+impl crate::Debug for syn::LitBool {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("LitBool")
             .field("value", &self.value)
@@ -2105,14 +1387,7 @@ where
 // Skipping syn::LitFloat due to hidden fields
 // Skipping syn::LitInt due to hidden fields
 // Skipping syn::LitStr due to hidden fields
-impl crate::Debug for syn::Local
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Let: crate::Debug,
-    syn::Pat: crate::Debug,
-    core::option::Option<(syn::token::Eq, alloc::boxed::Box<syn::Expr>)>: crate::Debug,
-    syn::token::Semi: crate::Debug,
-{
+impl crate::Debug for syn::Local {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Local")
             .field("attrs", &self.attrs)
@@ -2123,13 +1398,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::Macro
-where
-    syn::Path: crate::Debug,
-    syn::token::Bang: crate::Debug,
-    syn::MacroDelimiter: crate::Debug,
-    proc_macro2::TokenStream: crate::Debug,
-{
+impl crate::Debug for syn::Macro {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Macro")
             .field("path", &self.path)
@@ -2139,12 +1408,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::MacroDelimiter
-where
-    syn::token::Paren: crate::Debug,
-    syn::token::Brace: crate::Debug,
-    syn::token::Bracket: crate::Debug,
-{
+impl crate::Debug for syn::MacroDelimiter {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::MacroDelimiter::Paren(__0) => {
@@ -2159,11 +1423,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::Member
-where
-    proc_macro2::Ident: crate::Debug,
-    syn::Index: crate::Debug,
-{
+impl crate::Debug for syn::Member {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::Member::Named(__0) => {
@@ -2175,12 +1435,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::Meta
-where
-    syn::Path: crate::Debug,
-    syn::MetaList: crate::Debug,
-    syn::MetaNameValue: crate::Debug,
-{
+impl crate::Debug for syn::Meta {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::Meta::Path(__0) => {
@@ -2195,12 +1450,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::MetaList
-where
-    syn::Path: crate::Debug,
-    syn::token::Paren: crate::Debug,
-    syn::punctuated::Punctuated<syn::NestedMeta, syn::token::Comma>: crate::Debug,
-{
+impl crate::Debug for syn::MetaList {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("MetaList")
             .field("path", &self.path)
@@ -2209,12 +1459,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::MetaNameValue
-where
-    syn::Path: crate::Debug,
-    syn::token::Eq: crate::Debug,
-    syn::Lit: crate::Debug,
-{
+impl crate::Debug for syn::MetaNameValue {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("MetaNameValue")
             .field("path", &self.path)
@@ -2223,13 +1468,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::MethodTurbofish
-where
-    syn::token::Colon2: crate::Debug,
-    syn::token::Lt: crate::Debug,
-    syn::punctuated::Punctuated<syn::GenericMethodArgument, syn::token::Comma>: crate::Debug,
-    syn::token::Gt: crate::Debug,
-{
+impl crate::Debug for syn::MethodTurbofish {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("MethodTurbofish")
             .field("colon2_token", &self.colon2_token)
@@ -2239,11 +1478,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::NestedMeta
-where
-    syn::Meta: crate::Debug,
-    syn::Lit: crate::Debug,
-{
+impl crate::Debug for syn::NestedMeta {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::NestedMeta::Meta(__0) => {
@@ -2255,12 +1490,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::ParenthesizedGenericArguments
-where
-    syn::token::Paren: crate::Debug,
-    syn::punctuated::Punctuated<syn::Type, syn::token::Comma>: crate::Debug,
-    syn::ReturnType: crate::Debug,
-{
+impl crate::Debug for syn::ParenthesizedGenericArguments {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ParenthesizedGenericArguments")
             .field("paren_token", &self.paren_token)
@@ -2269,25 +1499,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::Pat
-where
-    syn::PatBox: crate::Debug,
-    syn::PatIdent: crate::Debug,
-    syn::PatLit: crate::Debug,
-    syn::PatMacro: crate::Debug,
-    syn::PatOr: crate::Debug,
-    syn::PatPath: crate::Debug,
-    syn::PatRange: crate::Debug,
-    syn::PatReference: crate::Debug,
-    syn::PatRest: crate::Debug,
-    syn::PatSlice: crate::Debug,
-    syn::PatStruct: crate::Debug,
-    syn::PatTuple: crate::Debug,
-    syn::PatTupleStruct: crate::Debug,
-    syn::PatType: crate::Debug,
-    proc_macro2::TokenStream: crate::Debug,
-    syn::PatWild: crate::Debug,
-{
+impl crate::Debug for syn::Pat {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::Pat::Box(__0) => {
@@ -2342,12 +1554,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::PatBox
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Box: crate::Debug,
-    alloc::boxed::Box<syn::Pat>: crate::Debug,
-{
+impl crate::Debug for syn::PatBox {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatBox")
             .field("attrs", &self.attrs)
@@ -2356,14 +1563,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::PatIdent
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    core::option::Option<syn::token::Ref>: crate::Debug,
-    core::option::Option<syn::token::Mut>: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    core::option::Option<(syn::token::At, alloc::boxed::Box<syn::Pat>)>: crate::Debug,
-{
+impl crate::Debug for syn::PatIdent {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatIdent")
             .field("attrs", &self.attrs)
@@ -2374,11 +1574,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::PatLit
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-{
+impl crate::Debug for syn::PatLit {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatLit")
             .field("attrs", &self.attrs)
@@ -2386,11 +1582,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::PatMacro
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Macro: crate::Debug,
-{
+impl crate::Debug for syn::PatMacro {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatMacro")
             .field("attrs", &self.attrs)
@@ -2398,12 +1590,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::PatOr
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    core::option::Option<syn::token::Or>: crate::Debug,
-    syn::punctuated::Punctuated<syn::Pat, syn::token::Or>: crate::Debug,
-{
+impl crate::Debug for syn::PatOr {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatOr")
             .field("attrs", &self.attrs)
@@ -2412,12 +1599,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::PatPath
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    core::option::Option<syn::QSelf>: crate::Debug,
-    syn::Path: crate::Debug,
-{
+impl crate::Debug for syn::PatPath {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatPath")
             .field("attrs", &self.attrs)
@@ -2426,12 +1608,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::PatRange
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    alloc::boxed::Box<syn::Expr>: crate::Debug,
-    syn::RangeLimits: crate::Debug,
-{
+impl crate::Debug for syn::PatRange {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatRange")
             .field("attrs", &self.attrs)
@@ -2441,13 +1618,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::PatReference
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::And: crate::Debug,
-    core::option::Option<syn::token::Mut>: crate::Debug,
-    alloc::boxed::Box<syn::Pat>: crate::Debug,
-{
+impl crate::Debug for syn::PatReference {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatReference")
             .field("attrs", &self.attrs)
@@ -2457,11 +1628,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::PatRest
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Dot2: crate::Debug,
-{
+impl crate::Debug for syn::PatRest {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatRest")
             .field("attrs", &self.attrs)
@@ -2469,12 +1636,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::PatSlice
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Bracket: crate::Debug,
-    syn::punctuated::Punctuated<syn::Pat, syn::token::Comma>: crate::Debug,
-{
+impl crate::Debug for syn::PatSlice {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatSlice")
             .field("attrs", &self.attrs)
@@ -2483,14 +1645,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::PatStruct
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Path: crate::Debug,
-    syn::token::Brace: crate::Debug,
-    syn::punctuated::Punctuated<syn::FieldPat, syn::token::Comma>: crate::Debug,
-    core::option::Option<syn::token::Dot2>: crate::Debug,
-{
+impl crate::Debug for syn::PatStruct {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatStruct")
             .field("attrs", &self.attrs)
@@ -2501,12 +1656,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::PatTuple
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Paren: crate::Debug,
-    syn::punctuated::Punctuated<syn::Pat, syn::token::Comma>: crate::Debug,
-{
+impl crate::Debug for syn::PatTuple {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatTuple")
             .field("attrs", &self.attrs)
@@ -2515,12 +1665,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::PatTupleStruct
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Path: crate::Debug,
-    syn::PatTuple: crate::Debug,
-{
+impl crate::Debug for syn::PatTupleStruct {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatTupleStruct")
             .field("attrs", &self.attrs)
@@ -2529,13 +1674,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::PatType
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    alloc::boxed::Box<syn::Pat>: crate::Debug,
-    syn::token::Colon: crate::Debug,
-    alloc::boxed::Box<syn::Type>: crate::Debug,
-{
+impl crate::Debug for syn::PatType {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatType")
             .field("attrs", &self.attrs)
@@ -2545,11 +1684,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::PatWild
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Underscore: crate::Debug,
-{
+impl crate::Debug for syn::PatWild {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PatWild")
             .field("attrs", &self.attrs)
@@ -2557,11 +1692,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::Path
-where
-    core::option::Option<syn::token::Colon2>: crate::Debug,
-    syn::punctuated::Punctuated<syn::PathSegment, syn::token::Colon2>: crate::Debug,
-{
+impl crate::Debug for syn::Path {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Path")
             .field("leading_colon", &self.leading_colon)
@@ -2569,11 +1700,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::PathArguments
-where
-    syn::AngleBracketedGenericArguments: crate::Debug,
-    syn::ParenthesizedGenericArguments: crate::Debug,
-{
+impl crate::Debug for syn::PathArguments {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::PathArguments::None => {
@@ -2588,11 +1715,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::PathSegment
-where
-    proc_macro2::Ident: crate::Debug,
-    syn::PathArguments: crate::Debug,
-{
+impl crate::Debug for syn::PathSegment {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PathSegment")
             .field("ident", &self.ident)
@@ -2600,11 +1723,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::PredicateEq
-where
-    syn::Type: crate::Debug,
-    syn::token::Eq: crate::Debug,
-{
+impl crate::Debug for syn::PredicateEq {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PredicateEq")
             .field("lhs_ty", &self.lhs_ty)
@@ -2613,12 +1732,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::PredicateLifetime
-where
-    syn::Lifetime: crate::Debug,
-    syn::token::Colon: crate::Debug,
-    syn::punctuated::Punctuated<syn::Lifetime, syn::token::Add>: crate::Debug,
-{
+impl crate::Debug for syn::PredicateLifetime {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PredicateLifetime")
             .field("lifetime", &self.lifetime)
@@ -2627,13 +1741,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::PredicateType
-where
-    core::option::Option<syn::BoundLifetimes>: crate::Debug,
-    syn::Type: crate::Debug,
-    syn::token::Colon: crate::Debug,
-    syn::punctuated::Punctuated<syn::TypeParamBound, syn::token::Add>: crate::Debug,
-{
+impl crate::Debug for syn::PredicateType {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("PredicateType")
             .field("lifetimes", &self.lifetimes)
@@ -2643,14 +1751,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::QSelf
-where
-    syn::token::Lt: crate::Debug,
-    alloc::boxed::Box<syn::Type>: crate::Debug,
-    usize: crate::Debug,
-    core::option::Option<syn::token::As>: crate::Debug,
-    syn::token::Gt: crate::Debug,
-{
+impl crate::Debug for syn::QSelf {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("QSelf")
             .field("lt_token", &self.lt_token)
@@ -2661,11 +1762,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::RangeLimits
-where
-    syn::token::Dot2: crate::Debug,
-    syn::token::DotDotEq: crate::Debug,
-{
+impl crate::Debug for syn::RangeLimits {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::RangeLimits::HalfOpen(__0) => {
@@ -2677,13 +1774,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::Receiver
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    core::option::Option<(syn::token::And, core::option::Option<syn::Lifetime>)>: crate::Debug,
-    core::option::Option<syn::token::Mut>: crate::Debug,
-    syn::token::SelfValue: crate::Debug,
-{
+impl crate::Debug for syn::Receiver {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Receiver")
             .field("attrs", &self.attrs)
@@ -2693,11 +1784,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::ReturnType
-where
-    syn::token::RArrow: crate::Debug,
-    alloc::boxed::Box<syn::Type>: crate::Debug,
-{
+impl crate::Debug for syn::ReturnType {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::ReturnType::Default => {
@@ -2709,20 +1796,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::Signature
-where
-    core::option::Option<syn::token::Const>: crate::Debug,
-    core::option::Option<syn::token::Async>: crate::Debug,
-    core::option::Option<syn::token::Unsafe>: crate::Debug,
-    core::option::Option<syn::Abi>: crate::Debug,
-    syn::token::Fn: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    syn::Generics: crate::Debug,
-    syn::token::Paren: crate::Debug,
-    syn::punctuated::Punctuated<syn::FnArg, syn::token::Comma>: crate::Debug,
-    core::option::Option<syn::Variadic>: crate::Debug,
-    syn::ReturnType: crate::Debug,
-{
+impl crate::Debug for syn::Signature {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Signature")
             .field("constness", &self.constness)
@@ -2739,13 +1813,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::Stmt
-where
-    syn::Local: crate::Debug,
-    syn::Item: crate::Debug,
-    syn::Expr: crate::Debug,
-    syn::token::Semi: crate::Debug,
-{
+impl crate::Debug for syn::Stmt {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::Stmt::Local(__0) => {
@@ -2763,10 +1831,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::StrStyle
-where
-    usize: crate::Debug,
-{
+impl crate::Debug for syn::StrStyle {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::StrStyle::Cooked => {
@@ -2778,13 +1843,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::TraitBound
-where
-    core::option::Option<syn::token::Paren>: crate::Debug,
-    syn::TraitBoundModifier: crate::Debug,
-    core::option::Option<syn::BoundLifetimes>: crate::Debug,
-    syn::Path: crate::Debug,
-{
+impl crate::Debug for syn::TraitBound {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TraitBound")
             .field("paren_token", &self.paren_token)
@@ -2794,10 +1853,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::TraitBoundModifier
-where
-    syn::token::Question: crate::Debug,
-{
+impl crate::Debug for syn::TraitBoundModifier {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::TraitBoundModifier::None => {
@@ -2809,14 +1865,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::TraitItem
-where
-    syn::TraitItemConst: crate::Debug,
-    syn::TraitItemMethod: crate::Debug,
-    syn::TraitItemType: crate::Debug,
-    syn::TraitItemMacro: crate::Debug,
-    proc_macro2::TokenStream: crate::Debug,
-{
+impl crate::Debug for syn::TraitItem {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::TraitItem::Const(__0) => {
@@ -2838,16 +1887,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::TraitItemConst
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Const: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    syn::token::Colon: crate::Debug,
-    syn::Type: crate::Debug,
-    core::option::Option<(syn::token::Eq, syn::Expr)>: crate::Debug,
-    syn::token::Semi: crate::Debug,
-{
+impl crate::Debug for syn::TraitItemConst {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TraitItemConst")
             .field("attrs", &self.attrs)
@@ -2860,12 +1900,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::TraitItemMacro
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Macro: crate::Debug,
-    core::option::Option<syn::token::Semi>: crate::Debug,
-{
+impl crate::Debug for syn::TraitItemMacro {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TraitItemMacro")
             .field("attrs", &self.attrs)
@@ -2874,13 +1909,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::TraitItemMethod
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::Signature: crate::Debug,
-    core::option::Option<syn::Block>: crate::Debug,
-    core::option::Option<syn::token::Semi>: crate::Debug,
-{
+impl crate::Debug for syn::TraitItemMethod {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TraitItemMethod")
             .field("attrs", &self.attrs)
@@ -2890,17 +1919,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::TraitItemType
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Type: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    syn::Generics: crate::Debug,
-    core::option::Option<syn::token::Colon>: crate::Debug,
-    syn::punctuated::Punctuated<syn::TypeParamBound, syn::token::Add>: crate::Debug,
-    core::option::Option<(syn::token::Eq, syn::Type)>: crate::Debug,
-    syn::token::Semi: crate::Debug,
-{
+impl crate::Debug for syn::TraitItemType {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TraitItemType")
             .field("attrs", &self.attrs)
@@ -2915,24 +1934,7 @@ where
     }
 }
 // Skipping syn::Turbofish due to hidden fields
-impl crate::Debug for syn::Type
-where
-    syn::TypeArray: crate::Debug,
-    syn::TypeBareFn: crate::Debug,
-    syn::TypeGroup: crate::Debug,
-    syn::TypeImplTrait: crate::Debug,
-    syn::TypeInfer: crate::Debug,
-    syn::TypeMacro: crate::Debug,
-    syn::TypeNever: crate::Debug,
-    syn::TypeParen: crate::Debug,
-    syn::TypePath: crate::Debug,
-    syn::TypePtr: crate::Debug,
-    syn::TypeReference: crate::Debug,
-    syn::TypeSlice: crate::Debug,
-    syn::TypeTraitObject: crate::Debug,
-    syn::TypeTuple: crate::Debug,
-    proc_macro2::TokenStream: crate::Debug,
-{
+impl crate::Debug for syn::Type {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::Type::Array(__0) => {
@@ -2984,13 +1986,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::TypeArray
-where
-    syn::token::Bracket: crate::Debug,
-    alloc::boxed::Box<syn::Type>: crate::Debug,
-    syn::token::Semi: crate::Debug,
-    syn::Expr: crate::Debug,
-{
+impl crate::Debug for syn::TypeArray {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeArray")
             .field("bracket_token", &self.bracket_token)
@@ -3000,17 +1996,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::TypeBareFn
-where
-    core::option::Option<syn::BoundLifetimes>: crate::Debug,
-    core::option::Option<syn::token::Unsafe>: crate::Debug,
-    core::option::Option<syn::Abi>: crate::Debug,
-    syn::token::Fn: crate::Debug,
-    syn::token::Paren: crate::Debug,
-    syn::punctuated::Punctuated<syn::BareFnArg, syn::token::Comma>: crate::Debug,
-    core::option::Option<syn::Variadic>: crate::Debug,
-    syn::ReturnType: crate::Debug,
-{
+impl crate::Debug for syn::TypeBareFn {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeBareFn")
             .field("lifetimes", &self.lifetimes)
@@ -3025,11 +2011,7 @@ where
     }
 }
 // Skipping syn::TypeGenerics due to hidden fields
-impl crate::Debug for syn::TypeGroup
-where
-    syn::token::Group: crate::Debug,
-    alloc::boxed::Box<syn::Type>: crate::Debug,
-{
+impl crate::Debug for syn::TypeGroup {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeGroup")
             .field("group_token", &self.group_token)
@@ -3037,11 +2019,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::TypeImplTrait
-where
-    syn::token::Impl: crate::Debug,
-    syn::punctuated::Punctuated<syn::TypeParamBound, syn::token::Add>: crate::Debug,
-{
+impl crate::Debug for syn::TypeImplTrait {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeImplTrait")
             .field("impl_token", &self.impl_token)
@@ -3049,43 +2027,26 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::TypeInfer
-where
-    syn::token::Underscore: crate::Debug,
-{
+impl crate::Debug for syn::TypeInfer {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeInfer")
             .field("underscore_token", &self.underscore_token)
             .finish()
     }
 }
-impl crate::Debug for syn::TypeMacro
-where
-    syn::Macro: crate::Debug,
-{
+impl crate::Debug for syn::TypeMacro {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeMacro").field("mac", &self.mac).finish()
     }
 }
-impl crate::Debug for syn::TypeNever
-where
-    syn::token::Bang: crate::Debug,
-{
+impl crate::Debug for syn::TypeNever {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeNever")
             .field("bang_token", &self.bang_token)
             .finish()
     }
 }
-impl crate::Debug for syn::TypeParam
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    core::option::Option<syn::token::Colon>: crate::Debug,
-    syn::punctuated::Punctuated<syn::TypeParamBound, syn::token::Add>: crate::Debug,
-    core::option::Option<syn::token::Eq>: crate::Debug,
-    core::option::Option<syn::Type>: crate::Debug,
-{
+impl crate::Debug for syn::TypeParam {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeParam")
             .field("attrs", &self.attrs)
@@ -3097,11 +2058,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::TypeParamBound
-where
-    syn::TraitBound: crate::Debug,
-    syn::Lifetime: crate::Debug,
-{
+impl crate::Debug for syn::TypeParamBound {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::TypeParamBound::Trait(__0) => {
@@ -3113,11 +2070,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::TypeParen
-where
-    syn::token::Paren: crate::Debug,
-    alloc::boxed::Box<syn::Type>: crate::Debug,
-{
+impl crate::Debug for syn::TypeParen {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeParen")
             .field("paren_token", &self.paren_token)
@@ -3125,11 +2078,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::TypePath
-where
-    core::option::Option<syn::QSelf>: crate::Debug,
-    syn::Path: crate::Debug,
-{
+impl crate::Debug for syn::TypePath {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypePath")
             .field("qself", &self.qself)
@@ -3137,13 +2086,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::TypePtr
-where
-    syn::token::Star: crate::Debug,
-    core::option::Option<syn::token::Const>: crate::Debug,
-    core::option::Option<syn::token::Mut>: crate::Debug,
-    alloc::boxed::Box<syn::Type>: crate::Debug,
-{
+impl crate::Debug for syn::TypePtr {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypePtr")
             .field("star_token", &self.star_token)
@@ -3153,13 +2096,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::TypeReference
-where
-    syn::token::And: crate::Debug,
-    core::option::Option<syn::Lifetime>: crate::Debug,
-    core::option::Option<syn::token::Mut>: crate::Debug,
-    alloc::boxed::Box<syn::Type>: crate::Debug,
-{
+impl crate::Debug for syn::TypeReference {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeReference")
             .field("and_token", &self.and_token)
@@ -3169,11 +2106,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::TypeSlice
-where
-    syn::token::Bracket: crate::Debug,
-    alloc::boxed::Box<syn::Type>: crate::Debug,
-{
+impl crate::Debug for syn::TypeSlice {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeSlice")
             .field("bracket_token", &self.bracket_token)
@@ -3181,11 +2114,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::TypeTraitObject
-where
-    core::option::Option<syn::token::Dyn>: crate::Debug,
-    syn::punctuated::Punctuated<syn::TypeParamBound, syn::token::Add>: crate::Debug,
-{
+impl crate::Debug for syn::TypeTraitObject {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeTraitObject")
             .field("dyn_token", &self.dyn_token)
@@ -3193,11 +2122,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::TypeTuple
-where
-    syn::token::Paren: crate::Debug,
-    syn::punctuated::Punctuated<syn::Type, syn::token::Comma>: crate::Debug,
-{
+impl crate::Debug for syn::TypeTuple {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeTuple")
             .field("paren_token", &self.paren_token)
@@ -3205,12 +2130,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::UnOp
-where
-    syn::token::Star: crate::Debug,
-    syn::token::Bang: crate::Debug,
-    syn::token::Sub: crate::Debug,
-{
+impl crate::Debug for syn::UnOp {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::UnOp::Deref(__0) => {
@@ -3225,21 +2145,14 @@ where
         }
     }
 }
-impl crate::Debug for syn::UseGlob
-where
-    syn::token::Star: crate::Debug,
-{
+impl crate::Debug for syn::UseGlob {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("UseGlob")
             .field("star_token", &self.star_token)
             .finish()
     }
 }
-impl crate::Debug for syn::UseGroup
-where
-    syn::token::Brace: crate::Debug,
-    syn::punctuated::Punctuated<syn::UseTree, syn::token::Comma>: crate::Debug,
-{
+impl crate::Debug for syn::UseGroup {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("UseGroup")
             .field("brace_token", &self.brace_token)
@@ -3247,22 +2160,14 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::UseName
-where
-    proc_macro2::Ident: crate::Debug,
-{
+impl crate::Debug for syn::UseName {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("UseName")
             .field("ident", &self.ident)
             .finish()
     }
 }
-impl crate::Debug for syn::UsePath
-where
-    proc_macro2::Ident: crate::Debug,
-    syn::token::Colon2: crate::Debug,
-    alloc::boxed::Box<syn::UseTree>: crate::Debug,
-{
+impl crate::Debug for syn::UsePath {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("UsePath")
             .field("ident", &self.ident)
@@ -3271,11 +2176,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::UseRename
-where
-    proc_macro2::Ident: crate::Debug,
-    syn::token::As: crate::Debug,
-{
+impl crate::Debug for syn::UseRename {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("UseRename")
             .field("ident", &self.ident)
@@ -3284,14 +2185,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::UseTree
-where
-    syn::UsePath: crate::Debug,
-    syn::UseName: crate::Debug,
-    syn::UseRename: crate::Debug,
-    syn::UseGlob: crate::Debug,
-    syn::UseGroup: crate::Debug,
-{
+impl crate::Debug for syn::UseTree {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::UseTree::Path(__0) => {
@@ -3312,11 +2206,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::Variadic
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    syn::token::Dot3: crate::Debug,
-{
+impl crate::Debug for syn::Variadic {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Variadic")
             .field("attrs", &self.attrs)
@@ -3324,13 +2214,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::Variant
-where
-    alloc::vec::Vec<syn::Attribute>: crate::Debug,
-    proc_macro2::Ident: crate::Debug,
-    syn::Fields: crate::Debug,
-    core::option::Option<(syn::token::Eq, syn::Expr)>: crate::Debug,
-{
+impl crate::Debug for syn::Variant {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Variant")
             .field("attrs", &self.attrs)
@@ -3340,33 +2224,21 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::VisCrate
-where
-    syn::token::Crate: crate::Debug,
-{
+impl crate::Debug for syn::VisCrate {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("VisCrate")
             .field("crate_token", &self.crate_token)
             .finish()
     }
 }
-impl crate::Debug for syn::VisPublic
-where
-    syn::token::Pub: crate::Debug,
-{
+impl crate::Debug for syn::VisPublic {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("VisPublic")
             .field("pub_token", &self.pub_token)
             .finish()
     }
 }
-impl crate::Debug for syn::VisRestricted
-where
-    syn::token::Pub: crate::Debug,
-    syn::token::Paren: crate::Debug,
-    core::option::Option<syn::token::In>: crate::Debug,
-    alloc::boxed::Box<syn::Path>: crate::Debug,
-{
+impl crate::Debug for syn::VisRestricted {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("VisRestricted")
             .field("pub_token", &self.pub_token)
@@ -3376,12 +2248,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::Visibility
-where
-    syn::VisPublic: crate::Debug,
-    syn::VisCrate: crate::Debug,
-    syn::VisRestricted: crate::Debug,
-{
+impl crate::Debug for syn::Visibility {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::Visibility::Public(__0) => {
@@ -3399,11 +2266,7 @@ where
         }
     }
 }
-impl crate::Debug for syn::WhereClause
-where
-    syn::token::Where: crate::Debug,
-    syn::punctuated::Punctuated<syn::WherePredicate, syn::token::Comma>: crate::Debug,
-{
+impl crate::Debug for syn::WhereClause {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("WhereClause")
             .field("where_token", &self.where_token)
@@ -3411,12 +2274,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for syn::WherePredicate
-where
-    syn::PredicateType: crate::Debug,
-    syn::PredicateLifetime: crate::Debug,
-    syn::PredicateEq: crate::Debug,
-{
+impl crate::Debug for syn::WherePredicate {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             syn::WherePredicate::Type(__0) => {

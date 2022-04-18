@@ -2,11 +2,7 @@
 //
 // Crate Name: `rustdoc_types`
 // Crate Version: `0.10.0`
-impl crate::Debug for rustdoc_types::Abi
-where
-    bool: crate::Debug,
-    alloc::string::String: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Abi {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             rustdoc_types::Abi::Rust => {
@@ -42,13 +38,7 @@ where
         }
     }
 }
-impl crate::Debug for rustdoc_types::Constant
-where
-    rustdoc_types::Type: crate::Debug,
-    alloc::string::String: crate::Debug,
-    core::option::Option<alloc::string::String>: crate::Debug,
-    bool: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Constant {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Constant")
             .field("type_", &self.type_)
@@ -58,17 +48,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::Crate
-where
-    rustdoc_types::Id: crate::Debug,
-    core::option::Option<alloc::string::String>: crate::Debug,
-    bool: crate::Debug,
-    std::collections::hash::map::HashMap<rustdoc_types::Id, rustdoc_types::Item>: crate::Debug,
-    std::collections::hash::map::HashMap<rustdoc_types::Id, rustdoc_types::ItemSummary>:
-        crate::Debug,
-    std::collections::hash::map::HashMap<u32, rustdoc_types::ExternalCrate>: crate::Debug,
-    u32: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Crate {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Crate")
             .field("root", &self.root)
@@ -81,10 +61,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::Deprecation
-where
-    core::option::Option<alloc::string::String>: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Deprecation {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Deprecation")
             .field("since", &self.since)
@@ -92,12 +69,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::Enum
-where
-    rustdoc_types::Generics: crate::Debug,
-    bool: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::Id>: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Enum {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Enum")
             .field("generics", &self.generics)
@@ -107,11 +79,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::ExternalCrate
-where
-    alloc::string::String: crate::Debug,
-    core::option::Option<alloc::string::String>: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::ExternalCrate {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ExternalCrate")
             .field("name", &self.name)
@@ -119,12 +87,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::FnDecl
-where
-    alloc::vec::Vec<(alloc::string::String, rustdoc_types::Type)>: crate::Debug,
-    core::option::Option<rustdoc_types::Type>: crate::Debug,
-    bool: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::FnDecl {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("FnDecl")
             .field("inputs", &self.inputs)
@@ -133,12 +96,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::Function
-where
-    rustdoc_types::FnDecl: crate::Debug,
-    rustdoc_types::Generics: crate::Debug,
-    rustdoc_types::Header: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Function {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Function")
             .field("decl", &self.decl)
@@ -147,12 +105,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::FunctionPointer
-where
-    rustdoc_types::FnDecl: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::GenericParamDef>: crate::Debug,
-    rustdoc_types::Header: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::FunctionPointer {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("FunctionPointer")
             .field("decl", &self.decl)
@@ -161,12 +114,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::GenericArg
-where
-    alloc::string::String: crate::Debug,
-    rustdoc_types::Type: crate::Debug,
-    rustdoc_types::Constant: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::GenericArg {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             rustdoc_types::GenericArg::Lifetime(__0) => {
@@ -184,13 +132,7 @@ where
         }
     }
 }
-impl crate::Debug for rustdoc_types::GenericArgs
-where
-    alloc::vec::Vec<rustdoc_types::GenericArg>: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::TypeBinding>: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::Type>: crate::Debug,
-    core::option::Option<rustdoc_types::Type>: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::GenericArgs {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             rustdoc_types::GenericArgs::AngleBracketed { args, bindings } => f
@@ -206,13 +148,7 @@ where
         }
     }
 }
-impl crate::Debug for rustdoc_types::GenericBound
-where
-    rustdoc_types::Type: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::GenericParamDef>: crate::Debug,
-    rustdoc_types::TraitBoundModifier: crate::Debug,
-    alloc::string::String: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::GenericBound {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             rustdoc_types::GenericBound::TraitBound {
@@ -231,11 +167,7 @@ where
         }
     }
 }
-impl crate::Debug for rustdoc_types::GenericParamDef
-where
-    alloc::string::String: crate::Debug,
-    rustdoc_types::GenericParamDefKind: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::GenericParamDef {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("GenericParamDef")
             .field("name", &self.name)
@@ -243,15 +175,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::GenericParamDefKind
-where
-    alloc::vec::Vec<alloc::string::String>: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::GenericBound>: crate::Debug,
-    core::option::Option<rustdoc_types::Type>: crate::Debug,
-    bool: crate::Debug,
-    rustdoc_types::Type: crate::Debug,
-    core::option::Option<alloc::string::String>: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::GenericParamDefKind {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             rustdoc_types::GenericParamDefKind::Lifetime { outlives } => f
@@ -276,11 +200,7 @@ where
         }
     }
 }
-impl crate::Debug for rustdoc_types::Generics
-where
-    alloc::vec::Vec<rustdoc_types::GenericParamDef>: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::WherePredicate>: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Generics {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Generics")
             .field("params", &self.params)
@@ -288,11 +208,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::Header
-where
-    bool: crate::Debug,
-    rustdoc_types::Abi: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Header {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Header")
             .field("const_", &self.const_)
@@ -302,23 +218,12 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::Id
-where
-    alloc::string::String: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Id {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_tuple("Id").field(&self.0).finish()
     }
 }
-impl crate::Debug for rustdoc_types::Impl
-where
-    bool: crate::Debug,
-    rustdoc_types::Generics: crate::Debug,
-    alloc::vec::Vec<alloc::string::String>: crate::Debug,
-    core::option::Option<rustdoc_types::Type>: crate::Debug,
-    rustdoc_types::Type: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::Id>: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Impl {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Impl")
             .field("is_unsafe", &self.is_unsafe)
@@ -333,12 +238,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::Import
-where
-    alloc::string::String: crate::Debug,
-    core::option::Option<rustdoc_types::Id>: crate::Debug,
-    bool: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Import {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Import")
             .field("source", &self.source)
@@ -348,18 +248,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::Item
-where
-    rustdoc_types::Id: crate::Debug,
-    u32: crate::Debug,
-    core::option::Option<alloc::string::String>: crate::Debug,
-    core::option::Option<rustdoc_types::Span>: crate::Debug,
-    rustdoc_types::Visibility: crate::Debug,
-    std::collections::hash::map::HashMap<alloc::string::String, rustdoc_types::Id>: crate::Debug,
-    alloc::vec::Vec<alloc::string::String>: crate::Debug,
-    core::option::Option<rustdoc_types::Deprecation>: crate::Debug,
-    rustdoc_types::ItemEnum: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Item {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Item")
             .field("id", &self.id)
@@ -375,31 +264,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::ItemEnum
-where
-    rustdoc_types::Module: crate::Debug,
-    alloc::string::String: crate::Debug,
-    core::option::Option<alloc::string::String>: crate::Debug,
-    rustdoc_types::Import: crate::Debug,
-    rustdoc_types::Union: crate::Debug,
-    rustdoc_types::Struct: crate::Debug,
-    rustdoc_types::Type: crate::Debug,
-    rustdoc_types::Enum: crate::Debug,
-    rustdoc_types::Variant: crate::Debug,
-    rustdoc_types::Function: crate::Debug,
-    rustdoc_types::Trait: crate::Debug,
-    rustdoc_types::TraitAlias: crate::Debug,
-    rustdoc_types::Method: crate::Debug,
-    rustdoc_types::Impl: crate::Debug,
-    rustdoc_types::Typedef: crate::Debug,
-    rustdoc_types::OpaqueTy: crate::Debug,
-    rustdoc_types::Constant: crate::Debug,
-    rustdoc_types::Static: crate::Debug,
-    rustdoc_types::ProcMacro: crate::Debug,
-    rustdoc_types::Generics: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::GenericBound>: crate::Debug,
-    core::option::Option<rustdoc_types::Type>: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::ItemEnum {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             rustdoc_types::ItemEnum::Module(__0) => {
@@ -566,12 +431,7 @@ impl crate::Debug for rustdoc_types::ItemKind {
         }
     }
 }
-impl crate::Debug for rustdoc_types::ItemSummary
-where
-    u32: crate::Debug,
-    alloc::vec::Vec<alloc::string::String>: crate::Debug,
-    rustdoc_types::ItemKind: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::ItemSummary {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ItemSummary")
             .field("crate_id", &self.crate_id)
@@ -595,13 +455,7 @@ impl crate::Debug for rustdoc_types::MacroKind {
         }
     }
 }
-impl crate::Debug for rustdoc_types::Method
-where
-    rustdoc_types::FnDecl: crate::Debug,
-    rustdoc_types::Generics: crate::Debug,
-    rustdoc_types::Header: crate::Debug,
-    bool: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Method {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Method")
             .field("decl", &self.decl)
@@ -611,11 +465,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::Module
-where
-    bool: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::Id>: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Module {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Module")
             .field("is_crate", &self.is_crate)
@@ -623,11 +473,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::OpaqueTy
-where
-    alloc::vec::Vec<rustdoc_types::GenericBound>: crate::Debug,
-    rustdoc_types::Generics: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::OpaqueTy {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("OpaqueTy")
             .field("bounds", &self.bounds)
@@ -635,11 +481,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::ProcMacro
-where
-    rustdoc_types::MacroKind: crate::Debug,
-    alloc::vec::Vec<alloc::string::String>: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::ProcMacro {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("ProcMacro")
             .field("kind", &self.kind)
@@ -647,11 +489,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::Span
-where
-    std::path::PathBuf: crate::Debug,
-    (usize, usize): crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Span {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Span")
             .field("filename", &self.filename)
@@ -660,12 +498,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::Static
-where
-    rustdoc_types::Type: crate::Debug,
-    bool: crate::Debug,
-    alloc::string::String: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Static {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Static")
             .field("type_", &self.type_)
@@ -674,13 +507,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::Struct
-where
-    rustdoc_types::StructType: crate::Debug,
-    rustdoc_types::Generics: crate::Debug,
-    bool: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::Id>: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Struct {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Struct")
             .field("struct_type", &self.struct_type)
@@ -706,11 +533,7 @@ impl crate::Debug for rustdoc_types::StructType {
         }
     }
 }
-impl crate::Debug for rustdoc_types::Term
-where
-    rustdoc_types::Type: crate::Debug,
-    rustdoc_types::Constant: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Term {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             rustdoc_types::Term::Type(__0) => {
@@ -722,13 +545,7 @@ where
         }
     }
 }
-impl crate::Debug for rustdoc_types::Trait
-where
-    bool: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::Id>: crate::Debug,
-    rustdoc_types::Generics: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::GenericBound>: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Trait {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Trait")
             .field("is_auto", &self.is_auto)
@@ -740,11 +557,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::TraitAlias
-where
-    rustdoc_types::Generics: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::GenericBound>: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::TraitAlias {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TraitAlias")
             .field("generics", &self.generics)
@@ -767,19 +580,7 @@ impl crate::Debug for rustdoc_types::TraitBoundModifier {
         }
     }
 }
-impl crate::Debug for rustdoc_types::Type
-where
-    alloc::string::String: crate::Debug,
-    rustdoc_types::Id: crate::Debug,
-    core::option::Option<alloc::boxed::Box<rustdoc_types::GenericArgs>>: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::GenericBound>: crate::Debug,
-    alloc::boxed::Box<rustdoc_types::FunctionPointer>: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::Type>: crate::Debug,
-    alloc::boxed::Box<rustdoc_types::Type>: crate::Debug,
-    bool: crate::Debug,
-    core::option::Option<alloc::string::String>: crate::Debug,
-    alloc::boxed::Box<rustdoc_types::GenericArgs>: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Type {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             rustdoc_types::Type::ResolvedPath {
@@ -850,12 +651,7 @@ where
         }
     }
 }
-impl crate::Debug for rustdoc_types::TypeBinding
-where
-    alloc::string::String: crate::Debug,
-    rustdoc_types::GenericArgs: crate::Debug,
-    rustdoc_types::TypeBindingKind: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::TypeBinding {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("TypeBinding")
             .field("name", &self.name)
@@ -864,11 +660,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::TypeBindingKind
-where
-    rustdoc_types::Term: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::GenericBound>: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::TypeBindingKind {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             rustdoc_types::TypeBindingKind::Equality(__0) => {
@@ -880,11 +672,7 @@ where
         }
     }
 }
-impl crate::Debug for rustdoc_types::Typedef
-where
-    rustdoc_types::Type: crate::Debug,
-    rustdoc_types::Generics: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Typedef {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Typedef")
             .field("type_", &self.type_)
@@ -892,12 +680,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::Union
-where
-    rustdoc_types::Generics: crate::Debug,
-    bool: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::Id>: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Union {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Union")
             .field("generics", &self.generics)
@@ -907,11 +690,7 @@ where
             .finish()
     }
 }
-impl crate::Debug for rustdoc_types::Variant
-where
-    alloc::vec::Vec<rustdoc_types::Type>: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::Id>: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Variant {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             rustdoc_types::Variant::Plain => {
@@ -926,11 +705,7 @@ where
         }
     }
 }
-impl crate::Debug for rustdoc_types::Visibility
-where
-    rustdoc_types::Id: crate::Debug,
-    alloc::string::String: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::Visibility {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             rustdoc_types::Visibility::Public => {
@@ -950,13 +725,7 @@ where
         }
     }
 }
-impl crate::Debug for rustdoc_types::WherePredicate
-where
-    rustdoc_types::Type: crate::Debug,
-    alloc::vec::Vec<rustdoc_types::GenericBound>: crate::Debug,
-    alloc::string::String: crate::Debug,
-    rustdoc_types::Term: crate::Debug,
-{
+impl crate::Debug for rustdoc_types::WherePredicate {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             rustdoc_types::WherePredicate::BoundPredicate { type_, bounds } => f

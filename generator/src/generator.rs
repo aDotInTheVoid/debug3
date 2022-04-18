@@ -360,7 +360,9 @@ impl Generator<'_> {
             if seen.contains(i) {
                 continue;
             }
-            write!(where_, "{}: crate::Debug,", self.print_type(i)?)?;
+            if is_generic(i)? {
+                write!(where_, "{}: crate::Debug,", self.print_type(i)?)?;
+            }
             seen.insert(i);
         }
 
@@ -475,4 +477,65 @@ impl Generator<'_> {
             GenericArgs::Parenthesized { .. } => todo!(),
         }
     }
+}
+
+fn is_generic(i: &Type) -> Result<bool> {
+    Ok(match i {
+        Type::ResolvedPath {
+            name,
+            id,
+            args,
+            param_names,
+        } => {
+            ensure!(param_names.is_empty());
+            match args {
+                Some(x) => match &**x {
+                    GenericArgs::AngleBracketed { args, bindings } => {
+                        ensure!(bindings.is_empty());
+                        try_any(args.iter().map(|i| is_generic_arg(i)))?
+                    }
+                    GenericArgs::Parenthesized { inputs, output } => todo!(),
+                },
+                None => false,
+            }
+        }
+        Type::Generic(_) => true,
+        Type::Primitive(_) => false,
+        Type::FunctionPointer(_) => todo!(),
+        Type::Tuple(tys) => try_any(tys.iter().map(|i| is_generic(i)))?,
+        Type::Slice(_) => todo!(),
+        Type::Array { type_, len } => todo!(),
+        Type::ImplTrait(_) => todo!(),
+        Type::Infer => todo!(),
+        Type::RawPointer { mutable, type_ } => todo!(),
+        Type::BorrowedRef {
+            lifetime,
+            mutable,
+            type_,
+        } => todo!(),
+        Type::QualifiedPath {
+            name,
+            args,
+            self_type,
+            trait_,
+        } => todo!(),
+    })
+}
+
+fn is_generic_arg(i: &GenericArg) -> Result<bool> {
+    match i {
+        GenericArg::Lifetime(_) => Ok(false),
+        GenericArg::Type(t) => is_generic(t),
+        GenericArg::Const(_) => todo!(),
+        GenericArg::Infer => todo!(),
+    }
+}
+
+fn try_any(x: impl Iterator<Item = Result<bool>>) -> Result<bool> {
+    for i in x {
+        if i? {
+            return Ok(true);
+        }
+    }
+    Ok(false)
 }

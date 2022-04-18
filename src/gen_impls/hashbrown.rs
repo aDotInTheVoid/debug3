@@ -2,10 +2,7 @@
 //
 // Crate Name: `hashbrown`
 // Crate Version: `0.12.0`
-impl crate::Debug for hashbrown::TryReserveError
-where
-    core::alloc::layout::Layout: crate::Debug,
-{
+impl crate::Debug for hashbrown::TryReserveError {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
             hashbrown::TryReserveError::CapacityOverflow => {
