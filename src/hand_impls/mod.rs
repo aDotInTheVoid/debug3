@@ -4,3 +4,4 @@ mod rustdoc_types;
 mod serde_json;
 mod smallvec;
 mod syn;
+mod bytes;

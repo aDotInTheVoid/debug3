@@ -18,3 +18,5 @@ exclude = [
 
 [smallvec]
 exclude = []
+[bytes]
+exclude = []
