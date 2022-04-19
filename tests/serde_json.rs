@@ -9,12 +9,12 @@ fn check(actual: impl Debug, expacted: Expect) {
 #[test]
 fn basic() {
     check(
-        json!({ "a": 64, "b": i64::MAX as u64 + 200, "c": 3.14159  }),
+        json!({ "a": 64, "b": i64::MAX as u64 + 200, "c": 12.345  }),
         expect![[r#"
             Object {
                 a: Number(64),
                 b: Number(9223372036854776007),
-                c: Number(3.14159),
+                c: Number(12.345),
             }"#]],
     )
 }
