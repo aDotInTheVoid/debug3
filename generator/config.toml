@@ -15,10 +15,15 @@ exclude = [
    "hash_map::Entry", # Need a custom bound on K: Borrow<Q>
    "hash_map::EntryRef"
 ]
+version = "0.12.0"
 
 [smallvec]
 exclude = []
 [bytes]
 exclude = []
 [dashmap]
+exclude = []
+[aws-sdk-ec2]
+exclude=[]
+[aws-smithy-types]
 exclude = []

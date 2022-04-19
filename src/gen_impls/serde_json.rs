@@ -14,16 +14,16 @@
 impl crate::Debug for serde_json::error::Category {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            serde_json::error::Category::Io => {
+            Self::Io => {
                 f.debug_tuple("Io").finish();
             }
-            serde_json::error::Category::Syntax => {
+            Self::Syntax => {
                 f.debug_tuple("Syntax").finish();
             }
-            serde_json::error::Category::Data => {
+            Self::Data => {
                 f.debug_tuple("Data").finish();
             }
-            serde_json::error::Category::Eof => {
+            Self::Eof => {
                 f.debug_tuple("Eof").finish();
             }
         }
@@ -32,10 +32,10 @@ impl crate::Debug for serde_json::error::Category {
 impl<'a> crate::Debug for serde_json::map::Entry<'a> {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            serde_json::map::Entry::Vacant(__0) => {
+            Self::Vacant(__0) => {
                 f.debug_tuple("Vacant").field(__0).finish();
             }
-            serde_json::map::Entry::Occupied(__0) => {
+            Self::Occupied(__0) => {
                 f.debug_tuple("Occupied").field(__0).finish();
             }
         }
@@ -52,31 +52,31 @@ impl<'a> crate::Debug for serde_json::map::Entry<'a> {
 impl crate::Debug for serde_json::ser::CharEscape {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            serde_json::ser::CharEscape::Quote => {
+            Self::Quote => {
                 f.debug_tuple("Quote").finish();
             }
-            serde_json::ser::CharEscape::ReverseSolidus => {
+            Self::ReverseSolidus => {
                 f.debug_tuple("ReverseSolidus").finish();
             }
-            serde_json::ser::CharEscape::Solidus => {
+            Self::Solidus => {
                 f.debug_tuple("Solidus").finish();
             }
-            serde_json::ser::CharEscape::Backspace => {
+            Self::Backspace => {
                 f.debug_tuple("Backspace").finish();
             }
-            serde_json::ser::CharEscape::FormFeed => {
+            Self::FormFeed => {
                 f.debug_tuple("FormFeed").finish();
             }
-            serde_json::ser::CharEscape::LineFeed => {
+            Self::LineFeed => {
                 f.debug_tuple("LineFeed").finish();
             }
-            serde_json::ser::CharEscape::CarriageReturn => {
+            Self::CarriageReturn => {
                 f.debug_tuple("CarriageReturn").finish();
             }
-            serde_json::ser::CharEscape::Tab => {
+            Self::Tab => {
                 f.debug_tuple("Tab").finish();
             }
-            serde_json::ser::CharEscape::AsciiControl(__0) => {
+            Self::AsciiControl(__0) => {
                 f.debug_tuple("AsciiControl").field(__0).finish();
             }
         }

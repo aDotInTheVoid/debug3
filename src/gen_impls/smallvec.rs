@@ -5,10 +5,10 @@
 impl crate::Debug for smallvec::CollectionAllocErr {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            smallvec::CollectionAllocErr::CapacityOverflow => {
+            Self::CapacityOverflow => {
                 f.debug_tuple("CapacityOverflow").finish();
             }
-            smallvec::CollectionAllocErr::AllocErr { layout } => {
+            Self::AllocErr { layout } => {
                 f.debug_struct("AllocErr").field("layout", layout).finish()
             }
         }

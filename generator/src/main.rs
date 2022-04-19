@@ -19,10 +19,13 @@ const CARGO_MANIFEST_DIR: &str = env!("CARGO_MANIFEST_DIR");
 #[derive(Deserialize)]
 struct PackageConfigToml {
     exclude: Vec<String>,
+    #[serde(default)]
+    version: Option<String>,
 }
 
 struct PackageConfig {
     exclude: Vec<glob::Pattern>,
+    version: Option<String>,
 }
 
 impl PackageConfig {
@@ -32,7 +35,10 @@ impl PackageConfig {
             .iter()
             .map(|s| glob::Pattern::new(s))
             .collect::<Result<_, _>>()?;
-        Ok(Self { exclude })
+        Ok(Self {
+            exclude,
+            version: toml.version.clone(),
+        })
     }
 }
 
@@ -62,13 +68,18 @@ fn do_package(
         )
     })?)?;
     let workspace_root = Path::new(CARGO_MANIFEST_DIR).parent().unwrap();
-    // cargo +nightly rustdoc -p syn  -- -w json -Z unstable-options
+
+    let package_spec = match &config.version {
+        Some(v) => format!("{package}:{v}"),
+        None => package.to_owned(),
+    };
+
     ensure!(Command::new("cargo")
         .args([
             "+nightly",
             "rustdoc",
             "-p",
-            package,
+            &package_spec,
             "--",
             "-w",
             "json",
@@ -78,6 +89,7 @@ fn do_package(
         .current_dir(workspace_root)
         .status()?
         .success());
+
     let package = package.replace("-", "_");
     let json_path = workspace_root
         .join("target")

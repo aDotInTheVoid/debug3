@@ -17,10 +17,10 @@ where
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            dashmap::mapref::entry::Entry::Occupied(__0) => {
+            Self::Occupied(__0) => {
                 f.debug_tuple("Occupied").field(__0).finish();
             }
-            dashmap::mapref::entry::Entry::Vacant(__0) => {
+            Self::Vacant(__0) => {
                 f.debug_tuple("Vacant").field(__0).finish();
             }
         }
@@ -40,13 +40,13 @@ where
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            dashmap::try_result::TryResult::Present(__0) => {
+            Self::Present(__0) => {
                 f.debug_tuple("Present").field(__0).finish();
             }
-            dashmap::try_result::TryResult::Absent => {
+            Self::Absent => {
                 f.debug_tuple("Absent").finish();
             }
-            dashmap::try_result::TryResult::Locked => {
+            Self::Locked => {
                 f.debug_tuple("Locked").finish();
             }
         }

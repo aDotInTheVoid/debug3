@@ -35,10 +35,10 @@ impl crate::Debug for syn::Arm {
 impl crate::Debug for syn::AttrStyle {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::AttrStyle::Outer => {
+            Self::Outer => {
                 f.debug_tuple("Outer").finish();
             }
-            syn::AttrStyle::Inner(__0) => {
+            Self::Inner(__0) => {
                 f.debug_tuple("Inner").field(__0).finish();
             }
         }
@@ -67,88 +67,88 @@ impl crate::Debug for syn::BareFnArg {
 impl crate::Debug for syn::BinOp {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::BinOp::Add(__0) => {
+            Self::Add(__0) => {
                 f.debug_tuple("Add").field(__0).finish();
             }
-            syn::BinOp::Sub(__0) => {
+            Self::Sub(__0) => {
                 f.debug_tuple("Sub").field(__0).finish();
             }
-            syn::BinOp::Mul(__0) => {
+            Self::Mul(__0) => {
                 f.debug_tuple("Mul").field(__0).finish();
             }
-            syn::BinOp::Div(__0) => {
+            Self::Div(__0) => {
                 f.debug_tuple("Div").field(__0).finish();
             }
-            syn::BinOp::Rem(__0) => {
+            Self::Rem(__0) => {
                 f.debug_tuple("Rem").field(__0).finish();
             }
-            syn::BinOp::And(__0) => {
+            Self::And(__0) => {
                 f.debug_tuple("And").field(__0).finish();
             }
-            syn::BinOp::Or(__0) => {
+            Self::Or(__0) => {
                 f.debug_tuple("Or").field(__0).finish();
             }
-            syn::BinOp::BitXor(__0) => {
+            Self::BitXor(__0) => {
                 f.debug_tuple("BitXor").field(__0).finish();
             }
-            syn::BinOp::BitAnd(__0) => {
+            Self::BitAnd(__0) => {
                 f.debug_tuple("BitAnd").field(__0).finish();
             }
-            syn::BinOp::BitOr(__0) => {
+            Self::BitOr(__0) => {
                 f.debug_tuple("BitOr").field(__0).finish();
             }
-            syn::BinOp::Shl(__0) => {
+            Self::Shl(__0) => {
                 f.debug_tuple("Shl").field(__0).finish();
             }
-            syn::BinOp::Shr(__0) => {
+            Self::Shr(__0) => {
                 f.debug_tuple("Shr").field(__0).finish();
             }
-            syn::BinOp::Eq(__0) => {
+            Self::Eq(__0) => {
                 f.debug_tuple("Eq").field(__0).finish();
             }
-            syn::BinOp::Lt(__0) => {
+            Self::Lt(__0) => {
                 f.debug_tuple("Lt").field(__0).finish();
             }
-            syn::BinOp::Le(__0) => {
+            Self::Le(__0) => {
                 f.debug_tuple("Le").field(__0).finish();
             }
-            syn::BinOp::Ne(__0) => {
+            Self::Ne(__0) => {
                 f.debug_tuple("Ne").field(__0).finish();
             }
-            syn::BinOp::Ge(__0) => {
+            Self::Ge(__0) => {
                 f.debug_tuple("Ge").field(__0).finish();
             }
-            syn::BinOp::Gt(__0) => {
+            Self::Gt(__0) => {
                 f.debug_tuple("Gt").field(__0).finish();
             }
-            syn::BinOp::AddEq(__0) => {
+            Self::AddEq(__0) => {
                 f.debug_tuple("AddEq").field(__0).finish();
             }
-            syn::BinOp::SubEq(__0) => {
+            Self::SubEq(__0) => {
                 f.debug_tuple("SubEq").field(__0).finish();
             }
-            syn::BinOp::MulEq(__0) => {
+            Self::MulEq(__0) => {
                 f.debug_tuple("MulEq").field(__0).finish();
             }
-            syn::BinOp::DivEq(__0) => {
+            Self::DivEq(__0) => {
                 f.debug_tuple("DivEq").field(__0).finish();
             }
-            syn::BinOp::RemEq(__0) => {
+            Self::RemEq(__0) => {
                 f.debug_tuple("RemEq").field(__0).finish();
             }
-            syn::BinOp::BitXorEq(__0) => {
+            Self::BitXorEq(__0) => {
                 f.debug_tuple("BitXorEq").field(__0).finish();
             }
-            syn::BinOp::BitAndEq(__0) => {
+            Self::BitAndEq(__0) => {
                 f.debug_tuple("BitAndEq").field(__0).finish();
             }
-            syn::BinOp::BitOrEq(__0) => {
+            Self::BitOrEq(__0) => {
                 f.debug_tuple("BitOrEq").field(__0).finish();
             }
-            syn::BinOp::ShlEq(__0) => {
+            Self::ShlEq(__0) => {
                 f.debug_tuple("ShlEq").field(__0).finish();
             }
-            syn::BinOp::ShrEq(__0) => {
+            Self::ShrEq(__0) => {
                 f.debug_tuple("ShrEq").field(__0).finish();
             }
         }
@@ -206,13 +206,13 @@ impl crate::Debug for syn::Constraint {
 impl crate::Debug for syn::Data {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Data::Struct(__0) => {
+            Self::Struct(__0) => {
                 f.debug_tuple("Struct").field(__0).finish();
             }
-            syn::Data::Enum(__0) => {
+            Self::Enum(__0) => {
                 f.debug_tuple("Enum").field(__0).finish();
             }
-            syn::Data::Union(__0) => {
+            Self::Union(__0) => {
                 f.debug_tuple("Union").field(__0).finish();
             }
         }
@@ -258,124 +258,124 @@ impl crate::Debug for syn::DeriveInput {
 impl crate::Debug for syn::Expr {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Expr::Array(__0) => {
+            Self::Array(__0) => {
                 f.debug_tuple("Array").field(__0).finish();
             }
-            syn::Expr::Assign(__0) => {
+            Self::Assign(__0) => {
                 f.debug_tuple("Assign").field(__0).finish();
             }
-            syn::Expr::AssignOp(__0) => {
+            Self::AssignOp(__0) => {
                 f.debug_tuple("AssignOp").field(__0).finish();
             }
-            syn::Expr::Async(__0) => {
+            Self::Async(__0) => {
                 f.debug_tuple("Async").field(__0).finish();
             }
-            syn::Expr::Await(__0) => {
+            Self::Await(__0) => {
                 f.debug_tuple("Await").field(__0).finish();
             }
-            syn::Expr::Binary(__0) => {
+            Self::Binary(__0) => {
                 f.debug_tuple("Binary").field(__0).finish();
             }
-            syn::Expr::Block(__0) => {
+            Self::Block(__0) => {
                 f.debug_tuple("Block").field(__0).finish();
             }
-            syn::Expr::Box(__0) => {
+            Self::Box(__0) => {
                 f.debug_tuple("Box").field(__0).finish();
             }
-            syn::Expr::Break(__0) => {
+            Self::Break(__0) => {
                 f.debug_tuple("Break").field(__0).finish();
             }
-            syn::Expr::Call(__0) => {
+            Self::Call(__0) => {
                 f.debug_tuple("Call").field(__0).finish();
             }
-            syn::Expr::Cast(__0) => {
+            Self::Cast(__0) => {
                 f.debug_tuple("Cast").field(__0).finish();
             }
-            syn::Expr::Closure(__0) => {
+            Self::Closure(__0) => {
                 f.debug_tuple("Closure").field(__0).finish();
             }
-            syn::Expr::Continue(__0) => {
+            Self::Continue(__0) => {
                 f.debug_tuple("Continue").field(__0).finish();
             }
-            syn::Expr::Field(__0) => {
+            Self::Field(__0) => {
                 f.debug_tuple("Field").field(__0).finish();
             }
-            syn::Expr::ForLoop(__0) => {
+            Self::ForLoop(__0) => {
                 f.debug_tuple("ForLoop").field(__0).finish();
             }
-            syn::Expr::Group(__0) => {
+            Self::Group(__0) => {
                 f.debug_tuple("Group").field(__0).finish();
             }
-            syn::Expr::If(__0) => {
+            Self::If(__0) => {
                 f.debug_tuple("If").field(__0).finish();
             }
-            syn::Expr::Index(__0) => {
+            Self::Index(__0) => {
                 f.debug_tuple("Index").field(__0).finish();
             }
-            syn::Expr::Let(__0) => {
+            Self::Let(__0) => {
                 f.debug_tuple("Let").field(__0).finish();
             }
-            syn::Expr::Lit(__0) => {
+            Self::Lit(__0) => {
                 f.debug_tuple("Lit").field(__0).finish();
             }
-            syn::Expr::Loop(__0) => {
+            Self::Loop(__0) => {
                 f.debug_tuple("Loop").field(__0).finish();
             }
-            syn::Expr::Macro(__0) => {
+            Self::Macro(__0) => {
                 f.debug_tuple("Macro").field(__0).finish();
             }
-            syn::Expr::Match(__0) => {
+            Self::Match(__0) => {
                 f.debug_tuple("Match").field(__0).finish();
             }
-            syn::Expr::MethodCall(__0) => {
+            Self::MethodCall(__0) => {
                 f.debug_tuple("MethodCall").field(__0).finish();
             }
-            syn::Expr::Paren(__0) => {
+            Self::Paren(__0) => {
                 f.debug_tuple("Paren").field(__0).finish();
             }
-            syn::Expr::Path(__0) => {
+            Self::Path(__0) => {
                 f.debug_tuple("Path").field(__0).finish();
             }
-            syn::Expr::Range(__0) => {
+            Self::Range(__0) => {
                 f.debug_tuple("Range").field(__0).finish();
             }
-            syn::Expr::Reference(__0) => {
+            Self::Reference(__0) => {
                 f.debug_tuple("Reference").field(__0).finish();
             }
-            syn::Expr::Repeat(__0) => {
+            Self::Repeat(__0) => {
                 f.debug_tuple("Repeat").field(__0).finish();
             }
-            syn::Expr::Return(__0) => {
+            Self::Return(__0) => {
                 f.debug_tuple("Return").field(__0).finish();
             }
-            syn::Expr::Struct(__0) => {
+            Self::Struct(__0) => {
                 f.debug_tuple("Struct").field(__0).finish();
             }
-            syn::Expr::Try(__0) => {
+            Self::Try(__0) => {
                 f.debug_tuple("Try").field(__0).finish();
             }
-            syn::Expr::TryBlock(__0) => {
+            Self::TryBlock(__0) => {
                 f.debug_tuple("TryBlock").field(__0).finish();
             }
-            syn::Expr::Tuple(__0) => {
+            Self::Tuple(__0) => {
                 f.debug_tuple("Tuple").field(__0).finish();
             }
-            syn::Expr::Type(__0) => {
+            Self::Type(__0) => {
                 f.debug_tuple("Type").field(__0).finish();
             }
-            syn::Expr::Unary(__0) => {
+            Self::Unary(__0) => {
                 f.debug_tuple("Unary").field(__0).finish();
             }
-            syn::Expr::Unsafe(__0) => {
+            Self::Unsafe(__0) => {
                 f.debug_tuple("Unsafe").field(__0).finish();
             }
-            syn::Expr::Verbatim(__0) => {
+            Self::Verbatim(__0) => {
                 f.debug_tuple("Verbatim").field(__0).finish();
             }
-            syn::Expr::While(__0) => {
+            Self::While(__0) => {
                 f.debug_tuple("While").field(__0).finish();
             }
-            syn::Expr::Yield(__0) => {
+            Self::Yield(__0) => {
                 f.debug_tuple("Yield").field(__0).finish();
             }
             _ => "???".fmt(f),
@@ -797,13 +797,13 @@ impl crate::Debug for syn::FieldValue {
 impl crate::Debug for syn::Fields {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Fields::Named(__0) => {
+            Self::Named(__0) => {
                 f.debug_tuple("Named").field(__0).finish();
             }
-            syn::Fields::Unnamed(__0) => {
+            Self::Unnamed(__0) => {
                 f.debug_tuple("Unnamed").field(__0).finish();
             }
-            syn::Fields::Unit => {
+            Self::Unit => {
                 f.debug_tuple("Unit").finish();
             }
         }
@@ -837,10 +837,10 @@ impl crate::Debug for syn::File {
 impl crate::Debug for syn::FnArg {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::FnArg::Receiver(__0) => {
+            Self::Receiver(__0) => {
                 f.debug_tuple("Receiver").field(__0).finish();
             }
-            syn::FnArg::Typed(__0) => {
+            Self::Typed(__0) => {
                 f.debug_tuple("Typed").field(__0).finish();
             }
         }
@@ -849,19 +849,19 @@ impl crate::Debug for syn::FnArg {
 impl crate::Debug for syn::ForeignItem {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::ForeignItem::Fn(__0) => {
+            Self::Fn(__0) => {
                 f.debug_tuple("Fn").field(__0).finish();
             }
-            syn::ForeignItem::Static(__0) => {
+            Self::Static(__0) => {
                 f.debug_tuple("Static").field(__0).finish();
             }
-            syn::ForeignItem::Type(__0) => {
+            Self::Type(__0) => {
                 f.debug_tuple("Type").field(__0).finish();
             }
-            syn::ForeignItem::Macro(__0) => {
+            Self::Macro(__0) => {
                 f.debug_tuple("Macro").field(__0).finish();
             }
-            syn::ForeignItem::Verbatim(__0) => {
+            Self::Verbatim(__0) => {
                 f.debug_tuple("Verbatim").field(__0).finish();
             }
             _ => "???".fmt(f),
@@ -915,19 +915,19 @@ impl crate::Debug for syn::ForeignItemType {
 impl crate::Debug for syn::GenericArgument {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::GenericArgument::Lifetime(__0) => {
+            Self::Lifetime(__0) => {
                 f.debug_tuple("Lifetime").field(__0).finish();
             }
-            syn::GenericArgument::Type(__0) => {
+            Self::Type(__0) => {
                 f.debug_tuple("Type").field(__0).finish();
             }
-            syn::GenericArgument::Binding(__0) => {
+            Self::Binding(__0) => {
                 f.debug_tuple("Binding").field(__0).finish();
             }
-            syn::GenericArgument::Constraint(__0) => {
+            Self::Constraint(__0) => {
                 f.debug_tuple("Constraint").field(__0).finish();
             }
-            syn::GenericArgument::Const(__0) => {
+            Self::Const(__0) => {
                 f.debug_tuple("Const").field(__0).finish();
             }
         }
@@ -936,10 +936,10 @@ impl crate::Debug for syn::GenericArgument {
 impl crate::Debug for syn::GenericMethodArgument {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::GenericMethodArgument::Type(__0) => {
+            Self::Type(__0) => {
                 f.debug_tuple("Type").field(__0).finish();
             }
-            syn::GenericMethodArgument::Const(__0) => {
+            Self::Const(__0) => {
                 f.debug_tuple("Const").field(__0).finish();
             }
         }
@@ -948,13 +948,13 @@ impl crate::Debug for syn::GenericMethodArgument {
 impl crate::Debug for syn::GenericParam {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::GenericParam::Type(__0) => {
+            Self::Type(__0) => {
                 f.debug_tuple("Type").field(__0).finish();
             }
-            syn::GenericParam::Lifetime(__0) => {
+            Self::Lifetime(__0) => {
                 f.debug_tuple("Lifetime").field(__0).finish();
             }
-            syn::GenericParam::Const(__0) => {
+            Self::Const(__0) => {
                 f.debug_tuple("Const").field(__0).finish();
             }
         }
@@ -974,19 +974,19 @@ impl crate::Debug for syn::Generics {
 impl crate::Debug for syn::ImplItem {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::ImplItem::Const(__0) => {
+            Self::Const(__0) => {
                 f.debug_tuple("Const").field(__0).finish();
             }
-            syn::ImplItem::Method(__0) => {
+            Self::Method(__0) => {
                 f.debug_tuple("Method").field(__0).finish();
             }
-            syn::ImplItem::Type(__0) => {
+            Self::Type(__0) => {
                 f.debug_tuple("Type").field(__0).finish();
             }
-            syn::ImplItem::Macro(__0) => {
+            Self::Macro(__0) => {
                 f.debug_tuple("Macro").field(__0).finish();
             }
-            syn::ImplItem::Verbatim(__0) => {
+            Self::Verbatim(__0) => {
                 f.debug_tuple("Verbatim").field(__0).finish();
             }
             _ => "???".fmt(f),
@@ -1055,55 +1055,55 @@ impl crate::Debug for syn::Index {
 impl crate::Debug for syn::Item {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Item::Const(__0) => {
+            Self::Const(__0) => {
                 f.debug_tuple("Const").field(__0).finish();
             }
-            syn::Item::Enum(__0) => {
+            Self::Enum(__0) => {
                 f.debug_tuple("Enum").field(__0).finish();
             }
-            syn::Item::ExternCrate(__0) => {
+            Self::ExternCrate(__0) => {
                 f.debug_tuple("ExternCrate").field(__0).finish();
             }
-            syn::Item::Fn(__0) => {
+            Self::Fn(__0) => {
                 f.debug_tuple("Fn").field(__0).finish();
             }
-            syn::Item::ForeignMod(__0) => {
+            Self::ForeignMod(__0) => {
                 f.debug_tuple("ForeignMod").field(__0).finish();
             }
-            syn::Item::Impl(__0) => {
+            Self::Impl(__0) => {
                 f.debug_tuple("Impl").field(__0).finish();
             }
-            syn::Item::Macro(__0) => {
+            Self::Macro(__0) => {
                 f.debug_tuple("Macro").field(__0).finish();
             }
-            syn::Item::Macro2(__0) => {
+            Self::Macro2(__0) => {
                 f.debug_tuple("Macro2").field(__0).finish();
             }
-            syn::Item::Mod(__0) => {
+            Self::Mod(__0) => {
                 f.debug_tuple("Mod").field(__0).finish();
             }
-            syn::Item::Static(__0) => {
+            Self::Static(__0) => {
                 f.debug_tuple("Static").field(__0).finish();
             }
-            syn::Item::Struct(__0) => {
+            Self::Struct(__0) => {
                 f.debug_tuple("Struct").field(__0).finish();
             }
-            syn::Item::Trait(__0) => {
+            Self::Trait(__0) => {
                 f.debug_tuple("Trait").field(__0).finish();
             }
-            syn::Item::TraitAlias(__0) => {
+            Self::TraitAlias(__0) => {
                 f.debug_tuple("TraitAlias").field(__0).finish();
             }
-            syn::Item::Type(__0) => {
+            Self::Type(__0) => {
                 f.debug_tuple("Type").field(__0).finish();
             }
-            syn::Item::Union(__0) => {
+            Self::Union(__0) => {
                 f.debug_tuple("Union").field(__0).finish();
             }
-            syn::Item::Use(__0) => {
+            Self::Use(__0) => {
                 f.debug_tuple("Use").field(__0).finish();
             }
-            syn::Item::Verbatim(__0) => {
+            Self::Verbatim(__0) => {
                 f.debug_tuple("Verbatim").field(__0).finish();
             }
             _ => "???".fmt(f),
@@ -1346,28 +1346,28 @@ impl crate::Debug for syn::LifetimeDef {
 impl crate::Debug for syn::Lit {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Lit::Str(__0) => {
+            Self::Str(__0) => {
                 f.debug_tuple("Str").field(__0).finish();
             }
-            syn::Lit::ByteStr(__0) => {
+            Self::ByteStr(__0) => {
                 f.debug_tuple("ByteStr").field(__0).finish();
             }
-            syn::Lit::Byte(__0) => {
+            Self::Byte(__0) => {
                 f.debug_tuple("Byte").field(__0).finish();
             }
-            syn::Lit::Char(__0) => {
+            Self::Char(__0) => {
                 f.debug_tuple("Char").field(__0).finish();
             }
-            syn::Lit::Int(__0) => {
+            Self::Int(__0) => {
                 f.debug_tuple("Int").field(__0).finish();
             }
-            syn::Lit::Float(__0) => {
+            Self::Float(__0) => {
                 f.debug_tuple("Float").field(__0).finish();
             }
-            syn::Lit::Bool(__0) => {
+            Self::Bool(__0) => {
                 f.debug_tuple("Bool").field(__0).finish();
             }
-            syn::Lit::Verbatim(__0) => {
+            Self::Verbatim(__0) => {
                 f.debug_tuple("Verbatim").field(__0).finish();
             }
         }
@@ -1411,13 +1411,13 @@ impl crate::Debug for syn::Macro {
 impl crate::Debug for syn::MacroDelimiter {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::MacroDelimiter::Paren(__0) => {
+            Self::Paren(__0) => {
                 f.debug_tuple("Paren").field(__0).finish();
             }
-            syn::MacroDelimiter::Brace(__0) => {
+            Self::Brace(__0) => {
                 f.debug_tuple("Brace").field(__0).finish();
             }
-            syn::MacroDelimiter::Bracket(__0) => {
+            Self::Bracket(__0) => {
                 f.debug_tuple("Bracket").field(__0).finish();
             }
         }
@@ -1426,10 +1426,10 @@ impl crate::Debug for syn::MacroDelimiter {
 impl crate::Debug for syn::Member {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Member::Named(__0) => {
+            Self::Named(__0) => {
                 f.debug_tuple("Named").field(__0).finish();
             }
-            syn::Member::Unnamed(__0) => {
+            Self::Unnamed(__0) => {
                 f.debug_tuple("Unnamed").field(__0).finish();
             }
         }
@@ -1438,13 +1438,13 @@ impl crate::Debug for syn::Member {
 impl crate::Debug for syn::Meta {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Meta::Path(__0) => {
+            Self::Path(__0) => {
                 f.debug_tuple("Path").field(__0).finish();
             }
-            syn::Meta::List(__0) => {
+            Self::List(__0) => {
                 f.debug_tuple("List").field(__0).finish();
             }
-            syn::Meta::NameValue(__0) => {
+            Self::NameValue(__0) => {
                 f.debug_tuple("NameValue").field(__0).finish();
             }
         }
@@ -1481,10 +1481,10 @@ impl crate::Debug for syn::MethodTurbofish {
 impl crate::Debug for syn::NestedMeta {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::NestedMeta::Meta(__0) => {
+            Self::Meta(__0) => {
                 f.debug_tuple("Meta").field(__0).finish();
             }
-            syn::NestedMeta::Lit(__0) => {
+            Self::Lit(__0) => {
                 f.debug_tuple("Lit").field(__0).finish();
             }
         }
@@ -1502,52 +1502,52 @@ impl crate::Debug for syn::ParenthesizedGenericArguments {
 impl crate::Debug for syn::Pat {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Pat::Box(__0) => {
+            Self::Box(__0) => {
                 f.debug_tuple("Box").field(__0).finish();
             }
-            syn::Pat::Ident(__0) => {
+            Self::Ident(__0) => {
                 f.debug_tuple("Ident").field(__0).finish();
             }
-            syn::Pat::Lit(__0) => {
+            Self::Lit(__0) => {
                 f.debug_tuple("Lit").field(__0).finish();
             }
-            syn::Pat::Macro(__0) => {
+            Self::Macro(__0) => {
                 f.debug_tuple("Macro").field(__0).finish();
             }
-            syn::Pat::Or(__0) => {
+            Self::Or(__0) => {
                 f.debug_tuple("Or").field(__0).finish();
             }
-            syn::Pat::Path(__0) => {
+            Self::Path(__0) => {
                 f.debug_tuple("Path").field(__0).finish();
             }
-            syn::Pat::Range(__0) => {
+            Self::Range(__0) => {
                 f.debug_tuple("Range").field(__0).finish();
             }
-            syn::Pat::Reference(__0) => {
+            Self::Reference(__0) => {
                 f.debug_tuple("Reference").field(__0).finish();
             }
-            syn::Pat::Rest(__0) => {
+            Self::Rest(__0) => {
                 f.debug_tuple("Rest").field(__0).finish();
             }
-            syn::Pat::Slice(__0) => {
+            Self::Slice(__0) => {
                 f.debug_tuple("Slice").field(__0).finish();
             }
-            syn::Pat::Struct(__0) => {
+            Self::Struct(__0) => {
                 f.debug_tuple("Struct").field(__0).finish();
             }
-            syn::Pat::Tuple(__0) => {
+            Self::Tuple(__0) => {
                 f.debug_tuple("Tuple").field(__0).finish();
             }
-            syn::Pat::TupleStruct(__0) => {
+            Self::TupleStruct(__0) => {
                 f.debug_tuple("TupleStruct").field(__0).finish();
             }
-            syn::Pat::Type(__0) => {
+            Self::Type(__0) => {
                 f.debug_tuple("Type").field(__0).finish();
             }
-            syn::Pat::Verbatim(__0) => {
+            Self::Verbatim(__0) => {
                 f.debug_tuple("Verbatim").field(__0).finish();
             }
-            syn::Pat::Wild(__0) => {
+            Self::Wild(__0) => {
                 f.debug_tuple("Wild").field(__0).finish();
             }
             _ => "???".fmt(f),
@@ -1703,13 +1703,13 @@ impl crate::Debug for syn::Path {
 impl crate::Debug for syn::PathArguments {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::PathArguments::None => {
+            Self::None => {
                 f.debug_tuple("None").finish();
             }
-            syn::PathArguments::AngleBracketed(__0) => {
+            Self::AngleBracketed(__0) => {
                 f.debug_tuple("AngleBracketed").field(__0).finish();
             }
-            syn::PathArguments::Parenthesized(__0) => {
+            Self::Parenthesized(__0) => {
                 f.debug_tuple("Parenthesized").field(__0).finish();
             }
         }
@@ -1765,10 +1765,10 @@ impl crate::Debug for syn::QSelf {
 impl crate::Debug for syn::RangeLimits {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::RangeLimits::HalfOpen(__0) => {
+            Self::HalfOpen(__0) => {
                 f.debug_tuple("HalfOpen").field(__0).finish();
             }
-            syn::RangeLimits::Closed(__0) => {
+            Self::Closed(__0) => {
                 f.debug_tuple("Closed").field(__0).finish();
             }
         }
@@ -1787,10 +1787,10 @@ impl crate::Debug for syn::Receiver {
 impl crate::Debug for syn::ReturnType {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::ReturnType::Default => {
+            Self::Default => {
                 f.debug_tuple("Default").finish();
             }
-            syn::ReturnType::Type(__0, __1) => {
+            Self::Type(__0, __1) => {
                 f.debug_tuple("Type").field(__0).field(__1).finish();
             }
         }
@@ -1816,16 +1816,16 @@ impl crate::Debug for syn::Signature {
 impl crate::Debug for syn::Stmt {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Stmt::Local(__0) => {
+            Self::Local(__0) => {
                 f.debug_tuple("Local").field(__0).finish();
             }
-            syn::Stmt::Item(__0) => {
+            Self::Item(__0) => {
                 f.debug_tuple("Item").field(__0).finish();
             }
-            syn::Stmt::Expr(__0) => {
+            Self::Expr(__0) => {
                 f.debug_tuple("Expr").field(__0).finish();
             }
-            syn::Stmt::Semi(__0, __1) => {
+            Self::Semi(__0, __1) => {
                 f.debug_tuple("Semi").field(__0).field(__1).finish();
             }
         }
@@ -1834,10 +1834,10 @@ impl crate::Debug for syn::Stmt {
 impl crate::Debug for syn::StrStyle {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::StrStyle::Cooked => {
+            Self::Cooked => {
                 f.debug_tuple("Cooked").finish();
             }
-            syn::StrStyle::Raw(__0) => {
+            Self::Raw(__0) => {
                 f.debug_tuple("Raw").field(__0).finish();
             }
         }
@@ -1856,10 +1856,10 @@ impl crate::Debug for syn::TraitBound {
 impl crate::Debug for syn::TraitBoundModifier {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::TraitBoundModifier::None => {
+            Self::None => {
                 f.debug_tuple("None").finish();
             }
-            syn::TraitBoundModifier::Maybe(__0) => {
+            Self::Maybe(__0) => {
                 f.debug_tuple("Maybe").field(__0).finish();
             }
         }
@@ -1868,19 +1868,19 @@ impl crate::Debug for syn::TraitBoundModifier {
 impl crate::Debug for syn::TraitItem {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::TraitItem::Const(__0) => {
+            Self::Const(__0) => {
                 f.debug_tuple("Const").field(__0).finish();
             }
-            syn::TraitItem::Method(__0) => {
+            Self::Method(__0) => {
                 f.debug_tuple("Method").field(__0).finish();
             }
-            syn::TraitItem::Type(__0) => {
+            Self::Type(__0) => {
                 f.debug_tuple("Type").field(__0).finish();
             }
-            syn::TraitItem::Macro(__0) => {
+            Self::Macro(__0) => {
                 f.debug_tuple("Macro").field(__0).finish();
             }
-            syn::TraitItem::Verbatim(__0) => {
+            Self::Verbatim(__0) => {
                 f.debug_tuple("Verbatim").field(__0).finish();
             }
             _ => "???".fmt(f),
@@ -1937,49 +1937,49 @@ impl crate::Debug for syn::TraitItemType {
 impl crate::Debug for syn::Type {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Type::Array(__0) => {
+            Self::Array(__0) => {
                 f.debug_tuple("Array").field(__0).finish();
             }
-            syn::Type::BareFn(__0) => {
+            Self::BareFn(__0) => {
                 f.debug_tuple("BareFn").field(__0).finish();
             }
-            syn::Type::Group(__0) => {
+            Self::Group(__0) => {
                 f.debug_tuple("Group").field(__0).finish();
             }
-            syn::Type::ImplTrait(__0) => {
+            Self::ImplTrait(__0) => {
                 f.debug_tuple("ImplTrait").field(__0).finish();
             }
-            syn::Type::Infer(__0) => {
+            Self::Infer(__0) => {
                 f.debug_tuple("Infer").field(__0).finish();
             }
-            syn::Type::Macro(__0) => {
+            Self::Macro(__0) => {
                 f.debug_tuple("Macro").field(__0).finish();
             }
-            syn::Type::Never(__0) => {
+            Self::Never(__0) => {
                 f.debug_tuple("Never").field(__0).finish();
             }
-            syn::Type::Paren(__0) => {
+            Self::Paren(__0) => {
                 f.debug_tuple("Paren").field(__0).finish();
             }
-            syn::Type::Path(__0) => {
+            Self::Path(__0) => {
                 f.debug_tuple("Path").field(__0).finish();
             }
-            syn::Type::Ptr(__0) => {
+            Self::Ptr(__0) => {
                 f.debug_tuple("Ptr").field(__0).finish();
             }
-            syn::Type::Reference(__0) => {
+            Self::Reference(__0) => {
                 f.debug_tuple("Reference").field(__0).finish();
             }
-            syn::Type::Slice(__0) => {
+            Self::Slice(__0) => {
                 f.debug_tuple("Slice").field(__0).finish();
             }
-            syn::Type::TraitObject(__0) => {
+            Self::TraitObject(__0) => {
                 f.debug_tuple("TraitObject").field(__0).finish();
             }
-            syn::Type::Tuple(__0) => {
+            Self::Tuple(__0) => {
                 f.debug_tuple("Tuple").field(__0).finish();
             }
-            syn::Type::Verbatim(__0) => {
+            Self::Verbatim(__0) => {
                 f.debug_tuple("Verbatim").field(__0).finish();
             }
             _ => "???".fmt(f),
@@ -2061,10 +2061,10 @@ impl crate::Debug for syn::TypeParam {
 impl crate::Debug for syn::TypeParamBound {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::TypeParamBound::Trait(__0) => {
+            Self::Trait(__0) => {
                 f.debug_tuple("Trait").field(__0).finish();
             }
-            syn::TypeParamBound::Lifetime(__0) => {
+            Self::Lifetime(__0) => {
                 f.debug_tuple("Lifetime").field(__0).finish();
             }
         }
@@ -2133,13 +2133,13 @@ impl crate::Debug for syn::TypeTuple {
 impl crate::Debug for syn::UnOp {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::UnOp::Deref(__0) => {
+            Self::Deref(__0) => {
                 f.debug_tuple("Deref").field(__0).finish();
             }
-            syn::UnOp::Not(__0) => {
+            Self::Not(__0) => {
                 f.debug_tuple("Not").field(__0).finish();
             }
-            syn::UnOp::Neg(__0) => {
+            Self::Neg(__0) => {
                 f.debug_tuple("Neg").field(__0).finish();
             }
         }
@@ -2188,19 +2188,19 @@ impl crate::Debug for syn::UseRename {
 impl crate::Debug for syn::UseTree {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::UseTree::Path(__0) => {
+            Self::Path(__0) => {
                 f.debug_tuple("Path").field(__0).finish();
             }
-            syn::UseTree::Name(__0) => {
+            Self::Name(__0) => {
                 f.debug_tuple("Name").field(__0).finish();
             }
-            syn::UseTree::Rename(__0) => {
+            Self::Rename(__0) => {
                 f.debug_tuple("Rename").field(__0).finish();
             }
-            syn::UseTree::Glob(__0) => {
+            Self::Glob(__0) => {
                 f.debug_tuple("Glob").field(__0).finish();
             }
-            syn::UseTree::Group(__0) => {
+            Self::Group(__0) => {
                 f.debug_tuple("Group").field(__0).finish();
             }
         }
@@ -2251,16 +2251,16 @@ impl crate::Debug for syn::VisRestricted {
 impl crate::Debug for syn::Visibility {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::Visibility::Public(__0) => {
+            Self::Public(__0) => {
                 f.debug_tuple("Public").field(__0).finish();
             }
-            syn::Visibility::Crate(__0) => {
+            Self::Crate(__0) => {
                 f.debug_tuple("Crate").field(__0).finish();
             }
-            syn::Visibility::Restricted(__0) => {
+            Self::Restricted(__0) => {
                 f.debug_tuple("Restricted").field(__0).finish();
             }
-            syn::Visibility::Inherited => {
+            Self::Inherited => {
                 f.debug_tuple("Inherited").finish();
             }
         }
@@ -2277,13 +2277,13 @@ impl crate::Debug for syn::WhereClause {
 impl crate::Debug for syn::WherePredicate {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::WherePredicate::Type(__0) => {
+            Self::Type(__0) => {
                 f.debug_tuple("Type").field(__0).finish();
             }
-            syn::WherePredicate::Lifetime(__0) => {
+            Self::Lifetime(__0) => {
                 f.debug_tuple("Lifetime").field(__0).finish();
             }
-            syn::WherePredicate::Eq(__0) => {
+            Self::Eq(__0) => {
                 f.debug_tuple("Eq").field(__0).finish();
             }
         }
@@ -2311,10 +2311,10 @@ where
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            syn::punctuated::Pair::Punctuated(__0, __1) => {
+            Self::Punctuated(__0, __1) => {
                 f.debug_tuple("Punctuated").field(__0).field(__1).finish();
             }
-            syn::punctuated::Pair::End(__0) => {
+            Self::End(__0) => {
                 f.debug_tuple("End").field(__0).finish();
             }
         }

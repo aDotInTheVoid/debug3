@@ -69,15 +69,6 @@ impl Generator<'_> {
     fn generate_enum(&mut self, item: &Item, enumm: &Enum) -> Result<()> {
         let path = self.path_of(&item.id)?;
 
-        // if self
-        //     .config
-        //     .exclude
-        //     .iter()
-        //     .any(|x| x == path.split_once("::").unwrap().1)
-        // {
-        //     writeln!(self.out, "// Skiping {path} due to config")?;
-        //     return Ok(());
-        // }
         let simple_name = path.split_once("::").unwrap().1;
         if let Some(p) = self.config.exclude.iter().find(|x| x.matches(simple_name)) {
             writeln!(self.out, "// Skiping {path} due to config rule {p}")?;
@@ -117,17 +108,24 @@ impl Generator<'_> {
         for i in &enumm.variants {
             let v_item = &self.krate.index[i];
             let v_name = v_item.name.as_ref().ok_or_else(|| anyhow!("No name"))?;
+            let non_exhaustive = v_item.attrs.iter().any(|x| x == "#[non_exhaustive]");
 
             if let ItemEnum::Variant(varient) = &v_item.inner {
-                write!(self.out, "            {path}::{v_name} ")?;
+                write!(self.out, "            Self::{v_name} ")?;
                 match varient {
                     Variant::Plain => {
+                        // if non_exhaustive {
+                        //     write!(self.out, "(..)")?;
+                        // }
                         writeln!(self.out, "=> {{ f.debug_tuple({v_name:?}).finish(); }}")?
                     }
                     Variant::Tuple(fields) => {
                         write!(self.out, "(")?;
                         for i in 0..fields.len() {
                             write!(self.out, "__{}, ", i)?;
+                        }
+                        if non_exhaustive {
+                            write!(self.out, "..")?;
                         }
                         write!(self.out, ") => {{ f.debug_tuple({v_name:?})")?;
                         for i in 0..fields.len() {
@@ -145,14 +143,19 @@ impl Generator<'_> {
                                 .ok_or_else(|| anyhow!("No name"))?;
                             write!(self.out, "{f_name}, ")?;
                         }
+                        if non_exhaustive {
+                            write!(self.out, "..")?;
+                        }
 
                         writeln!(self.out, " }} => {{")?;
                         writeln!(self.out, "            f.debug_struct({v_name:?})")?;
                         for i in fields {
-                            let f_name = self.krate.index[i]
-                                .name
-                                .as_ref()
-                                .ok_or_else(|| anyhow!("No name"))?;
+                            let f_name = field_name_of(
+                                self.krate.index[i]
+                                    .name
+                                    .as_ref()
+                                    .ok_or_else(|| anyhow!("No name"))?,
+                            );
                             writeln!(self.out, "                .field({f_name:?}, {f_name})")?;
                         }
                         writeln!(self.out, "                .finish()")?;
@@ -234,10 +237,12 @@ impl Generator<'_> {
             rustdoc_types::StructType::Plain => {
                 writeln!(self.out, "        f.debug_struct({name:?})")?;
                 for i in &strukt.fields {
-                    let f_name = self.krate.index[i]
-                        .name
-                        .as_ref()
-                        .ok_or_else(|| anyhow!("No name"))?;
+                    let f_name = field_name_of(
+                        self.krate.index[i]
+                            .name
+                            .as_ref()
+                            .ok_or_else(|| anyhow!("No name"))?,
+                    );
                     writeln!(self.out, "            .field({f_name:?}, &self.{f_name})")?;
                 }
                 writeln!(self.out, "            .finish()")?;
@@ -400,7 +405,7 @@ impl Generator<'_> {
                 param_names,
                 ..
             } => {
-                ensure!(param_names.is_empty());
+                ensure!(param_names.is_empty(), here!("Got {param_names:?}"));
                 let path = self
                     .path_of(id)
                     .with_context(|| here!("Cannot print Resoved Path {id:?}"))?;
@@ -483,6 +488,14 @@ impl Generator<'_> {
     }
 }
 
+fn field_name_of(name: &str) -> &str {
+    match name {
+        "type" => "r#type",
+        "return" => "r#return",
+        _ => name,
+    }
+}
+
 fn is_generic(i: &Type) -> Result<bool> {
     Ok(match i {
         Type::ResolvedPath {
@@ -491,7 +504,7 @@ fn is_generic(i: &Type) -> Result<bool> {
             args,
             param_names,
         } => {
-            ensure!(param_names.is_empty());
+            // ensure!(param_names.is_empty(), here!("Got {param_names:?}"));
             match args {
                 Some(x) => match &**x {
                     GenericArgs::AngleBracketed { args, bindings } => {

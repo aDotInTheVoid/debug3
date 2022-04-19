@@ -9,6 +9,8 @@ repository = "https://github.com/aDotInTheVoid/debug3/"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+aws-sdk-ec2 = "0.10.1"
+aws-smithy-types = "0.40.2"
 bytes = "1.1.0"
 dashmap = "5.2.0"
 debug3-derive = { version = "0.1.0", path = "derive" }

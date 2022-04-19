@@ -1,6 +1,7 @@
 use std::{
     alloc::Layout,
     collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet, LinkedList, VecDeque},
+    num::IntErrorKind,
     ops::Deref,
     path::{Path, PathBuf},
     rc::Rc,
@@ -271,6 +272,64 @@ impl Debug for Layout {
             .field("size", &self.size())
             .field("align", &self.align())
             .finish()
+    }
+}
+
+impl<B> Debug for std::borrow::Cow<'_, B>
+where
+    B: Debug + ToOwned + ?Sized,
+    <B as ToOwned>::Owned: Debug,
+{
+    fn fmt(&self, f: &mut Formatter) {
+        match *self {
+            Self::Borrowed(ref b) => Debug::fmt(b, f),
+            Self::Owned(ref o) => Debug::fmt(o, f),
+        }
+    }
+}
+
+impl Debug for std::num::ParseIntError {
+    fn fmt(&self, f: &mut Formatter) {
+        f.debug_struct("ParseIntError")
+            .field("kind", &self.kind())
+            .finish()
+    }
+}
+
+impl Debug for IntErrorKind {
+    fn fmt(&self, f: &mut Formatter) {
+        f.debug_tuple(match self {
+            Self::Empty => "Empty",
+            Self::InvalidDigit => "InvalidDigit",
+            Self::PosOverflow => "PosOverflow",
+            Self::NegOverflow => "NegOverflow",
+            Self::Zero => "Zero",
+            _ => "Unknown",
+        })
+        .finish()
+    }
+}
+
+impl Debug for std::time::Duration {
+    fn fmt(&self, f: &mut Formatter) {
+        f.debug_struct("Duration")
+            .field("secs", &self.as_secs())
+            .field("nanos", &self.subsec_nanos())
+            .finish()
+    }
+}
+
+impl Debug for Box<dyn std::error::Error + '_> {
+    fn fmt(&self, f: &mut Formatter) {
+        // TODO: Is this good
+        f.write_debug(&**self)
+    }
+}
+
+impl Debug for Box<dyn std::error::Error + Send + Sync + '_> {
+    fn fmt(&self, f: &mut Formatter) {
+        // TODO: Is this good
+        f.write_debug(&**self)
     }
 }
 

@@ -1,3 +1,5 @@
+mod aws_sdk_ec2;
+mod aws_smithy_types;
 mod dashmap;
 mod hashbrown;
 mod proc_macro2;

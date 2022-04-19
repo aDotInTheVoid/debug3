@@ -5,16 +5,16 @@
 impl crate::Debug for proc_macro2::Delimiter {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            proc_macro2::Delimiter::Parenthesis => {
+            Self::Parenthesis => {
                 f.debug_tuple("Parenthesis").finish();
             }
-            proc_macro2::Delimiter::Brace => {
+            Self::Brace => {
                 f.debug_tuple("Brace").finish();
             }
-            proc_macro2::Delimiter::Bracket => {
+            Self::Bracket => {
                 f.debug_tuple("Bracket").finish();
             }
-            proc_macro2::Delimiter::None => {
+            Self::None => {
                 f.debug_tuple("None").finish();
             }
         }
@@ -36,10 +36,10 @@ impl crate::Debug for proc_macro2::LineColumn {
 impl crate::Debug for proc_macro2::Spacing {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            proc_macro2::Spacing::Alone => {
+            Self::Alone => {
                 f.debug_tuple("Alone").finish();
             }
-            proc_macro2::Spacing::Joint => {
+            Self::Joint => {
                 f.debug_tuple("Joint").finish();
             }
         }

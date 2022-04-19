@@ -5,10 +5,10 @@
 impl crate::Debug for hashbrown::TryReserveError {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            hashbrown::TryReserveError::CapacityOverflow => {
+            Self::CapacityOverflow => {
                 f.debug_tuple("CapacityOverflow").finish();
             }
-            hashbrown::TryReserveError::AllocError { layout } => f
+            Self::AllocError { layout } => f
                 .debug_struct("AllocError")
                 .field("layout", layout)
                 .finish(),
@@ -49,10 +49,10 @@ where
 {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            hashbrown::hash_map::RawEntryMut::Occupied(__0) => {
+            Self::Occupied(__0) => {
                 f.debug_tuple("Occupied").field(__0).finish();
             }
-            hashbrown::hash_map::RawEntryMut::Vacant(__0) => {
+            Self::Vacant(__0) => {
                 f.debug_tuple("Vacant").field(__0).finish();
             }
         }
