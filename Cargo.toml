@@ -28,6 +28,8 @@ syn = { version = "1.0.98", features = ["full"], optional = true }
 
 [features]
 kdl = ["dep:kdl", "miette"] # KDL's error has miette
+syn = ["dep:syn", "proc-macro2"] # Syn's Ident has proc-macro2
+aws-sdk-ec2 = ["dep:aws-sdk-ec2", "aws-smithy-types"] # AWS crates use aws-smithy-types as core.
 
 [workspace]
 members = [
