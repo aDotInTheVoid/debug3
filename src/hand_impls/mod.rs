@@ -3,6 +3,8 @@ mod aws_smithy_types;
 mod bytes;
 mod dashmap;
 mod hash_brown;
+mod kdl;
+mod miette;
 mod proc_macro2;
 mod rustdoc_types;
 mod serde_json;

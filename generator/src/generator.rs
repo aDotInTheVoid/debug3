@@ -529,7 +529,7 @@ fn is_generic(i: &Type) -> Result<bool> {
             lifetime,
             mutable,
             type_,
-        } => todo!(),
+        } => is_generic(type_)?,
         Type::QualifiedPath {
             name,
             args,

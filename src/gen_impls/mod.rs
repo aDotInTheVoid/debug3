@@ -2,6 +2,8 @@ mod aws_sdk_ec2;
 mod aws_smithy_types;
 mod dashmap;
 mod hashbrown;
+mod kdl;
+mod miette;
 mod proc_macro2;
 mod rustdoc_types;
 mod serde_json;

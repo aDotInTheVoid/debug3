@@ -13,9 +13,13 @@ exclude = [
    "hash_map::EntryRef"
 ]
 
-[smallvec]
+[kdl]
+exclude = ["KdlValue"] # We can be cleverer
+
+[aws-sdk-ec2]
+[aws-smithy-types]
 [bytes]
 [dashmap]
-[aws-sdk-ec2]
+[miette]
 [rustdoc-types]
-[aws-smithy-types]
+[smallvec]
