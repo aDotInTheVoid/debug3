@@ -1,6 +1,3 @@
-[rustdoc-types]
-exclude = []
-
 [syn]
 exclude = ["ExprReference", "token::*"]
 
@@ -15,3 +12,14 @@ exclude = [
    "hash_map::Entry", # Need a custom bound on K: Borrow<Q>
    "hash_map::EntryRef"
 ]
+
+[kdl]
+exclude = ["KdlValue"] # We can be cleverer
+
+[aws-sdk-ec2]
+[aws-smithy-types]
+[bytes]
+[dashmap]
+[miette]
+[rustdoc-types]
+[smallvec]

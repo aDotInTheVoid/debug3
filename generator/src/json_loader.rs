@@ -11,7 +11,7 @@ pub fn load_rjd(input: &str) -> Result<Crate> {
     let format: CrateFormatVersion = serde_json::from_str(input)?;
     ensure!(
         format.format_version == FORMAT_VERSION,
-        "Unsupported format version: {}",
+        "Unsupported format version: {}, expected {FORMAT_VERSION}",
         format.format_version
     );
     let krate: Crate = serde_json::from_str(input)?;

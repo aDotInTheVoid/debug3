@@ -39,7 +39,7 @@ pub(crate) fn new<'a>(fmt: &'a mut Formatter, name: &str) -> DebugNamedList<'a> 
 
     DebugNamedList {
         inner: DebugInner {
-            fmt: fmt,
+            fmt,
             has_fields: false,
         },
     }

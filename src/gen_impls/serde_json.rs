@@ -2,52 +2,81 @@
 //
 // Crate Name: `serde_json`
 // Crate Version: `1.0.79`
+// Skipping serde_json::Deserializer due to hidden fields
+// Skipping serde_json::Error due to hidden fields
+// Skipping serde_json::Map due to hidden fields
+// Skipping serde_json::Serializer due to hidden fields
+// Skipping serde_json::StreamDeserializer due to hidden fields
+// Skiping serde_json::Value due to config rule Value
+// Skipping serde_json::de::IoRead due to hidden fields
+// Skipping serde_json::de::SliceRead due to hidden fields
+// Skipping serde_json::de::StrRead due to hidden fields
 impl crate::Debug for serde_json::error::Category {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            serde_json::error::Category::Io => {
+            Self::Io => {
                 f.debug_tuple("Io").finish();
             }
-            serde_json::error::Category::Syntax => {
+            Self::Syntax => {
                 f.debug_tuple("Syntax").finish();
             }
-            serde_json::error::Category::Data => {
+            Self::Data => {
                 f.debug_tuple("Data").finish();
             }
-            serde_json::error::Category::Eof => {
+            Self::Eof => {
                 f.debug_tuple("Eof").finish();
             }
         }
     }
 }
+impl<'a> crate::Debug for serde_json::map::Entry<'a> {
+    fn fmt(&self, f: &mut crate::Formatter) {
+        match self {
+            Self::Vacant(__0) => {
+                f.debug_tuple("Vacant").field(__0).finish();
+            }
+            Self::Occupied(__0) => {
+                f.debug_tuple("Occupied").field(__0).finish();
+            }
+        }
+    }
+}
+// Skipping serde_json::map::IntoIter due to hidden fields
+// Skipping serde_json::map::Iter due to hidden fields
+// Skipping serde_json::map::IterMut due to hidden fields
+// Skipping serde_json::map::Keys due to hidden fields
+// Skipping serde_json::map::OccupiedEntry due to hidden fields
+// Skipping serde_json::map::VacantEntry due to hidden fields
+// Skipping serde_json::map::Values due to hidden fields
+// Skipping serde_json::map::ValuesMut due to hidden fields
 impl crate::Debug for serde_json::ser::CharEscape {
     fn fmt(&self, f: &mut crate::Formatter) {
         match self {
-            serde_json::ser::CharEscape::Quote => {
+            Self::Quote => {
                 f.debug_tuple("Quote").finish();
             }
-            serde_json::ser::CharEscape::ReverseSolidus => {
+            Self::ReverseSolidus => {
                 f.debug_tuple("ReverseSolidus").finish();
             }
-            serde_json::ser::CharEscape::Solidus => {
+            Self::Solidus => {
                 f.debug_tuple("Solidus").finish();
             }
-            serde_json::ser::CharEscape::Backspace => {
+            Self::Backspace => {
                 f.debug_tuple("Backspace").finish();
             }
-            serde_json::ser::CharEscape::FormFeed => {
+            Self::FormFeed => {
                 f.debug_tuple("FormFeed").finish();
             }
-            serde_json::ser::CharEscape::LineFeed => {
+            Self::LineFeed => {
                 f.debug_tuple("LineFeed").finish();
             }
-            serde_json::ser::CharEscape::CarriageReturn => {
+            Self::CarriageReturn => {
                 f.debug_tuple("CarriageReturn").finish();
             }
-            serde_json::ser::CharEscape::Tab => {
+            Self::Tab => {
                 f.debug_tuple("Tab").finish();
             }
-            serde_json::ser::CharEscape::AsciiControl(__0) => {
+            Self::AsciiControl(__0) => {
                 f.debug_tuple("AsciiControl").field(__0).finish();
             }
         }
@@ -58,39 +87,10 @@ impl crate::Debug for serde_json::ser::CompactFormatter {
         f.debug_struct("CompactFormatter").finish()
     }
 }
-// Skipping serde_json::Deserializer due to hidden fields
-impl<'a> crate::Debug for serde_json::map::Entry<'a> {
-    fn fmt(&self, f: &mut crate::Formatter) {
-        match self {
-            serde_json::map::Entry::Vacant(__0) => {
-                f.debug_tuple("Vacant").field(__0).finish();
-            }
-            serde_json::map::Entry::Occupied(__0) => {
-                f.debug_tuple("Occupied").field(__0).finish();
-            }
-        }
-    }
-}
-// Skipping serde_json::Error due to hidden fields
-// Skipping serde_json::map::IntoIter due to hidden fields
-// Skipping serde_json::de::IoRead due to hidden fields
-// Skipping serde_json::map::Iter due to hidden fields
-// Skipping serde_json::map::IterMut due to hidden fields
-// Skipping serde_json::map::Keys due to hidden fields
-// Skipping serde_json::Map due to hidden fields
-// Skipping serde_json::value::Number due to hidden fields
-// Skipping serde_json::map::OccupiedEntry due to hidden fields
 // Skipping serde_json::ser::PrettyFormatter due to hidden fields
+// Skipping serde_json::value::Number due to hidden fields
 impl crate::Debug for serde_json::value::Serializer {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Serializer").finish()
     }
 }
-// Skipping serde_json::Serializer due to hidden fields
-// Skipping serde_json::de::SliceRead due to hidden fields
-// Skipping serde_json::de::StrRead due to hidden fields
-// Skipping serde_json::StreamDeserializer due to hidden fields
-// Skipping serde_json::map::VacantEntry due to hidden fields
-// Skiping serde_json::Value due to config rule Value
-// Skipping serde_json::map::Values due to hidden fields
-// Skipping serde_json::map::ValuesMut due to hidden fields

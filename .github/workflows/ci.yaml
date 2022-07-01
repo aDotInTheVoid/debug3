@@ -17,16 +17,18 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        rust: [beta, stable, nightly, 1.56.1]
+        rust: [beta, stable, nightly, 1.58.1]
     steps:
       - uses: actions/checkout@v2
       - uses: dtolnay/rust-toolchain@master
         with:
           toolchain: ${{matrix.rust}}
           components: rust-src
-      - run: cargo test --all
+      - uses: taiki-e/install-action@cargo-hack
+      - run: cargo hack test --each-feature --optional-deps
         env:
           RUSTFLAGS: ${{matrix.rustflags}} ${{env.RUSTFLAGS}}
+        
 
   clippy:
     name: Clippy

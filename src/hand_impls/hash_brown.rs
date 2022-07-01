@@ -1,10 +1,13 @@
 use std::borrow::Borrow;
 
 use crate::{Debug, Formatter};
-use hashbrown::{hash_map::{
-    OccupiedEntry, OccupiedEntryRef, RawOccupiedEntryMut, RawVacantEntryMut, VacantEntry,
-    VacantEntryRef,
-}, HashMap, HashSet};
+use hashbrown::{
+    hash_map::{
+        OccupiedEntry, OccupiedEntryRef, RawOccupiedEntryMut, RawVacantEntryMut, VacantEntry,
+        VacantEntryRef,
+    },
+    HashMap, HashSet,
+};
 
 // TODO: Be generic over allocator
 
@@ -53,12 +56,11 @@ impl<K, V, S> Debug for RawVacantEntryMut<'_, K, V, S> {
     }
 }
 
-
 impl<K: Debug, V: Debug, S> Debug for HashMap<K, V, S> {
     fn fmt(&self, f: &mut Formatter) {
         f.debug_map().entries(self.iter()).finish()
     }
-} 
+}
 
 impl<T: Debug, S> Debug for HashSet<T, S> {
     fn fmt(&self, f: &mut Formatter) {

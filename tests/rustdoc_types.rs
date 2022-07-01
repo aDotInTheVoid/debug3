@@ -1,3 +1,5 @@
+#![cfg(rustdoc_types)]
+
 use debug3::pprint;
 use rustdoc_types::Crate;
 
