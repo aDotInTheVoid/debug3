@@ -1,3 +1,5 @@
+#![cfg(serde_json)]
+
 use debug3::{pprint, Debug};
 use expect_test::{expect, Expect};
 use serde_json::json;

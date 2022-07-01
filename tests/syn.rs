@@ -1,3 +1,5 @@
+#![cfg(syn)]
+
 use debug3::{pprint, Debug};
 use expect_test::{expect, Expect};
 use syn::{ExprCall, ExprField, ItemMacro};

@@ -1,3 +1,5 @@
+#![cfg(kdl)]
+
 use debug3::{pprint, Debug};
 use expect_test::{expect, Expect};
 use kdl::KdlDocument;
@@ -18,7 +20,9 @@ world prop="value" {
 "#;
 
     let doc: KdlDocument = doc_str.parse().expect("failed to parse KDL");
-    check(doc, expect![[r#"
+    check(
+        doc,
+        expect![[r#"
         [
             KdlNode {
                 name: "hello",
@@ -43,7 +47,8 @@ world prop="value" {
                     },
                 ],
             },
-        ]"#]]);
+        ]"#]],
+    );
 }
 
 #[test]
@@ -55,13 +60,16 @@ fn kdl_2() {
 "#;
 
     let doc: KdlDocument = doc_str.parse().expect("failed to parse KDL");
-    check(doc, expect![[r#"
+    check(
+        doc,
+        expect![[r#"
         [
             KdlNode {
                 name: "formatted",
                 entries: [1, 2],
             },
-        ]"#]]);
+        ]"#]],
+    );
 }
 
 #[test]
@@ -75,7 +83,9 @@ fn kdl_3() {
     }
     "####;
     let doc: KdlDocument = doc_str.parse().expect("failed to parse KDL");
-    check(doc, expect![[r#"
+    check(
+        doc,
+        expect![[r#"
         [
             KdlNode {
                 name: "contents",
@@ -97,7 +107,8 @@ fn kdl_3() {
                     },
                 ],
             },
-        ]"#]]);
+        ]"#]],
+    );
 }
 
 #[test]
@@ -107,7 +118,9 @@ fn kdl_4() {
         other r"C:\Users\zkat\"
     "###;
     let doc: KdlDocument = doc_str.parse().expect("failed to parse KDL");
-    check(doc, expect![[r#"
+    check(
+        doc,
+        expect![[r#"
         [
             KdlNode {
                 name: "node",
@@ -117,20 +130,24 @@ fn kdl_4() {
                 name: "other",
                 entries: ["C:\\Users\\zkat\\"],
             },
-        ]"#]]);
+        ]"#]],
+    );
 }
 
 #[test]
 fn kdl_5() {
     let doc_str = r###"other-raw r#"hello"world"#"###;
     let doc: KdlDocument = doc_str.parse().expect("failed to parse KDL");
-    check(doc, expect![[r#"
+    check(
+        doc,
+        expect![[r#"
         [
             KdlNode {
                 name: "other-raw",
                 entries: ["hello\"world"],
             },
-        ]"#]]);
+        ]"#]],
+    );
 }
 
 #[test]
@@ -143,7 +160,9 @@ fn kdl_num() {
     bignum 1_000_000
 "#;
     let doc: KdlDocument = doc_str.parse().expect("failed to parse KDL");
-    check(doc, expect![[r#"
+    check(
+        doc,
+        expect![[r#"
         [
             KdlNode {
                 name: "num",
@@ -165,7 +184,8 @@ fn kdl_num() {
                 name: "bignum",
                 entries: [1000000],
             },
-        ]"#]]);
+        ]"#]],
+    );
 }
 
 #[test]
@@ -176,7 +196,9 @@ fn kdl_ty() {
           (author)person name="Alex"
         }"#;
     let doc: KdlDocument = doc_str.parse().expect("failed to parse KDL");
-    check(doc, expect![[r#"
+    check(
+        doc,
+        expect![[r#"
         [
             KdlNode {
                 name: "numbers",
@@ -220,5 +242,6 @@ fn kdl_ty() {
                     },
                 ],
             },
-        ]"#]]);
+        ]"#]],
+    );
 }

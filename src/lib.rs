@@ -12,6 +12,15 @@ mod algorithm;
 mod convenience;
 mod ring;
 
+macro_rules! cfg_mod {
+    ($($mod:ident)*) => {
+        $(
+            #[cfg($mod)]
+            mod $mod;
+        )*
+    };
+}
+
 #[allow(clippy::just_underscores_and_digits)]
 mod gen_impls;
 mod hand_impls;

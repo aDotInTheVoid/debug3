@@ -13,18 +13,18 @@ repository = "https://github.com/aDotInTheVoid/debug3/"
 # TODO: Make derive optional
 debug3-derive = { version = "0.1.0", path = "derive" }
 # Foreign Impls
-aws-sdk-ec2 = { version = "0.15.0", optional = false }
-aws-smithy-types = { version = "0.45.0", optional = false }
-bytes = { version = "1.1.0", optional = false }
-dashmap = { version = "5.3.4", optional = false }
-hashbrown = { version = "0.12.1", optional = false }
-kdl = { version = "4.3.0", optional = false }
-miette = { version = "4.7.1", optional = false }
-proc-macro2 = { version = "1.0.40", features = ["span-locations"], optional = false }
-rustdoc-types = { version = "0.11.0", optional = false }
-serde_json = { version = "1.0.79", optional = false }
-smallvec = { version = "1.9.0", optional = false }
-syn = { version = "1.0.98", features = ["full"], optional = false }
+aws-sdk-ec2 = { version = "0.15.0", optional = true }
+aws-smithy-types = { version = "0.45.0", optional = true }
+bytes = { version = "1.1.0", optional = true }
+dashmap = { version = "5.3.4", optional = true }
+hashbrown = { version = "0.12.1", optional = true }
+kdl = { version = "4.3.0", optional = true }
+miette = { version = "4.7.1", optional = true }
+proc-macro2 = { version = "1.0.40", features = ["span-locations"], optional = true }
+rustdoc-types = { version = "0.11.0", optional = true }
+serde_json = { version = "1.0.79", optional = true }
+smallvec = { version = "1.9.0", optional = true }
+syn = { version = "1.0.98", features = ["full"], optional = true }
 
 [workspace]
 members = [
