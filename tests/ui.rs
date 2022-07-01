@@ -1,4 +1,4 @@
-#[rustversion::attr(not(nightly), ignore)]
+// #[rustversion::attr(not(nightly), ignore)]
 #[test]
 #[ignore = "https://github.com/dtolnay/trybuild/issues/171"]
 fn ui() {
