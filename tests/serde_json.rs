@@ -1,4 +1,4 @@
-#![cfg(serde_json)]
+#![cfg(feature = "serde_json")]
 
 use debug3::{pprint, Debug};
 use expect_test::{expect, Expect};

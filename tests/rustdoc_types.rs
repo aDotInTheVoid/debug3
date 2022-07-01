@@ -1,4 +1,4 @@
-#![cfg(rustdoc_types)]
+#![cfg(feature = "rustdoc_types")]
 
 use debug3::pprint;
 use rustdoc_types::Crate;

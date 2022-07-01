@@ -1,4 +1,4 @@
-#![cfg(kdl)]
+#![cfg(feature = "kdl")]
 
 use debug3::{pprint, Debug};
 use expect_test::{expect, Expect};

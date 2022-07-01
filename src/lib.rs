@@ -13,9 +13,10 @@ mod convenience;
 mod ring;
 
 macro_rules! cfg_mod {
-    ($($mod:ident)*) => {
+    ($(($mod:ident $modname:literal))*) => {
         $(
-            #[cfg($mod)]
+            // #[cfg(feature = stringify!($mod))]
+            #[cfg(feature = $modname)]
             mod $mod;
         )*
     };
