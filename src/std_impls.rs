@@ -225,7 +225,7 @@ impl<T: ?Sized + Debug> Debug for std::cell::Ref<'_, T> {
 
 impl<T: ?Sized + Debug> Debug for std::cell::RefMut<'_, T> {
     fn fmt(&self, f: &mut Formatter) {
-        Debug::fmt(&*(self.deref()), f)
+        Debug::fmt(self.deref(), f)
     }
 }
 

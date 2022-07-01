@@ -3,7 +3,7 @@ use crate::{
     Formatter,
 };
 
-impl<'a> Formatter {
+impl Formatter {
     // Escape hatches for base impls (String, str, bool, char, etc.)
     pub(crate) fn write_debug<T: std::fmt::Debug + ?Sized>(&mut self, val: &T) {
         let s = format!("{:?}", val);
