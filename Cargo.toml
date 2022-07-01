@@ -9,19 +9,19 @@ repository = "https://github.com/aDotInTheVoid/debug3/"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-# aws-sdk-ec2 = "0.10.1"
-# aws-smithy-types = "0.40.2"
-# bytes = "1.1.0"
-# dashmap = "5.2.0"
+# Real Deps
+# TODO: Make derive optional
 debug3-derive = { version = "0.1.0", path = "derive" }
-# hashbrown = "0.12.0"
-
-# Thinks we impl for
-# proc-macro2 = {version = "1.0.37", features = ["span-locations"] }
-# rustdoc-types = "0.10.0"
-# serde_json = "1.0.79"
-# smallvec = { version = "1.8.0", features = ["const_generics"] }
-# syn = { version = "1.0.91", optional = false, features = ["full"] }
+# Foreign Impls
+aws-sdk-ec2 = { version = "0.15.0", optional = false }
+aws-smithy-types = { version = "0.45.0", optional = false }
+bytes = { version = "1.1.0", optional = false }
+dashmap = { version = "5.3.4", optional = false }
+hashbrown = { version = "0.12.1", optional = false }
+proc-macro2 = { version = "1.0.40", features = ["span-locations"], optional = false }
+rustdoc-types = { version = "0.11.0", optional = false }
+serde_json = { version = "1.0.79", optional = false }
+syn = { version = "1.0.98", features = ["full"], optional = false }
 
 [workspace]
 members = [
