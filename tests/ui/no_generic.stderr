@@ -20,7 +20,7 @@ error[E0277]: the trait bound `NoDebug: debug3::Debug` is not satisfied
               (T10, T11)
               (T11,)
               (T2, T3, T4, T5, T6, T7, T8, T9, T10, T11)
-            and 434 others
+            and 64 others
 note: required because of the requirements on the impl of `debug3::Debug` for `Triple<u8, u16, NoDebug>`
    --> tests/ui/no_generic.rs:3:10
     |
