@@ -311,7 +311,7 @@ impl Generator<'_> {
 
         for i in &generics.where_predicates {
             match i {
-                WherePredicate::BoundPredicate { type_, bounds } => {
+                WherePredicate::BoundPredicate { type_, bounds, .. } => {
                     if let Type::Generic(name) = type_ {
                         let old_bounds = map.get_mut(name).unwrap();
                         match self.write_where_pred(type_, bounds) {

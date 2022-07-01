@@ -18,6 +18,7 @@ const CARGO_MANIFEST_DIR: &str = env!("CARGO_MANIFEST_DIR");
 
 #[derive(Deserialize)]
 struct PackageConfigToml {
+    #[serde(default)]
     exclude: Vec<String>,
     #[serde(default)]
     version: Option<String>,

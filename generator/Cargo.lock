@@ -195,8 +195,8 @@ dependencies = [
 
 [[package]]
 name = "rustdoc-types"
-version = "0.10.0"
-source = "git+https://github.com/aDotInTheVoid/rustdoc-types?branch=type-hash#7600a937af78d952ccb26df9379a8291a81f10ff"
+version = "0.11.0"
+source = "git+https://github.com/aDotInTheVoid/rustdoc-types?branch=type-hash#39f1af6faea7ce74f6723577e7f7df1f37541d62"
 dependencies = [
  "serde",
 ]
