@@ -81,6 +81,8 @@ fn do_package(
             "rustdoc",
             "-p",
             &package_spec,
+            "--features",
+            &package_spec,
             "--",
             "-w",
             "json",
