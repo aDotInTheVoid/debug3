@@ -25,10 +25,12 @@ jobs:
           toolchain: ${{matrix.rust}}
           components: rust-src
       - uses: taiki-e/install-action@cargo-hack
-      - run: cargo hack test --each-feature --optional-deps
+      - run: cargo hack test --each-feature --optional-deps --tests
         env:
           RUSTFLAGS: ${{matrix.rustflags}} ${{env.RUSTFLAGS}}
-        
+      - run: cargo test --doc
+        env:
+          RUSTFLAGS: ${{matrix.rustflags}} ${{env.RUSTFLAGS}}        
 
   clippy:
     name: Clippy
