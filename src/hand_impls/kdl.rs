@@ -12,6 +12,17 @@ fn field_if(f: &mut crate::builders::DebugStruct, name: &str, value: Option<impl
         f.field(name, &v);
     }
 }
+fn field_slice(f: &mut crate::builders::DebugStruct, name: &str, slice: &[impl Debug]) {
+    match slice {
+        [] => {}
+        [v] => {
+            f.field(name, v);
+        }
+        vs => {
+            f.field(name, &vs);
+        }
+    }
+}
 
 impl Debug for KdlEntry {
     fn fmt(&self, f: &mut crate::Formatter) {
@@ -36,7 +47,7 @@ impl Debug for KdlNode {
         let mut d = f.debug_struct("KdlNode");
         field_if(&mut d, "ty", self.ty());
         d.field("name", &self.name());
-        d.field("entries", &self.entries());
+        field_slice(&mut d, "entries", &self.entries());
         field_if(&mut d, "children", self.children());
         d.finish()
     }
