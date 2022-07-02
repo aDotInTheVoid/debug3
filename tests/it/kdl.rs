@@ -1,16 +1,17 @@
 #![cfg(feature = "kdl")]
 
-use debug3::{pprint, Debug};
+use debug3::pprint;
 use expect_test::{expect, Expect};
 use kdl::KdlDocument;
 
-fn check(actual: impl Debug, expacted: Expect) {
-    expacted.assert_eq(&pprint(actual));
+fn check(kdl: &str, expacted: Expect) {
+    let doc: KdlDocument = kdl.parse().expect("failed to parse KDL");
+    expacted.assert_eq(&pprint(doc));
 }
 
 #[test]
 fn kdl_basic() {
-    let doc_str = r#"
+    let doc = r#"
 hello 1 2 3
 
 world prop="value" {
@@ -19,8 +20,9 @@ world prop="value" {
 }
 "#;
 
-    let doc: KdlDocument = doc_str.parse().expect("failed to parse KDL");
-    check(doc, expect![[r#"
+    check(
+        doc,
+        expect![[r#"
         [
             KdlNode {
                 name: "hello",
@@ -43,18 +45,18 @@ world prop="value" {
                     },
                 ],
             },
-        ]"#]]);
+        ]"#]],
+    );
 }
 
 #[test]
 fn kdl_2() {
-    let doc_str = r#"
+    let doc = r#"
   // indented comment
   "formatted" 1 /* comment */ \
     2;
 "#;
 
-    let doc: KdlDocument = doc_str.parse().expect("failed to parse KDL");
     check(
         doc,
         expect![[r#"
@@ -69,7 +71,7 @@ fn kdl_2() {
 
 #[test]
 fn kdl_3() {
-    let doc_str = r####"
+    let doc = r####"
     contents {
         section "First section" {
             paragraph "This is the first paragraph"
@@ -77,7 +79,6 @@ fn kdl_3() {
         }
     }
     "####;
-    let doc: KdlDocument = doc_str.parse().expect("failed to parse KDL");
     check(
         doc,
         expect![[r#"
@@ -107,12 +108,13 @@ fn kdl_3() {
 
 #[test]
 fn kdl_4() {
-    let doc_str = r###"
+    let doc = r###"
         node "this\nhas\tescapes"
         other r"C:\Users\zkat\"
     "###;
-    let doc: KdlDocument = doc_str.parse().expect("failed to parse KDL");
-    check(doc, expect![[r#"
+    check(
+        doc,
+        expect![[r#"
         [
             KdlNode {
                 name: "node",
@@ -122,33 +124,37 @@ fn kdl_4() {
                 name: "other",
                 entries: "C:\\Users\\zkat\\",
             },
-        ]"#]]);
+        ]"#]],
+    );
 }
 
 #[test]
 fn kdl_5() {
-    let doc_str = r###"other-raw r#"hello"world"#"###;
-    let doc: KdlDocument = doc_str.parse().expect("failed to parse KDL");
-    check(doc, expect![[r#"
+    let doc = r###"other-raw r#"hello"world"#"###;
+    check(
+        doc,
+        expect![[r#"
         [
             KdlNode {
                 name: "other-raw",
                 entries: "hello\"world",
             },
-        ]"#]]);
+        ]"#]],
+    );
 }
 
 #[test]
 fn kdl_num() {
-    let doc_str = r#"
+    let doc = r#"
     num 1.234e-42
     my-hex 0xdeadbeef
     my-octal 0o755
     my-binary 0b10101101
     bignum 1_000_000
 "#;
-    let doc: KdlDocument = doc_str.parse().expect("failed to parse KDL");
-    check(doc, expect![[r#"
+    check(
+        doc,
+        expect![[r#"
         [
             KdlNode {
                 name: "num",
@@ -170,17 +176,17 @@ fn kdl_num() {
                 name: "bignum",
                 entries: 1000000,
             },
-        ]"#]]);
+        ]"#]],
+    );
 }
 
 #[test]
 fn kdl_ty() {
-    let doc_str = r#"
+    let doc = r#"
         numbers (u8)10 (i32)20 myfloat=(f32)1.5 {
           strings (uuid)"123e4567-e89b-12d3-a456-426614174000" (date)"2021-02-03" filter=(regex)r"$\d+"
           (author)person name="Alex"
         }"#;
-    let doc: KdlDocument = doc_str.parse().expect("failed to parse KDL");
     check(
         doc,
         expect![[r#"
@@ -227,4 +233,43 @@ fn kdl_ty() {
             },
         ]"#]],
     );
+}
+
+#[test]
+fn gttg_1() {
+    let doc = r#"
+    (PC)shanondale player="nixon" {
+        PC {
+            Stats {
+                Dex 10
+            }
+        }
+    }"#;
+    check(doc, expect![[r#"
+        [
+            KdlNode {
+                ty: "PC",
+                name: "shanondale",
+                entries: KdlEntry {
+                    name: "player",
+                    value: "nixon",
+                },
+                children: [
+                    KdlNode {
+                        name: "PC",
+                        children: [
+                            KdlNode {
+                                name: "Stats",
+                                children: [
+                                    KdlNode {
+                                        name: "Dex",
+                                        entries: 10,
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                ],
+            },
+        ]"#]]);
 }
