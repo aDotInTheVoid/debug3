@@ -2,5 +2,6 @@
     "editor.formatOnSave": true,
     "rust-analyzer.cargo.features": [
         // "syn"
+        "tree-sitter"
     ]
 }
