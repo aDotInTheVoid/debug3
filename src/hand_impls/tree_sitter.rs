@@ -10,10 +10,21 @@ impl Debug for Tree {
 
 impl Debug for Node<'_> {
     fn fmt(&self, f: &mut crate::Formatter) {
-        f.debug_struct("Node")
-            .field("kind", &self.kind())
-            .field("children", &Children(*self))
-            .finish()
+        // d.field("kind", &self.kind());
+
+        match self.child_count() {
+            0 => f.debug_tuple("Node").field(&self.kind()).finish(),
+            1 => f
+                .debug_struct("Node")
+                .field("kind", &self.kind())
+                .field("child", &self.child(0).unwrap())
+                .finish(),
+            _ => f
+                .debug_struct("Node")
+                .field("kind", &self.kind())
+                .field("children", &Children(*self))
+                .finish(),
+        }
     }
 }
 

@@ -19,77 +19,51 @@ fn basic() {
         Tree(
             Node {
                 kind: "translation_unit",
-                children: [
-                    Node {
-                        kind: "function_definition",
-                        children: [
-                            Node {
-                                kind: "primitive_type",
-                                children: [],
-                            },
-                            Node {
-                                kind: "function_declarator",
-                                children: [
-                                    Node {
-                                        kind: "identifier",
-                                        children: [],
-                                    },
-                                    Node {
-                                        kind: "parameter_list",
-                                        children: [
-                                            Node { kind: "(", children: [] },
-                                            Node {
-                                                kind: "parameter_declaration",
-                                                children: [
-                                                    Node {
-                                                        kind: "primitive_type",
-                                                        children: [],
-                                                    },
-                                                    Node {
-                                                        kind: "identifier",
-                                                        children: [],
-                                                    },
-                                                ],
-                                            },
-                                            Node { kind: ")", children: [] },
-                                        ],
-                                    },
-                                ],
-                            },
-                            Node {
-                                kind: "compound_statement",
-                                children: [
-                                    Node { kind: "{", children: [] },
-                                    Node {
-                                        kind: "return_statement",
-                                        children: [
-                                            Node {
-                                                kind: "return",
-                                                children: [],
-                                            },
-                                            Node {
-                                                kind: "binary_expression",
-                                                children: [
-                                                    Node {
-                                                        kind: "identifier",
-                                                        children: [],
-                                                    },
-                                                    Node { kind: "*", children: [] },
-                                                    Node {
-                                                        kind: "identifier",
-                                                        children: [],
-                                                    },
-                                                ],
-                                            },
-                                            Node { kind: ";", children: [] },
-                                        ],
-                                    },
-                                    Node { kind: "}", children: [] },
-                                ],
-                            },
-                        ],
-                    },
-                ],
+                child: Node {
+                    kind: "function_definition",
+                    children: [
+                        Node("primitive_type"),
+                        Node {
+                            kind: "function_declarator",
+                            children: [
+                                Node("identifier"),
+                                Node {
+                                    kind: "parameter_list",
+                                    children: [
+                                        Node("("),
+                                        Node {
+                                            kind: "parameter_declaration",
+                                            children: [Node("primitive_type"), Node("identifier")],
+                                        },
+                                        Node(")"),
+                                    ],
+                                },
+                            ],
+                        },
+                        Node {
+                            kind: "compound_statement",
+                            children: [
+                                Node("{"),
+                                Node {
+                                    kind: "return_statement",
+                                    children: [
+                                        Node("return"),
+                                        Node {
+                                            kind: "binary_expression",
+                                            children: [
+                                                Node("identifier"),
+                                                Node("*"),
+                                                Node("identifier"),
+                                            ],
+                                        },
+                                        Node(";"),
+                                    ],
+                                },
+                                Node("}"),
+                            ],
+                        },
+                    ],
+                },
             },
         )"#]]);
 }
