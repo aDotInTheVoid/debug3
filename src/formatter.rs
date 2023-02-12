@@ -170,10 +170,11 @@ impl Formatter {
         builders::map::new(self)
     }
 
-    /// Escape hatch to allow direct writing of values throug their [`std::fmt::Debug`] impl.
+    /// Escape hatch to allow direct writing of values throug their
+    /// [`std::fmt::Debug`] impl.
     ///
-    /// Avoid this method whenever possible. It is likely to mess up your day. Try to use the
-    /// builder methods instead.
+    /// Avoid this method whenever possible. It is likely to mess up your day.
+    /// Try to use the builder methods instead.
     ///
     /// ```rust
     /// # use std::ops::Range;
@@ -230,7 +231,7 @@ impl Formatter {
     ///
     /// assert_eq!(
     ///     pprint(expr),
-    /// r"BinOp {
+    ///     r"BinOp {
     ///     lhs: BinOp {
     ///         lhs: Int(1) @ 0..1,
     ///         op: '+',
@@ -246,10 +247,11 @@ impl Formatter {
         self.word(s);
     }
 
-    /// Escape hatch to allow direct writing of values throug their [`std::fmt::Debug`] impl.
+    /// Escape hatch to allow direct writing of values throug their
+    /// [`std::fmt::Debug`] impl.
     ///
-    /// Avoid this method whenever possible. It is likely to mess up your day. Try to use the
-    /// builder methods instead.
+    /// Avoid this method whenever possible. It is likely to mess up your day.
+    /// Try to use the builder methods instead.
     ///
     /// See also [`Formatter::write_debug`]
     pub fn write_display<T: std::fmt::Display>(&mut self, val: T) {

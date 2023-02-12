@@ -245,7 +245,9 @@ fn gttg_1() {
             }
         }
     }"#;
-    check(doc, expect![[r#"
+    check(
+        doc,
+        expect![[r#"
         [
             KdlNode {
                 ty: "PC",
@@ -271,5 +273,6 @@ fn gttg_1() {
                     },
                 ],
             },
-        ]"#]]);
+        ]"#]],
+    );
 }

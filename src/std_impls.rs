@@ -391,7 +391,8 @@ impl Debug for std::io::ErrorKind {
 
 impl Debug for std::num::ParseFloatError {
     fn fmt(&self, f: &mut Formatter) {
-        f.debug_struct("ParseFloatError").finish() // TODO: This has a kind, but it's secret.
+        f.debug_struct("ParseFloatError").finish() // TODO: This has a kind, but
+                                                   // it's secret.
     }
 }
 
