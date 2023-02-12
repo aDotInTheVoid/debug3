@@ -1,6 +1,6 @@
 [package]
 name = "debug3"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 description = "Space Efficient Pretty Printer"
@@ -11,7 +11,7 @@ repository = "https://github.com/aDotInTheVoid/debug3/"
 [dependencies]
 # Real Deps
 # TODO: Make derive optional
-debug3-derive = { version = "0.2.0", path = "derive" }
+debug3-derive = { version = "0.3.0", path = "derive" }
 # Foreign Impls
 aws-sdk-ec2 = { version = "0.15.0", optional = true }
 aws-smithy-types = { version = "0.45.0", optional = true }
