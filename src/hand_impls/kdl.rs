@@ -47,7 +47,7 @@ impl Debug for KdlNode {
         let mut d = f.debug_struct("KdlNode");
         field_if(&mut d, "ty", self.ty());
         d.field("name", &self.name());
-        field_slice(&mut d, "entries", &self.entries());
+        field_slice(&mut d, "entries", self.entries());
         field_if(&mut d, "children", self.children());
         d.finish()
     }

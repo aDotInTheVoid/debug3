@@ -116,7 +116,7 @@ fn quadratic_form() {
         Instr::BinOp(BinOp::Div),
     ];
     assert_eq!(
-        debug3::pprint(&instrs),
+        debug3::pprint(instrs),
         "\
 [
     Load(\"b\"),
