@@ -4,17 +4,6 @@ use crate::{
 };
 
 impl Formatter {
-    // Escape hatches for base impls (String, str, bool, char, etc.)
-    pub(crate) fn write_debug<T: std::fmt::Debug + ?Sized>(&mut self, val: &T) {
-        let s = format!("{:?}", val);
-        self.word(s);
-    }
-
-    pub(crate) fn write_display<T: std::fmt::Display + ?Sized>(&mut self, val: &T) {
-        let s = format!("{}", val);
-        self.word(s);
-    }
-
     /// Creates a [`DebugStruct`] builder designed to assist with creation of
     /// [`crate::Debug`] implementations for structs.
     ///
@@ -179,5 +168,92 @@ impl Formatter {
     /// ```
     pub fn debug_map(&mut self) -> DebugMap<'_> {
         builders::map::new(self)
+    }
+
+    /// Escape hatch to allow direct writing of values throug their [`std::fmt::Debug`] impl.
+    ///
+    /// Avoid this method whenever possible. It is likely to mess up your day. Try to use the
+    /// builder methods instead.
+    ///
+    /// ```rust
+    /// # use std::ops::Range;
+    /// # use debug3::{Debug, Formatter, pprint};
+    ///
+    /// struct Expr {
+    ///     kind: ExprKind,
+    ///     span: Range<usize>,
+    /// }
+    ///
+    /// #[derive(Debug)]
+    /// enum ExprKind {
+    ///     BinOp {
+    ///         lhs: Box<Expr>,
+    ///         op: char,
+    ///         rhs: Box<Expr>,
+    ///     },
+    ///     Int(i32),
+    /// }
+    ///
+    /// impl Debug for Expr {
+    ///     fn fmt(&self, f: &mut Formatter) {
+    ///         Debug::fmt(&self.kind, f);
+    ///         f.write_display(" @ ");
+    ///         f.write_debug(&self.span);
+    ///     }
+    /// }
+    ///
+    /// // 1 + 3 + 4
+    /// let expr = Expr {
+    ///     kind: ExprKind::BinOp {
+    ///         lhs: Box::new(Expr {
+    ///             kind: ExprKind::BinOp {
+    ///                 lhs: Box::new(Expr {
+    ///                     kind: ExprKind::Int(1),
+    ///                     span: 0..1,
+    ///                 }),
+    ///                 op: '+',
+    ///                 rhs: Box::new(Expr {
+    ///                     kind: ExprKind::Int(3),
+    ///                     span: 4..5,
+    ///                 }),
+    ///             },
+    ///             span: 0..5,
+    ///         }),
+    ///         op: '+',
+    ///         rhs: Box::new(Expr {
+    ///             kind: ExprKind::Int(4),
+    ///             span: 8..9,
+    ///         }),
+    ///     },
+    ///     span: 8..9,
+    /// };
+    ///
+    /// assert_eq!(
+    ///     pprint(expr),
+    /// r"BinOp {
+    ///     lhs: BinOp {
+    ///         lhs: Int(1) @ 0..1,
+    ///         op: '+',
+    ///         rhs: Int(3) @ 4..5,
+    ///     } @ 0..5,
+    ///     op: '+',
+    ///     rhs: Int(4) @ 8..9,
+    /// } @ 8..9"
+    /// );
+    /// ```
+    pub fn write_debug<T: std::fmt::Debug>(&mut self, val: T) {
+        let s = format!("{:?}", val);
+        self.word(s);
+    }
+
+    /// Escape hatch to allow direct writing of values throug their [`std::fmt::Debug`] impl.
+    ///
+    /// Avoid this method whenever possible. It is likely to mess up your day. Try to use the
+    /// builder methods instead.
+    ///
+    /// See also [`Formatter::write_debug`]
+    pub fn write_display<T: std::fmt::Display>(&mut self, val: T) {
+        let s = format!("{}", val);
+        self.word(s);
     }
 }
