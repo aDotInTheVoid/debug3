@@ -255,7 +255,7 @@ impl<T: ?Sized + Debug> Debug for Mutex<T> {
                 struct LockedPlaceholder;
                 impl Debug for LockedPlaceholder {
                     fn fmt(&self, f: &mut Formatter) {
-                        f.write_debug(&format_args!("<locked>"))
+                        f.write_debug(format_args!("<locked>"))
                     }
                 }
                 d.field("data", &LockedPlaceholder);
