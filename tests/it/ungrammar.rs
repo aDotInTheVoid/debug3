@@ -27,19 +27,53 @@ ItemList = '{' '}'
                 nodes: {
                     "Module": Seq(
                         [
-                            Rep(Node(Node(1))),
-                            Opt(Node(Node(2))),
-                            Token(Token(0)),
-                            Node(Node(3)),
-                            Alt([Node(Node(4)), Token(Token(1))]),
+                            Rep(Node("Attr")),
+                            Opt(Node("Visibility")),
+                            Token("mod"),
+                            Node("Name"),
+                            Alt([Node("ItemList"), Token(";")]),
                         ],
                     ),
-                    "Attr": Token(Token(2)),
-                    "Visibility": Token(Token(3)),
-                    "Name": Token(Token(4)),
-                    "ItemList": Seq([Token(Token(5)), Token(Token(6))]),
+                    "Attr": Token("#[lol]"),
+                    "Visibility": Token("pub"),
+                    "Name": Token("@name"),
+                    "ItemList": Seq([Token("{"), Token("}")]),
                 },
                 tokens: {"mod", ";", "#[lol]", "pub", "@name", "{", "}"},
             }"##]],
+    );
+}
+
+#[test]
+fn all_forms() {
+    check_ok(
+        r##"
+Labeled = a:'a'
+Node = SomeOtherNode
+Token = 'a'
+Seq = 'a' 'b'
+Alt = 'a' | 'b'
+Opt = 'a'?
+Rep = 'a'*
+
+SomeOtherNode = 'a'
+"##,
+        expect![[r#"
+            Grammar {
+                nodes: {
+                    "Labeled": Labeled {
+                        label: "a",
+                        rule: Token("a"),
+                    },
+                    "Node": Node("SomeOtherNode"),
+                    "SomeOtherNode": Token("a"),
+                    "Token": Token("a"),
+                    "Seq": Seq([Token("a"), Token("b")]),
+                    "Alt": Alt([Token("a"), Token("b")]),
+                    "Opt": Opt(Token("a")),
+                    "Rep": Rep(Token("a")),
+                },
+                tokens: {"a", "b"},
+            }"#]],
     );
 }
