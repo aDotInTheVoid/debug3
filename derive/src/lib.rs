@@ -51,6 +51,7 @@ fn derive_debug(mut s: synstructure::Structure) -> proc_macro2::TokenStream {
     });
 
     s.gen_impl(quote! {
+        #[automatically_derived]
         gen impl debug3::Debug for @Self {
             fn fmt(&self, f: &mut debug3::Formatter) {
                 match self { #variants }
