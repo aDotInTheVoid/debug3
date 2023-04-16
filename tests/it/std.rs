@@ -4,6 +4,9 @@ use std::{
 };
 
 use debug3::{pprint, Debug};
+use expect_test::expect;
+
+use crate::check;
 
 #[test]
 fn refcell() {
@@ -64,4 +67,86 @@ fn unsized_ref() {
         ptr: &5 as &dyn Debug,
     };
     assert_eq!(pprint(x), "Ref { ptr: 5 }");
+}
+
+#[test]
+fn range() {
+    check(1..10, expect!["1..10"]);
+    check(1.., expect!["1.."]);
+    check(..10, expect!["..10"]);
+    check(.., expect![".."]);
+    check(1..=10, expect!["1..=10"]);
+    check(..=10, expect!["..=10"]);
+}
+
+#[test]
+fn range_big() {
+    let big = [4; 20];
+
+    // TODO: This isn't great, but I'm not sure what is.
+    check(
+        big..big,
+        expect![[r#"
+        [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+        ]..[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]"#]],
+    );
+
+    check(
+        big..,
+        expect!["[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4].."],
+    );
+    check(
+        ..big,
+        expect!["..[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]"],
+    );
+    check(
+        big..=big,
+        expect![[r#"
+        [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+        ]..=[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]"#]],
+    );
+    check(
+        ..=big,
+        expect!["..=[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]"],
+    );
 }

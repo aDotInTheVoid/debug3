@@ -396,4 +396,14 @@ impl Debug for std::num::ParseFloatError {
     }
 }
 
+// TODO: The rest of the ranges
+impl<T: Debug> Debug for std::ops::Range<T> {
+    fn fmt(&self, f: &mut Formatter) {
+        f.debug_struct("Range")
+            .field("start", &self.start)
+            .field("end", &self.end)
+            .finish()
+    }
+}
+
 // TODO: Tests
