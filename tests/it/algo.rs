@@ -3,6 +3,7 @@ use debug3::{pprint, Debug, Formatter};
 #[test]
 fn works() {
     #[derive(Debug)]
+    #[allow(dead_code)]
     struct Basic {
         a: String,
         b: i32,
@@ -736,6 +737,7 @@ fn big_map() {
 #[test]
 fn enum_many_ways() {
     #[derive(Debug)]
+    #[allow(dead_code)]
     enum Foo {
         A(i32),
         B(i32, &'static str),
