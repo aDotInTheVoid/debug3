@@ -1,3 +1,7 @@
+fn check(actual: impl debug3::Debug, expacted: expect_test::Expect) {
+    expacted.assert_eq(&debug3::pprint(actual));
+}
+
 mod algo;
 mod builder;
 mod derive;

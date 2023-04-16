@@ -1,9 +1,5 @@
-use debug3::{pprint, Debug};
-use expect_test::{expect, Expect};
-
-fn check(actual: impl Debug, expacted: Expect) {
-    expacted.assert_eq(&pprint(actual));
-}
+use crate::check;
+use expect_test::expect;
 
 #[test]
 fn can_use_custom_map() {

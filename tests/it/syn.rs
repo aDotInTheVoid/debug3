@@ -1,12 +1,8 @@
 #![cfg(feature = "syn")]
 
-use debug3::{pprint, Debug};
-use expect_test::{expect, Expect};
+use crate::check;
+use expect_test::expect;
 use syn::{ExprCall, ExprField, ItemMacro};
-
-fn check(actual: impl Debug, expacted: Expect) {
-    expacted.assert_eq(&pprint(actual));
-}
 
 #[test]
 fn char_lit() {

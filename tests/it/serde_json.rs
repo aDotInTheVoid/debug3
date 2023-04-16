@@ -1,12 +1,8 @@
 #![cfg(feature = "serde_json")]
 
-use debug3::{pprint, Debug};
-use expect_test::{expect, Expect};
+use crate::check;
+use expect_test::expect;
 use serde_json::json;
-
-fn check(actual: impl Debug, expacted: Expect) {
-    expacted.assert_eq(&pprint(actual));
-}
 
 #[test]
 fn basic() {
