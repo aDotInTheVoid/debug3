@@ -8,6 +8,9 @@ exclude = ["TokenTree"]
 [serde_json]
 exclude = ["Value"]
 
+[pulldown-cmark]
+exclude = ["CowStr"]
+
 [hashbrown]
 exclude = [
    "hash_map::Entry", # Need a custom bound on K: Borrow<Q>

@@ -8,6 +8,7 @@ mod derive;
 mod fxhash;
 mod kdl;
 mod motivating;
+mod pulldown_cmark;
 mod rustdoc_types;
 mod serde_json;
 mod std;

@@ -1,6 +1,6 @@
 {
     "editor.formatOnSave": true,
     "rust-analyzer.cargo.features": [
-        "ungrammar"
+        "pulldown-cmark"
     ]
 }

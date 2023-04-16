@@ -8,6 +8,7 @@ cfg_mod! {
     (kdl "kdl")
     (miette "miette")
     (proc_macro2 "proc-macro2")
+    (pulldown_cmark "pulldown-cmark")
     (rustdoc_types "rustdoc-types")
     (serde_json "serde_json")
     (smallvec "smallvec")
