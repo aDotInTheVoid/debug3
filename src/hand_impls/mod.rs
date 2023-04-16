@@ -12,4 +12,5 @@ cfg_mod! {
     (serde_json "serde_json")
     (smallvec "smallvec")
     (syn "syn")
+    (ungrammar "ungrammar")
 }

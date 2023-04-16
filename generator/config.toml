@@ -24,3 +24,4 @@ exclude = ["KdlValue"] # We can be cleverer
 [miette]
 [rustdoc-types]
 [smallvec]
+[ungrammar]
