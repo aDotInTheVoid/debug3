@@ -1,0 +1,14 @@
+error: field `y` is never read
+ --> tests/it/ui/unused_fields.rs:6:5
+  |
+4 | pub struct Foo {
+  |            --- field in this struct
+5 |     x: i32,
+6 |     y: i32,
+  |     ^
+  |
+note: the lint level is defined here
+ --> tests/it/ui/unused_fields.rs:1:9
+  |
+1 | #![deny(dead_code)] // Becuase ui-test requires an error, not warning
+  |         ^^^^^^^^^
