@@ -396,13 +396,41 @@ impl Debug for std::num::ParseFloatError {
     }
 }
 
-// TODO: The rest of the ranges
 impl<T: Debug> Debug for std::ops::Range<T> {
     fn fmt(&self, f: &mut Formatter) {
-        f.debug_struct("Range")
-            .field("start", &self.start)
-            .field("end", &self.end)
-            .finish()
+        Debug::fmt(&self.start, f);
+        f.word("..");
+        Debug::fmt(&self.end, f);
+    }
+}
+impl<T: Debug> Debug for std::ops::RangeFrom<T> {
+    fn fmt(&self, f: &mut Formatter) {
+        Debug::fmt(&self.start, f);
+        f.word("..");
+    }
+}
+impl Debug for std::ops::RangeFull {
+    fn fmt(&self, f: &mut Formatter) {
+        f.word("..")
+    }
+}
+impl<T: Debug> Debug for std::ops::RangeInclusive<T> {
+    fn fmt(&self, f: &mut Formatter) {
+        Debug::fmt(&self.start(), f);
+        f.word("..=");
+        Debug::fmt(&self.end(), f);
+    }
+}
+impl<T: Debug> Debug for std::ops::RangeTo<T> {
+    fn fmt(&self, f: &mut Formatter) {
+        f.word("..");
+        Debug::fmt(&self.end, f);
+    }
+}
+impl<T: Debug> Debug for std::ops::RangeToInclusive<T> {
+    fn fmt(&self, f: &mut Formatter) {
+        f.word("..=");
+        Debug::fmt(&self.end, f);
     }
 }
 
