@@ -77,12 +77,17 @@ fn do_package(
 
     ensure!(Command::new("cargo")
         .args([
-            "+nightly",
+            // We're stuck on an old version of rustdoc due to
+            // https://github.com/rust-lang/rust/issues/110007,
+            // and this is the last nightly before
+            // https://github.com/rust-lang/rust/pull/99287 was merged.
+            "+nightly-2022-07-16",
             "rustdoc",
             "-p",
             &package_spec,
             "--features",
-            &package_spec,
+            // FIXME: Don't name features after packages, to allow syn1 and syn2
+            &package,
             "--",
             "-w",
             "json",

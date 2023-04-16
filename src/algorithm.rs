@@ -8,6 +8,7 @@ use crate::{MARGIN, MIN_SPACE};
 use std::borrow::Cow;
 use std::cmp;
 use std::collections::VecDeque;
+use std::convert::TryFrom;
 use std::iter;
 
 #[derive(Clone, Copy, PartialEq)]

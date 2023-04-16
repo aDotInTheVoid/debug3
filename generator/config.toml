@@ -1,5 +1,6 @@
 [syn]
 exclude = ["ExprReference", "token::*"]
+version = "1.0.107"
 
 [proc-macro2]
 exclude = ["TokenTree"]
