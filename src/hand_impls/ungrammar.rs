@@ -16,8 +16,8 @@ impl crate::Debug for ungrammar::Token {
 impl crate::Debug for ungrammar::Grammar {
     fn fmt(&self, f: &mut crate::Formatter) {
         f.debug_struct("Grammar")
-            .field("nodes", &Nodes(&self))
-            .field("tokens", &Tokens(&self))
+            .field("nodes", &Nodes(self))
+            .field("tokens", &Tokens(self))
             .finish()
     }
 }
