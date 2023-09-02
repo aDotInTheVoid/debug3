@@ -88,6 +88,9 @@ fn do_package(
             "--features",
             // FIXME: Don't name features after packages, to allow syn1 and syn2
             &package,
+            // No-one has the git resistry these days
+            "-Z",
+            "sparse-registry",
             "--",
             "-w",
             "json",

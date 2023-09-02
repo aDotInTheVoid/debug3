@@ -12,4 +12,5 @@ cfg_mod! {
     (smallvec "smallvec")
     (syn "syn")
     (ungrammar "ungrammar")
+    (libipld_core "libipld-core")
 }

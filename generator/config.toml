@@ -28,3 +28,4 @@ exclude = ["KdlValue"] # We can be cleverer
 [rustdoc-types]
 [smallvec]
 [ungrammar]
+[libipld-core]

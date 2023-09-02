@@ -14,4 +14,5 @@ cfg_mod! {
     (smallvec "smallvec")
     (syn "syn")
     (ungrammar "ungrammar")
+    (cid "cid")
 }

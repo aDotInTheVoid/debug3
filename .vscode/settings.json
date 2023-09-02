@@ -1,6 +1,7 @@
 {
     "editor.formatOnSave": true,
     "rust-analyzer.cargo.features": [
-        "pulldown-cmark"
+        "libipld-core",
+        "cid"
     ]
 }
