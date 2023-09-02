@@ -5,14 +5,14 @@ error[E0277]: the trait bound `NoDebug: debug3::Debug` is not satisfied
   |          ^^^^^^^^^^^^^ the trait `debug3::Debug` is not implemented for `NoDebug`
   |
   = help: the following other types implement trait `debug3::Debug`:
-            &T
-            &mut T
-            ()
-            (T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11)
-            (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11)
-            (T10, T11)
-            (T11,)
-            (T2, T3, T4, T5, T6, T7, T8, T9, T10, T11)
+            bool
+            char
+            isize
+            i8
+            i16
+            i32
+            i64
+            i128
           and $N others
   = note: required for the cast from `&NoDebug` to `&dyn debug3::Debug`
   = note: this error originates in the derive macro `debug3::Debug` (in Nightly builds, run with -Z macro-backtrace for more info)
