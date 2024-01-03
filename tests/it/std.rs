@@ -1,5 +1,6 @@
 use std::{
     cell::RefCell,
+    num::NonZeroI16,
     sync::{Arc, Mutex},
 };
 
@@ -149,4 +150,9 @@ fn range_big() {
         ..=big,
         expect!["..=[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]"],
     );
+}
+
+#[test]
+fn nonzero() {
+    assert_eq!(pprint(NonZeroI16::new(10)), "Some(10)");
 }
