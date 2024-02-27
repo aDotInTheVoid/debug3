@@ -1,5 +1,6 @@
 #![doc = include_str!("../README.md")]
 #![warn(missing_docs)]
+#![feature(rustc_attrs)]
 
 // From rust-lang/rust/library
 pub mod builders;
@@ -168,6 +169,7 @@ pub use debug3_derive::Debug;
 /// }"
 /// );
 /// ```
+#[rustc_trivial_field_reads]
 pub trait Debug {
     /// Formats the value using the given formatter.
     ///

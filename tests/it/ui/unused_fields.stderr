@@ -1,12 +1,13 @@
 error: field `y` is never read
- --> tests/it/ui/unused_fields.rs:7:5
+ --> tests/it/ui/unused_fields.rs:6:5
   |
-5 | pub struct Foo {
+4 | pub struct Foo {
   |            --- field in this struct
-6 |     x: i32,
-7 |     y: i32,
+5 |     x: i32,
+6 |     y: i32,
   |     ^
   |
+  = note: `Foo` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
 note: the lint level is defined here
  --> tests/it/ui/unused_fields.rs:1:9
   |

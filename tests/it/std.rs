@@ -52,6 +52,7 @@ fn mutex() {
 }
 
 #[derive(Debug)]
+#[allow(dead_code)]
 struct Ref<'a, T: ?Sized> {
     ptr: &'a T,
 }
